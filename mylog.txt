@@ -1,0 +1,5 @@
+2019-04-28 11:23:34,614 DEBUG [util.MyLog]util.GetDate.getNowDate(GetDate.java:14) - <1556421814551>
+2019-04-28 11:24:00,045 DEBUG [util.MyLog]util.GetDate.getNowDate(GetDate.java:14) - <28>
+2019-04-28 11:24:20,447 DEBUG [util.MyLog]util.GetDate.getNowDate(GetDate.java:14) - <Sun Apr 28 11:24:20 CST 2019>
+2019-04-28 11:28:23,021 DEBUG [util.MyLog]util.GetDate.getNowDate(GetDate.java:17) - <2019-04-28 11-28-22>
+2019-04-28 11:28:44,046 DEBUG [util.MyLog]util.GetDate.getNowDate(GetDate.java:17) - <2019-04-28 11:28:43>

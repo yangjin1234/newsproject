@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="pojo.impl.TypeImpl"%>
+<%@page import="dao.impl.TypeDaoImpl"%>
+<%@page import="dao.TypeDao"%>
 <%@page import="util.MyLog"%>
 <%@page import="pojo.News"%>
 <%@page import="java.util.List"%>
@@ -182,7 +185,9 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	   Connection conn=DBHelper.getConnection();
 	   List<News> list=nd.selectAllNews(1, conn, 1, 5);
 	 request.setAttribute("list", list);
-	 MyLog.log.debug("list:"+list.get(0).toString());
+	 TypeDao td=new TypeDaoImpl();
+	 List<TypeImpl> list2=td.selectAllType(conn);
+	 request.setAttribute("type", list2);
 	 %>
 	<tr>
 		<td colspan="2" class="pad">&nbsp;</td><td><a href="https://weilaiche.cc/p/date/2019/05/01" aria-label="于2019年5月1日上发布的文章">1</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/02" aria-label="于2019年5月2日上发布的文章">2</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/03" aria-label="于2019年5月3日上发布的文章">3</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/04" aria-label="于2019年5月4日上发布的文章">4</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/05" aria-label="于2019年5月5日上发布的文章">5</a></td>
@@ -202,78 +207,10 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	</tr>
 	</tbody>
 	</table></div></aside><aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">分类目录</h2>		<ul>
-	<li class="cat-item cat-item-3736"><a href="https://weilaiche.cc/c/bcd%e6%91%86%e6%88%90%e9%83%bd" >BCD摆成都</a> (101)
+	<c:forEach items="${requestScope.type }" var="typec" varStatus="cb">
+	<li class="cat-item cat-item-173"><a href="https://weilaiche.cc/c/%e9%9d%92%e5%b2%9b" >${typec.tname }</a> (${typec.number })
 </li>
-	<li class="cat-item cat-item-1809"><a href="https://weilaiche.cc/c/ccc%e6%97%85%e6%b8%b8%e5%9b%be%e6%96%87" >CCC旅游图文</a> (2,702)
-</li>
-	<li class="cat-item cat-item-5081"><a href="https://weilaiche.cc/c/lsj-js%e5%9b%be%e6%96%87" >LSJ-JS图文</a> (3)
-</li>
-	<li class="cat-item cat-item-1020"><a href="https://weilaiche.cc/c/lsj-%e6%97%85%e6%b8%b8%e5%9b%be%e6%96%87" >LSJ-旅游图文</a> (1,844)
-</li>
-	<li class="cat-item cat-item-1019"><a href="https://weilaiche.cc/c/lsj-%e6%b1%bd%e8%bd%a6%e5%9b%be%e6%96%87" >LSJ-汽车图文</a> (3,000)
-</li>
-	<li class="cat-item cat-item-6517"><a href="https://weilaiche.cc/c/mmc" >MMC</a> (2,516)
-</li>
-	<li class="cat-item cat-item-1018"><a href="https://weilaiche.cc/c/mmc%e5%86%9b%e4%ba%8b" >MMC军事</a> (1,388)
-</li>
-	<li class="cat-item cat-item-7144"><a href="https://weilaiche.cc/c/qzbp" >QZBP</a> (50)
-</li>
-	<li class="cat-item cat-item-2726"><a href="https://weilaiche.cc/c/tcy%e4%bc%81%e9%b9%85" >TCY企鹅</a> (112)
-</li>
-	<li class="cat-item cat-item-170"><a href="https://weilaiche.cc/c/jstw" >TCY军事图文</a> (25,634)
-</li>
-	<li class="cat-item cat-item-219"><a href="https://weilaiche.cc/c/tcy%e5%8e%86%e5%8f%b2%e5%9b%be%e6%96%87" >TCY历史图文</a> (718)
-</li>
-	<li class="cat-item cat-item-232"><a href="https://weilaiche.cc/c/tcy%e6%97%85%e6%b8%b8%e5%9b%be%e6%96%87" >TCY旅游图文</a> (5,030)
-</li>
-	<li class="cat-item cat-item-2"><a href="https://weilaiche.cc/c/cars" >TCY汽车图文</a> (9,329)
-</li>
-	<li class="cat-item cat-item-181"><a href="https://weilaiche.cc/c/tg-%e6%97%85%e6%b8%b8%e6%8e%a8%e5%b9%bf" >TG-旅游推广</a> (645)
-</li>
-	<li class="cat-item cat-item-177"><a href="https://weilaiche.cc/c/tgcar" >TG-汽车推广</a> (2,765)
-</li>
-	<li class="cat-item cat-item-195"><a href="https://weilaiche.cc/c/tg-%e7%bb%bc%e5%90%88%e5%9b%be%e6%96%87" >TG-综合图文</a> (4,690)
-</li>
-	<li class="cat-item cat-item-169"><a href="https://weilaiche.cc/c/txwlc" >TXWLC</a> (7,106)
-</li>
-	<li class="cat-item cat-item-6238"><a href="https://weilaiche.cc/c/wxt%e5%86%9b%e4%ba%8b%e5%9b%be%e6%96%87" >WXT军事图文</a> (617)
-</li>
-	<li class="cat-item cat-item-1017"><a href="https://weilaiche.cc/c/wxt%e6%97%85%e6%b8%b8%e5%9b%be%e6%96%87" >WXT旅游图文</a> (775)
-</li>
-	<li class="cat-item cat-item-477"><a href="https://weilaiche.cc/c/ytb" >YTB</a> (203)
-</li>
-	<li class="cat-item cat-item-7690"><a href="https://weilaiche.cc/c/%e5%88%86%e6%9e%90%e5%86%9b%e4%ba%8b" >分析军事</a> (237)
-</li>
-	<li class="cat-item cat-item-7692"><a href="https://weilaiche.cc/c/%e5%88%86%e6%9e%90%e6%97%85%e6%b8%b8" >分析旅游</a> (113)
-</li>
-	<li class="cat-item cat-item-7691"><a href="https://weilaiche.cc/c/%e5%88%86%e6%9e%90%e6%b1%bd%e8%bd%a6" >分析汽车</a> (51)
-</li>
-	<li class="cat-item cat-item-237"><a href="https://weilaiche.cc/c/%e5%a4%a9%e4%b8%8b%e6%9c%89%e8%ad%a6%e8%a7%86%e9%a2%91" >天下有警视频</a> (1,909)
-</li>
-	<li class="cat-item cat-item-3592"><a href="https://weilaiche.cc/c/douyin" >抖音视频</a> (3)
-</li>
-	<li class="cat-item cat-item-1"><a href="https://weilaiche.cc/c/uncategorized" >未分类</a> (15,548)
-</li>
-	<li class="cat-item cat-item-478"><a href="https://weilaiche.cc/c/%e6%9c%aa%e6%9d%a5%e8%bd%a6%e5%86%9b%e4%ba%8b-%e5%85%b6%e4%bb%96" >未来车军事-其他</a> (706)
-</li>
-	<li class="cat-item cat-item-1482"><a href="https://weilaiche.cc/c/%e6%9c%aa%e6%9d%a5%e8%bd%a6%e5%86%9b%e4%ba%8b-%e6%b5%b7%e5%a4%96" >未来车军事-海外</a> (439)
-</li>
-	<li class="cat-item cat-item-167"><a href="https://weilaiche.cc/c/%e6%9c%aa%e6%9d%a5%e8%bd%a6%e5%86%9b%e4%ba%8b" >未来车军事-素版</a> (4,478)
-</li>
-	<li class="cat-item cat-item-296"><a href="https://weilaiche.cc/c/%e6%9c%aa%e6%9d%a5%e8%bd%a6%e6%b1%bd%e8%bd%a6-%e7%8b%ac%e5%ae%b6" >未来车汽车-独家</a> (866)
-</li>
-	<li class="cat-item cat-item-371"><a href="https://weilaiche.cc/c/%e6%b2%b9%e7%ae%a1%e5%88%86%e6%9e%90" >油管分析</a> (332)
-</li>
-	<li class="cat-item cat-item-7696"><a href="https://weilaiche.cc/c/%e6%b5%b7%e5%a4%96%e6%b5%8b%e8%af%95%e7%89%88%e5%8b%bf%e5%8a%a8" >海外测试版勿动</a> (8)
-</li>
-	<li class="cat-item cat-item-7694"><a href="https://weilaiche.cc/c/%e7%8e%8b%e5%b0%a7%e6%a0%87%e9%a2%98" >王尧标题</a> (59)
-</li>
-	<li class="cat-item cat-item-519"><a href="https://weilaiche.cc/c/%e8%99%be%e5%85%b5%e6%a2%b0%e5%b0%86" >虾兵械将</a> (130)
-</li>
-	<li class="cat-item cat-item-7695"><a href="https://weilaiche.cc/c/%e8%a9%b9%e9%99%85%e7%90%b3%e4%bc%81%e9%b9%85" >詹际琳企鹅</a> (35)
-</li>
-	<li class="cat-item cat-item-173"><a href="https://weilaiche.cc/c/%e9%9d%92%e5%b2%9b" >青岛</a> (259)
-</li>
+	</c:forEach>
 		</ul>
 </aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">文章归档</h2>		<ul>
 			<li><a href='https://weilaiche.cc/p/date/2019/05'>2019年五月</a>&nbsp;(6166)</li>
@@ -310,7 +247,6 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 
 	<c:forEach items="${requestScope.list }" var="listc" varStatus="cb">
 	  <c:if test="${!empty listc }">
-	<%MyLog.log.debug("aaa"); %>
 	     <footer class="entry-footer">
 	<span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:52:16+00:00">${listc.nupload_time}</time><time class="updated" datetime="2019-05-09T17:34:24+00:00">2019年05月09日 17:34</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486331#respond"><span class="screen-reader-text">于wuhao070在阿富汗，为何美军不会再主动给小孩发糖?血的教训早就有了liuyu</span>留下评论</a></span>	</footer><!-- .entry-footer -->
 

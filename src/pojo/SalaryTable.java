@@ -14,6 +14,12 @@ public class SalaryTable implements Serializable{
 	public int getSalarys_state() {
 		return salarys_state;
 	}
+	@Override
+	public String toString() {
+		return "SalaryTable [salarys_state=" + salarys_state + ", sid=" + sid
+				+ ", sid_uid_key=" + sid_uid_key + ", sdate=" + sdate
+				+ ", salarys=" + salarys + "]";
+	}
 	public void setSalarys_state(int salarys_state) {
 		this.salarys_state = salarys_state;
 	}

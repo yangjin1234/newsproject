@@ -4,6 +4,15 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class News implements Serializable{
+	@Override
+	public String toString() {
+		return "News [nid=" + nid + ", nid_uid_key=" + nid_uid_key + ", title="
+				+ title + ", ncontent=" + ncontent + ", news_state="
+				+ news_state + ", nsalary=" + nsalary + ", nupload_time="
+				+ nupload_time + ", namend_time=" + namend_time
+				+ ", nsalary_state=" + nsalary_state + ", nid_tid_key="
+				+ nid_tid_key + "]";
+	}
 	private int nid;
 	private int nid_uid_key;
 	private String title;

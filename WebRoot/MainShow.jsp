@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<%@page import="util.MyLog"%>
+<%@page import="pojo.News"%>
+<%@page import="java.util.List"%>
+<%@page import="db.DBHelper"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="dao.impl.NewsImpl"%>
+<%@page import="dao.NewsDao"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="zh-CN" class="no-js">
 <head>
 	<meta charset="UTF-8">
@@ -167,6 +176,14 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	</tfoot>
 
 	<tbody>
+	<!-- 测试查找新闻 -->
+	<%
+	   NewsDao nd=new NewsImpl();
+	   Connection conn=DBHelper.getConnection();
+	   List<News> list=nd.selectAllNews(1, conn, 1, 5);
+	 request.setAttribute("list", list);
+	 MyLog.log.debug("list:"+list.get(0).toString());
+	 %>
 	<tr>
 		<td colspan="2" class="pad">&nbsp;</td><td><a href="https://weilaiche.cc/p/date/2019/05/01" aria-label="于2019年5月1日上发布的文章">1</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/02" aria-label="于2019年5月2日上发布的文章">2</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/03" aria-label="于2019年5月3日上发布的文章">3</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/04" aria-label="于2019年5月4日上发布的文章">4</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/05" aria-label="于2019年5月5日上发布的文章">5</a></td>
 	</tr>
@@ -291,86 +308,41 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
 
-		
-			
-			<article id="post-486331" class="post-486331 post type-post status-publish format-standard hentry category-jstw">
-		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：486331</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="https://weilaiche.cc/p/486331" rel="bookmark">wuhao070在阿富汗，为何美军不会再主动给小孩发糖?血的教训早就有了liuyu</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:52:16+00:00">2019年05月08日 16:52</time><time class="updated" datetime="2019-05-09T17:34:24+00:00">2019年05月09日 17:34</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486331#respond"><span class="screen-reader-text">于wuhao070在阿富汗，为何美军不会再主动给小孩发糖?血的教训早就有了liuyu</span>留下评论</a></span></div>	</header><!-- .entry-header -->
-	<div class="entry-content">
-		
-				<div class="ui tiny icon positive message">
-				<i class="trophy icon"></i>
-				<div class="content">
-				<p>获得稿酬<span style="font-size:32px;">10元</span>，请继续加油哦！(实际总稿酬10元)</p>
-				</div></div><p>美国作为世界第一大国其实并不受很多国家所喜爱，因为他们老是喜欢挑拨其他国家之间的关系而且很喜欢干预其他国家的战争，甚至于挑拨其他国家的内战。而美国虽然作为侵略者会对其他国家施以压制，但是我们有时候也会看到美国柔情的时候。 例如之前美国在打阿富汗的时候，虽然长期驻兵在阿富汗而且已经算完全侵略了，但是也能看到一些美军发糖给阿富汗小孩的照片。美国士兵满脸笑意慈爱地看着阿富汗小孩并且弯下腰递给小孩一颗糖果 &hellip; <a href="https://weilaiche.cc/p/486331" class="more-link">继续阅读<span class="screen-reader-text">wuhao070在阿富汗，为何美军不会再主动给小孩发糖?血的教训早就有了liuyu</span></a></p>
-	</div><!-- .entry-content -->
-
-	
-<footer class="entry-footer">
-	<span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:52:16+00:00">2019年05月08日 16:52</time><time class="updated" datetime="2019-05-09T17:34:24+00:00">2019年05月09日 17:34</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486331#respond"><span class="screen-reader-text">于wuhao070在阿富汗，为何美军不会再主动给小孩发糖?血的教训早就有了liuyu</span>留下评论</a></span>	</footer><!-- .entry-footer -->
+	<c:forEach items="${requestScope.list }" var="listc" varStatus="cb">
+	  <c:if test="${!empty listc }">
+	<%MyLog.log.debug("aaa"); %>
+	     <footer class="entry-footer">
+	<span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:52:16+00:00">${listc.nupload_time}</time><time class="updated" datetime="2019-05-09T17:34:24+00:00">2019年05月09日 17:34</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486331#respond"><span class="screen-reader-text">于wuhao070在阿富汗，为何美军不会再主动给小孩发糖?血的教训早就有了liuyu</span>留下评论</a></span>	</footer><!-- .entry-footer -->
 
 </article><!-- #post-## -->
 	<article id="post-486354" class="post-486354 post type-post status-publish format-standard hentry category-jstw">
-		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：486354</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="https://weilaiche.cc/p/486354" rel="bookmark">wuhao077除了三峡大坝之外，这中国还有两个地方不能动，动就请吃氢弹wangyuhan</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">2019年05月08日 16:51</time><time class="updated" datetime="2019-05-09T17:45:34+00:00">2019年05月09日 17:45</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486354#respond"><span class="screen-reader-text">于wuhao077除了三峡大坝之外，这中国还有两个地方不能动，动就请吃氢弹wangyuhan</span>留下评论</a></span></div>	</header><!-- .entry-header -->
+		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：486354</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="https://weilaiche.cc/p/486354" rel="bookmark">${listc.title }wangyuhan</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">2019年05月08日 16:51</time><time class="updated" datetime="2019-05-09T17:45:34+00:00">2019年05月09日 17:45</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486354#respond"><span class="screen-reader-text">于wuhao077除了三峡大坝之外，这中国还有两个地方不能动，动就请吃氢弹wangyuhan</span>留下评论</a></span></div>	</header><!-- .entry-header -->
 	<div class="entry-content">
 		
 				<div class="ui tiny icon positive message">
 				<i class="trophy icon"></i>
 				<div class="content">
-				<p>获得稿酬<span style="font-size:32px;">10元</span>，请继续加油哦！(实际总稿酬10元)</p>
-				</div></div><p>喜欢看一些科幻电影这类的影迷们一定知道在美国这类型的影视剧中会经常出现一个神秘的“51区”，专门用来隐藏遮盖一些国家机密，这些地区就算用卫星在地图上都很难发现，显得极为神秘，如果有非法分子或是国家对这些地区打上了主意那么将迎接那个国家最集中的怒火，在我国也有着这样的地方。 最广为人知的就是三峡大坝了，作为世界上最大的水利工程，其坚固度与防御能力都特别出色，但相对于那些军事禁地来说，三峡大坝并没有那 &hellip; <a href="https://weilaiche.cc/p/486354" class="more-link">继续阅读<span class="screen-reader-text">wuhao077除了三峡大坝之外，这中国还有两个地方不能动，动就请吃氢弹wangyuhan</span></a></p>
+				<p>获得稿酬<span style="font-size:32px;">${listc.nsalary }元</span>，请继续加油哦！(实际总稿酬${listc.nsalary }元)</p>
+				</div></div><p>${listc.ncontent } &hellip; <a href="https://weilaiche.cc/p/486354" class="more-link">继续阅读<span class="screen-reader-text">${listc.title }wangyuhan</span></a></p>
 	</div><!-- .entry-content -->
+	  </c:if>
+	</c:forEach>	
+			
+			
 
 	
-<footer class="entry-footer">
-	<span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">2019年05月08日 16:51</time><time class="updated" datetime="2019-05-09T17:45:34+00:00">2019年05月09日 17:45</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486354#respond"><span class="screen-reader-text">于wuhao077除了三峡大坝之外，这中国还有两个地方不能动，动就请吃氢弹wangyuhan</span>留下评论</a></span>	</footer><!-- .entry-footer -->
 
-</article><!-- #post-## -->
-	<article id="post-486347" class="post-486347 post type-post status-publish format-standard hentry category-jstw">
-		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：486347</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="https://weilaiche.cc/p/486347" rel="bookmark">wuhao075萨达姆400亿美元遗产，美军为何看得见却摸不着？不愧是一代枭雄mijia</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/03" rel="bookmark"><time class="entry-date published updated" datetime="2019-05-03T15:25:35+00:00">2019年05月03日 15:25</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486347#respond"><span class="screen-reader-text">于wuhao075萨达姆400亿美元遗产，美军为何看得见却摸不着？不愧是一代枭雄mijia</span>留下评论</a></span></div>	</header><!-- .entry-header -->
-	<div class="entry-content">
-		
-				<div class="ui tiny icon positive message">
-				<i class="trophy icon"></i>
-				<div class="content">
-				<p>获得稿酬<span style="font-size:32px;">10元</span>，请继续加油哦！(实际总稿酬10元)</p>
-				</div></div><p>萨达姆是伊拉克的一个前任总统，从小就喜欢从事政治运动，四十几岁时就当上了伊拉克的总统，权力达到了巅峰，领导着伊拉克的人民发展国内的经济，充实国家的军事力量。萨达姆带领着伊拉克成为中东的头号强国，在当时那个时代中东其他国家根本就没有和伊拉克能够同一比拼的实力。也正是因为如此，伊拉克阻挡了美国在中东的霸权计划，成为美国的眼中刺肉中钉。 后来美国污蔑萨达姆私藏杀伤性武器，以这个为借口，大量举兵进攻伊拉克 &hellip; <a href="https://weilaiche.cc/p/486347" class="more-link">继续阅读<span class="screen-reader-text">wuhao075萨达姆400亿美元遗产，美军为何看得见却摸不着？不愧是一代枭雄mijia</span></a></p>
-	</div><!-- .entry-content -->
 
 	
-<footer class="entry-footer">
-	<span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/03" rel="bookmark"><time class="entry-date published updated" datetime="2019-05-03T15:25:35+00:00">2019年05月03日 15:25</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486347#respond"><span class="screen-reader-text">于wuhao075萨达姆400亿美元遗产，美军为何看得见却摸不着？不愧是一代枭雄mijia</span>留下评论</a></span>	</footer><!-- .entry-footer -->
-
-</article><!-- #post-## -->
-	<article id="post-486340" class="post-486340 post type-post status-publish format-standard hentry category-jstw">
-		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：486340</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="https://weilaiche.cc/p/486340" rel="bookmark">wuhao074俄军进口中国5万箱方便面，转眼却要求退货，原因让人笑得肚子疼longxiating</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/03" rel="bookmark"><time class="entry-date published updated" datetime="2019-05-03T14:38:09+00:00">2019年05月03日 14:38</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486340#respond"><span class="screen-reader-text">于wuhao074俄军进口中国5万箱方便面，转眼却要求退货，原因让人笑得肚子疼longxiating</span>留下评论</a></span></div>	</header><!-- .entry-header -->
-	<div class="entry-content">
-		
-				<div class="ui tiny icon positive message">
-				<i class="trophy icon"></i>
-				<div class="content">
-				<p>获得稿酬<span style="font-size:32px;">10元</span>，请继续加油哦！(实际总稿酬10元)</p>
-				</div></div><p>大家都知道，俄罗斯人对于我国人来说都显得又高又壮，不管是男人还是女人。当然他们在我们的眼里都是很强悍的，善于战斗又能抗寒。那么俄罗斯军人能力就更是高上一等了，然而令人出乎意料的是如此强悍的俄罗斯军人，却被一个小小的问题难住了。这是怎么回事呢？曾经俄军从我国进口了5万箱方便面，不久就要求退货，原因却让我国哭笑不得。直接导致了俄军在我们眼里形成了一个“反差萌”。 俄罗斯为了发展军工事业，从而轻视了工农 &hellip; <a href="https://weilaiche.cc/p/486340" class="more-link">继续阅读<span class="screen-reader-text">wuhao074俄军进口中国5万箱方便面，转眼却要求退货，原因让人笑得肚子疼longxiating</span></a></p>
-	</div><!-- .entry-content -->
 
 	
-<footer class="entry-footer">
-	<span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/03" rel="bookmark"><time class="entry-date published updated" datetime="2019-05-03T14:38:09+00:00">2019年05月03日 14:38</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486340#respond"><span class="screen-reader-text">于wuhao074俄军进口中国5万箱方便面，转眼却要求退货，原因让人笑得肚子疼longxiating</span>留下评论</a></span>	</footer><!-- .entry-footer -->
 
-</article><!-- #post-## -->
-	<article id="post-486338" class="post-486338 post type-post status-publish format-standard hentry category-jstw">
-		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：486338</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="https://weilaiche.cc/p/486338" rel="bookmark">wuhao073我国称俄罗斯为战斗民族，他们如何称呼我们的呢?答案出乎意料longxiating</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/03" rel="bookmark"><time class="entry-date published updated" datetime="2019-05-03T14:31:58+00:00">2019年05月03日 14:31</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486338#respond"><span class="screen-reader-text">于wuhao073我国称俄罗斯为战斗民族，他们如何称呼我们的呢?答案出乎意料longxiating</span>留下评论</a></span></div>	</header><!-- .entry-header -->
-	<div class="entry-content">
-		
-				<div class="ui tiny icon positive message">
-				<i class="trophy icon"></i>
-				<div class="content">
-				<p>获得稿酬<span style="font-size:32px;">10元</span>，请继续加油哦！(实际总稿酬10元)</p>
-				</div></div><p>每个国家民族都有自己民族的特色，所以一般外界都会以其特色来为各个国家地区贴上标签。而不同地区对同样的国家或民族的标签又不同，这也就展现了该地区对被标签地区的看法和印象。因为俄罗斯人在我们眼里就是彪悍的象征，所以被我们贴上了“战斗民族”的标签。那么我们在他们那里被贴上的标签是什么呢？相信大多数人多不知道。 我国之所以称俄罗斯为“战斗民族”不仅因为他们彪悍，还因为他们抗拒恶劣天气的毅力。俄罗斯的国土在 &hellip; <a href="https://weilaiche.cc/p/486338" class="more-link">继续阅读<span class="screen-reader-text">wuhao073我国称俄罗斯为战斗民族，他们如何称呼我们的呢?答案出乎意料longxiating</span></a></p>
-	</div><!-- .entry-content -->
+
 
 	
-<footer class="entry-footer">
-	<span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/03" rel="bookmark"><time class="entry-date published updated" datetime="2019-05-03T14:31:58+00:00">2019年05月03日 14:31</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486338#respond"><span class="screen-reader-text">于wuhao073我国称俄罗斯为战斗民族，他们如何称呼我们的呢?答案出乎意料longxiating</span>留下评论</a></span>	</footer><!-- .entry-footer -->
+
+	
+
 
 </article><!-- #post-## -->
 

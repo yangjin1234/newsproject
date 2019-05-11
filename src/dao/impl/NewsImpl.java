@@ -121,7 +121,6 @@ public class NewsImpl implements NewsDao{
 	  //6.根据用户主键，分页查询出该用户的所有新闻
 	  public List<News> selectAllNews(int nid_uid_key,Connection conn,int pageNo,int pageSize) throws Exception
 	  {
-		  System.out.println("hhhhhh");
 		  List<News> list=new ArrayList<News>();
 		  String sql="select *from news where nid_uid_key=?  limit ?,?";
 		  PreparedStatement ps=conn.prepareStatement(sql);

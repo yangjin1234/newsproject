@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="pojo.impl.TimeType"%>
 <%@page import="pojo.impl.TypeImpl"%>
 <%@page import="dao.impl.TypeDaoImpl"%>
 <%@page import="dao.TypeDao"%>
@@ -188,6 +189,10 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	 TypeDao td=new TypeDaoImpl();
 	 List<TypeImpl> list2=td.selectAllType(conn);
 	 request.setAttribute("type", list2);
+	 List<TimeType> list3=nd.selectAllByTime(conn, 1);
+	 MyLog.log.debug(list3.toString());
+	 request.setAttribute("timetype", list3);
+	 
 	 %>
 	<tr>
 		<td colspan="2" class="pad">&nbsp;</td><td><a href="https://weilaiche.cc/p/date/2019/05/01" aria-label="于2019年5月1日上发布的文章">1</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/02" aria-label="于2019年5月2日上发布的文章">2</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/03" aria-label="于2019年5月3日上发布的文章">3</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/04" aria-label="于2019年5月4日上发布的文章">4</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/05" aria-label="于2019年5月5日上发布的文章">5</a></td>
@@ -213,26 +218,11 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	</c:forEach>
 		</ul>
 </aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">文章归档</h2>		<ul>
-			<li><a href='https://weilaiche.cc/p/date/2019/05'>2019年五月</a>&nbsp;(6166)</li>
-	<li><a href='https://weilaiche.cc/p/date/2019/04'>2019年四月</a>&nbsp;(14499)</li>
-	<li><a href='https://weilaiche.cc/p/date/2019/03'>2019年三月</a>&nbsp;(10461)</li>
-	<li><a href='https://weilaiche.cc/p/date/2019/02'>2019年二月</a>&nbsp;(4799)</li>
-	<li><a href='https://weilaiche.cc/p/date/2019/01'>2019年一月</a>&nbsp;(10354)</li>
-	<li><a href='https://weilaiche.cc/p/date/2018/12'>2018年十二月</a>&nbsp;(7708)</li>
-	<li><a href='https://weilaiche.cc/p/date/2018/11'>2018年十一月</a>&nbsp;(6266)</li>
-	<li><a href='https://weilaiche.cc/p/date/2018/10'>2018年十月</a>&nbsp;(4917)</li>
-	<li><a href='https://weilaiche.cc/p/date/2018/09'>2018年九月</a>&nbsp;(6940)</li>
-	<li><a href='https://weilaiche.cc/p/date/2018/08'>2018年八月</a>&nbsp;(5402)</li>
-	<li><a href='https://weilaiche.cc/p/date/2018/07'>2018年七月</a>&nbsp;(3083)</li>
-	<li><a href='https://weilaiche.cc/p/date/2018/06'>2018年六月</a>&nbsp;(5084)</li>
-	<li><a href='https://weilaiche.cc/p/date/2018/05'>2018年五月</a>&nbsp;(4183)</li>
-	<li><a href='https://weilaiche.cc/p/date/2018/04'>2018年四月</a>&nbsp;(1955)</li>
-	<li><a href='https://weilaiche.cc/p/date/2018/03'>2018年三月</a>&nbsp;(1004)</li>
-	<li><a href='https://weilaiche.cc/p/date/2018/02'>2018年二月</a>&nbsp;(242)</li>
-	<li><a href='https://weilaiche.cc/p/date/2018/01'>2018年一月</a>&nbsp;(187)</li>
-	<li><a href='https://weilaiche.cc/p/date/2017/12'>2017年十二月</a>&nbsp;(315)</li>
-	<li><a href='https://weilaiche.cc/p/date/2017/11'>2017年十一月</a>&nbsp;(466)</li>
-	<li><a href='https://weilaiche.cc/p/date/2017/10'>2017年十月</a>&nbsp;(318)</li>
+	<c:forEach items="${requestScope.timetype } "var="timetypec" varStatus="cb">
+	
+	<li><a href='https://weilaiche.cc/p/date/2019/01'>${timetypec.tcc}</a>&nbsp;(${timetypec.number })</li>
+	</c:forEach>
+	
 		</ul>
 		</aside>			</div><!-- .widget-area -->
 		

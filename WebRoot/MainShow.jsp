@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="pojo.impl.TimeType"%>
+<%@page import="pojo.impl.TimeTypec"%>
 <%@page import="pojo.impl.TypeImpl"%>
 <%@page import="dao.impl.TypeDaoImpl"%>
 <%@page import="dao.TypeDao"%>
@@ -189,7 +189,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	 TypeDao td=new TypeDaoImpl();
 	 List<TypeImpl> list2=td.selectAllType(conn);
 	 request.setAttribute("type", list2);
-	 List<TimeType> list3=nd.selectAllByTime(conn, 1);
+	 List<TimeTypec> list3=nd.selectAllByTime(conn, 1);
 	 MyLog.log.debug(list3.toString());
 	 request.setAttribute("timetype", list3);
 	 
@@ -218,9 +218,9 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	</c:forEach>
 		</ul>
 </aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">文章归档</h2>		<ul>
-	<c:forEach items="${requestScope.timetype } "var="timetypec" varStatus="cb">
+	<c:forEach items="${requestScope.timetype }" var="timetypec" varStatus="cb">
 	
-	<li><a href='https://weilaiche.cc/p/date/2019/01'>${timetypec.tcc}</a>&nbsp;(${timetypec.number })</li>
+	<li><a href='https://weilaiche.cc/p/date/2019/01'>${timetypec.timec}</a>&nbsp;(${timetypec.number })</li>
 	</c:forEach>
 	
 		</ul>

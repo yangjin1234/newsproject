@@ -222,7 +222,7 @@ public class NewsImpl implements NewsDao{
 		List<TimeTypec> list=new ArrayList<TimeTypec>();
 		while(rs.next()){
 			TimeTypec tt=new TimeTypec();
-			tt.setTcc(rs.getInt("tyear")+"年"+rs.getInt("tmonth")+"月");
+			tt.setTimec(rs.getInt("tyear")+"年"+rs.getInt("tmonth")+"月");
 			tt.setNumber(rs.getInt("number"));
 			list.add(tt);
 		}

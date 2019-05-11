@@ -4,13 +4,14 @@ import java.io.Serializable;
 
 public class TimeTypec implements Serializable{
 
-	private String tcc;
+	private String timec;
 	private int number;
-	public String getTcc() {
-		return tcc;
+	
+	public String getTimec() {
+		return timec;
 	}
-	public void setTcc(String tcc) {
-		this.tcc = tcc;
+	public void setTimec(String timec) {
+		this.timec = timec;
 	}
 	public int getNumber() {
 		return number;

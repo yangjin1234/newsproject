@@ -9,7 +9,6 @@ import util.MyLog;
 
 public class DispatcherAction extends Action{
 
-	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response, ActionForm af) {
 		ActionForward actionforward=null;
@@ -23,7 +22,6 @@ public class DispatcherAction extends Action{
 					Method m=c.getMethod(method, new Class[]{HttpServletRequest.class,HttpServletResponse.class,ActionForm.class});
 					actionforward=(ActionForward) m.invoke(this, new Object[]{request,response,af});
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				

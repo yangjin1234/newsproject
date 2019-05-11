@@ -106,7 +106,7 @@ body.login {
 </form>
 
 <p id="nav">
-<a href="./wp-login.php?action=register">注册</a> | 	<a href="./wp-login.php?action=lostpassword">忘记密码？</a>
+<a href="./register.jsp">注册</a> | 	<a href="./wp-login.php?action=lostpassword">忘记密码？</a>
 </p>
 
 <script type="text/javascript">

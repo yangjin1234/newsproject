@@ -9,7 +9,7 @@ import java.util.List;
 
 import dao.NewsDao;
 import pojo.News;
-import pojo.impl.TimeType;
+import pojo.impl.TimeTypec;
 import util.GetDate;
 
 /*
@@ -215,13 +215,13 @@ public class NewsImpl implements NewsDao{
 			}
 			return flag;
 		}
-	public List<TimeType> selectAllByTime(Connection conn, int nid_uid_key)throws Exception {
+	public List<TimeTypec> selectAllByTime(Connection conn, int nid_uid_key)throws Exception {
 		String sql="select YEAR(nupload_time) as tyear,MONTH(nupload_time) as tmonth,count(*) as number from news where nid_uid_key  group by YEAR(nupload_time) , MONTH(nupload_time) ";
 		PreparedStatement ps=conn.prepareStatement(sql);
 		ResultSet rs=ps.executeQuery();
-		List<TimeType> list=new ArrayList<TimeType>();
+		List<TimeTypec> list=new ArrayList<TimeTypec>();
 		while(rs.next()){
-			TimeType tt=new TimeType();
+			TimeTypec tt=new TimeTypec();
 			tt.setTcc(rs.getInt("tyear")+"Äê"+rs.getInt("tmonth")+"ÔÂ");
 			tt.setNumber(rs.getInt("number"));
 			list.add(tt);

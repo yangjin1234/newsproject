@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import pojo.News;
-import pojo.impl.TimeType;
+import pojo.impl.TimeTypec;
 public interface NewsDao {
 	public boolean insertNews(News n,Connection conn) throws Exception;
 	public boolean deleteNews(int nid,Connection conn) throws Exception;
@@ -18,7 +18,7 @@ public interface NewsDao {
 	/**
 	 * 按时间查询分类并统计数量
 	 */
-	List<TimeType> selectAllByTime(Connection conn, int nid_uid_key)throws Exception;
+	List<TimeTypec> selectAllByTime(Connection conn, int nid_uid_key)throws Exception;
 
 
 

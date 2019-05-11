@@ -91,11 +91,11 @@ body.login {
 <form name="loginform" id="loginform" action="login.do" method="post">
 	<p>
 		<label for="user_login">用户名或电子邮件地址<br />
-		<input type="text" name="log" id="user_login" aria-describedby="login_error" class="input" value="" size="20" /></label>
+		<input type="text" name="lname" id="user_login" aria-describedby="login_error" class="input" value="" size="20" /></label>
 	</p>
 	<p>
 		<label for="user_pass">密码<br />
-		<input type="password" name="pwd" id="user_pass" aria-describedby="login_error" class="input" value="" size="20" /></label>
+		<input type="password" name="lpass" id="user_pass" aria-describedby="login_error" class="input" value="" size="20" /></label>
 	</p>
 		<p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever"  /> 记住我的登录信息</label></p>
 	<p class="submit">

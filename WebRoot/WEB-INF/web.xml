@@ -15,6 +15,18 @@
     <servlet-name>ActionServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <!-- 过滤器 -->
+  
+  <filter>
+  <filter-name>session</filter-name>
+  <filter-class>web.filter.SessionFilter</filter-class>
+  </filter>
+<filter-mapping>
+<filter-name>session</filter-name>
+<url-pattern>/behind/*</url-pattern>
+</filter-mapping>  
+  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

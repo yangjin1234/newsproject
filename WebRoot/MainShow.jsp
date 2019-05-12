@@ -200,11 +200,19 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	
 	//每页显示文章数量
 	int maxSize=2;
+	pageContext.setAttribute("maxSize", maxSize);
 	//最大页数
 	int maxPage=nd.getMaxPage(conn, maxSize);
+	pageContext.setAttribute("maxPage", maxPage);
 	//当前页数
-	int tpage=1;
-	   List<NewsImpl> list=nd.selectAllNews(1, conn, tpage, maxSize);
+	int pageNo=0;
+	if(request.getParameter("pageNo")==null){
+	 pageNo=1;
+	}else{
+	pageNo=Integer.valueOf(request.getParameter("pageNo"));
+	}
+	pageContext.setAttribute("pageNo", pageNo);
+	   List<NewsImpl> list=nd.selectAllNews(1, conn, pageNo, maxSize);
 	MyLog.log.debug("maxPage"+maxPage);
 	 //存到cookie
 	 Cookie c1 = new Cookie("uname",URLEncoder.encode(uname, "UTF-8"));
@@ -332,7 +340,28 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 <a class='page-numbers' href='https://weilaiche.cc/page/2'><span class="meta-nav screen-reader-text">页 </span>2</a>
 <span class="page-numbers dots">&hellip;</span>
 <a class='page-numbers' href='https://weilaiche.cc/page/40'><span class="meta-nav screen-reader-text">页 </span>40</a>
-<a class="next page-numbers" href="https://weilaiche.cc/page/2">下一页</a></div>
+<a class="next page-numbers" href="Newsproject.jsp">下一页</a></div>
+
+ 当前是第${pageNo }页&nbsp;&nbsp;总共有${maxPage }页&nbsp;&nbsp;
+   <a href="MainShow.jsp?pageNo=${1 }&pageSize=${pageSize}&name=${name}"> 首页</a>&nbsp;&nbsp;
+    <c:if test="${pageNo ge 2 }">
+   <a href="MainShow.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize}&name=${name}"> 上一页</a>
+   </c:if>
+   
+   <c:forEach begin="1" end="${maxPage }" var="i">
+      <c:if test="${i ge pageNo-2 and i le pageNo+2 }">
+        <a href="MainShow.jsp?pageNo=${i }&pageSize=${pageSize}&name=${name}">${i }</a>&nbsp;&nbsp;
+      </c:if>
+   </c:forEach>
+   
+   <c:if test="${pageNo le maxPage-1 }">
+   <a href="MainShow.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize}&name=${name}"> 下一页</a>&nbsp;&nbsp;
+   </c:if>
+   <a href="MainShow.jsp?pageNo=${maxPage }&pageSize=${pageSize}&name=${name}"> 尾页</a>&nbsp;&nbsp;
+
+
+
+
 	</nav>
 	</main><!-- .site-main -->
 </div><!-- .content-area -->

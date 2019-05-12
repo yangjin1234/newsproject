@@ -9,6 +9,7 @@ import java.util.List;
 
 import dao.NewsDao;
 import pojo.News;
+import pojo.impl.NewsImpl;
 import pojo.impl.TimeTypec;
 import util.GetDate;
 
@@ -20,7 +21,7 @@ import util.GetDate;
  * 2.表示正在审核
  */
 
-public class NewsImpl implements NewsDao{
+public class NewsDaoImpl implements NewsDao{
 
 	//1.插入一条新闻
 	public boolean insertNews(News n,Connection conn) throws Exception
@@ -120,9 +121,9 @@ public class NewsImpl implements NewsDao{
 				return flag;
 			}
 	  //6.根据用户主键，分页查询出该用户的所有新闻
-	  public List<News> selectAllNews(int nid_uid_key,Connection conn,int pageNo,int pageSize) throws Exception
+	  public List<NewsImpl> selectAllNews(int nid_uid_key,Connection conn,int pageNo,int pageSize) throws Exception
 	  {
-		  List<News> list=new ArrayList<News>();
+		  List<NewsImpl> list=new ArrayList<NewsImpl>();
 		  String sql="select *from news where nid_uid_key=?  limit ?,?";
 		  PreparedStatement ps=conn.prepareStatement(sql);
 		  ResultSet rs=null;
@@ -132,7 +133,7 @@ public class NewsImpl implements NewsDao{
 		  rs=ps.executeQuery();
 		  while(rs.next())
 		  {
-			  News n=new News();
+			  NewsImpl n=new NewsImpl();
 			  n.setNamend_time(rs.getTimestamp("namend_time"));
 			  n.setNcontent(rs.getString("ncontent"));
 			  n.setNews_state(rs.getInt("news_state"));

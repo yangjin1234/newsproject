@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="pojo.impl.NewsImpl"%>
+<%@page import="java.net.URLDecoder"%>
+<%@page import="java.net.URLEncoder"%>
+<%@page import="pojo.Login"%>
 <%@page import="pojo.impl.TimeTypec"%>
 <%@page import="pojo.impl.TypeImpl"%>
 <%@page import="dao.impl.TypeDaoImpl"%>
@@ -8,7 +12,7 @@
 <%@page import="java.util.List"%>
 <%@page import="db.DBHelper"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="dao.impl.NewsImpl"%>
+<%@page import="dao.impl.NewsDaoImpl"%>
 <%@page import="dao.NewsDao"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -182,23 +186,65 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	<tbody>
 	<!-- 测试查找新闻 -->
 	<%
-	   NewsDao nd=new NewsImpl();
+	   NewsDao nd=new NewsDaoImpl();
 	   Connection conn=DBHelper.getConnection();
-	   List<News> list=nd.selectAllNews(1, conn, 1, 5);
-	 request.setAttribute("list", list);
+	   List<NewsImpl> list=nd.selectAllNews(1, conn, 1, 5);
+	
 	 TypeDao td=new TypeDaoImpl();
 	 List<TypeImpl> list2=td.selectAllType(conn);
+	 
 	 request.setAttribute("type", list2);
 	 List<TimeTypec> list3=nd.selectAllByTime(conn, 1);
 	 MyLog.log.debug(list3.toString());
 	 request.setAttribute("timetype", list3);
-	 
+	 String uname="yangjin",upass="111";
+	
+	 //存到cookie
+	 Cookie c1 = new Cookie("uname",URLEncoder.encode(uname, "UTF-8"));
+	    		c1.setDomain("localhost");
+	    		c1.setPath("/Newsproject");
+	    		c1.setMaxAge(60*60*24);
+	    		response.addCookie(c1);
+    			Cookie c2 = new Cookie("upass",upass);
+	    		c2.setDomain("localhost");
+	    		c2.setPath("/Newsproject");
+	    		c2.setMaxAge(60*60*24);
+	    		response.addCookie(c2);
+	    //从请求中拿到cookies
+	     Cookie[] cookies = request.getCookies();
+    		String valname = null;
+    		String valpass = null;
+    		//循环所有的cookie，得到我需要的数据
+    		if(cookies!=null){
+	    		for(Cookie c : cookies){
+	    			String key = c.getName();
+	    			if("uname".equals(key)){
+	    				valname = c.getValue();
+	    				MyLog.log.debug("valname="+valname);
+	    				//解码
+	    				valname = URLDecoder.decode(valname, "UTF-8");
+	    			}
+	    			if("upass".equals(key)){
+	    				valpass = c.getValue();
+	    			}
+	    		}
+    		}
+    		//把用户名存到list中
+    for(NewsImpl li:list){
+	 li.setUname(valname);
+	 }
+     Login log=new Login();
+	 log.setLid(1);
+	 log.setLname(valname);
+	 log.setLpass(valpass);
+	 request.setAttribute("login", log);
+	  request.setAttribute("list", list);
 	 %>
 	<tr>
 		<td colspan="2" class="pad">&nbsp;</td><td><a href="https://weilaiche.cc/p/date/2019/05/01" aria-label="于2019年5月1日上发布的文章">1</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/02" aria-label="于2019年5月2日上发布的文章">2</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/03" aria-label="于2019年5月3日上发布的文章">3</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/04" aria-label="于2019年5月4日上发布的文章">4</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/05" aria-label="于2019年5月5日上发布的文章">5</a></td>
 	</tr>
 	<tr>
-		<td><a href="https://weilaiche.cc/p/date/2019/05/06" aria-label="于2019年5月6日上发布的文章">6</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/07" aria-label="于2019年5月7日上发布的文章">7</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/08" aria-label="于2019年5月8日上发布的文章">8</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/09" aria-label="于2019年5月9日上发布的文章">9</a></td><td id="today"><a href="https://weilaiche.cc/p/date/2019/05/10" aria-label="于2019年5月10日上发布的文章">10</a></td><td>11</td><td>12</td>
+		<td><a href="https://weilaiche.cc/p/date/2019/05/06" aria-label="于2019年5月6日上发布的文章aaaaaa">6</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/07" aria-label="于2019年5月7日上发布的文章">7</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/08" aria-label="于2019年5月8日上发布的文章">8</a></td><td><a href="https://weilaiche.cc/p/date/2019/05/09" aria-label="于2019年5月9日上发布的文章">9</a></td><td id="today"><a href="https://weilaiche.cc/p/date/2019/05/10" aria-label="于2019年5月10日上发布的文章">10</a></td><td>11</td><td>12</td>
 	</tr>
 	<tr>
 		<td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
@@ -238,11 +284,11 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	<c:forEach items="${requestScope.list }" var="listc" varStatus="cb">
 	  <c:if test="${!empty listc }">
 	     <footer class="entry-footer">
-	<span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:52:16+00:00">${listc.nupload_time}</time><time class="updated" datetime="2019-05-09T17:34:24+00:00">2019年05月09日 17:34</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486331#respond"><span class="screen-reader-text">于wuhao070在阿富汗，为何美军不会再主动给小孩发糖?血的教训早就有了liuyu</span>留下评论</a></span>	</footer><!-- .entry-footer -->
+	<span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:52:16+00:00">${listc.nupload_time}</time><time class="updated" datetime="2019-05-09T17:34:24+00:00">${listc.namend_time }</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">${listc.uname }</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486331#respond"><span class="screen-reader-text">于wuhao070在阿富汗，为何美军不会再主动给小孩发糖?血的教训早就有了liuyu</span>留下评论</a></span>	</footer><!-- .entry-footer -->
 
 </article><!-- #post-## -->
 	<article id="post-486354" class="post-486354 post type-post status-publish format-standard hentry category-jstw">
-		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：486354</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="https://weilaiche.cc/p/486354" rel="bookmark">${listc.title }wangyuhan</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">2019年05月08日 16:51</time><time class="updated" datetime="2019-05-09T17:45:34+00:00">2019年05月09日 17:45</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">1996</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486354#respond"><span class="screen-reader-text">于wuhao077除了三峡大坝之外，这中国还有两个地方不能动，动就请吃氢弹wangyuhan</span>留下评论</a></span></div>	</header><!-- .entry-header -->
+		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：${listc.nid }</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="https://weilaiche.cc/p/486354" rel="bookmark">${listc.title }${listc.uname }</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">2019年05月08日 16:51</time><time class="updated" datetime="2019-05-09T17:45:34+00:00">2019年05月09日 17:45</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">${listc.uname }</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486354#respond"><span class="screen-reader-text">于wuhao077除了三峡大坝之外，这中国还有两个地方不能动，动就请吃氢弹wangyuhan</span>留下评论</a></span></div>	</header><!-- .entry-header -->
 	<div class="entry-content">
 		
 				<div class="ui tiny icon positive message">

@@ -188,7 +188,6 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	<%
 	   NewsDao nd=new NewsDaoImpl();
 	   Connection conn=DBHelper.getConnection();
-	   List<NewsImpl> list=nd.selectAllNews(1, conn, 1, 5);
 	
 	 TypeDao td=new TypeDaoImpl();
 	 List<TypeImpl> list2=td.selectAllType(conn);
@@ -199,6 +198,14 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	 request.setAttribute("timetype", list3);
 	 String uname="yangjin",upass="111";
 	
+	//每页显示文章数量
+	int maxSize=2;
+	//最大页数
+	int maxPage=nd.getMaxPage(conn, maxSize);
+	//当前页数
+	int tpage=1;
+	   List<NewsImpl> list=nd.selectAllNews(1, conn, tpage, maxSize);
+	MyLog.log.debug("maxPage"+maxPage);
 	 //存到cookie
 	 Cookie c1 = new Cookie("uname",URLEncoder.encode(uname, "UTF-8"));
 	    		c1.setDomain("localhost");

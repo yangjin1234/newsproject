@@ -183,7 +183,7 @@ public class NewsDaoImpl implements NewsDao{
 	  //计算新闻的最大页数,用于分页技术
 	  public int getMaxPage(Connection conn,int pageSize) throws Exception
 	  {
-		  String sql="select count(*) *from news";
+		  String sql="select count(*) as max from news";
 		  PreparedStatement ps=conn.prepareStatement(sql);
 		  ResultSet rs=null;
 		  int count=0;
@@ -191,13 +191,13 @@ public class NewsDaoImpl implements NewsDao{
 			  rs=ps.executeQuery();
 			  if(rs.next())
 			  {
-				  count=rs.getInt(1);
+				  count=rs.getInt("max");
 				  System.out.println("count===="+count);
 			  }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		  return count;
+		  return count%pageSize==0?count/pageSize:count/pageSize+1;
 	  }
 	  //8.修改新闻状态为已审核
 	  public boolean updateNewsState(int nid,int news_state,Connection conn) throws Exception

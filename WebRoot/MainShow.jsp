@@ -218,6 +218,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
     		if(cookies!=null){
 	    		for(Cookie c : cookies){
 	    			String key = c.getName();
+	    				MyLog.log.debug("key="+key);
 	    			if("uname".equals(key)){
 	    				valname = c.getValue();
 	    				MyLog.log.debug("valname="+valname);
@@ -231,7 +232,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
     		}
     		//把用户名存到list中
     for(NewsImpl li:list){
-	 li.setUname(valname);
+	 li.setUname(uname);
 	 }
      Login log=new Login();
 	 log.setLid(1);
@@ -284,11 +285,11 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	<c:forEach items="${requestScope.list }" var="listc" varStatus="cb">
 	  <c:if test="${!empty listc }">
 	     <footer class="entry-footer">
-	<span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:52:16+00:00">${listc.nupload_time}</time><time class="updated" datetime="2019-05-09T17:34:24+00:00">${listc.namend_time }</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">${listc.uname }</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486331#respond"><span class="screen-reader-text">于wuhao070在阿富汗，为何美军不会再主动给小孩发糖?血的教训早就有了liuyu</span>留下评论</a></span>	</footer><!-- .entry-footer -->
+	<span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:52:16+00:00">${listc.nupload_time}</time><time class="updated" datetime="2019-05-09T17:34:24+00:00">${listc.namend_time }</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">${listc.uname }</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">${listc.typename }</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486331#respond"><span class="screen-reader-text">于wuhao070在阿富汗，为何美军不会再主动给小孩发糖?血的教训早就有了liuyu</span>留下评论</a></span>	</footer><!-- .entry-footer -->
 
 </article><!-- #post-## -->
 	<article id="post-486354" class="post-486354 post type-post status-publish format-standard hentry category-jstw">
-		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：${listc.nid }</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="https://weilaiche.cc/p/486354" rel="bookmark">${listc.title }${listc.uname }</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">2019年05月08日 16:51</time><time class="updated" datetime="2019-05-09T17:45:34+00:00">2019年05月09日 17:45</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">${listc.uname }</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">TCY军事图文</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486354#respond"><span class="screen-reader-text">于wuhao077除了三峡大坝之外，这中国还有两个地方不能动，动就请吃氢弹wangyuhan</span>留下评论</a></span></div>	</header><!-- .entry-header -->
+		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：${listc.nid }</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="https://weilaiche.cc/p/486354" rel="bookmark">${listc.title }${listc.uname }</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">2019年05月08日 16:51</time><time class="updated" datetime="2019-05-09T17:45:34+00:00">2019年05月09日 17:45</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="https://weilaiche.cc/p/author/1996">${listc.uname }</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="https://weilaiche.cc/c/jstw" rel="category tag">${listc.typename }</a></span><span class="comments-link"><a href="https://weilaiche.cc/p/486354#respond"><span class="screen-reader-text">于wuhao077除了三峡大坝之外，这中国还有两个地方不能动，动就请吃氢弹wangyuhan</span>留下评论</a></span></div>	</header><!-- .entry-header -->
 	<div class="entry-content">
 		
 				<div class="ui tiny icon positive message">

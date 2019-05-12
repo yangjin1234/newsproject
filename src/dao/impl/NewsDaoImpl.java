@@ -124,7 +124,7 @@ public class NewsDaoImpl implements NewsDao{
 	  public List<NewsImpl> selectAllNews(int nid_uid_key,Connection conn,int pageNo,int pageSize) throws Exception
 	  {
 		  List<NewsImpl> list=new ArrayList<NewsImpl>();
-		  String sql="select *from news where nid_uid_key=?  limit ?,?";
+		  String sql="select *from news,type where nid_uid_key=? and nid_tid_key=tid  limit ?,?";
 		  PreparedStatement ps=conn.prepareStatement(sql);
 		  ResultSet rs=null;
 		  ps.setInt(1, nid_uid_key);
@@ -144,7 +144,7 @@ public class NewsDaoImpl implements NewsDao{
 			  n.setNsalary_state(rs.getInt("nsalary_state"));
 			  n.setNupload_time(rs.getTimestamp("nupload_time"));
 			  n.setTitle(rs.getString("ntitle"));
-			  System.out.println("≤È—Ø≥…π¶");
+			  n.setTypename(rs.getString("tname"));
 			  list.add(n);
 		  }
 		  return list;

@@ -28,7 +28,7 @@ public class LoginServiceImpl implements LoginService{
 		}finally{
 			DBHelper.closeCon(conn);
 		}
-		return 1;
+		return login;
 	}
 
 }

@@ -23,7 +23,7 @@ public class LoginAction extends Action{
 		if(state==1){
 			return new ActionForward("show");
 		}else {
-			return new ActionForward(true,"login");
+			return new ActionForward(true,"loginshow");
 		}
 	}
 

@@ -1,8 +1,12 @@
 package web.form;
 
+import java.sql.Date;
+
 import web.core.ActionForm;
 
-public class JudgeUserForm extends ActionForm{
+public class ImageForm extends ActionForm{
+	
+
 	private String data;
 
 	public String getData() {
@@ -12,5 +16,8 @@ public class JudgeUserForm extends ActionForm{
 	public void setData(String data) {
 		this.data = data;
 	}
+
+	
+	
 
 }

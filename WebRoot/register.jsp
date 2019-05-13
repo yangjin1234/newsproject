@@ -10,7 +10,7 @@
 	<title>未来车平台 &lsaquo; 注册表单</title>
 	<meta name="generator" content="Custom Login v3.2.8" />
 <link rel='dns-prefetch' href='//s.w.org' />
-<link rel='stylesheet' href='https://weilaiche.cc/wp-admin/load-styles.php?c=0&amp;dir=ltr&amp;load%5B%5D=dashicons,buttons,forms,l10n,login&amp;ver=4.7.53' type='text/css' media='all' />
+<link rel='stylesheet' href='./wp-admin/load-styles.php?c=0&amp;dir=ltr&amp;load%5B%5D=dashicons,buttons,forms,l10n,login&amp;ver=4.7.53' type='text/css' media='all' />
 <style type="text/css">
 
 /**
@@ -81,72 +81,209 @@ body.login {
 <meta name='robots' content='noindex,follow' />
 	<meta name="viewport" content="width=device-width" />
 <!-- 自己写的注册代码 -->
+<script type="text/javascript" src="static/jquery/3.2.1/jquery-1.8.3.js"></script>
 <script type="text/javascript">
-     var username,
-     var user_pwd1,
+     var username;
+     var user_pwd1;
      var user_pwd2;
+     var user_email;
+     var div;//用户名的div块
+     var divpass1;//密码
+     var divpass2;//确认密码
+     var divemail;//邮箱
      function judgeusername()
      {
+     alert("aaa");
      username=$("#username").val();
-     user_pwd1=$("#user_pwd1").val();
+     alert(typeof(username));
+     alert("username"+username);
      user_pwd2=$("#user_pwd2").val();
+     alert("user_pwd2"+user_pwd2);
      $.ajax({
      type:"POST",
      url:"judgeuser.do",
-     data:"date="+JSON.stringify(username),
+     data:"data="+username,
      success:function(returnval)
      {
      alert(returnval);
+     if("true"==returnval)
+     {
+     alert("用户名已存在");
+     div=document.getElementById("content");
+     div.innerText="用户名已被占用";
+     div.style.color="red";
+     }
+     else
+     {
+     div=document.getElementById("content");
+     div.innerText="用户名未被占用";
+     div.style.color="green";
+     }
+     }
+     });
+     }
+     function judgepass1()
+     {
+      divpass1=document.getElementById("contentpass1");
+      user_pwd1=$("#user_pwd1").val();
+     // alert("user_pwd1"+user_pwd1);
+      if(""==user_pwd1)
+      {
+      divpass1.innerText="密码不能为空";
+      divpass1.style.color="red";
+      }
+      else
+      {
+	      if(user_pwd1.length<=6)
+	      {
+	      divpass1.innerText="密码长度至少大于6";
+	      divpass1.style.color="red";
+	      }
+	      else
+	      {
+	      divpass1.innerText="设置密码格式正确";
+	      divpass1.style.color="green";
+	      }
+      }
+      divpass11=divpass1;
+    //  alert(divpass11);
+      }
+     function judgepass2()
+     {
+       //alert(divpass1.text());
+      //alert(divpass1.innerText);
+      divpass2=document.getElementById("contentpass2");
+      user_pwd2=$("#user_pwd2").val();
+      //alert("user_pwd2=="+user_pwd2);
+      if(""==user_pwd2)
+      {
+      divpass2.innerText="密码不能为空";
+      divpass2.style.color="red";
+      }
+      else
+      {
+	     // if("设置密码符合"==divpass1.innerText)
+	      //{
+		      if(user_pwd1==user_pwd2)
+		      {
+		      divpass2.innerText="匹配成功";
+		      divpass2.style.color="green";
+		      }
+		     else
+		     {
+		     divpass2.innerText="两次输入的密码不一致";
+		     divpass2.style.color="red";
+		     }
+	    //}
+      }
+     }
+     function judgeemail()
+     {
+     divemail=document.getElementById("contentemail");
+     useremail=$("#user_email").val();
+     alert("useremail"+useremail);
+     $.ajax({
+     type:"POST",
+     url:"judgeuseremail.do",
+     data:"data="+useremail,
+     success:function(returnval)
+     {
+     alert(returnval);
+     if("true"==returnval)
+     {
+      divemail.innerText="邮箱正确";
+      divemail.style.color="green";
+     }
+     else
+     {
+     divemail.innerText="输入的邮箱格式有误";
+     divemail.style.color="red";
+     }
+     }
+     });
+       
+     }
+     function changeImage1()
+     {
+     //location.reload();
+			//使用每次带不同的参数来重新请求图片的servlet
+			//页面不会刷新，客户体验感更好
+			//obj.src = "img?date="+new Date().getTime();
+			//alert($("#captcha_img"));
+			var a=document.getElementById("captcha_img");
+			//alert($("img").src);
+			//$("img").src="image.do?data="+new Date().getTime();
+			 a.src="image.do?data="+new Date().getTime()+"aaas";
+		//	alert(typeof(new String(new Date().getTime())));
+			alert(JSON.stringify(typeof(new String(new Date().getTime()))));
+				     
      }
      
-     })
-     }
      function registersub()
      {
-     if
-     
+      alert("aaa");
+      var question=document.getElementById("userquestion").value;
+      alert("question=="+question);
+      var answer=document.getElementById("user_answer").value;
+      alert(answer);
+      
      }
+     
 </script>	
 	
 	
 		</head>
 	<body class="login login-action-register wp-core-ui  locale-zh-cn">
 		<div id="login">
-		<h1><a href="https://weilaiche.cc" title="新媒体创作者服务平台" tabindex="-1">未来车平台</a></h1>
+		<h1><a href="." title="新媒体创作者服务平台" tabindex="-1">未来车平台</a></h1>
 	<p class="message register">在未来车平台注册账号</p>
 <form name="registerform" id="registerform"  novalidate="novalidate">
 	<p>
 		<label for="user_login">用户名<br />
-		<input type="text" name="username" id="username" class="input" value="" size="20" placeholder="可使用英文、数字" onblur="judgeusername()"/></label>
+		<input type="text" name="username" id="username" class="input" value="" size="20" placeholder="可使用英文、数字" onblur="judgeusername()"/><div id="content" style="display:inline"></div></label>
 	</p>
 	<p>
 		<label for="user_email">电子邮件<br />
-		<input type="email" name="user_email" id="user_email" class="input" value="" size="25" placeholder="可使用QQ邮箱等" /></label>
+		<input type="email" name="user_email" id="user_email" class="input" value="" size="25" placeholder="可使用QQ邮箱等" onblur="judgeemail()"/><div id="contentemail" style="display:inline"></div></label>
 	</p>
 	   <script>
-      var ajaxurl = "https://weilaiche.cc/wp-admin/admin-ajax.php", pic_no = "https://weilaiche.cc/wp-content/plugins/ludou-phone-register/img/no.png", captcha = "https://weilaiche.cc/wp-content/plugins/ludou-phone-register/captcha/captcha.php";
+      var ajaxurl = "./wp-admin/admin-ajax.php", pic_no = "./wp-content/plugins/ludou-phone-register/img/no.png", captcha = "./wp-content/plugins/ludou-phone-register/captcha/captcha.php";
    </script>
-   <script src="/static/jquery/3.2.1/jquery.min.js"></script>
-   <script src="https://weilaiche.cc/wp-content/plugins/ludou-phone-register/check.js"></script>
+   <script src="./wp-content/plugins/ludou-phone-register/check.js"></script>
    <p>
       <label for="user_pwd1">密码(至少6位)<br/>
-         <input id="user_pwd1" class="input" type="password" size="25" value="" name="user_pass" />
+         <input id="user_pwd1" class="input" type="password" size="25" value="" name="user_pass" onblur="judgepass1()"/><div id="contentpass1" style="display:inline"></div>
       </label>
    </p>
    <p>
       <label for="user_pwd2">重复密码<br/>
-         <input id="user_pwd2" class="input" type="password" size="25" value="" name="user_pass2" />
+         <input id="user_pwd2" class="input" type="text" size="25" value="" name="user_pass2" onblur="useranswer()"/><div id="contentpass2" style="display:inline"></div>
+      </label>
+   </p>
+   <p>
+      <label for="user_question">请选择问题：<br/>
+      <select id="userquestion" style="width: 330px; height: 40px;">
+      <option value="您高中所在的母校?" >您高中所在的母校?</option>
+      <option value="您小学的校长是谁?">您小学的校长是谁?</option>
+      <option value="您初中的班主任是谁?">您初中的班主任是谁?</option>
+      </select>
+      </label>
+   </p>
+   <p>
+      <label for="user_answer">回答问题：<br/>
+         <input id="user_answer" class="input" type="text" size="25" value="" name="user_answer" "/>
       </label>
    </p>
    <p>
       <label for="CAPTCHA">图片验证码 &nbsp;<span id="captchaErr" style="color:#ff5c57;font-size: 12px;"></span> <br/>
          <input id="CAPTCHA" style="width:150px;*float:left;" class="input" type="text" size="10" value="" name="captcha_code" autocomplete="off" />
-         看不清？<a href="javascript:void(0)" onclick="document.getElementById('captcha_img').src = 'https://weilaiche.cc/wp-content/plugins/ludou-phone-register/captcha/captcha.php?' + Math.random();document.getElementById('CAPTCHA').focus();return false;">点击更换</a>
+         看不清？
+         <a href="javascript:changeImage1()">更换图片</a>
       </label>
    </p>
    <p>
       <label>
-         <img id="captcha_img" src="https://weilaiche.cc/wp-content/plugins/ludou-phone-register/captcha/captcha.php" title="看不清?点击更换" alt="看不清?点击更换" onclick="document.getElementById('captcha_img').src = 'https://weilaiche.cc/wp-content/plugins/ludou-phone-register/captcha/captcha.php?' + Math.random();document.getElementById('CAPTCHA').focus();return false;" />
+         <img id="captcha_img" src="image.do?data="+2019-12-23 />
       </label>
    </p>
    <p>
@@ -165,13 +302,15 @@ body.login {
 	<input type="hidden" name="redirect_to" value="" />
 	<p class="submit"><input type="button" name="clickregister" id="clickregister" class="button button-primary button-large" value="注册" onclick="registersub()"/></p>
 </form>
-
+<!--  <input type="button" value="点击更换图片" onclick="changeImage1()" />
+      <a href="javascript:changeImage1()">更换图片</a>
+ -->
 <p id="nav">
-<a href="https://weilaiche.cc/wp-login.php">登录</a> |
-<a href="https://weilaiche.cc/wp-login.php?action=lostpassword">忘记密码？</a>
+<a href="./wp-login.php">登录</a> |
+<a href="./wp-login.php?action=lostpassword">忘记密码？</a>
 </p>
 
-	<p id="backtoblog"><a href="https://weilaiche.cc/">&larr; 返回到未来车平台</a></p>
+	<p id="backtoblog"><a href="./">&larr; 返回到未来车平台</a></p>
 	
 	</div>
 

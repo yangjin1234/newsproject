@@ -2,7 +2,7 @@ package web.form;
 
 import web.core.ActionForm;
 
-public class JudgeUserForm extends ActionForm{
+public class JudgeUserEmailForm extends ActionForm{
 	private String data;
 
 	public String getData() {

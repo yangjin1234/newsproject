@@ -8,12 +8,12 @@ public class LoginForm extends ActionForm{
 	private String rememberme;
 	private String redirect_to;
 	private String testcookie;
-	private String date;
-	public String getDate() {
-		return date;
+	private String data;
+	public String getData() {
+		return data;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setData(String data) {
+		this.data = data;
 	}
 	public String getLname() {
 		return lname;

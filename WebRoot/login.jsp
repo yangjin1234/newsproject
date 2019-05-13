@@ -12,6 +12,29 @@
 		<meta name="generator" content="Custom Login v3.2.8" />
 <link rel='dns-prefetch' href='//s.w.org' />
 <link rel='stylesheet' href='./wp-admin/load-styles.php?c=0&amp;dir=ltr&amp;load%5B%5D=dashicons,buttons,forms,l10n,login&amp;ver=4.7.53' type='text/css' media='all' />
+<script type="text/javascript"  src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+	
+	function Login(lname,lpass){
+		this.lname=lname;
+		this.lpass=lpass;
+	}
+	
+	function ajaxInvoke(){
+		var lname=$("input").eq(0).val();
+		var lpass=$("input").eq(1).val();
+		var l=new Login(lname, lpass);
+		$.ajax({
+			type:"POST",
+			url:"login.do",
+			data:"data"+JSON.stringify(l),
+			success:function(msg){
+				alert(msg);
+			}
+		})
+		
+	}
+	</script>
 <style type="text/css">
 
 /**
@@ -99,7 +122,7 @@ body.login {
 	</p>
 		<p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever"  /> 记住我的登录信息</label></p>
 	<p class="submit">
-		<input type="submit" id="wp-submit" class="button button-primary button-large" value="登录" />
+		<input type="button" id="wp-submit" class="button button-primary button-large" value="登录" />
 		<input type="hidden" name="redirect_to" value="./wp-admin/" />
 		<input type="hidden" name="testcookie" value="1" />
 	</p>

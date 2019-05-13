@@ -24,12 +24,12 @@ public class SessionFilter implements Filter{
 		HttpServletRequest request=(HttpServletRequest)arg0;
 		HttpServletResponse response=(HttpServletResponse)arg1;
 		Object ob=request.getSession().getAttribute("account");
-		if(ob==null){
-			autoJump(request, response, "ÇëÏÈµÇÂ¼");
-			request.getRequestDispatcher("./login.jsp").forward(request, response);
-		}else{
+//		if(ob==null){
+//			autoJump(request, response, "ÇëÏÈµÇÂ¼");
+//			request.getRequestDispatcher("./login.jsp").forward(request, response);
+//		}else{
 			arg2.doFilter(arg0, arg1);
-		}
+//		}
 	}
 
 	public void init(FilterConfig arg0) throws ServletException {

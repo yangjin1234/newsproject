@@ -122,7 +122,7 @@ body.login {
 	</p>
 		<p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever"  /> 记住我的登录信息</label></p>
 	<p class="submit">
-		<input type="button" id="wp-submit" class="button button-primary button-large" value="登录" />
+		<input type="button" id="wp-submit" class="button button-primary button-large" onclick="ajaxInvoke()"value="登录" />
 		<input type="hidden" name="redirect_to" value="./wp-admin/" />
 		<input type="hidden" name="testcookie" value="1" />
 	</p>

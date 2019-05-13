@@ -93,22 +93,22 @@ body.login {
      var divemail;//邮箱
      function judgeusername()
      {
-     alert("aaa");
+     //salert("aaa");
      username=$("#username").val();
-     alert(typeof(username));
-     alert("username"+username);
+    // alert(typeof(username));
+     //alert("username"+username);
      user_pwd2=$("#user_pwd2").val();
-     alert("user_pwd2"+user_pwd2);
+     //alert("user_pwd2"+user_pwd2);
      $.ajax({
      type:"POST",
      url:"judgeuser.do",
      data:"data="+username,
      success:function(returnval)
      {
-     alert(returnval);
+     //alert(returnval);
      if("true"==returnval)
      {
-     alert("用户名已存在");
+     //alert("用户名已存在");
      div=document.getElementById("content");
      div.innerText="用户名已被占用";
      div.style.color="red";
@@ -181,14 +181,14 @@ body.login {
      {
      divemail=document.getElementById("contentemail");
      useremail=$("#user_email").val();
-     alert("useremail"+useremail);
+     //alert("useremail"+useremail);
      $.ajax({
      type:"POST",
      url:"judgeuseremail.do",
      data:"data="+useremail,
      success:function(returnval)
      {
-     alert(returnval);
+     //alert(returnval);
      if("true"==returnval)
      {
       divemail.innerText="邮箱正确";
@@ -252,12 +252,12 @@ body.login {
    <script src="./wp-content/plugins/ludou-phone-register/check.js"></script>
    <p>
       <label for="user_pwd1">密码(至少6位)<br/>
-         <input id="user_pwd1" class="input" type="password" size="25" value="" name="user_pass" onblur="judgepass1()"/><div id="contentpass1" style="display:inline"></div>
+         <input id="user_pwd1" class="input"  type="password" size="25" value="" name="user_pass1" onblur="judgepass1()"/><div id="contentpass1" style="display:inline"></div>
       </label>
    </p>
    <p>
       <label for="user_pwd2">重复密码<br/>
-         <input id="user_pwd2" class="input" type="text" size="25" value="" name="user_pass2" onblur="useranswer()"/><div id="contentpass2" style="display:inline"></div>
+         <input id="user_pwd2" class="input" type="password" size="25" value="" name="user_pass2" onblur="judgepass2()"/><div id="contentpass2" style="display:inline"></div>
       </label>
    </p>
    <p>

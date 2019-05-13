@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import dao.LoginDao;
 import pojo.Login;
 import pojo.User;
+import util.MyLog;
 import util.MyMD5;
 
 public class LoginDaoImpl implements LoginDao{
@@ -39,11 +40,13 @@ public class LoginDaoImpl implements LoginDao{
 		PreparedStatement ps=conn.prepareStatement(sql);
 		ps.setString(1, lname);
 		ResultSet rs=ps.executeQuery();
-		if(rs==null){
-			return false;
-		}else{
+		if(rs.next())
+		{
+			MyLog.log.debug("resultset");
 			return true;
 		}
+		   return false;
+		
 	}
 
 	public Login selectUserPassByName(String lname, Connection conn)

@@ -88,6 +88,7 @@ body.login {
      var user_pwd2;
      var user_email;
      var user_answer;
+     var user_question;
      var div;//用户名的div块
      var divpass1;//密码
      var divpass2;//确认密码
@@ -98,39 +99,47 @@ body.login {
      var user_pwd2b;
      var user_emailb;
      var user_answerb;
+     //function uregistermessage(uname,upass,uemail,uquestion,uanswer)
+     //{
+     //this.uname=uname;
+     //this.upass=upass;
+     //this.uemail=uemail;
+     //this.uquestion=uquestion;
+     //this.uanswer=uanswer;
+     //}
      function judgeusername()
      {
-     //salert("aaa");
-     username=$("#username").val();
-    // alert(typeof(username));
-     //alert("username"+username);
-     user_pwd2=$("#user_pwd2").val();
-     //alert("user_pwd2"+user_pwd2);
-     $.ajax({
-     type:"POST",
-     url:"judgeuser.do",
-     data:"data="+username,
-     success:function(returnval)
-     {
-     //alert(returnval);
-     if("true"==returnval)
-     {
-     //alert("用户名已存在");
-     div=document.getElementById("content");
-     div.innerText="用户名已被占用";
-     div.style.color="red";
-     usernameb="false";
-     }
-     else
-     {
-     div=document.getElementById("content");
-     div.innerText="用户名未被占用";
-     div.style.color="green";
-     usernameb="true";
-     }
-     //alert("usernameb="+usernameb);
-     }
-     });
+	     alert("aaa");
+	     username=$("#username").val();
+	    // alert(typeof(username));
+	     //alert("username"+username);
+	     user_pwd2=$("#user_pwd2").val();
+	     //alert("user_pwd2"+user_pwd2);
+	     $.ajax({
+	     type:"POST",
+	     url:"judgeuser.do",
+	     data:"data="+username,
+	     success:function(returnval)
+	     {
+	     //alert(returnval);
+		     if("true"==returnval)
+		     {
+		     //alert("用户名已存在");
+		     div=document.getElementById("content");
+		     div.innerText="用户名已被占用";
+		     div.style.color="red";
+		     usernameb="false";
+		     }
+		     else
+		     {
+		     div=document.getElementById("content");
+		     div.innerText="用户名未被占用";
+		     div.style.color="green";
+		     usernameb="true";
+		     }
+	     //alert("usernameb="+usernameb);
+	     }
+	     });
      }
      function judgepass1()
      {
@@ -262,21 +271,30 @@ body.login {
      function registersub()
      {
       alert("aaa");
-      var question=document.getElementById("userquestion").value;
-      alert("question=="+question);
+      user_question=document.getElementById("userquestion").value;
+      alert("question=="+user_question);
       user_answer=document.getElementById("user_answer").value;
       if(user_answer=="")
       {
       divanswer=document.getElementById("contentanswer");
       divanswer.innerText="答案不能为空";
       divanswer.style.color="red";
-      
       }
       else
       {
+          divanswer.style.color="green";
 	      if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb="true")
 	      {
+	      alert(uname);
+	      uregistermessage uu=new uregistermessage(username,user_pwd1,user_email,user_question,user_answer)
+	      alert("uu=="+typeof(uu));
+	      alert(JSON.stringify(uu));
+	      //$.ajax({
+	      //type:"POST",
+	      //url:"getregistermessage.do";
+	      //data:"data="+uu;
 	      
+	     // });
 	      }
       }
      }

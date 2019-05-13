@@ -9,3 +9,4 @@ public interface SalaryDao {
 
 	ArrayList<Salary> getAll(Connection conn)throws Exception;
 }
+  

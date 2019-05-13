@@ -90,7 +90,6 @@ public class ImageAction extends Action{
 //					MyLog.log.debug("content=="+content.toString());
 //					pw.flush();
 //					pw.close();
-//					sos.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

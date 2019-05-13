@@ -45,6 +45,7 @@ public class ImageAction extends Action{
 				}
 				try {
 					sos = response.getOutputStream();
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -78,15 +79,18 @@ public class ImageAction extends Action{
 				try {
 					ImageIO.write(bi, "jpg", sos);
 					//将生成的验证码存入session中，为了后面客户提交时进行比对验证
-					//request.getSession().setAttribute("code", content.toString());
+					request.getSession().setAttribute("code", content.toString());
 //					request.getSession().setAttribute("code", content.toString());
+					String s=(String) request.getSession().getAttribute("code");
+					MyLog.log.debug("s="+s);
 					sos.flush();
-					pw=response.getWriter();
-					pw.write(content.toString());
-					MyLog.log.debug("content=="+content.toString());
-					pw.flush();
-					pw.close();
-					sos.close();
+					
+//					pw=response.getWriter();
+//					pw.write(content.toString());
+//					MyLog.log.debug("content=="+content.toString());
+//					pw.flush();
+//					pw.close();
+//					sos.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

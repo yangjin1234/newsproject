@@ -22,14 +22,19 @@
 	
 	function ajaxInvoke(){
 		var lname=$("input").eq(0).val();
+		lname=encodeURI(lname);
+		lname=encodeURI(lname);
 		var lpass=$("input").eq(1).val();
+		lpass=encodeURI(lpass);
+		lpass=encodeURI(lpass);
 		var l=new Login(lname, lpass);
 		$.ajax({
 			type:"POST",
 			url:"login.do",
-			data:"data"+JSON.stringify(l),
+			data:"data="+JSON.stringify(l),
 			success:function(msg){
-				alert(msg);
+				var div = document.getElementById("login_error");
+				div.innerHTML=msg;
 			}
 		})
 		

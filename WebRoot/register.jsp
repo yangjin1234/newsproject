@@ -283,7 +283,7 @@ body.login {
       else
       {
           divanswer.style.color="green";
-	      if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb="true")
+	      if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb=="true")
 	      {
 	      alert(uname);
 	      uregistermessage uu=new uregistermessage(username,user_pwd1,user_email,user_question,user_answer)

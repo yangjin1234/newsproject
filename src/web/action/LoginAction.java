@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pojo.Login;
+import pojo.impl.LoginImpl;
 import net.sf.json.JSONObject;
 import service.LoginService;
 import service.impl.LoginServiceImpl;
@@ -34,7 +35,7 @@ public class LoginAction extends Action{
 		LoginForm loginf=(LoginForm)af;
 		JSONObject obj = JSONObject.fromObject(loginf.getData());
 		MyLog.log.debug("state="+obj);
-		Login l=(Login)JSONObject.toBean(obj);
+		LoginImpl l=(LoginImpl)JSONObject.toBean(obj,LoginImpl.class);
 		LoginService ls=new LoginServiceImpl();
 		int state=ls.Login(l.getLname(), l.getLpass());
 		if(state==1){

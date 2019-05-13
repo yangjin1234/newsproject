@@ -34,17 +34,29 @@ public class LoginAction extends Action{
 //		}
 		LoginForm loginf=(LoginForm)af;
 		JSONObject obj = JSONObject.fromObject(loginf.getData());
-		MyLog.log.debug("state="+obj);
+		MyLog.log.debug("statea="+obj);
 		LoginImpl l=(LoginImpl)JSONObject.toBean(obj,LoginImpl.class);
 		LoginService ls=new LoginServiceImpl();
 		int state=ls.Login(l.getLname(), l.getLpass());
+		response.setCharacterEncoding("UTF-8");
 		if(state==1){
 			return new ActionForward("show");
-		}else {
-			JSONObject returnval=JSONObject.fromObject(state);
+		}
+		else if(state==0){
+			try {
+				
+				PrintWriter out=response.getWriter();
+				out.write("”√ªß√˚¥ÌŒÛ");
+				out.flush();
+				out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}else{
 			try {
 				PrintWriter out=response.getWriter();
-				out.write(returnval.toString());
+				out.write("√‹¬Î¥ÌŒÛ");
 				out.flush();
 				out.close();
 			} catch (IOException e) {

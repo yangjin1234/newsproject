@@ -161,7 +161,7 @@ body.custom-background { background-image: url("./2018/11/bg-18-11.jpg"); backgr
 					<input type="search" class="search-field" placeholder="搜索&hellip;" value="" name="s" />
 				</label>
 				<input type="submit" class="search-submit screen-reader-text" value="搜索" />
-			</form></aside><aside id="mycred_widget_wallet-3" class="widget widget-my-wallet"><h2 class="widget-title">我的账户</h2><div class="myCRED-balance mycred-balance-mycred_default">经验: 449 点</div><div class="myCRED-balance mycred-balance-mycred_money">金钱: ￥ 20 元</div></aside><aside id="calendar-2" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
+			</form></aside><aside id="mycred_widget_wallet-3" class="widget widget-my-wallet"><h2 class="widget-title">我的账户</h2><div class="myCRED-balance mycred-balance-mycred_money">金钱: ￥ 20 元</div></aside><aside id="calendar-2" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
 	<caption>2019年五月</caption>
 	<thead>
 	<tr>
@@ -271,6 +271,12 @@ body.custom-background { background-image: url("./2018/11/bg-18-11.jpg"); backgr
 	<tr>
 		<td>27</td><td>28</td><td>29</td><td>30</td><td>31</td>
 		<td class="pad" colspan="2">&nbsp;</td>
+	</tr>
+	<tr>
+	<c:forEach  begin="1" end="30" var="n">
+	<c:if test="${n%7 eq 0 }"></br></c:if>
+	<td>${n }</td>
+	</c:forEach>
 	</tr>
 	</tbody>
 	</table></div></aside><aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">分类目录</h2>		<ul>

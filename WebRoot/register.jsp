@@ -83,14 +83,21 @@ body.login {
 <!-- 自己写的注册代码 -->
 <script type="text/javascript" src="static/jquery/3.2.1/jquery-1.8.3.js"></script>
 <script type="text/javascript">
-     var username;
+     var username;//text中的属性
      var user_pwd1;
      var user_pwd2;
      var user_email;
+     var user_answer;
      var div;//用户名的div块
      var divpass1;//密码
      var divpass2;//确认密码
      var divemail;//邮箱
+     var divanswer;//问题答案
+     var usernameb;
+     var user_pwd1b;
+     var user_pwd2b;
+     var user_emailb;
+     var user_answerb;
      function judgeusername()
      {
      //salert("aaa");
@@ -112,13 +119,16 @@ body.login {
      div=document.getElementById("content");
      div.innerText="用户名已被占用";
      div.style.color="red";
+     usernameb="false";
      }
      else
      {
      div=document.getElementById("content");
      div.innerText="用户名未被占用";
      div.style.color="green";
+     usernameb="true";
      }
+     //alert("usernameb="+usernameb);
      }
      });
      }
@@ -131,22 +141,24 @@ body.login {
       {
       divpass1.innerText="密码不能为空";
       divpass1.style.color="red";
+      user_pwd1b="false";
       }
       else
       {
 	      if(user_pwd1.length<=6)
 	      {
-	      divpass1.innerText="密码长度至少大于6";
+	      divpass1.innerText="密码至少大于6";
 	      divpass1.style.color="red";
+	      user_pwd1b="false";
 	      }
 	      else
 	      {
 	      divpass1.innerText="设置密码格式正确";
 	      divpass1.style.color="green";
+	      user_pwd1b="true";
 	      }
       }
-      divpass11=divpass1;
-    //  alert(divpass11);
+     // alert("user_pwd1b="+user_pwd1b);
       }
      function judgepass2()
      {
@@ -159,23 +171,41 @@ body.login {
       {
       divpass2.innerText="密码不能为空";
       divpass2.style.color="red";
+      user_pwd2b="false";
       }
       else
       {
-	     // if("设置密码符合"==divpass1.innerText)
-	      //{
+	    if(user_pwd1b=="true")
+	    {
 		      if(user_pwd1==user_pwd2)
 		      {
 		      divpass2.innerText="匹配成功";
 		      divpass2.style.color="green";
+		      user_pwd2b="true";
 		      }
+		      else
+		      {
+		      divpass2.innerText="输入的两次密码不一致";
+		      divpass2.style.color="red";
+		      user_pwd2b="false";
+		      }
+	    }
+	   else
+	    {
+		      if(user_pwd1==user_pwd2)
+			  {
+		      divpass2.innerText="密码至少大于6";
+		      divpass2.style.color="red";
+		      user_pwd2b="true";
+	          }
 		     else
-		     {
-		     divpass2.innerText="两次输入的密码不一致";
-		     divpass2.style.color="red";
-		     }
-	    //}
-      }
+		      {
+		      divpass2.innerText="两次输入的密码不一致";
+		      divpass2.style.color="red";
+		      user_pwd2b="true";
+	   	      }
+        }
+     }
      }
      function judgeemail()
      {
@@ -189,20 +219,30 @@ body.login {
      success:function(returnval)
      {
      //alert(returnval);
-     if("true"==returnval)
-     {
-      divemail.innerText="邮箱正确";
-      divemail.style.color="green";
+	     if("true"==returnval)
+	     {
+	      divemail.innerText="邮箱正确";
+	      divemail.style.color="green";
+	      useremailb="true";
+	     }
+	     else
+	     {
+		     if(""==useremail)
+		     {
+		     divemail.innerText="输入的邮箱不能为空";
+		     divemail.style.color="red";
+		     useremailb="false";
+		     }
+		     else
+		     {
+		     divemail.innerText="输入的邮箱格式有误";
+		     divemail.style.color="red";
+		     useremailb="false";
+	     	 }
+	     }
      }
-     else
-     {
-     divemail.innerText="输入的邮箱格式有误";
-     divemail.style.color="red";
-     }
-     }
-     });
-       
-     }
+    });
+  }
      function changeImage1()
      {
      //location.reload();
@@ -224,9 +264,21 @@ body.login {
       alert("aaa");
       var question=document.getElementById("userquestion").value;
       alert("question=="+question);
-      var answer=document.getElementById("user_answer").value;
-      alert(answer);
+      user_answer=document.getElementById("user_answer").value;
+      if(user_answer=="")
+      {
+      divanswer=document.getElementById("contentanswer");
+      divanswer.innerText="答案不能为空";
+      divanswer.style.color="red";
       
+      }
+      else
+      {
+	      if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb="true")
+	      {
+	      
+	      }
+      }
      }
      
 </script>	
@@ -271,7 +323,7 @@ body.login {
    </p>
    <p>
       <label for="user_answer">回答问题：<br/>
-         <input id="user_answer" class="input" type="text" size="25" value="" name="user_answer" "/>
+         <input id="user_answer" class="input" type="text" size="25" value="" name="user_answer" /><div id="contentanswer" style="display:inline"></div>
       </label>
    </p>
    <p>

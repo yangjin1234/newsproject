@@ -15,13 +15,18 @@ import dao.UserDao;
 public class UserDaoImpl implements UserDao{
 	 public int insertRegisterMessage(User u,Connection conn) throws Exception
 	    {
+		    MyLog.log.debug("进入查询方法了");
 		    int  uid_lid_key =creatkey.getCeartKey(); 
+		    MyLog.log.debug("uid_lid_key==="+uid_lid_key);
 		    int uid=creatkey.getCeartKey();
+		    MyLog.log.debug("uid==="+uid);
 		    int uid_sid_key=creatkey.getCeartKey();
-		    String uname=u.getUname();
-		    String uemail=u.getUemail();
-		    String uquestion=u.getUquestion();
-		    String uanswer=u.getUanwer();
+		    MyLog.log.debug("uid_sid_key==="+uid_sid_key);
+		    String uname=u.getUsername();
+		    MyLog.log.debug("uname==="+uname);
+		    String uemail=u.getUser_email();
+		    String uquestion=u.getUser_question();
+		    String uanswer=u.getUser_answer();
 	    	String sql="insert into user(uid_lid_key,uid,uid_sid_key,uname,uemail,uproblem,uanswer) value(?,?,?,?,?,?,?)";
 	    	PreparedStatement ps=conn.prepareStatement(sql);
 	    	ps.setInt(1,uid_lid_key);

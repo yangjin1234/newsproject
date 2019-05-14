@@ -94,10 +94,12 @@ public class LoginDaoImpl implements LoginDao{
 		ps.setString(3, MyMD5.encrypt(login.getLpass()));
 		int result=ps.executeUpdate();
 		if(result>0){
+			MyLog.log.debug("保存注册信息成功");
 			return true;
 		}
 			
 		return false;
 	}
+	
 
 }

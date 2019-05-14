@@ -5,49 +5,46 @@ import java.io.Serializable;
 import util.MyLog;
 
 public class User implements Serializable{
-	
-	private String upass;
-	private String uname;
-	private String uemail;
-	private String  uanwer;
-	private String uquestion;
-	public String getUpass() {
-		return upass;
+	private String user_pwd1;
+	private String username;
+	private String user_email;
+	private String  user_answer;
+	private String user_question;
+	public String getUser_pwd1() {
+		return user_pwd1;
 	}
-	public void setUpass(String upass) {
-		this.upass = upass;
+	public void setUser_pwd1(String user_pwd1) {
+		this.user_pwd1 = user_pwd1;
 	}
-	public String getUname() {
-		return uname;
+	public String getUsername() {
+		return username;
 	}
-	public void setUname(String uname) {
-		this.uname = uname;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getUemail() {
-		return uemail;
+	public String getUser_email() {
+		return user_email;
 	}
-	public void setUemail(String uemail) {
-		this.uemail = uemail;
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
-	public String getUanwer() {
-		
-		return uanwer;
+	public String getUser_answer() {
+		return user_answer;
 	}
-	
-	
+	public void setUser_answer(String user_answer) {
+		this.user_answer = user_answer;
+	}
+	public String getUser_question() {
+		return user_question;
+	}
+	public void setUser_question(String user_question) {
+		this.user_question = user_question;
+	}
 	public String toString() {
-		return "User [upass=" + upass + ", uname=" + uname + ", uemail="
-				+ uemail + ", uanwer=" + uanwer + ", uquestion=" + uquestion
-				+ "]";
+		return "User [user_pwd1=" + user_pwd1 + ", username=" + username
+				+ ", user_email=" + user_email + ", user_answer=" + user_answer
+				+ ", user_question=" + user_question + "]";
 	}
-	public void setUanwer(String uanwer) {
-		this.uanwer = uanwer;
-	}
-	public String getUquestion() {
-		return uquestion;
-	}
-	public void setUquestion(String uquestion) {
-		this.uquestion = uquestion;
-	}
+	
 
 }

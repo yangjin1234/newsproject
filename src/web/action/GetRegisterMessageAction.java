@@ -7,12 +7,16 @@ import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.LoginDao;
 import dao.UserDao;
+import dao.impl.LoginDaoImpl;
 import dao.impl.UserDaoImpl;
 import db.DBHelper;
+import pojo.Login;
 import pojo.User;
 import net.sf.json.JSONObject;
 import util.MyLog;
+import util.MyMD5;
 import web.core.Action;
 import web.core.ActionForm;
 import web.core.ActionForward;
@@ -30,14 +34,25 @@ public ActionForward execute(HttpServletRequest request,
 		MyLog.log.debug("data=="+data);
 	    JSONObject ob=JSONObject.fromObject(data);
 	    User user=(User)JSONObject.toBean(ob, User.class);
-	    String userm=user.toString();
-	    MyLog.log.debug("userm=="+userm);
+	    //得到注册的用户名及密码
+	    String password= user.getUser_pwd1();
+	    String uname=user.getUsername();
+	    MyLog.log.debug("password=="+password);
 	    Connection conn=DBHelper.getConnection();
 	    MyLog.log.debug("qqwes");
-	    
 	    UserDao u=new UserDaoImpl();
 	    try {
 			uid_lid_key=u.insertRegisterMessage(user, conn);
+			//对密码进行加密，然后将用户名和密码、主键传入登陆表
+			MyLog.log.debug("userm=="+uname);
+//			String passwordencode=MyMD5.encrypt(password);
+//			MyLog.log.debug("passwordencode=="+passwordencode);
+			Login login =new Login();
+			login.setLid(uid_lid_key);
+			login.setLname(uname);
+			login.setLpass(MyMD5.encrypt(password));
+			LoginDao ld=new LoginDaoImpl();
+			ld.saveLogin(login, conn);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -45,6 +60,7 @@ public ActionForward execute(HttpServletRequest request,
 	    if(uid_lid_key!=0)
 	    {
 				f="true";
+				
 		}
 		else
 		{
@@ -61,6 +77,13 @@ public ActionForward execute(HttpServletRequest request,
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-	return new ActionForward("loginshow");
-}
+			if("true".equals(f))
+			{
+				MyLog.log.debug("跳转到了登陆页面");
+				return new ActionForward("loginsuccess");
+			}
+			else{
+			return null;
+                  }
+			}
 }

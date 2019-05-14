@@ -38,11 +38,11 @@ public class LoginAction extends Action{
 		LoginImpl l=(LoginImpl)JSONObject.toBean(obj,LoginImpl.class);
 		LoginService ls=new LoginServiceImpl();
 		String sentence="";
-		if(l.getLname()==""){
-				sentence+="用户名不能为空"+"\n";
+		if("".equals(l.getLname())){
+				sentence+="用户名不能为空\r\n";
 		}
-		if(l.getLpass()==""){
-			sentence+="密码不能为空"+"\n";
+		if("".equals(l.getLpass())){
+			sentence+="密码不能为空\r\n";
 		}
 		if(l.getLname()!=""&&l.getLpass()!=""){
 			int state=ls.Login(l.getLname(), l.getLpass());
@@ -51,9 +51,9 @@ public class LoginAction extends Action{
 				return new ActionForward("show");
 			}
 			else if(state==0){
-				sentence+="用户名错误"+"\n";
+				sentence+="用户名错误\r\n";
 			}else{
-				sentence+="密码错误"+"\n";
+				sentence+="密码错误\r\n";
 			}
 		}
 		try {

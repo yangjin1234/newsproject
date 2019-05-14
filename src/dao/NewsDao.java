@@ -21,6 +21,14 @@ public interface NewsDao {
 	 */
 	List<TimeTypec> selectAllByTime(Connection conn, int nid_uid_key)throws Exception;
 
-
+	/**
+	 * 按分类查询
+	 * @param nid_uid_key
+	 * @param conn
+	 * @param typeName
+	 * @return
+	 * @throws Exception
+	 */
+	List<NewsImpl> selectNewsByTypeName(int nid_uid_key,Connection conn,String typeName)throws Exception;
 
 }

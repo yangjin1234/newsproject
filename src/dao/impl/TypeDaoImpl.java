@@ -16,14 +16,14 @@ public class TypeDaoImpl implements TypeDao{
 	 * 查出所有类型，以及统计数量
 	 */
 	public List<TypeImpl> selectAllType(Connection conn) throws Exception {
-		String sql="select *,count(*) as number from type group by tname";
+		String sql="select  tname,tid,count(*) as number   from news,type WHERE type.tid=news.nid_tid_key group by news.nid_tid_key";
 		List<TypeImpl> list=new ArrayList<TypeImpl>();
 		PreparedStatement ps=conn.prepareStatement(sql);
 		ResultSet rs=ps.executeQuery();
 		while(rs.next()){
 			TypeImpl t=new TypeImpl();
 			t.setTid(rs.getInt("tid"));
-			t.setTid_nid_key(rs.getInt("tid_nid_key"));
+			t.setTid_nid_key(1);//数据库设计失误，改数据无意义
 			t.setTname(rs.getString("tname"));
 			t.setNumber(rs.getInt("number"));
 			list.add(t);

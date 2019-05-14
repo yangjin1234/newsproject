@@ -229,5 +229,35 @@ public class NewsDaoImpl implements NewsDao{
 		}
 		return list;
 	}
+	public List<NewsImpl> selectNewsByTypeName(int nid_uid_key,
+			Connection conn, String typeName) throws Exception {
+//		 List<News> list=new ArrayList<News>();
+//		  String sql="select * from news where nid_uid_key=? and ntitle like ? limit ?,?";
+//		  PreparedStatement ps=null;
+//		  ps=conn.prepareStatement(sql);
+//		  ResultSet rs=null;
+//		  ps.setInt(1, nid_uid_key);
+//		  ps.setString(2, "%"+title+"%");
+//		  ps.setInt(3, (pageNo-1)*pageSize);
+//		  ps.setInt(4, pageSize);
+//		  rs=ps.executeQuery();
+//		  while(rs.next())
+//		  {
+//			  News n=new News();
+//			  n.setNamend_time(rs.getTimestamp("namend_time"));
+//			  n.setNcontent(rs.getString("ncontent"));
+//			  n.setNews_state(rs.getInt("news_state"));
+//			  n.setNid(rs.getInt("nid"));
+//			  n.setNid_tid_key(rs.getInt("nid_tid_key"));
+//			  n.setNid_uid_key(rs.getInt("nid_uid_key"));
+//			  n.setNsalary(rs.getDouble("nsalary"));
+//			  n.setNsalary_state(rs.getInt("nsalary_state"));
+//			  n.setNupload_time(rs.getTimestamp("nupload_time"));
+//			  n.setTitle(rs.getString("ntitle"));
+//			  System.out.println("≤È—Ø≥…π¶");
+//			  list.add(n);
+//		  }
+		  return null;
+	}
 	  
 }

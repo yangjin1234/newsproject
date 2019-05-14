@@ -164,7 +164,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 					<input type="search" class="search-field" placeholder="搜索&hellip;" value="" name="s" />
 				</label>
 				<input type="submit" class="search-submit screen-reader-text" value="搜索" />
-			</form></aside><aside id="mycred_widget_wallet-3" class="widget widget-my-wallet"><h2 class="widget-title">我的账户</h2><div class="myCRED-balance mycred-balance-mycred_default">经验: 452 点</div><div class="myCRED-balance mycred-balance-mycred_money">金钱: ￥ 20 元</div></aside><aside id="calendar-2" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
+			</form></aside><aside id="mycred_widget_wallet-3" class="widget widget-my-wallet"><h2 class="widget-title">我的账户</h2><div class="myCRED-balance mycred-balance-mycred_money">金钱: ￥ 20 元</div></aside><aside id="calendar-2" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
 	<caption>2019年五月</caption>
 	<thead>
 	<tr>

@@ -39,14 +39,14 @@ public class SessionFilter implements Filter{
 
 	public void autoJump(HttpServletRequest request, HttpServletResponse response,String message)
 			throws ServletException, IOException{
-		response.setHeader("Refresh", "0;URL=/Newsproject/login.jsp");
+		response.setHeader("Refresh", "1;URL=/Newsproject/login.jsp");
 		PrintWriter out = response.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<HTML>");
 		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
 		out.println("  <BODY>");
 		out.print(message);
-		out.println("   ,3秒后自动跳回");
+		out.println("   ,1秒后自动跳回");
 		out.println("  </BODY>");
 		out.println("</HTML>");
 		out.flush();

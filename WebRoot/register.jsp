@@ -91,9 +91,9 @@ body.login {
      var user_question;
      var div;//用户名的div块
      var divpass1;//密码
+     var divanswer;//问题答案
      var divpass2;//确认密码
      var divemail;//邮箱
-     var divanswer;//问题答案
      var usernameb;
      var user_pwd1b;
      var user_pwd2b;
@@ -259,7 +259,6 @@ body.login {
 		      divanswer.style.color="green";
 		      user_answerb="true";
 		      }
-  	 
   	 } 
      function changeImage1()
      {
@@ -395,7 +394,7 @@ body.login {
  -->
 <p id="nav">
 <a href="./login.jsp">登录</a> |
-<a href="./wp-login.php?action=lostpassword">忘记密码？</a>
+<a href="./forgetpass.jsp">忘记密码？</a>
 </p>
 
 	<p id="backtoblog"><a href="./">&larr; 返回到未来车平台</a></p>

@@ -1,17 +1,26 @@
 package dao.impl;
 
 import java.sql.Connection;
+/*
+ * 对注册信息的操作
+ */
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.CreateException;
 
 import pojo.SalaryTable;
+import pojo.UpdatePass;
 import pojo.User;
 import util.GetDate;
 import util.MyLog;
 import util.creatkey;
 import dao.UserDao;
-
+/*
+ * 将注册信息保存到用户表中
+ */
 public class UserDaoImpl implements UserDao{
 	 public int insertRegisterMessage(User u,Connection conn) throws Exception
 	    {
@@ -45,5 +54,44 @@ public class UserDaoImpl implements UserDao{
 	    	}
 	    	return 0;	
 	    }
+	 /*
+	  * 根据忘记密码，查询回答问题是否正确
+	  */
 
+	 
+	 public int selectUserMessage(UpdatePass d,Connection conn) throws Exception
+		{
+			System.out.println("conn"+conn);
+			String sql="select *from user where uname=? ";
+			PreparedStatement ps=conn.prepareStatement(sql);
+			String username=d.getUsername();
+			String user_answer=d.getUser_answer();
+			MyLog.log.debug("用户输入的uanswer=="+user_answer);
+			String  user_question=d.getUser_question();
+			MyLog.log.debug("用户输入的uproblem=="+user_question);
+			ps.setString(1, username);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				String uproblem=rs.getString("uproblem");
+				MyLog.log.debug("数据库的uproblem=="+uproblem);
+				String uanswer=rs.getString("uanswer");
+				MyLog.log.debug("数据库的uproblem=="+uanswer);
+				if(user_answer.equals(uanswer)&&user_question.equals(uproblem))
+				{
+					int uid=rs.getInt("uid_lid_key");
+					MyLog.log.debug("用户输入的与数据库的一致");
+					return uid;
+				}
+				else
+				{
+					MyLog.log.debug("用户输入的与数据库的不一致");
+					return 0;
+				}
+			}
+			MyLog.log.debug("查询失败");
+			return 0;
+		}
+	 
+	 
 }

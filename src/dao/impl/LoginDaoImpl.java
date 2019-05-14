@@ -100,6 +100,27 @@ public class LoginDaoImpl implements LoginDao{
 			
 		return false;
 	}
+	/*
+	  * 根据用户输入的新密码更改原来的密码
+	  */
+	 
+	 public boolean updateNewpass(int uid_lid_key,String pass,Connection conn) throws Exception
+	    {
+		    MyLog.log.debug("进入修改密码方法");
+	    	String sql="update  login set lpass=? where lid=? ";
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1, pass);
+			ps.setInt(2,uid_lid_key );
+			int result=ps.executeUpdate();
+			boolean flag=false;
+			if(result>0)
+			{
+				MyLog.log.debug("修改密码成功");
+				flag=true;
+			    return flag;
+			}
+			return flag;
+	    }
 	
 
 }

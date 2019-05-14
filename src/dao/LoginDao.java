@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 
 
+
+
 import pojo.Login;
 import pojo.User;
 /**
@@ -63,4 +65,7 @@ public interface LoginDao {
 	 * @throws Exception
 	 */
 	public boolean updatePass(String lname, String newpass, Connection conn)throws Exception;
+	 public boolean updateNewpass(int uid_lid_key,String pass,Connection conn) throws Exception;
+
+
 }

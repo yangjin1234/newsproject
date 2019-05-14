@@ -101,7 +101,6 @@ body.login {
      var user_answerb;
      function judgeusername()
      {
-	     alert("aaa");
 	     username=$("#username").val();
 	    // alert(typeof(username));
 	     //alert("username"+username);
@@ -210,12 +209,12 @@ body.login {
      function judgeemail()
      {
 	     divemail=document.getElementById("contentemail");
-	     useremail=$("#user_email").val();
+	     user_email=$("#user_email").val();
 	     //alert("useremail"+useremail);
 	     $.ajax({
 	     type:"POST",
 	     url:"judgeuseremail.do",
-	     data:"data="+useremail,
+	     data:"data="+user_email,
 	     success:function(returnval)
 	     {
 	     //alert(returnval);
@@ -227,7 +226,7 @@ body.login {
 		     }
 		     else
 		     {
-			     if(""==useremail)
+			     if(""==user_email)
 			     {
 			     divemail.innerText="输入的邮箱不能为空";
 			     divemail.style.color="red";
@@ -243,6 +242,25 @@ body.login {
 	     }
 	    });
   }
+  	 function judgeanswer()
+  	 {
+  	          user_answer=document.getElementById("user_answer").value;
+		      if(user_answer=="")
+		      {
+		      divanswer=document.getElementById("contentanswer");
+		      divanswer.innerText="答案不能为空";
+		      divanswer.style.color="red";
+		      user_answerb="false";
+		      }
+		      else
+		      {
+		      divanswer=document.getElementById("contentanswer");
+		      divanswer.innerText="通过";
+		      divanswer.style.color="green";
+		      user_answerb="true";
+		      }
+  	 
+  	 } 
      function changeImage1()
      {
      //location.reload();
@@ -269,25 +287,13 @@ body.login {
      function registersub()
      {
 		      //alert("aaa");
-		      user_question=document.getElementById("userquestion").value;
-		      //alert("question=="+user_question);
-		      user_answer=document.getElementById("user_answer").value;
-		      if(user_answer=="")
-		      {
-		      divanswer=document.getElementById("contentanswer");
-		      divanswer.innerText="答案不能为空";
-		      divanswer.style.color="red";
-		      }
-	         else
-	          {
-	               // divanswer.style.color="green";
-			        if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb=="true")
-			        {
-				        //alert(uname);
-				        var uu=new uregistermessage(username,user_pwd1,user_email,user_question,user_answer);
-			            alert("uu=="+typeof(uu));
-				        alert(JSON.stringify(uu));
-				        $.ajax({
+		     user_question=document.getElementById("userquestion").value;
+	         if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb=="true"&&user_answerb=="true")
+			   {
+				    var uu=new uregistermessage(username,user_pwd1,user_email,user_question,user_answer);
+			        //alert("uu=="+typeof(uu));
+				    //alert(JSON.stringify(uu));
+				    $.ajax({
 				        type:"POST",
 				        url:"getregistermessage.do",
 				        data:"data="+JSON.stringify(uu),
@@ -295,7 +301,8 @@ body.login {
 						     {
 							     if("true"==returnval)
 							     {
-							     alert("注册成功");
+							     
+							     //alert("注册成功");		
 							     }
 							     else
 							     {
@@ -309,7 +316,7 @@ body.login {
 			       alert("请填写正确信息");
 			       }
 		     }
-     }
+     
      
 </script>	
 	
@@ -353,7 +360,7 @@ body.login {
    </p>
    <p>
       <label for="user_answer">回答问题：<br/>
-         <input id="user_answer" class="input" type="text" size="25" value="" name="user_answer" /><div id="contentanswer" style="display:inline"></div>
+         <input id="user_answer" class="input" type="text" size="25" value="" name="user_answer" onblur="judgeanswer()" /><div id="contentanswer" style="display:inline"></div>
       </label>
    </p>
    <p>

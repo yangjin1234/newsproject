@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.MyLog;
+
 public class ActionForward {
 
 	private boolean flag;//是跳转还是重定向
@@ -25,9 +27,12 @@ public class ActionForward {
 		//通过action传过来的路径的key，找到要跳转的页面
 		String p = config.get(path).toString();
 		if(flag){
+			MyLog.log.debug("重定向p"+p);
 			response.sendRedirect(p);
 		}else{
+			MyLog.log.debug("转发p"+p);
 			request.getRequestDispatcher(p).forward(request, response);
+			
 		}
 	}
 }

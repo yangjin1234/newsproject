@@ -31,12 +31,16 @@
 		$.ajax({
 			type:"POST",
 			url:"login.do",
-			data:"data="+JSON.stringify(l),
+			data:"data="+JSON.stringify(l),		
 			success:function(msg){
-				var div = document.getElementById("login_error");
+			    if(msg!="true"){
+			    var div = document.getElementById("login_error");
 				div.innerHTML=msg;
+				}else{
+				  window.location="MainShow.jsp";
+				}
 			}
-		})
+		});
 		
 	}
 	</script>

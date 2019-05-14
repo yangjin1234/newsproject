@@ -24,7 +24,8 @@
   </filter>
 <filter-mapping>
 <filter-name>session</filter-name>
-<url-pattern>/behind/*</url-pattern>
+<url-pattern>/MainShow.jsp</url-pattern>
+<url-pattern>/needs.jsp</url-pattern>
 </filter-mapping>  
   
   <welcome-file-list>

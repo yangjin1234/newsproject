@@ -48,6 +48,18 @@ public class LoginAction extends Action{
 			int state=ls.Login(l.getLname(), l.getLpass());
 			response.setCharacterEncoding("UTF-8");
 			if(state==1){
+				PrintWriter out=null;
+				try {
+					out = response.getWriter();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				MyLog.log.debug("statea="+sentence);
+				out.write("true");
+				out.flush();
+				out.close();
+				request.getSession().setAttribute("account", l);
 				return new ActionForward("show");
 			}
 			else if(state==0){

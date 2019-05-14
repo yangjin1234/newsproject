@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="pojo.impl.LoginImpl"%>
+<%@page import="dao.impl.LoginDaoImpl"%>
+<%@page import="dao.LoginDao"%>
 <%@page import="pojo.impl.NewsImpl"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="java.net.URLEncoder"%>
@@ -186,16 +189,20 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	<tbody>
 	<%
 	   NewsDao nd=new NewsDaoImpl();
-	   Connection conn=DBHelper.getConnection();
-	
 	 TypeDao td=new TypeDaoImpl();
+	   Connection conn=DBHelper.getConnection();
+	LoginDao ld=new LoginDaoImpl();
 	 List<TypeImpl> list2=td.selectAllType(conn);
-	 
+	 //得到登录用户
+	 LoginImpl log=new LoginImpl();
+	 log=(LoginImpl)request.getSession().getAttribute("account");
+	 //得到id
+	 Login logf=ld.selectUserPassByName(log.getLname(), conn);
 	 request.setAttribute("type", list2);
-	 List<TimeTypec> list3=nd.selectAllByTime(conn, 1);
+	 List<TimeTypec> list3=nd.selectAllByTime(conn, logf.getLid());
 	 MyLog.log.debug(list3.toString());
 	 request.setAttribute("timetype", list3);
-	 String uname="yangjin",upass="111";
+	 String uname=logf.getLname(),upass=logf.getLpass();
 	
 	//每页显示文章数量
 	int maxSize=2;
@@ -248,11 +255,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
     for(NewsImpl li:list){
 	 li.setUname(uname);
 	 }
-     Login log=new Login();
-	 log.setLid(1);
-	 log.setLname(valname);
-	 log.setLpass(valpass);
-	 request.setAttribute("login", log);
+    
 	  request.setAttribute("list", list);
 	 %>
 	<tr>
@@ -299,7 +302,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 
 
 	<article id="post-486354" class="post-486354 post type-post status-publish format-standard hentry category-jstw">
-		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：${listc.nid }</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="./p/486354" rel="bookmark">${listc.title }${listc.uname }</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">2019年05月08日 16:51</time><time class="updated" datetime="2019-05-09T17:45:34+00:00">2019年05月09日 17:45</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="./p/author/1996">${listc.uname }</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="./c/jstw" rel="category tag">${listc.typename }</a></span><span class="comments-link"><a href="./p/486354#respond"></span></div>	</header><!-- .entry-header -->
+		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：${listc.nid }</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="./p/486354" rel="bookmark">${listc.title }</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">2019年05月08日 16:51</time><time class="updated" datetime="2019-05-09T17:45:34+00:00">2019年05月09日 17:45</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="./p/author/1996">${listc.uname }</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="./c/jstw" rel="category tag">${listc.typename }</a></span><span class="comments-link"><a href="./p/486354#respond"></span></div>	</header><!-- .entry-header -->
 	<div class="entry-content">
 		
 				<div class="ui tiny icon positive message">

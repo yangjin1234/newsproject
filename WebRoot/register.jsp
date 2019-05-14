@@ -300,9 +300,8 @@ body.login {
 				        success:function(returnval)
 						     {
 							     if("true"==returnval)
-							     {
-							     
-							     //alert("注册成功");		
+							     {							  	
+							     alert("注册成功");		
 							     }
 							     else
 							     {
@@ -395,7 +394,7 @@ body.login {
       <a href="javascript:changeImage1()">更换图片</a>
  -->
 <p id="nav">
-<a href="./wp-login.php">登录</a> |
+<a href="./login.jsp">登录</a> |
 <a href="./wp-login.php?action=lostpassword">忘记密码？</a>
 </p>
 

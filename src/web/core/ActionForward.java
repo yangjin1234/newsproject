@@ -24,13 +24,12 @@ public class ActionForward {
 			throws ServletException, IOException {
 		MyLog.log.debug("我进入了注册成功转登陆页面");
 		//从应用程序中拿出配置文件
+		MyLog.log.debug("path=="+path);
 		Properties config = (Properties)request.getSession().getServletContext().getAttribute("config");
 		//通过action传过来的路径的key，找到要跳转的页面
-		MyLog.log.debug("path=="+path);
 		String p = config.get(path).toString();
 		MyLog.log.debug("p=="+p);
 		if(flag){
-			MyLog.log.debug("成功进入aaa");
 			MyLog.log.debug("重定向p"+p);
 			response.sendRedirect(p);
 		}else{

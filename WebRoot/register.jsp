@@ -99,14 +99,7 @@ body.login {
      var user_pwd2b;
      var user_emailb;
      var user_answerb;
-     //function uregistermessage(uname,upass,uemail,uquestion,uanswer)
-     //{
-     //this.uname=uname;
-     //this.upass=upass;
-     //this.uemail=uemail;
-     //this.uquestion=uquestion;
-     //this.uanswer=uanswer;
-     //}
+     var nn;
      function judgeusername()
      {
 	     alert("aaa");
@@ -143,114 +136,113 @@ body.login {
      }
      function judgepass1()
      {
-      divpass1=document.getElementById("contentpass1");
-      user_pwd1=$("#user_pwd1").val();
-     // alert("user_pwd1"+user_pwd1);
-      if(""==user_pwd1)
-      {
-      divpass1.innerText="密码不能为空";
-      divpass1.style.color="red";
-      user_pwd1b="false";
-      }
-      else
-      {
-	      if(user_pwd1.length<=6)
+	      divpass1=document.getElementById("contentpass1");
+	      user_pwd1=$("#user_pwd1").val();
+	     // alert("user_pwd1"+user_pwd1);
+	      if(""==user_pwd1)
 	      {
-	      divpass1.innerText="密码至少大于6";
+	      divpass1.innerText="密码不能为空";
 	      divpass1.style.color="red";
 	      user_pwd1b="false";
 	      }
 	      else
 	      {
-	      divpass1.innerText="设置密码格式正确";
-	      divpass1.style.color="green";
-	      user_pwd1b="true";
+		      if(user_pwd1.length<=6)
+		      {
+		      divpass1.innerText="密码至少大于6";
+		      divpass1.style.color="red";
+		      user_pwd1b="false";
+		      }
+		      else
+		      {
+		      divpass1.innerText="设置密码格式正确";
+		      divpass1.style.color="green";
+		      user_pwd1b="true";
+		      }
 	      }
-      }
-     // alert("user_pwd1b="+user_pwd1b);
       }
      function judgepass2()
      {
        //alert(divpass1.text());
       //alert(divpass1.innerText);
-      divpass2=document.getElementById("contentpass2");
-      user_pwd2=$("#user_pwd2").val();
-      //alert("user_pwd2=="+user_pwd2);
-      if(""==user_pwd2)
-      {
-      divpass2.innerText="密码不能为空";
-      divpass2.style.color="red";
-      user_pwd2b="false";
-      }
-      else
-      {
-	    if(user_pwd1b=="true")
-	    {
-		      if(user_pwd1==user_pwd2)
-		      {
-		      divpass2.innerText="匹配成功";
-		      divpass2.style.color="green";
-		      user_pwd2b="true";
-		      }
-		      else
-		      {
-		      divpass2.innerText="输入的两次密码不一致";
-		      divpass2.style.color="red";
-		      user_pwd2b="false";
-		      }
-	    }
-	   else
-	    {
-		      if(user_pwd1==user_pwd2)
-			  {
-		      divpass2.innerText="密码至少大于6";
-		      divpass2.style.color="red";
-		      user_pwd2b="true";
-	          }
-		     else
-		      {
-		      divpass2.innerText="两次输入的密码不一致";
-		      divpass2.style.color="red";
-		      user_pwd2b="true";
-	   	      }
-        }
-     }
+	      divpass2=document.getElementById("contentpass2");
+	      user_pwd2=$("#user_pwd2").val();
+	      //alert("user_pwd2=="+user_pwd2);
+	      if(""==user_pwd2)
+	      {
+	      divpass2.innerText="密码不能为空";
+	      divpass2.style.color="red";
+	      user_pwd2b="false";
+	      }
+	      else
+	      {
+		    if(user_pwd1b=="true")
+		    {
+			      if(user_pwd1==user_pwd2)
+			      {
+			      divpass2.innerText="匹配成功";
+			      divpass2.style.color="green";
+			      user_pwd2b="true";
+			      }
+			      else
+			      {
+			      divpass2.innerText="输入的两次密码不一致";
+			      divpass2.style.color="red";
+			      user_pwd2b="false";
+			      }
+		    }
+		   else
+		    {
+			      if(user_pwd1==user_pwd2)
+				  {
+			      divpass2.innerText="密码至少大于6";
+			      divpass2.style.color="red";
+			      user_pwd2b="true";
+		          }
+			     else
+			      {
+			      divpass2.innerText="两次输入的密码不一致";
+			      divpass2.style.color="red";
+			      user_pwd2b="true";
+		   	      }
+	        }
+	     }
      }
      function judgeemail()
      {
-     divemail=document.getElementById("contentemail");
-     useremail=$("#user_email").val();
-     //alert("useremail"+useremail);
-     $.ajax({
-     type:"POST",
-     url:"judgeuseremail.do",
-     data:"data="+useremail,
-     success:function(returnval)
-     {
-     //alert(returnval);
-	     if("true"==returnval)
+	     divemail=document.getElementById("contentemail");
+	     useremail=$("#user_email").val();
+	     //alert("useremail"+useremail);
+	     $.ajax({
+	     type:"POST",
+	     url:"judgeuseremail.do",
+	     data:"data="+useremail,
+	     success:function(returnval)
 	     {
-	      divemail.innerText="邮箱正确";
-	      divemail.style.color="green";
-	      useremailb="true";
-	     }
-	     else
-	     {
-		     if(""==useremail)
+	     //alert(returnval);
+		     if("true"==returnval)
 		     {
-		     divemail.innerText="输入的邮箱不能为空";
-		     divemail.style.color="red";
-		     useremailb="false";
+		      divemail.innerText="邮箱正确";
+		      divemail.style.color="green";
+		      useremailb="true";
 		     }
 		     else
 		     {
-		     divemail.innerText="输入的邮箱格式有误";
-		     divemail.style.color="red";
-		     useremailb="false";
-	     	 }
+			     if(""==useremail)
+			     {
+			     divemail.innerText="输入的邮箱不能为空";
+			     divemail.style.color="red";
+			     useremailb="false";
+			     }
+			     else
+			     {
+			     divemail.innerText="输入的邮箱格式有误";
+			     divemail.style.color="red";
+			     useremailb="false";
+		     	 }
+		     }
 	     }
-     }
-    });
+	    });
   }
      function changeImage1()
      {
@@ -267,36 +259,57 @@ body.login {
 			alert(JSON.stringify(typeof(new String(new Date().getTime()))));
 				     
      }
-     
+      function uregistermessage(username,user_pwd1,user_email,user_question,user_answer)
+		     {
+		     this.username=username;
+		     this.user_pwd1=user_pwd1;
+		     this.user_email=user_email;
+		     this.user_question=user_question;
+		     this.user_answer=user_answer;
+		     }
      function registersub()
      {
-      alert("aaa");
-      user_question=document.getElementById("userquestion").value;
-      alert("question=="+user_question);
-      user_answer=document.getElementById("user_answer").value;
-      if(user_answer=="")
-      {
-      divanswer=document.getElementById("contentanswer");
-      divanswer.innerText="答案不能为空";
-      divanswer.style.color="red";
-      }
-      else
-      {
-          divanswer.style.color="green";
-	      if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb=="true")
-	      {
-	      alert(uname);
-	      uregistermessage uu=new uregistermessage(username,user_pwd1,user_email,user_question,user_answer)
-	      alert("uu=="+typeof(uu));
-	      alert(JSON.stringify(uu));
-	      //$.ajax({
-	      //type:"POST",
-	      //url:"getregistermessage.do";
-	      //data:"data="+uu;
-	      
-	     // });
-	      }
-      }
+		      //alert("aaa");
+		      user_question=document.getElementById("userquestion").value;
+		      //alert("question=="+user_question);
+		      user_answer=document.getElementById("user_answer").value;
+		      if(user_answer=="")
+		      {
+		      divanswer=document.getElementById("contentanswer");
+		      divanswer.innerText="答案不能为空";
+		      divanswer.style.color="red";
+		      }
+	         else
+	          {
+	               // divanswer.style.color="green";
+			        if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb=="true")
+			        {
+				        //alert(uname);
+				        var uu=new uregistermessage(username,user_pwd1,user_email,user_question,user_answer);
+			            alert("uu=="+typeof(uu));
+				        alert(JSON.stringify(uu));
+				        $.ajax({
+				        type:"POST",
+				        url:"getregistermessage.do",
+				        data:"data="+JSON.stringify(uu),
+				        success:function(returnval)
+						     {
+							     if("true"==returnval)
+							     {
+							     alert("注册成功");
+							     }
+							     else
+							     {
+							     alert("注册失败");
+							     }
+						     }
+				        	});
+			         }
+			       else
+			       {
+			       alert("请填写正确信息");
+			       }
+		     }
      }
      
 </script>	

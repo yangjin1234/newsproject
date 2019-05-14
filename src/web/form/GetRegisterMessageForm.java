@@ -7,7 +7,6 @@ public class GetRegisterMessageForm extends ActionForm{
 	private String data;
 
 	public String getData() {
-		MyLog.log.debug("bb");
 		return data;
 	}
 

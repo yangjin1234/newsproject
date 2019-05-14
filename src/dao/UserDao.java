@@ -7,6 +7,6 @@ import util.MyLog;
 
 public interface UserDao {
 	public int insertRegisterMessage(User u,Connection conn) throws Exception;
-	public static final String name="";
+	
 
 }

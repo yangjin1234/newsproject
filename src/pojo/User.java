@@ -30,7 +30,7 @@ public class User implements Serializable{
 		this.uemail = uemail;
 	}
 	public String getUanwer() {
-		MyLog.log.debug("kk");
+		
 		return uanwer;
 	}
 	

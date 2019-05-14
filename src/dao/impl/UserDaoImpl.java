@@ -34,7 +34,7 @@ public class UserDaoImpl implements UserDao{
 	    	int result=ps.executeUpdate();
 	    	if(result>0)
 	    	{
-	    		MyLog.log.debug("进入查询");
+	    		MyLog.log.debug("查询");
 	    		MyLog.log.debug("插入注册信息成功");
 	    		return uid_lid_key;
 	    	}

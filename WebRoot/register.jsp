@@ -99,7 +99,6 @@ body.login {
      var user_pwd2b;
      var user_emailb;
      var user_answerb;
-     var nn;
      function judgeusername()
      {
 	     alert("aaa");

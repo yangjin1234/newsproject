@@ -26,7 +26,6 @@ public ActionForward execute(HttpServletRequest request,
 	   
 		GetRegisterMessageForm ge= (GetRegisterMessageForm)af;
 		MyLog.log.debug("ge=="+ge);
-		MyLog.log.debug("Œ“Ω¯¡Àgetregistermessageaction");
 		String data=ge.getData();
 		MyLog.log.debug("data=="+data);
 	    JSONObject ob=JSONObject.fromObject(data);

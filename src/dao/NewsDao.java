@@ -29,6 +29,17 @@ public interface NewsDao {
 	 * @return
 	 * @throws Exception
 	 */
-	List<NewsImpl> selectNewsByTypeName(int nid_uid_key,Connection conn,String typeName)throws Exception;
+	List<NewsImpl> selectNewsByTypeName(int nid_uid_key,Connection conn,String typeName,int pageNo,int pageSize)throws Exception;
 
+	/**
+	 * 按时间分类查询
+	 * @param nid_uid_key
+	 * @param conn
+	 * @param timeName
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	List<NewsImpl> selectNewsByTime(int nid_uid_key,Connection conn,String timeName,int pageNo,int pageSize)throws Exception;
 }

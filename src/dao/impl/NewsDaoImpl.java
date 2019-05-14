@@ -230,34 +230,74 @@ public class NewsDaoImpl implements NewsDao{
 		return list;
 	}
 	public List<NewsImpl> selectNewsByTypeName(int nid_uid_key,
-			Connection conn, String typeName) throws Exception {
-//		 List<News> list=new ArrayList<News>();
-//		  String sql="select * from news where nid_uid_key=? and ntitle like ? limit ?,?";
-//		  PreparedStatement ps=null;
-//		  ps=conn.prepareStatement(sql);
-//		  ResultSet rs=null;
-//		  ps.setInt(1, nid_uid_key);
-//		  ps.setString(2, "%"+title+"%");
-//		  ps.setInt(3, (pageNo-1)*pageSize);
-//		  ps.setInt(4, pageSize);
-//		  rs=ps.executeQuery();
-//		  while(rs.next())
-//		  {
-//			  News n=new News();
-//			  n.setNamend_time(rs.getTimestamp("namend_time"));
-//			  n.setNcontent(rs.getString("ncontent"));
-//			  n.setNews_state(rs.getInt("news_state"));
-//			  n.setNid(rs.getInt("nid"));
-//			  n.setNid_tid_key(rs.getInt("nid_tid_key"));
-//			  n.setNid_uid_key(rs.getInt("nid_uid_key"));
-//			  n.setNsalary(rs.getDouble("nsalary"));
-//			  n.setNsalary_state(rs.getInt("nsalary_state"));
-//			  n.setNupload_time(rs.getTimestamp("nupload_time"));
-//			  n.setTitle(rs.getString("ntitle"));
-//			  System.out.println("查询成功");
-//			  list.add(n);
-//		  }
-		  return null;
+			Connection conn, String typeName,int pageNo,int pageSize) throws Exception {
+		 List<NewsImpl> list=new ArrayList<NewsImpl>();
+		  String sql="select * from news,type where nid_uid_key=? and news.nid_tid_key=type.tid and tname=? limit ?,?";
+		  PreparedStatement ps=null;
+		  ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  ps.setInt(1, nid_uid_key);
+		  ps.setString(2, typeName);
+		  ps.setInt(3, (pageNo-1)*pageSize);
+		  ps.setInt(4, pageSize);
+		  rs=ps.executeQuery();
+		  while(rs.next())
+		  {
+			  NewsImpl n=new NewsImpl();
+			  n.setNamend_time(rs.getTimestamp("namend_time"));
+			  n.setNcontent(rs.getString("ncontent"));
+			  n.setNews_state(rs.getInt("news_state"));
+			  n.setNid(rs.getInt("nid"));
+			  n.setNid_tid_key(rs.getInt("nid_tid_key"));
+			  n.setNid_uid_key(rs.getInt("nid_uid_key"));
+			  n.setNsalary(rs.getDouble("nsalary"));
+			  n.setNsalary_state(rs.getInt("nsalary_state"));
+			  n.setNupload_time(rs.getTimestamp("nupload_time"));
+			  n.setTitle(rs.getString("ntitle"));
+			  System.out.println("查询成功");
+			  list.add(n);
+		  }
+		  return list;
+	}
+	public List<NewsImpl> selectNewsByTime(int nid_uid_key, Connection conn,
+			String timeName, int pageNo, int pageSize) throws Exception {
+		List<NewsImpl> list=new ArrayList<NewsImpl>();
+		  String sql="select * from news WHERE nid_uid_key=? and year(news.nupload_time)=? and month(news.nupload_time)=? limit ?,?;";
+		  PreparedStatement ps=null;
+		  ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  
+		  //转换时间
+			int  one=timeName.indexOf("年");
+			int  two=timeName.indexOf("月");
+			String years=timeName.substring(0, one);
+			String months=timeName.substring(one+1,two);
+			int year=Integer.parseInt(years);
+			int month=Integer.parseInt(months);
+		  
+		  ps.setInt(1, nid_uid_key);
+		  ps.setInt(2, year);
+		  ps.setInt(3, month);
+		  ps.setInt(4, (pageNo-1)*pageSize);
+		  ps.setInt(5, pageSize);
+		  rs=ps.executeQuery();
+		  while(rs.next())
+		  {
+			  NewsImpl n=new NewsImpl();
+			  n.setNamend_time(rs.getTimestamp("namend_time"));
+			  n.setNcontent(rs.getString("ncontent"));
+			  n.setNews_state(rs.getInt("news_state"));
+			  n.setNid(rs.getInt("nid"));
+			  n.setNid_tid_key(rs.getInt("nid_tid_key"));
+			  n.setNid_uid_key(rs.getInt("nid_uid_key"));
+			  n.setNsalary(rs.getDouble("nsalary"));
+			  n.setNsalary_state(rs.getInt("nsalary_state"));
+			  n.setNupload_time(rs.getTimestamp("nupload_time"));
+			  n.setTitle(rs.getString("ntitle"));
+			  System.out.println("查询成功");
+			  list.add(n);
+		  }
+		  return list;
 	}
 	  
 }

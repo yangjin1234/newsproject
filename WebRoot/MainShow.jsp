@@ -218,7 +218,28 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	pageNo=Integer.valueOf(request.getParameter("pageNo"));
 	}
 	pageContext.setAttribute("pageNo", pageNo);
-	   List<NewsImpl> list=nd.selectAllNews(1, conn, pageNo, maxSize);
+	   List<NewsImpl> list=null;
+	   
+	   //按类型分类
+	  String typeName=request.getParameter("typec");
+	  if(typeName==null){
+	   list=nd.selectAllNews(logf.getLid(), conn, pageNo, maxSize);
+	  }else{
+	  typeName=new String(typeName.getBytes("ISO8859-1"),"UTF-8");
+	  list=nd.selectNewsByTypeName(logf.getLid(), conn, typeName, pageNo, maxSize);
+	  MyLog.log.debug("typeName="+typeName);
+	  }
+	  
+	//  按时间分类
+	  String timetypecName=request.getParameter("timetypec");
+	  if(timetypecName!=null){
+	  timetypecName=new String(timetypecName.getBytes("ISO8859-1"),"UTF-8");
+	  MyLog.log.debug("timetypecName="+timetypecName);
+	  
+	  list=nd.selectNewsByTime(logf.getLid(), conn, timetypecName, pageNo, maxSize);
+	  MyLog.log.debug(list.size());
+	  }
+	  
 	MyLog.log.debug("maxPage"+maxPage);
 	 //存到cookie
 	 Cookie c1 = new Cookie("uname",URLEncoder.encode(uname, "UTF-8"));
@@ -276,14 +297,14 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	</tr>
 	</tbody>
 	</table></div></aside><aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">分类目录</h2>		<ul><c:forEach items="${requestScope.type }" var="typec" varStatus="cb">
-	<li class="cat-item cat-item-173"><a href="./c/%e9%9d%92%e5%b2%9b" >${typec.tname }</a> (${typec.number })
+	<li class="cat-item cat-item-173"><a href="MainShow.jsp?typec=${typec.tname }" >${typec.tname }</a> (${typec.number })
 </li>
 	</c:forEach>
 </ul>
 </aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">文章归档</h2>		<ul>
 	<c:forEach items="${requestScope.timetype }" var="timetypec" varStatus="cb">
 	
-	<li><a href='./p/date/2019/01'>${timetypec.timec}</a>&nbsp;(${timetypec.number })</li>
+	<li><a href='MainShow.jsp?timetypec=${timetypec.timec }'>${timetypec.timec}</a>&nbsp;(${timetypec.number })</li>
 	</c:forEach></ul>
 		</aside>			</div><!-- .widget-area -->
 		

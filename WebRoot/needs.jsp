@@ -146,7 +146,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 				<div id="secondary" class="secondary">
 
 					<nav id="site-navigation" class="main-navigation" role="navigation">
-				<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="nav-menu"><li id="menu-item-192" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-192"><a href="/">首页</a></li>
+				<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="nav-menu"><li id="menu-item-192" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-192"><a href=MainShow.jsp>首页</a></li>
 <li id="menu-item-193" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-193"><a href="./gonggao">投稿须知(必读)</a></li>
 <li id="menu-item-291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-291"><a href="/wp-admin/edit.php">全部文章</a></li>
 <li id="menu-item-2621" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2621"><a href="./getrmb">申请提现</a></li>
@@ -290,33 +290,42 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 
 		<div id="content" class="site-content">
 
-<div id="primary" class="content-area">
-	<main id="main" class="site-main" role="main">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 
-		<c:forEach items="${requestScope.list }" var="listc" varStatus="cb">
-	  <c:if test="${!empty listc }">
-	    
-
-
-	<article id="post-486354" class="post-486354 post type-post status-publish format-standard hentry category-jstw">
-		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：${listc.nid }</span><h2 class="entry-title" style="margin-bottom:15px;"><a href="./p/486354" rel="bookmark">${listc.title }${listc.uname }</a></h2><div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span><a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">2019年05月08日 16:51</time><time class="updated" datetime="2019-05-09T17:45:34+00:00">2019年05月09日 17:45</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">作者 </span><a class="url fn n" href="./p/author/1996">${listc.uname }</a></span></span><span class="cat-links"><span class="screen-reader-text">分类 </span><a href="./c/jstw" rel="category tag">${listc.typename }</a></span><span class="comments-link"><a href="./p/486354#respond"></span></div>	</header><!-- .entry-header -->
-	<div class="entry-content">
 		
-				<div class="ui tiny icon positive message">
-				<i class="trophy icon"></i>
-				<div class="content">
-				<p>获得稿酬<span style="font-size:32px;">${listc.nsalary }元</span>，请继续加油哦！(实际总稿酬${listc.nsalary }元)</p>
-				</div></div><p>${listc.ncontent } &hellip; <a href="./p/486354" class="more-link">继续阅读<span class="screen-reader-text">${listc.title }wangyuhan</span></a></p>
-	</div><!-- .entry-content -->
-	</article><!-- #post-## -->
-	  </c:if>
-	</c:forEach>	
+<article id="post-189" class="post-189 page type-page status-publish hentry">
 	
+	<header class="entry-header">
+		<h1 class="entry-title">投稿须知(必读)</h1>	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p><em>最后修订时间：2019-02-18</em></p>
+<ol>
+<li>您投稿的文章需要编辑人员审核通过后，即可正常发布出来；</li>
+<li><strong>审核人员会根据您文章的质量，发放相应的稿酬，文章越优质，稿酬越多；</strong></li>
+<li><span style="color: #ff0000;"><strong>特别注意，文章一经审核通过、支付稿酬，文章版权即为我公司所有，未经我司书面许可，投稿人不得将文章泄露给任何第三方，否则我司将追究版权侵权责任；</strong></span></li>
+<li>每月1日到3日可以申请提现，不限最低金额，点此<a href="/getrmb">申请提现</a>；</li>
+<li>欢迎您创作<strong>有观点、有新意的优质内容</strong>，您的作品将会被百万粉丝欣赏；</li>
+<li>平台检测到有<strong>抄袭情况</strong>时，视严重程度可能予以<span style="color: #ff0000;"><strong>永久封号</strong></span>的处理，请特别注意；</li>
+<li>若您有任何疑问、意见或建议，欢迎发邮件到：service@katamao.com</li>
+<li>感谢您和本平台一起成长，让我们一起为新媒体创作更多有价值的内容！</li>
+<li>我公司保留在法律许可的范围内，对本《投稿须知》条款进行修改的权利。</li>
+<li>您在本平台的投稿行为，视为对本《投稿须知》的充分理解和认同。</li>
+<li>我公司常年法律顾问：陈龙吟律师。</li>
+</ol>
+			</div><!-- .entry-content -->
+
+	
+</article><!-- #post-## -->
+
+		</main><!-- .site-main -->
+	</div><!-- .content-area -->
 
 
-	<nav class="navigation pagination" role="navigation">
-		<h2 class="screen-reader-text">文章导航</h2>
-		<div class="nav-links"><!-- <span class='page-numbers current'><span class="meta-nav screen-reader-text">页 </span>1</span>
+</div><!-- .site-content -->
+
+<!-- <span class='page-numbers current'><span class="meta-nav screen-reader-text">页 </span>1</span>
 <a class='page-numbers' href='./page/2'><span class="meta-nav screen-reader-text">页 </span>2</a>
 <span class="page-numbers dots">&hellip;</span>
 <a class='page-numbers' href='./page/40'><span class="meta-nav screen-reader-text">页 </span>40</a>

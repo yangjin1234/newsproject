@@ -301,7 +301,8 @@ body.login {
 							     if("true"==returnval)
 							     {							  	
 							     alert("注册成功");		
-							     }
+							      window.location.href="login.jsp";
+							     } 
 							     else
 							     {
 							     alert("注册失败");

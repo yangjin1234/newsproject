@@ -125,7 +125,8 @@
 						         alert("修改"+returnval);
 							     if("true"==returnval)
 							     {							  	
-							     alert("修改密码成功");		
+							     alert("修改密码成功");	
+							     window.location.href="login.jsp";	
 							     }
 							     else
 							     {

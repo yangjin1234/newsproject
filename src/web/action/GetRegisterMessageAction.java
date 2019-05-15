@@ -77,13 +77,6 @@ public ActionForward execute(HttpServletRequest request,
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			if("true".equals(f))
-			{
-				MyLog.log.debug("跳转到了登陆页面");
-				return new ActionForward("loginsuccess");
-			}
-			else{
 			return null;
-                  }
 			}
 }

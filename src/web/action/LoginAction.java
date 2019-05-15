@@ -52,7 +52,6 @@ public class LoginAction extends Action{
 				try {
 					out = response.getWriter();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				MyLog.log.debug("statea="+sentence);

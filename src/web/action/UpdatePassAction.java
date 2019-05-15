@@ -77,7 +77,6 @@ public class UpdatePassAction extends Action{
 			try {
 				pw=response.getWriter();
 				pw.write(f);
-				MyLog.log.debug("a=="+f);
 				MyLog.log.debug("f=="+f);
 				pw.flush();
 				pw.close();

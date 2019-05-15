@@ -301,7 +301,6 @@ body.login {
 							     if("true"==returnval)
 							     {							  	
 							     alert("注册成功");	
-							     alert("aa")	
 							      window.location.href="login.jsp";
 							     } 
 							     else

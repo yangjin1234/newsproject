@@ -71,6 +71,7 @@ public ActionForward execute(HttpServletRequest request,
 			try {
 				pw=response.getWriter();
 				pw.write(f);
+				MyLog.log.debug("a=="+f);
 				MyLog.log.debug("f=="+f);
 				pw.flush();
 				pw.close();

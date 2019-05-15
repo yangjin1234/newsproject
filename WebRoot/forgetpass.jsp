@@ -138,6 +138,7 @@
 			       else
 			       {
 			       alert("请填写正确信息");
+			       alert("aaa");
 			       }
 		     }
 	</script>

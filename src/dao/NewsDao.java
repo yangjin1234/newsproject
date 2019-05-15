@@ -30,6 +30,7 @@ public interface NewsDao {
 	 * @throws Exception
 	 */
 	List<NewsImpl> selectNewsByTypeName(int nid_uid_key,Connection conn,String typeName,int pageNo,int pageSize)throws Exception;
+	int selectNewsByTypeNameForMaxSize(int nid_uid_key,Connection conn,String typeName,int pageSize)throws Exception;
 
 	/**
 	 * 按时间分类查询
@@ -42,4 +43,5 @@ public interface NewsDao {
 	 * @throws Exception
 	 */
 	List<NewsImpl> selectNewsByTime(int nid_uid_key,Connection conn,String timeName,int pageNo,int pageSize)throws Exception;
+	int selectNewsByTimeForMaxSize(int nid_uid_key,Connection conn,String timeName,int pageSize)throws Exception;
 }

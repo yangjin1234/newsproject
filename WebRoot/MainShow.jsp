@@ -206,10 +206,10 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	
 	//每页显示文章数量
 	int maxSize=2;
-	pageContext.setAttribute("maxSize", maxSize);
+	  pageContext.setAttribute("maxSize", maxSize);
 	//最大页数
 	int maxPage=nd.getMaxPage(conn, maxSize);
-	pageContext.setAttribute("maxPage", maxPage);
+	
 	//当前页数
 	int pageNo=0;
 	if(request.getParameter("pageNo")==null){
@@ -222,22 +222,31 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	   
 	   //按类型分类
 	  String typeName=request.getParameter("typec");
-	  if(typeName==null){
+	  
+	  if(typeName==null||typeName.equals("")){
 	   list=nd.selectAllNews(logf.getLid(), conn, pageNo, maxSize);
-	  }else{
+	   MyLog.log.debug("adsfadsf");
+	  }else {
+	 // if(!"".equals(typeName)){
 	  typeName=new String(typeName.getBytes("ISO8859-1"),"UTF-8");
 	  list=nd.selectNewsByTypeName(logf.getLid(), conn, typeName, pageNo, maxSize);
+	  maxPage=nd.selectNewsByTypeNameForMaxSize(logf.getLid(), conn, typeName,maxSize);
 	  MyLog.log.debug("typeName="+typeName);
+	  request.setAttribute("typec", typeName);
+	  MyLog.log.debug("maxPage232="+maxPage);
 	  }
-	  
+	//  }
 	//  按时间分类
 	  String timetypecName=request.getParameter("timetypec");
 	  if(timetypecName!=null){
+	  if(!"".equals(timetypecName)){
 	  timetypecName=new String(timetypecName.getBytes("ISO8859-1"),"UTF-8");
-	  MyLog.log.debug("timetypecName="+timetypecName);
-	  
+	  maxPage=nd.selectNewsByTimeForMaxSize(logf.getLid(), conn, timetypecName,maxSize);
 	  list=nd.selectNewsByTime(logf.getLid(), conn, timetypecName, pageNo, maxSize);
+	  request.setAttribute("timetypecName", timetypecName);
+	  MyLog.log.debug("timetypecName="+timetypecName);
 	  MyLog.log.debug(list.size());
+	  }
 	  }
 	  
 	MyLog.log.debug("maxPage"+maxPage);
@@ -278,6 +287,8 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	 }
     
 	  request.setAttribute("list", list);
+	pageContext.setAttribute("maxPage", maxPage);
+	DBHelper.closeCon(conn);
 	 %>
 	<tr>
 		<td colspan="2" class="pad">&nbsp;</td><td><a href="./p/date/2019/05/01" aria-label="于2019年5月1日上发布的文章">1</a></td><td><a href="./p/date/2019/05/02" aria-label="于2019年5月2日上发布的文章">2</a></td><td><a href="./p/date/2019/05/03" aria-label="于2019年5月3日上发布的文章">3</a></td><td><a href="./p/date/2019/05/04" aria-label="于2019年5月4日上发布的文章">4</a></td><td><a href="./p/date/2019/05/05" aria-label="于2019年5月5日上发布的文章">5</a></td>
@@ -347,21 +358,21 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 <a class="next page-numbers" href="Newsproject.jsp">下一页</a> -->
 
  当前是第${pageNo }页&nbsp;&nbsp;总共有${maxPage }页&nbsp;&nbsp;
-   <a href="MainShow.jsp?pageNo=${1 }&pageSize=${pageSize}&name=${name}"> 首页</a>&nbsp;&nbsp;
+   <a href="MainShow.jsp?pageNo=${1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 首页</a>&nbsp;&nbsp;
     <c:if test="${pageNo ge 2 }">
-   <a href="MainShow.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize}&name=${name}"> 上一页</a>
+   <a href="MainShow.jsp?pageNo=${pageNo-1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 上一页</a>
    </c:if>
    
    <c:forEach begin="1" end="${maxPage }" var="i">
       <c:if test="${i ge pageNo-2 and i le pageNo+2 }">
-        <a class='page-numbers' href="MainShow.jsp?pageNo=${i }&pageSize=${pageSize}&name=${name}"><span class="meta-nav screen-reader-text">页 </span>${i }</a>&nbsp;&nbsp;
+        <a class='page-numbers' href="MainShow.jsp?pageNo=${i }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"><span class="meta-nav screen-reader-text">页 </span>${i }</a>&nbsp;&nbsp;
       </c:if>
    </c:forEach>
    
    <c:if test="${pageNo le maxPage-1 }">
-   <a href="MainShow.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize}&name=${name}"> 下一页</a>&nbsp;&nbsp;
+   <a href="MainShow.jsp?pageNo=${pageNo+1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 下一页</a>&nbsp;&nbsp;
    </c:if>
-   <a href="MainShow.jsp?pageNo=${maxPage }&pageSize=${pageSize}&name=${name}"> 尾页</a>&nbsp;&nbsp;
+   <a href="MainShow.jsp?pageNo=${maxPage }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 尾页</a>&nbsp;&nbsp;
 
 
 </div>

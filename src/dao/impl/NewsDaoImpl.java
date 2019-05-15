@@ -299,5 +299,43 @@ public class NewsDaoImpl implements NewsDao{
 		  }
 		  return list;
 	}
+	public int selectNewsByTypeNameForMaxSize(int nid_uid_key, Connection conn,
+			String typeName,int pageSize) throws Exception {
+		String sql="select count(*) as number from news,type where nid_uid_key=? and news.nid_tid_key=type.tid and tname=?";
+		 PreparedStatement ps=null;
+		  ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  ps.setInt(1, nid_uid_key);
+		  ps.setString(2, typeName);
+		   rs=ps.executeQuery();
+		   int count=0;
+			  if(rs.next()){
+				  count=rs.getInt("number");
+			  }
+			return count%pageSize==0?count/pageSize:count/pageSize+1;
+	}
+	public int selectNewsByTimeForMaxSize(int nid_uid_key, Connection conn,
+			String timeName,int pageSize) throws Exception {
+		String sql="select count(*) as number from news WHERE nid_uid_key=? and year(news.nupload_time)=? and month(news.nupload_time)=?";
+		//转换时间
+		int  one=timeName.indexOf("年");
+		int  two=timeName.indexOf("月");
+		String years=timeName.substring(0, one);
+		String months=timeName.substring(one+1,two);
+		int year=Integer.parseInt(years);
+		int month=Integer.parseInt(months);
+		 PreparedStatement ps=null;
+		  ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+	  ps.setInt(1, nid_uid_key);
+	  ps.setInt(2, year);
+	  ps.setInt(3, month);
+		   rs=ps.executeQuery();
+		   int count=0;
+		  if(rs.next()){
+			  count=rs.getInt("number");
+		  }
+		return count%pageSize==0?count/pageSize:count/pageSize+1;
+	}
 	  
 }

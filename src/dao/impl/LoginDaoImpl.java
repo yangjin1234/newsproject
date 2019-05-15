@@ -20,7 +20,7 @@ public class LoginDaoImpl implements LoginDao{
 		ResultSet rs=ps.executeQuery();
 		String upassword="";
 		if(rs.next()){
-			 upassword=rs.getString("lpass");
+			 upassword=MyMD5.decode(rs.getString("lpass"));
 		}
 		if(upassword.equals("")){
 			return 0;//无此账号
@@ -59,7 +59,7 @@ public class LoginDaoImpl implements LoginDao{
 		if(rs.next()){
 		login.setLid(rs.getInt("lid"));
 		login.setLname(rs.getString("lname"));
-		login.setLpass(rs.getString("lpass"));
+		login.setLpass(MyMD5.decode(rs.getString("lpass")));
 		login.setLstate(rs.getInt("lstate"));
 		if(rs==null){
 			return null;
@@ -73,7 +73,7 @@ public class LoginDaoImpl implements LoginDao{
 			Connection conn) throws Exception {
 		String sql="update login set lpass=? where lname=?";
 		PreparedStatement ps=conn.prepareStatement(sql);
-		ps.setString(1, newpass);
+		ps.setString(1, MyMD5.encrypt(newpass));
 		ps.setString(2, lname);
 		int n=ps.executeUpdate();
 		Login login=null;
@@ -109,7 +109,7 @@ public class LoginDaoImpl implements LoginDao{
 		    MyLog.log.debug("进入修改密码方法");
 	    	String sql="update  login set lpass=? where lid=? ";
 			PreparedStatement ps=conn.prepareStatement(sql);
-			ps.setString(1, pass);
+			ps.setString(1, MyMD5.encrypt(pass));
 			ps.setInt(2,uid_lid_key );
 			int result=ps.executeUpdate();
 			boolean flag=false;

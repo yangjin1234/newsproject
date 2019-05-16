@@ -44,4 +44,9 @@ public interface NewsDao {
 	 */
 	List<NewsImpl> selectNewsByTime(int nid_uid_key,Connection conn,String timeName,int pageNo,int pageSize)throws Exception;
 	int selectNewsByTimeForMaxSize(int nid_uid_key,Connection conn,String timeName,int pageSize)throws Exception;
+	
+	/**
+	 * 找出各种状态的的工资总和
+	 */
+	double selectSumSalaryNo(int nid_uid_key,Connection conn,int state)throws Exception;
 }

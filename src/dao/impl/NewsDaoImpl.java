@@ -337,5 +337,18 @@ public class NewsDaoImpl implements NewsDao{
 		  }
 		return count%pageSize==0?count/pageSize:count/pageSize+1;
 	}
+	public double selectSumSalaryNo(int nid_uid_key, Connection conn,int state)
+			throws Exception {
+		String sql="SELECT sum(nsalary) as nofa FROM news WHERE nsalary_state=? and nid_uid_key=?";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		ps.setInt(1, state);
+		ps.setInt(2, nid_uid_key);
+		ResultSet rs=ps.executeQuery();
+		double num=0;
+		if(rs.next()){
+			num=rs.getDouble("nofa");
+		}
+		return num;
+	}
 	  
 }

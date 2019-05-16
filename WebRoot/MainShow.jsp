@@ -152,7 +152,6 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 				<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="nav-menu"><li id="menu-item-192" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-192"><a href=MainShow.jsp>首页</a></li>
 <li id="menu-item-193" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-193"><a href="needs.jsp">投稿须知(必读)</a></li>
 <li id="menu-item-291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-291"><a href="wp-admin/edit.jsp">全部文章</a></li>
-<li id="menu-item-2621" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2621"><a href="./getrmb">申请提现</a></li>
 <li id="menu-item-248644" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-248644"><a href="./nav">功能大全</a></li>
 </ul></div>			</nav><!-- .main-navigation -->
 		
@@ -164,7 +163,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 					<input type="search" class="search-field" placeholder="搜索&hellip;" value="" name="s" />
 				</label>
 				<input type="submit" class="search-submit screen-reader-text" value="搜索" />
-			</form></aside><aside id="mycred_widget_wallet-3" class="widget widget-my-wallet"><h2 class="widget-title">我的账户</h2><div class="myCRED-balance mycred-balance-mycred_money">金钱: ￥ 20 元</div></aside><aside id="calendar-2" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
+			</form></aside><aside id="mycred_widget_wallet-3" class="widget widget-my-wallet"><h2 class="widget-title">我的账户</h2><div class="myCRED-balance mycred-balance-mycred_money">已发放: ￥${sessionScope.yesalary } 元</div><div class="myCRED-balance mycred-balance-mycred_money">待发放: ￥${sessionScope.nosalary } 元</div></aside><aside id="calendar-2" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
 	<caption>2019年五月</caption>
 	<thead>
 	<tr>
@@ -203,7 +202,13 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	 MyLog.log.debug(list3.toString());
 	 request.setAttribute("timetype", list3);
 	 String uname=logf.getLname(),upass=logf.getLpass();
-	
+	//查出待发放的工资
+	double nosalary=nd.selectSumSalaryNo(logf.getLid(), conn,0);
+	//查出已发放的工资
+	double yesalary=nd.selectSumSalaryNo(logf.getLid(), conn,1);
+	request.getSession().setAttribute("nosalary", nosalary);
+	request.getSession().setAttribute("yesalary", yesalary);
+	MyLog.log.debug("nosalary="+nosalary);
 	//每页显示文章数量
 	int maxSize=2;
 	  pageContext.setAttribute("maxSize", maxSize);
@@ -424,14 +429,13 @@ var myCRED_Notice = {"ajaxurl":"https:\/\/weilaiche.cc\/wp-admin\/admin-ajax.php
 		<li id="wp-admin-bar-new-content" class="menupop"><a class="ab-item" aria-haspopup="true" href="./wp-admin/post-new.php"><span class="ab-icon"></span><span class="ab-label">新建</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
 		<li id="wp-admin-bar-new-post"><a class="ab-item" href="./wp-admin/post-new.php">文章</a>		</li></ul></div>		</li></ul><ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
 		<li id="wp-admin-bar-search" class="admin-bar-search"><div class="ab-item ab-empty-item" tabindex="-1"><form action="./" method="get" id="adminbarsearch"><input class="adminbar-input" name="s" id="adminbar-search" type="text" value="" maxlength="150" /><label for="adminbar-search" class="screen-reader-text">搜索</label><input type="submit" class="adminbar-button" value="搜索"/></form></div>		</li>
-		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="./wp-admin/profile.php">嗨，1996<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
-		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="./wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>1996</span></a>		</li>
+		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="./wp-admin/profile.php">嗨，${sessionScope.account.lname }<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
+		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="./wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>${sessionScope.account.lname }</span></a>		</li>
 		<li id="wp-admin-bar-edit-profile"><a class="ab-item" href="./wp-admin/profile.php">编辑我的个人资料</a>		</li>
-		<li id="wp-admin-bar-logout"><a class="ab-item" href="./wp-login.php?action=logout&#038;_wpnonce=ec87a18305">登出</a>		</li></ul><ul id="wp-admin-bar-my-account-default" class="ab-submenu">
+		<li id="wp-admin-bar-logout"><a class="ab-item" href="./login.jsp?action=logout&#038;_wpnonce=ec87a18305">登出</a>		</li></ul><ul id="wp-admin-bar-my-account-default" class="ab-submenu">
 		<li id="wp-admin-bar-mycred-account" class="menupop ab-sub-secondary"><div class="ab-item ab-empty-item" aria-haspopup="true">余额</div><div class="ab-sub-wrapper"><ul id="wp-admin-bar-mycred-account-default" class="ab-submenu">
-		<li id="wp-admin-bar-mycred-account-balance-mycred-default"><div class="ab-item ab-empty-item">经验: 452 点</div>		</li>
-		<li id="wp-admin-bar-mycred-account-history-mycred-default"><a class="ab-item" href="./wp-admin/users.php?page=mycred_default-history">经验 历史记录</a>		</li>
-		<li id="wp-admin-bar-mycred-account-balance-mycred-money"><div class="ab-item ab-empty-item">金钱: ￥ 20 元</div>		</li>
+		<li id="wp-admin-bar-mycred-account-balance-mycred-default"><div class="ab-item ab-empty-item">以获得: ￥ ${sessionScope.yesalary }</div>		</li>
+		<li id="wp-admin-bar-mycred-account-balance-mycred-money"><div class="ab-item ab-empty-item">待发放: ￥ ${sessionScope.nosalary } 元</div>		</li>
 		<li id="wp-admin-bar-mycred-account-history-mycred-money"><a class="ab-item" href="./wp-admin/users.php?page=mycred_money-history">金钱 历史记录</a>		</li></ul></div>		</li></ul></div>		</li></ul>			</div>
 						<a class="screen-reader-shortcut" href="./wp-login.php?action=logout&#038;_wpnonce=ec87a18305">登出</a>
 					</div>

@@ -10,6 +10,13 @@ public class LoginImpl implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String lname;
 	private String lpass;
+	private boolean lrememberme;
+	public boolean isLrememberme() {
+		return lrememberme;
+	}
+	public void setLrememberme(boolean lrememberme) {
+		this.lrememberme = lrememberme;
+	}
 	public String getLname() {
 		return lname;
 	}

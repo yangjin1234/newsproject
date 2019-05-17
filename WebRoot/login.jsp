@@ -15,9 +15,10 @@
 <script type="text/javascript"  src="js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
 	
-	function Login(lname,lpass){
+	function Login(lname,lpass,lrememberme){
 		this.lname=lname;
 		this.lpass=lpass;
+		this.lrememberme=lrememberme;
 	}
 	
 	function ajaxInvoke(){
@@ -27,7 +28,15 @@
 		var lpass=$("input").eq(1).val();
 		lpass=encodeURI(lpass);
 		lpass=encodeURI(lpass);
-		var l=new Login(lname, lpass);
+		var lrememberme;
+		if($("#rememberme").attr("checked")=="checked"){
+			lrememberme="true";
+		}else{
+			lrememberme="false";
+		}
+			lrememberme=encodeURI(lrememberme);
+			lrememberme=encodeURI(lrememberme);
+		var l=new Login(lname, lpass,lrememberme);
 		$.ajax({
 			type:"POST",
 			url:"login.do",
@@ -41,8 +50,10 @@
 				}
 			}
 		});
-		
 	}
+	//function OncheckedBox(this){
+		//if($("#rememberme").a)
+	//}
 	</script>
 <style type="text/css">
 

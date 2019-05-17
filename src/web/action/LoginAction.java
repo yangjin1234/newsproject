@@ -2,7 +2,11 @@ package web.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -37,6 +41,8 @@ public class LoginAction extends Action{
 		MyLog.log.debug("statea="+obj);
 		LoginImpl l=(LoginImpl)JSONObject.toBean(obj,LoginImpl.class);
 		LoginService ls=new LoginServiceImpl();
+		boolean flag=l.isLrememberme();
+		MyLog.log.debug("flag="+flag);
 		String sentence="";
 		if("".equals(l.getLname())){
 				sentence+="用户名不能为空\r\n";
@@ -58,6 +64,48 @@ public class LoginAction extends Action{
 				out.write("true");
 				out.flush();
 				out.close();
+				//存Cookie
+				if(flag){
+					Cookie c1;
+					try {
+						c1 = new Cookie("lname",URLEncoder.encode(l.getLname(), "UTF-8"));
+						c1.setDomain("localhost");
+						c1.setPath("/Newsproject");
+						c1.setMaxAge(60*60*24);
+						MyLog.log.debug("cookie="+c1);
+						response.addCookie(c1);
+					} catch (UnsupportedEncodingException e) {
+						e.printStackTrace();
+					}
+					Cookie c2 = new Cookie("lpass",l.getLpass());
+					c2.setDomain("localhost");
+					c2.setPath("/Newsproject");
+					c2.setMaxAge(60*60*24);
+					response.addCookie(c2);
+				}
+				//从请求中拿到cookie
+	    		Cookie[] cookies = request.getCookies();
+	    		String valname = null;
+	    		String valpass = null;
+	    		//循环所有的cookie，得到我需要的数据
+	    		if(cookies!=null){
+		    		for(Cookie c : cookies){
+		    			String key = c.getName();
+		    			if("lname".equals(key)){
+		    				valname = c.getValue();
+		    				//解码
+		    				try {
+								valname = URLDecoder.decode(valname, "UTF-8");
+							} catch (UnsupportedEncodingException e) {
+								e.printStackTrace();
+							}
+		    			}
+		    			if("lpass".equals(key)){
+		    				valpass = c.getValue();
+		    			}
+		    		}
+	    		}
+				
 				request.getSession().setAttribute("account", l);
 				return new ActionForward("show");
 			}

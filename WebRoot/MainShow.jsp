@@ -233,7 +233,6 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	   MyLog.log.debug("adsfadsf");
 	  }else {
 	 // if(!"".equals(typeName)){
-	  typeName=new String(typeName.getBytes("ISO8859-1"),"UTF-8");
 	  list=nd.selectNewsByTypeName(logf.getLid(), conn, typeName, pageNo, maxSize);
 	  maxPage=nd.selectNewsByTypeNameForMaxSize(logf.getLid(), conn, typeName,maxSize);
 	  MyLog.log.debug("typeName="+typeName);
@@ -245,7 +244,6 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	  String timetypecName=request.getParameter("timetypec");
 	  if(timetypecName!=null){
 	  if(!"".equals(timetypecName)){
-	  timetypecName=new String(timetypecName.getBytes("ISO8859-1"),"UTF-8");
 	  maxPage=nd.selectNewsByTimeForMaxSize(logf.getLid(), conn, timetypecName,maxSize);
 	  list=nd.selectNewsByTime(logf.getLid(), conn, timetypecName, pageNo, maxSize);
 	  request.setAttribute("timetypecName", timetypecName);

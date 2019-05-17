@@ -49,4 +49,11 @@ public interface NewsDao {
 	 * 找出各种状态的的工资总和
 	 */
 	double selectSumSalaryNo(int nid_uid_key,Connection conn,int state)throws Exception;
+	/**
+	 * 根据用户主键及工资表主键，查询新闻的主键
+	 */
+	public boolean selectNewsKey(int nid_uid_key,int sid,Connection conn) throws Exception;
+
+
+
 }

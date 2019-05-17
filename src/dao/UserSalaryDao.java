@@ -14,5 +14,8 @@ public interface UserSalaryDao {
     public boolean insertSalary(SalaryTable st,Connection conn) throws Exception;
     public boolean updateSalaryState(int state,Connection conn,int sid) throws Exception;
     public boolean deleteSalaryRecorder(int sid,Connection conn) throws Exception;
+    public int getMaxPage(Connection conn,int pageSize,int sid_uid_key) throws Exception;
+    public List<SalaryTable>  selectAllSalary(int nid_uid_key,Connection conn,int pageNo,int pageSize) throws Exception;
+
 
 }

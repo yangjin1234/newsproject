@@ -9,7 +9,9 @@ import java.util.List;
 
 import dao.UserSalaryDao;
 import pojo.SalaryTable;
+import pojo.impl.NewsImpl;
 import util.GetDate;
+import util.MyLog;
 
 /*
  * 查询历史工资表
@@ -196,4 +198,52 @@ public class UserSalaryImpl implements UserSalaryDao{
 		}
 		return flag;
 	}
+    
+    /*
+     * 查询用户的所有工资记录，用分页技术
+     */
+    public List<SalaryTable>  selectAllSalary(int nid_uid_key,Connection conn,int pageNo,int pageSize) throws Exception
+	  {
+		  List<SalaryTable> list=new ArrayList<SalaryTable>();
+		  String sql="select *from Salary where sid_uid_key=?  limit ?,?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  ps.setInt(1, nid_uid_key);
+		  ps.setInt(2, (pageNo-1)*pageSize);
+		  ps.setInt(3, pageSize);
+		  rs=ps.executeQuery();
+		  while(rs.next())
+		  {
+			  
+			  SalaryTable s=new SalaryTable();
+			  s.setSalarys(rs.getDouble("salarys"));
+			  s.setSalarys_state(rs.getInt("salarys_state"));
+			  s.setSdate(rs.getTimestamp("sdate"));
+			  s.setSid(rs.getInt("sid"));
+			  s.setSid_uid_key(rs.getInt("sid_uid_key"));
+			  MyLog.log.debug("查询分页的数据成功");
+			  list.add(s);
+		  }
+		  return list;
+	  }
+    //计算最大页数
+    public int getMaxPage(Connection conn,int pageSize,int sid_uid_key) throws Exception
+	  {
+		  String sql="select count(*) as max from salary where sid_uid_key=?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ps.setInt(1, sid_uid_key);
+		  ResultSet rs=null;
+		  int count=0;
+		  try {
+			  rs=ps.executeQuery();
+			  while(rs.next())
+			  {
+				  count=rs.getInt("max");
+				  System.out.println("count===="+count);
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return count%pageSize==0?count/pageSize:count/pageSize+1;
+	  }
 }

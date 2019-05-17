@@ -351,4 +351,36 @@ public class NewsDaoImpl implements NewsDao{
 		return num;
 	}
 	  
+	/*
+	 * 根据用户主键及工资表主键，查询该用户的新闻编号
+	 * 
+	 */
+	
+	public boolean selectNewsKey(int nid_uid_key,int sid,Connection conn) throws Exception
+	  {
+		  List<NewsImpl> list=new ArrayList<NewsImpl>();
+		  String sql="select *from news where nid_uid_key=? and sid=?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  ps.setInt(1, nid_uid_key);
+		  ps.setInt(2, sid);
+		  rs=ps.executeQuery();
+		  while(rs.next())
+		  {
+			  NewsImpl n=new NewsImpl();
+			  n.setNamend_time(rs.getTimestamp("namend_time"));
+			  n.setNcontent(rs.getString("ncontent"));
+			  n.setNews_state(rs.getInt("news_state"));
+			  n.setNid(rs.getInt("nid"));
+			  n.setNid_uid_key(rs.getInt("nid_uid_key"));
+			  n.setNsalary(rs.getDouble("nsalary"));
+			  n.setNsalary_state(rs.getInt("nsalary_state"));
+			  n.setNupload_time(rs.getTimestamp("nupload_time"));
+			  n.setTitle(rs.getString("ntitle"));
+			  n.setTypename(rs.getString("tname"));
+			  return true;
+		  }
+		  return false;
+	  }
+	
 }

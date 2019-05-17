@@ -3,6 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" class="ie8 wp-toolbar"  lang="zh-CN">
 <![endif]-->
 <!--[if !(IE 8) ]><!-->
+<%@page import="dao.impl.TypeDaoImpl"%>
+<%@page import="dao.TypeDao"%>
+<%@page import="pojo.impl.TypeImpl"%>
+<%@page import="pojo.Type"%>
+<%@page import="pojo.impl.NewsImpl"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.impl.NewsDaoImpl"%>
+<%@page import="dao.NewsDao"%>
+<%@page import="db.DBHelper"%>
+<%@page import="java.sql.Connection"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml" class="wp-toolbar"  lang="zh-CN">
 <!--<![endif]-->
 <head>
@@ -306,8 +318,6 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 状态： <span id="post-status-display">草稿</span>
 </div><!-- .misc-pub-section -->
 
-<div class="misc-pub-section misc-pub-visibility" id="visibility">
-公开度： <span id="post-visibility-display">公开</span>
 
 </div><!-- .misc-pub-section -->
 
@@ -362,178 +372,35 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 		<div id="category-pop" class="tabs-panel" style="display: none;">
 			<ul id="categorychecklist-pop" class="categorychecklist form-no-clear" >
 				
-		<li id="popular-category-170" class="popular-category">
-			<label class="selectit">
-				<input id="in-popular-category-170" type="checkbox"  value="170"  />
-				TCY军事图文			</label>
-		</li>
+		<%
+		Connection conn=DBHelper.getConnection();
+		TypeDao td=new TypeDaoImpl();
+		List<TypeImpl> list=td.selectAllType(conn);
+		request.setAttribute("typec", list);
+		 %>
 
-		
-		<li id="popular-category-1" class="popular-category">
-			<label class="selectit">
-				<input id="in-popular-category-1" type="checkbox"  value="1"  />
-				未分类			</label>
-		</li>
-
-		
-		<li id="popular-category-2" class="popular-category">
-			<label class="selectit">
-				<input id="in-popular-category-2" type="checkbox"  value="2"  />
-				TCY汽车图文			</label>
-		</li>
-
-		
-		<li id="popular-category-169" class="popular-category">
-			<label class="selectit">
-				<input id="in-popular-category-169" type="checkbox"  value="169"  />
-				TXWLC			</label>
-		</li>
-
-		
-		<li id="popular-category-232" class="popular-category">
-			<label class="selectit">
-				<input id="in-popular-category-232" type="checkbox"  value="232"  />
-				TCY旅游图文			</label>
-		</li>
-
-		
-		<li id="popular-category-195" class="popular-category">
-			<label class="selectit">
-				<input id="in-popular-category-195" type="checkbox"  value="195"  />
-				TG-综合图文			</label>
-		</li>
-
-		
-		<li id="popular-category-167" class="popular-category">
-			<label class="selectit">
-				<input id="in-popular-category-167" type="checkbox"  value="167"  />
-				未来车军事-素版			</label>
-		</li>
-
-		
-		<li id="popular-category-1019" class="popular-category">
-			<label class="selectit">
-				<input id="in-popular-category-1019" type="checkbox"  value="1019"  />
-				LSJ-汽车图文			</label>
-		</li>
-
-		
-		<li id="popular-category-1809" class="popular-category">
-			<label class="selectit">
-				<input id="in-popular-category-1809" type="checkbox"  value="1809"  />
-				CCC旅游图文			</label>
-		</li>
-
-		
+		<c:forEach items="${typec }" var="tpe" varStatus="cb">
 		<li id="popular-category-6517" class="popular-category">
 			<label class="selectit">
 				<input id="in-popular-category-6517" type="checkbox"  value="6517"  />
-				MMC			</label>
+				${tpe.tname }			</label>
 		</li>
-
+</c:forEach>
 					</ul>
 		</div>
 
 		<div id="category-all" class="tabs-panel">
-			<input type='hidden' name='post_category[]' value='0' />			<ul id="categorychecklist" data-wp-lists="list:category" class="categorychecklist form-no-clear">
-				
-<li id='category-3736'><label class="selectit"><input value="3736" type="checkbox" name="post_category[]" id="in-category-3736" /> BCD摆成都</label></li>
+			<input type='hidden'  value='0' />			<ul id="categorychecklist" data-wp-lists="list:category" class="categorychecklist form-no-clear">
+			<c:forEach items="${typec }" var="tpe" varStatus="cb">	
 
-<li id='category-1809' class="popular-category"><label class="selectit"><input value="1809" type="checkbox" name="post_category[]" id="in-category-1809" /> CCC旅游图文</label></li>
-
-<li id='category-5081'><label class="selectit"><input value="5081" type="checkbox" name="post_category[]" id="in-category-5081" /> LSJ-JS图文</label></li>
-
-<li id='category-1020'><label class="selectit"><input value="1020" type="checkbox" name="post_category[]" id="in-category-1020" /> LSJ-旅游图文</label></li>
-
-<li id='category-1019' class="popular-category"><label class="selectit"><input value="1019" type="checkbox" name="post_category[]" id="in-category-1019" /> LSJ-汽车图文</label></li>
-
-<li id='category-6517' class="popular-category"><label class="selectit"><input value="6517" type="checkbox" name="post_category[]" id="in-category-6517" /> MMC</label></li>
-
-<li id='category-1018'><label class="selectit"><input value="1018" type="checkbox" name="post_category[]" id="in-category-1018" /> MMC军事</label></li>
-
-<li id='category-7144'><label class="selectit"><input value="7144" type="checkbox" name="post_category[]" id="in-category-7144" /> QZBP</label></li>
-
-<li id='category-2726'><label class="selectit"><input value="2726" type="checkbox" name="post_category[]" id="in-category-2726" /> TCY企鹅</label></li>
-
-<li id='category-170' class="popular-category"><label class="selectit"><input value="170" type="checkbox" name="post_category[]" id="in-category-170" /> TCY军事图文</label></li>
-
-<li id='category-219'><label class="selectit"><input value="219" type="checkbox" name="post_category[]" id="in-category-219" /> TCY历史图文</label></li>
-
-<li id='category-232' class="popular-category"><label class="selectit"><input value="232" type="checkbox" name="post_category[]" id="in-category-232" /> TCY旅游图文</label></li>
-
-<li id='category-2' class="popular-category"><label class="selectit"><input value="2" type="checkbox" name="post_category[]" id="in-category-2" /> TCY汽车图文</label></li>
-
-<li id='category-181'><label class="selectit"><input value="181" type="checkbox" name="post_category[]" id="in-category-181" /> TG-旅游推广</label></li>
-
-<li id='category-177'><label class="selectit"><input value="177" type="checkbox" name="post_category[]" id="in-category-177" /> TG-汽车推广</label></li>
-
-<li id='category-195' class="popular-category"><label class="selectit"><input value="195" type="checkbox" name="post_category[]" id="in-category-195" /> TG-综合图文</label></li>
-
-<li id='category-169' class="popular-category"><label class="selectit"><input value="169" type="checkbox" name="post_category[]" id="in-category-169" /> TXWLC</label></li>
-
-<li id='category-6238'><label class="selectit"><input value="6238" type="checkbox" name="post_category[]" id="in-category-6238" /> WXT军事图文</label></li>
-
-<li id='category-1017'><label class="selectit"><input value="1017" type="checkbox" name="post_category[]" id="in-category-1017" /> WXT旅游图文</label></li>
-
-<li id='category-477'><label class="selectit"><input value="477" type="checkbox" name="post_category[]" id="in-category-477" /> YTB</label></li>
-
-<li id='category-7693'><label class="selectit"><input value="7693" type="checkbox" name="post_category[]" id="in-category-7693" /> 世界之最</label></li>
-
-<li id='category-7690'><label class="selectit"><input value="7690" type="checkbox" name="post_category[]" id="in-category-7690" /> 分析军事</label></li>
-
-<li id='category-7692'><label class="selectit"><input value="7692" type="checkbox" name="post_category[]" id="in-category-7692" /> 分析旅游</label></li>
-
-<li id='category-7691'><label class="selectit"><input value="7691" type="checkbox" name="post_category[]" id="in-category-7691" /> 分析汽车</label></li>
-
-<li id='category-237'><label class="selectit"><input value="237" type="checkbox" name="post_category[]" id="in-category-237" /> 天下有警视频</label></li>
-
-<li id='category-3592'><label class="selectit"><input value="3592" type="checkbox" name="post_category[]" id="in-category-3592" /> 抖音视频</label></li>
-
-<li id='category-1' class="popular-category"><label class="selectit"><input value="1" type="checkbox" name="post_category[]" id="in-category-1" /> 未分类</label></li>
-
-<li id='category-478'><label class="selectit"><input value="478" type="checkbox" name="post_category[]" id="in-category-478" /> 未来车军事-其他</label></li>
-
-<li id='category-1482'><label class="selectit"><input value="1482" type="checkbox" name="post_category[]" id="in-category-1482" /> 未来车军事-海外</label></li>
-
-<li id='category-167' class="popular-category"><label class="selectit"><input value="167" type="checkbox" name="post_category[]" id="in-category-167" /> 未来车军事-素版</label></li>
-
-<li id='category-296'><label class="selectit"><input value="296" type="checkbox" name="post_category[]" id="in-category-296" /> 未来车汽车-独家</label></li>
-
-<li id='category-371'><label class="selectit"><input value="371" type="checkbox" name="post_category[]" id="in-category-371" /> 油管分析</label></li>
-
-<li id='category-7696'><label class="selectit"><input value="7696" type="checkbox" name="post_category[]" id="in-category-7696" /> 海外测试版勿动</label></li>
-
-<li id='category-7694'><label class="selectit"><input value="7694" type="checkbox" name="post_category[]" id="in-category-7694" /> 王尧标题</label></li>
-
-<li id='category-519'><label class="selectit"><input value="519" type="checkbox" name="post_category[]" id="in-category-519" /> 虾兵械将</label></li>
-
-<li id='category-7695'><label class="selectit"><input value="7695" type="checkbox" name="post_category[]" id="in-category-7695" /> 詹际琳企鹅</label></li>
-
-<li id='category-173'><label class="selectit"><input value="173" type="checkbox" name="post_category[]" id="in-category-173" /> 青岛</label></li>
+<li id='category-173'><label class="selectit"><input value="173" type="checkbox"  id="in-category-173" /> ${tpe.tname }</label></li>
+</c:forEach>
 			</ul>
 		</div>
 		</div>
 	</div>
 </div>
-<div id="tagsdiv-post_tag" class="postbox " >
-<button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">切换面板：标签</span><span class="toggle-indicator" aria-hidden="true"></span></button><h2 class='hndle'><span>标签</span></h2>
-<div class="inside">
-<div class="tagsdiv" id="post_tag">
-	<div class="jaxtag">
-	<div class="nojs-tags hide-if-js">
-		<label for="tax-input-post_tag">添加或删除标签</label>
-		<p><textarea name="tax_input[post_tag]" rows="3" cols="20" class="the-tags" id="tax-input-post_tag"  aria-describedby="new-tag-post_tag-desc"></textarea></p>
-	</div>
- 		<div class="ajaxtag hide-if-no-js">
-		<label class="screen-reader-text" for="new-tag-post_tag">添加新标签</label>
-		<p><input data-wp-taxonomy="post_tag" type="text" id="new-tag-post_tag" name="newtag[post_tag]" class="newtag form-input-tip" size="16" autocomplete="off" aria-describedby="new-tag-post_tag-desc" value="" />
-		<input type="button" class="button tagadd" value="添加" /></p>
-	</div>
-	<p class="howto" id="new-tag-post_tag-desc">多个标签请用英文逗号（,）分开</p>
-		</div>
-	<div class="tagchecklist"></div>
 </div>
-<p class="hide-if-no-js"><button type="button" class="button-link tagcloud-link" id="link-post_tag" aria-expanded="false">从常用标签中选择</button></p>
 </div>
 </div>
 <div id="nf_admin_metaboxes_appendaform" class="postbox " >
@@ -543,8 +410,6 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
     <option value="0">-- 无</option>
     
         
-        <option value="2">
-            提现申请表        </option>
 
     </select></div>
 </div>
@@ -620,24 +485,6 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 	</p>
 </div>
 </div>
-<div id="slugdiv" class="postbox  hide-if-js" >
-<button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">切换面板：别名</span><span class="toggle-indicator" aria-hidden="true"></span></button><h2 class='hndle'><span>别名</span></h2>
-<div class="inside">
-<label class="screen-reader-text" for="post_name">别名</label><input name="post_name" type="text" size="13" id="post_name" value="" />
-</div>
-</div>
-<div id="pods-meta-%e6%9b%b4%e5%a4%9a%e5%ad%97%e6%ae%b5" class="postbox " >
-<button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">切换面板：更多字段</span><span class="toggle-indicator" aria-hidden="true"></span></button><h2 class='hndle'><span>更多字段</span></h2>
-<div class="inside">
-    <table class="form-table pods-metabox pods-admin pods-dependency">
-	<input name="pods_meta" data-name-clean="pods-meta" id="pods-form-ui-pods-meta" class="pods-form-ui-field pods-form-ui-field-type-text pods-form-ui-field-name-pods-meta" type="hidden" value="ef2fccc06b" />
-            <tr class="form-field pods-field pods-field-input pods-form-ui-row-type-number pods-form-ui-row-name-jkm-post-id " ">
-                <th scope="row" valign="top"><label class="pods-form-ui-label pods-form-ui-label-pods-meta-jkm-post-id" for="pods-form-ui-pods-meta-jkm-post-id">
-    监控猫原文ID</label>
-</th>
-                <td>
-                                <div class="pods-submittable-fields">
-                    <input name="pods_meta_jkm_post_id" data-name-clean="pods-meta-jkm-post-id" data-label="监控猫原文ID" id="pods-form-ui-pods-meta-jkm-post-id" class="pods-form-ui-field pods-form-ui-field-type-number pods-form-ui-field-name-pods-meta-jkm-post-id" type="text" tabindex="2" maxlength="12"/>
 <script>
     jQuery( function ( $ ) {
         $( 'input#pods-form-ui-pods-meta-jkm-post-id' ).on( 'blur', function () {
@@ -650,61 +497,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
         } );
     } );
 </script>
-                    <p class="description pods-form-ui-comment pods-form-ui-comment-pods-meta-jkm-post-id">
-    没有原文ID就不填写</p>            </div>
-                </td>
-            </tr>
-                    <tr class="form-field pods-field pods-field-input pods-form-ui-row-type-text pods-form-ui-row-name-exttitle1 " ">
-                <th scope="row" valign="top"><label class="pods-form-ui-label pods-form-ui-label-pods-meta-exttitle1" for="pods-form-ui-pods-meta-exttitle1">
-    外发标题1</label>
-</th>
-                <td>
-                                <div class="pods-submittable-fields">
-                        <input name="pods_meta_exttitle1" data-name-clean="pods-meta-exttitle1" data-label="外发标题1" id="pods-form-ui-pods-meta-exttitle1" class="regular-text" type="text" tabindex="2" maxlength="40" />
-                                </div>
-                </td>
-            </tr>
-                    <tr class="form-field pods-field pods-field-input pods-form-ui-row-type-text pods-form-ui-row-name-exttitle2 " ">
-                <th scope="row" valign="top"><label class="pods-form-ui-label pods-form-ui-label-pods-meta-exttitle2" for="pods-form-ui-pods-meta-exttitle2">
-    外发标题2</label>
-</th>
-                <td>
-                                <div class="pods-submittable-fields">
-                        <input name="pods_meta_exttitle2" data-name-clean="pods-meta-exttitle2" data-label="外发标题2" id="pods-form-ui-pods-meta-exttitle2" class="regular-text" type="text" tabindex="2" maxlength="40" />
-                                </div>
-                </td>
-            </tr>
-                    <tr class="form-field pods-field pods-field-input pods-form-ui-row-type-text pods-form-ui-row-name-guanjianci " ">
-                <th scope="row" valign="top"><label class="pods-form-ui-label pods-form-ui-label-pods-meta-guanjianci" for="pods-form-ui-pods-meta-guanjianci">
-    关键词</label>
-</th>
-                <td>
-                                <div class="pods-submittable-fields">
-                        <input name="pods_meta_guanjianci" data-name-clean="pods-meta-guanjianci" data-label="关键词" id="pods-form-ui-pods-meta-guanjianci" class="regular-text" type="text" tabindex="2" maxlength="255" />
-                                </div>
-                </td>
-            </tr>
-                    <tr class="form-field pods-field pods-field-input pods-form-ui-row-type-text pods-form-ui-row-name-yuanwenbiaoti " ">
-                <th scope="row" valign="top"><label class="pods-form-ui-label pods-form-ui-label-pods-meta-yuanwenbiaoti" for="pods-form-ui-pods-meta-yuanwenbiaoti">
-    原文标题</label>
-</th>
-                <td>
-                                <div class="pods-submittable-fields">
-                        <input name="pods_meta_yuanwenbiaoti" data-name-clean="pods-meta-yuanwenbiaoti" data-label="原文标题" id="pods-form-ui-pods-meta-yuanwenbiaoti" class="regular-text" type="text" tabindex="2" maxlength="255" />
-                                </div>
-                </td>
-            </tr>
-                    <tr class="form-field pods-field pods-field-input pods-form-ui-row-type-text pods-form-ui-row-name-yuanwenlianjie " ">
-                <th scope="row" valign="top"><label class="pods-form-ui-label pods-form-ui-label-pods-meta-yuanwenlianjie" for="pods-form-ui-pods-meta-yuanwenlianjie">
-    原文链接</label>
-</th>
-                <td>
-                                <div class="pods-submittable-fields">
-                        <input name="pods_meta_yuanwenlianjie" data-name-clean="pods-meta-yuanwenlianjie" data-label="原文链接" id="pods-form-ui-pods-meta-yuanwenlianjie" class="regular-text" type="text" tabindex="2" maxlength="255" />
-                                </div>
-                </td>
-            </tr>
-            </table>
+  
 
     
     <script type="text/javascript">
@@ -785,12 +578,7 @@ try{document.post.title.focus();}catch(e){}
 <div class="clear"></div></div><!-- wpbody -->
 <div class="clear"></div></div><!-- wpcontent -->
 
-<div id="wpfooter" role="contentinfo">
-		<p id="footer-left" class="alignleft">
-		<span id="footer-thankyou">感谢使用<a href="https://cn.wordpress.org/">WordPress</a>进行创作。</span>	</p>
-	<p id="footer-upgrade" class="alignright">
-		4.7.53版本	</p>
-	<div class="clear"></div>
+
 </div>
 	<div id="post-lock-dialog" class="notification-dialog-wrap hidden">
 	<div class="notification-dialog-background"></div>

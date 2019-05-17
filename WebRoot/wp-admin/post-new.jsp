@@ -244,7 +244,8 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 	<p><span class="spinner"></span> <strong>连接丢失。</strong>保存已被禁用，直到您重新连接。	<span class="hide-if-no-sessionstorage">我们正在您的浏览器中备份此文章，以防不测。</span>
 	</p>
 </div>
-<form name="post" action="post.php" method="post" id="post" class="pods-submittable pods-form">
+<form name="post" action="news.do" method="post" id="post" class="pods-submittable pods-form">
+<!--  
 <input type="hidden" id="_wpnonce" name="_wpnonce" value="fdf986ccd8" /><input type="hidden" name="_wp_http_referer" value="/wp-admin/post-new.php" /><input type="hidden" id="user-id" name="user_ID" value="1165" />
 <input type="hidden" id="hiddenaction" name="action" value="editpost" />
 <input type="hidden" id="originalaction" name="originalaction" value="editpost" />
@@ -253,7 +254,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 <input type="hidden" id="original_post_status" name="original_post_status" value="auto-draft" />
 <input type="hidden" id="referredby" name="referredby" value="" />
 <input type="hidden" name="_wp_original_http_referer" value="" /><input type='hidden' id='auto_draft' name='auto_draft' value='1' /><input type='hidden' id='post_ID' name='post_ID' value='549872' /><input type="hidden" id="meta-box-order-nonce" name="meta-box-order-nonce" value="9c0cf25a7f" /><input type="hidden" id="closedpostboxesnonce" name="closedpostboxesnonce" value="5a7c13fa6a" />
-
+-->
 <div id="poststuff">
 <div id="post-body" class="metabox-holder columns-2">
 <div id="post-body-content">
@@ -261,7 +262,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 <div id="titlediv">
 <div id="titlewrap">
 		<label class="screen-reader-text" id="title-prompt-text" for="title">在此输入标题</label>
-	<input type="text" name="post_title" size="30" value="" id="title" spellcheck="true" autocomplete="off" />
+	<input type="text" name="npost_title" size="30" value="" id="title" spellcheck="true" autocomplete="off" />
 </div>
 <div class="inside">
 	<div id="edit-slug-box" class="hide-if-no-js">
@@ -298,7 +299,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 <div id="minor-publishing">
 
 <div style="display:none;">
-<p class="submit"><input type="submit" name="save" id="save" class="button" value="保存"  /></p></div>
+<p class="submit"><input type="submit" name="nsave" id="save" class="button" value="保存"  /></p></div>
 
 <div id="minor-publishing-actions">
 <div id="save-action">
@@ -307,7 +308,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 </div>
 <div id="preview-action">
 <a class="preview button" href="https://weilaiche.cc/?p=549872&#038;preview=true" target="wp-preview-549872" id="post-preview">预览</a>
-<input type="hidden" name="wp-preview" id="wp-preview" value="" />
+<input type="hidden"  id="wp-preview" value="" />
 </div>
 <div class="clear"></div>
 </div><!-- #minor-publishing-actions -->
@@ -333,7 +334,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 <div id="publishing-action">
 <span class="spinner"></span>
 		<input name="original_publish" type="hidden" id="original_publish" value="提交审核" />
-		<input type="submit" name="publish" id="publish" class="button button-primary button-large" value="提交审核"  /></div>
+		<input type="submit" name="npublish" id="publish" class="button button-primary button-large" value="提交审核"  /></div>
 <div class="clear"></div>
 </div>
 </div>
@@ -468,7 +469,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 <tr><td colspan="2">
 <div class="submit">
 <input type="submit" name="addmeta" id="newmeta-submit" class="button" value="添加自定义栏目" data-wp-lists="add:the-list:newmeta"  /></div>
-<input type="hidden" id="_ajax_nonce-add-meta" name="_ajax_nonce-add-meta" value="0c2e4a2126" /></td></tr>
+<input type="hidden" id="_ajax_nonce-add-meta"  value="0c2e4a2126" /></td></tr>
 </tbody>
 </table>
 </div>

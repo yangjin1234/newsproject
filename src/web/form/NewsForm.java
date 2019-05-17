@@ -5,6 +5,34 @@ import web.core.ActionForm;
 public class NewsForm extends ActionForm{
 
 	private String npost_title;
+	private String samplepermalinknonce;
+	private String excerpt;
+	private String original_publish;
+	private String post_title;
+	public String getSamplepermalinknonce() {
+		return samplepermalinknonce;
+	}
+	public void setSamplepermalinknonce(String samplepermalinknonce) {
+		this.samplepermalinknonce = samplepermalinknonce;
+	}
+	public String getExcerpt() {
+		return excerpt;
+	}
+	public void setExcerpt(String excerpt) {
+		this.excerpt = excerpt;
+	}
+	public String getOriginal_publish() {
+		return original_publish;
+	}
+	public void setOriginal_publish(String original_publish) {
+		this.original_publish = original_publish;
+	}
+	public String getPost_title() {
+		return post_title;
+	}
+	public void setPost_title(String post_title) {
+		this.post_title = post_title;
+	}
 	private String nsave;
 	private String npublish;
 	private String advanced_view;

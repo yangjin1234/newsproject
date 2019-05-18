@@ -102,14 +102,11 @@ public class ActionServlet extends HttpServlet {
 				 //获取参数名字
 				String keym=entry.getKey();
 				String methodName = "set"+keym.substring(0, 1).toUpperCase()+keym.substring(1);
-				MyLog.log.debug("keym="+keym);
-				MyLog.log.debug("methodName="+methodName);
 				//反射调用方法
 				Method m;
 				try {
 					m = f.getMethod(methodName, new Class[]{String.class});
 					m.invoke(actionform, entry.getValue());
-					MyLog.log.debug("entry.getValue()="+entry.getValue());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -52,12 +52,13 @@ public class NewsAction extends DispatcherAction{
 		}
 		ns.setNid_tid_key(ty.getTid());////
 		ns.setNcontent(content);
-		if(committype==null){
-			ns.setNews_state(2);//´æÎª²İ¸å
+		if(nf.getNpublish()==null){
+			ns.setNews_state(1);//´æÎª²İ¸å
 		}
 		else{
-			ns.setNews_state(3);//´ıÉóºË
+			ns.setNews_state(2);//´ıÉóºË
 		}
+		MyLog.log.debug("newsform="+af.toString());
 		try {
 			nd.insertNews(ns, conn);
 		} catch (Exception e) {

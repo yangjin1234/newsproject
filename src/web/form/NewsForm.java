@@ -6,14 +6,22 @@ public class NewsForm extends ActionForm{
 
 	private String npost_title;
 	private String typename;
+	private String save;
+	public String getSave() {
+		return save;
+	}
+	public void setSave(String save) {
+		this.save = save;
+	}
+	
 	@Override
 	public String toString() {
 		return "NewsForm [npost_title=" + npost_title + ", typename="
-				+ typename + ", samplepermalinknonce=" + samplepermalinknonce
-				+ ", excerpt=" + excerpt + ", original_publish="
-				+ original_publish + ", post_title=" + post_title + ", nsave="
-				+ nsave + ", npublish=" + npublish + ", advanced_view="
-				+ advanced_view + ", pods_meta_exttitle1="
+				+ typename + ", save=" + save + ", samplepermalinknonce="
+				+ samplepermalinknonce + ", excerpt=" + excerpt
+				+ ", original_publish=" + original_publish + ", post_title="
+				+ post_title + ", nsave=" + nsave + ", npublish=" + npublish
+				+ ", advanced_view=" + advanced_view + ", pods_meta_exttitle1="
 				+ pods_meta_exttitle1 + ", pods_meta_yuanwenlianjie="
 				+ pods_meta_yuanwenlianjie + ", comment_status="
 				+ comment_status + ", pods_meta_exttitle2="

@@ -378,7 +378,6 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
   for(var i=0;i<typename.length;i++){
     if(typename[i].checked){
       value=typename[i].value;
-      alert(value);
     }
   }
   typename.value=value;

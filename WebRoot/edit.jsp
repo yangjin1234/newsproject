@@ -23,6 +23,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" class="ie8 wp-toolbar"  lang="zh-CN">
 <![endif]-->
 <!--[if !(IE 8) ]><!-->
+<%@page import="util.MyLog"%>
 <html xmlns="http://www.w3.org/1999/xhtml" class="wp-toolbar"  lang="zh-CN">
 <!--<![endif]-->
 <head>
@@ -199,7 +200,7 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 	<li class="wp-not-current-submenu wp-menu-separator" aria-hidden="true"><div class="separator"></div></li>
 	<li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-users menu-top-first" id="menu-users">
 	<a href='profile.php' class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-users menu-top-first" aria-haspopup="true"><div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-users'><br /></div><div class='wp-menu-name'>个人资料</div></a>
-	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>个人资料</li><li class="wp-first-item"><a href='profile.php' class="wp-first-item">我的个人资料</a></li><li><a href='profile.php?page=mycred_default-history'>经验 历史记录</a></li><li><a href='profile.php?page=mycred_money-history'>金钱 历史记录</a></li><li><a href='profile.php?page=ludou-phone-menu'>修改手机号</a></li><li><a href='profile.php?page=shiming-renzheng'>实名认证</a></li></ul></li>
+	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>个人资料</li><li class="wp-first-item"><a href='profile.php' class="wp-first-item">我的个人资料</a></li><li><a href='profile.php?page=mycred_money-history'>金钱 历史记录</a></li><li><a href='profile.php?page=ludou-phone-menu'>修改手机号</a></li><li><a href='profile.php?page=shiming-renzheng'>实名认证</a></li></ul></li>
 	<li class="wp-not-current-submenu menu-top menu-icon-tools menu-top-last" id="menu-tools">
 	<a href='tools.php' class="wp-not-current-submenu menu-top menu-icon-tools menu-top-last" ><div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-tools'><br /></div><div class='wp-menu-name'>工具</div></a></li><li id="collapse-menu" class="hide-if-no-js"><button type="button" id="collapse-button" aria-label="折叠主菜单" aria-expanded="true"><span class="collapse-button-icon" aria-hidden="true"></span><span class="collapse-button-label">收起菜单</span></button></li></ul>
 </div>
@@ -376,7 +377,10 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 	//最大页数
 	//int maxPage=nd.getMaxPage(conn, maxSize);
 	int maxPage=nd.getMaxPageByUid(conn, maxSize, logf.getLid());
-	
+	//总的文章数
+	int sumNews=nd.getAllNewsSum(conn,logf.getLid());
+	MyLog.log.debug("sumNews="+sumNews);
+	request.getSession().setAttribute("sumNews", sumNews);
 	//当前页数
 	int pageNo=0;
 	if(request.getParameter("pageNo")==null){
@@ -507,7 +511,7 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 		
 			
 			<input type="submit" name="filter_action" id="post-query-submit" class="button" value="筛选"  />	</div>
-	<h2 class='screen-reader-text'>文章列表导航</h2><div class='tablenav-pages'><span class="displaying-num">281项目</span>
+	<h2 class='screen-reader-text'>文章列表导航</h2><div class='tablenav-pages'><span class="displaying-num">${sessionScope.sumNews }项目</span>
 <span class='pagination-links'><span class="tablenav-pages-navspan" aria-hidden="true">&laquo;</span>
 <span class="tablenav-pages-navspan" aria-hidden="true">&lsaquo;</span>
 <span class="paging-input">第<label for="current-page-selector" class="screen-reader-text">当前页</label><input class='current-page' id='current-page-selector' type='text' name='paged' value='1' size='2' aria-describedby='table-paging' /><span class='tablenav-paging-text'>页，共<span class='total-pages'>15</span>页</span></span>
@@ -576,7 +580,7 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 	<div class="hh">10</div>
 	<div class="mn">37</div>
 	<div class="ss">44</div>
-	<div class="post_password"></div><div class="page_template">default</div><div class="post_category" id="category_486356">170</div><div class="tags_input" id="post_tag_486356"></div><div class="sticky"></div><div class="post_format"></div></div><div class="row-actions"><span class='edit'><a href="https://weilaiche.cc/wp-admin/post.php?post=486356&amp;action=edit" aria-label="编辑“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">编辑</a> | </span><span class='inline hide-if-no-js'><a href="#" class="editinline" aria-label="快速编辑“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">快速编辑</a> | </span><span class='trash'><a href="https://weilaiche.cc/wp-admin/post.php?post=486356&amp;action=trash&amp;_wpnonce=3226a5e6c0" class="submitdelete" aria-label="移动“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”到垃圾箱">移至回收站</a> | </span><span class='view'><a href="https://weilaiche.cc/?p=486356&#038;preview=true" rel="permalink" aria-label="预览“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">预览</a></span></div><button type="button" class="toggle-row"><span class="screen-reader-text">显示详情</span></button></td><td class='5cb168afcc30c column-5cb168afcc30c' data-colname="作者"><a href="edit.php?post_type=post&#038;author=811"  >${listc.uname }</a></td><td class='categories column-categories' data-colname="分类目录"><a href="edit.php?category_name=jstw">${listc.typename }</a></td><td class='tags column-tags' data-colname="标签"><span aria-hidden="true">&#8212;</span><span class="screen-reader-text">没有标签</span></td><td class='date column-date' data-colname="日期">最后修改<br /><abbr title="2019/04/24 10:37:44">2019-04-24</abbr></td>		</tr>
+	<div class="post_password"></div><div class="page_template">default</div><div class="post_category" id="category_486356">170</div><div class="tags_input" id="post_tag_486356"></div><div class="sticky"></div><div class="post_format"></div></div><div class="row-actions"><span class='edit'><a href="https://weilaiche.cc/wp-admin/post.php?post=486356&amp;action=edit" aria-label="编辑“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">编辑</a> | </span><span class='inline hide-if-no-js'><a href="#" class="editinline" aria-label="快速编辑“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">快速编辑</a> | </span><span class='trash'><a href="https://weilaiche.cc/wp-admin/post.php?post=486356&amp;action=trash&amp;_wpnonce=3226a5e6c0" class="submitdelete" aria-label="移动“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”到垃圾箱">移至回收站</a> | </span><span class='view'><a href="https://weilaiche.cc/?p=486356&#038;preview=true" rel="permalink" aria-label="预览“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">预览</a></span></div><button type="button" class="toggle-row"><span class="screen-reader-text">显示详情</span></button></td><td class='5cb168afcc30c column-5cb168afcc30c' data-colname="作者"><a href="edit.php?post_type=post&#038;author=811"  >${listc.uname }</a></td><td class='categories column-categories' data-colname="分类目录"><a href="edit.php?category_name=jstw">${listc.typename }</a></td><td class='tags column-tags' data-colname="标签"><span aria-hidden="true">&#8212;</span><span class="screen-reader-text">没有标签</span></td><td class='date column-date' data-colname="日期">最后修改<br /><abbr title="2019/04/24 10:37:44">${listc.namend_time }</abbr></td>		</tr>
 	  </c:if>
 	</c:forEach>	
 			</tbody>

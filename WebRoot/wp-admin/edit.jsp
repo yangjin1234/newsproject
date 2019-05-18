@@ -175,7 +175,7 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 	<li class="wp-not-current-submenu wp-menu-separator" aria-hidden="true"><div class="separator"></div></li>
 	<li class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-icon-post open-if-no-js menu-top-first menu-top-last" id="menu-posts">
 	<a href='edit.php' class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-icon-post open-if-no-js menu-top-first menu-top-last" ><div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-post'><br /></div><div class='wp-menu-name'>文章</div></a>
-	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>文章</li><li class="wp-first-item current"><a href='edit.php' class="wp-first-item current">所有文章</a></li><li><a href='post-new.jsp'>写文章</a></li></ul></li>
+	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>文章</li><li class="wp-first-item current"><a href='edit.jsp' class="wp-first-item current">所有文章</a></li><li><a href='post-new.jsp'>写文章</a></li></ul></li>
 	<li class="wp-not-current-submenu wp-menu-separator" aria-hidden="true"><div class="separator"></div></li>
 	<li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-users menu-top-first" id="menu-users">
 	<a href='profile.php' class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-users menu-top-first" aria-haspopup="true"><div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-users'><br /></div><div class='wp-menu-name'>个人资料</div></a>
@@ -199,8 +199,8 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 		<li id="wp-admin-bar-site-name" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/">未来车平台</a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-site-name-default" class="ab-submenu">
 		<li id="wp-admin-bar-view-site"><a class="ab-item" href="https://weilaiche.cc/">查看站点</a>		</li></ul></div>		</li>
 		<li id="wp-admin-bar-comments"><a class="ab-item" href="https://weilaiche.cc/wp-admin/edit-comments.php"><span class="ab-icon"></span><span class="ab-label awaiting-mod pending-count count-0" aria-hidden="true">0</span><span class="screen-reader-text">0条评论待审</span></a>		</li>
-		<li id="wp-admin-bar-new-content" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/wp-admin/post-new.jsp"><span class="ab-icon"></span><span class="ab-label">新建</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
-		<li id="wp-admin-bar-new-post"><a class="ab-item" href="https://weilaiche.cc/wp-admin/post-new.jsp">文章</a>		</li></ul></div>		</li></ul><ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
+		<li id="wp-admin-bar-new-content" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/post.new.jsp"><span class="ab-icon"></span><span class="ab-label">新建</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
+		<li id="wp-admin-bar-new-post"><a class="ab-item" href="https://weilaiche.cc/post.new.jsp">文章</a>		</li></ul></div>		</li></ul><ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
 		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/wp-admin/profile.php">嗨，1996<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
 		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="https://weilaiche.cc/wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>1996</span></a>		</li>
 		<li id="wp-admin-bar-edit-profile"><a class="ab-item" href="https://weilaiche.cc/wp-admin/profile.php">编辑我的个人资料</a>		</li>
@@ -313,7 +313,7 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 		<div class="wrap">
 <h1 class="wp-heading-inline">文章</h1>
 
- <a href="https://weilaiche.cc/wp-admin/post-new.jsp" class="page-title-action">写文章</a>
+ <a href="./post.new.jsp" class="page-title-action">写文章</a>
 <hr class="wp-header-end">
 
 

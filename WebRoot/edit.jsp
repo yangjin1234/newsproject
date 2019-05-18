@@ -154,7 +154,7 @@ jQuery(document).ready(function(jQuery){jQuery.datepicker.setDefaults({"closeTex
 <script type='text/javascript' src='https://weilaiche.cc/wp-content/plugins/admin-columns-pro/classes/Filtering/assets/js/table.js?ver=4.3.8'></script>
 <script type='text/javascript'>
 /* <![CDATA[ */
-var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to CSV":"Export to CSV","Exporting current list of items.":"Exporting current list of items.","Processed {0} of {1} items ({2}%).":"Processed {0} of {1} items ({2}%).","Export completed ({0} items). Your download will start automatically. If this does not happen, you can download the file again: ":"Export completed ({0} items). Your download will start automatically. If this does not happen, you can download the file again: ","Download File":"Download File"}};
+var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":"Export","Export to CSV":"Export to CSV","Exporting current list of items.":"Exporting current list of items.","Processed {0} of {1} items ({2}%).":"Processed {0} of {1} items ({2}%).","Export completed ({0} items). Your download will start automatically. If this does not happen, you can download the file again: ":"Export completed ({0} items). Your download will start automatically. If this does not happen, you can download the file again: ","Download File":"Download File"}};
 /* ]]> */
 </script>
 <script type='text/javascript' src='https://weilaiche.cc/wp-content/plugins/admin-columns-pro/classes/Export/assets/js/listscreen.js?ver=4.3.8'></script>
@@ -225,13 +225,13 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/wp-admin/profile.php">嗨，${sessionScope.account.lname }<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
 		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="https://weilaiche.cc/wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>${listc.typename }</span></a>		</li>
 		<li id="wp-admin-bar-edit-profile"><a class="ab-item" href="https://weilaiche.cc/wp-admin/profile.php">编辑我的个人资料</a>		</li>
-		<li id="wp-admin-bar-logout"><a class="ab-item" href="https://weilaiche.cc/wp-login.php?action=logout&#038;_wpnonce=5144bf0ac7">登出</a>		</li></ul><ul id="wp-admin-bar-my-account-default" class="ab-submenu">
+		<li id="wp-admin-bar-logout"><a class="ab-item" href="login.jsp?action=logout&#038;_wpnonce=5144bf0ac7">登出</a>		</li></ul><ul id="wp-admin-bar-my-account-default" class="ab-submenu">
 		<li id="wp-admin-bar-mycred-account" class="menupop ab-sub-secondary"><div class="ab-item ab-empty-item" aria-haspopup="true">余额</div><div class="ab-sub-wrapper"><ul id="wp-admin-bar-mycred-account-default" class="ab-submenu">
 		<li id="wp-admin-bar-mycred-account-balance-mycred-default"><div class="ab-item ab-empty-item">经验: 453 点</div>		</li>
 		<li id="wp-admin-bar-mycred-account-history-mycred-default"><a class="ab-item" href="https://weilaiche.cc/wp-admin/users.php?page=mycred_default-history">经验 历史记录</a>		</li>
 		<li id="wp-admin-bar-mycred-account-balance-mycred-money"><div class="ab-item ab-empty-item">金钱: ￥ 20 元</div>		</li>
 		<li id="wp-admin-bar-mycred-account-history-mycred-money"><a class="ab-item" href="https://weilaiche.cc/wp-admin/users.php?page=mycred_money-history">金钱 历史记录</a>		</li></ul></div>		</li></ul></div>		</li></ul>			</div>
-						<a class="screen-reader-shortcut" href="https://weilaiche.cc/wp-login.php?action=logout&#038;_wpnonce=5144bf0ac7">登出</a>
+						<a class="screen-reader-shortcut" href="login.jsp?action=logout&#038;_wpnonce=5144bf0ac7">登出</a>
 					</div>
 
 		
@@ -339,12 +339,12 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 
 
 <h2 class='screen-reader-text'>过滤文章列表</h2><ul class='subsubsub'>
-	<li class='all'><a href="https://weilaiche.cc/wp-admin/edit.php?post_type=post" class="current">全部 <span class="count">（281）</span></a> |</li>
-	<li class='mine'><a href="edit.php?post_type=post&#038;author=811" class="current">我的<span class="count">（281）</span></a> |</li>
-	<li class='publish'><a href="https://weilaiche.cc/wp-admin/edit.php?post_status=publish&post_type=post">已发布 <span class="count">（200）</span></a> |</li>
-	<li class='draft'><a href="https://weilaiche.cc/wp-admin/edit.php?post_status=draft&post_type=post">草稿 <span class="count">（1）</span></a> |</li>
-	<li class='pending'><a href="https://weilaiche.cc/wp-admin/edit.php?post_status=pending&post_type=post">待审核 <span class="count">（80）</span></a> |</li>
-	<li class='trash'><a href="https://weilaiche.cc/wp-admin/edit.php?post_status=trash&post_type=post">回收站 <span class="count">（12）</span></a></li>
+	<li class='all'><a href="https://weilaiche.cc/wp-admin/edit.php?post_type=post" class="current">全部 <span class="count">（${sessionScope.sumNews }）</span></a> |</li>
+	<li class='mine'><a href="edit.php?post_type=post&#038;author=811" class="current">我的<span class="count">（${sessionScope.sumNews }）</span></a> |</li>
+	<li class='publish'><a href="https://weilaiche.cc/wp-admin/edit.php?post_status=publish&post_type=post">已发布 <span class="count">（${sessionScope.publishNews }）</span></a> |</li>
+	<li class='draft'><a href="https://weilaiche.cc/wp-admin/edit.php?post_status=draft&post_type=post">草稿 <span class="count">（${sessionScope.draftNews }）</span></a> |</li>
+	<li class='pending'><a href="https://weilaiche.cc/wp-admin/edit.php?post_status=pending&post_type=post">待审核 <span class="count">（${sessionScope.checkingNews }）</span></a> |</li>
+	<li class='trash'><a href="https://weilaiche.cc/wp-admin/edit.php?post_status=trash&post_type=post">回收站 <span class="count">（${sessionScope.recycleNews }）</span></a></li>
 </ul>
 
 <%
@@ -381,6 +381,22 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 	int sumNews=nd.getAllNewsSum(conn,logf.getLid());
 	MyLog.log.debug("sumNews="+sumNews);
 	request.getSession().setAttribute("sumNews", sumNews);
+	//已发布文章数
+	int publishNews=nd.selectAllNewsByStateForSum(logf.getLid(),conn,0);
+	MyLog.log.debug("publishNews="+publishNews);
+	request.getSession().setAttribute("publishNews", publishNews);
+	//草稿文章数
+	int draftNews=nd.selectAllNewsByStateForSum(logf.getLid(),conn,1);
+	MyLog.log.debug("draftNews="+draftNews);
+	request.getSession().setAttribute("draftNews", draftNews);
+	//待审核文章数
+	int checkingNews=nd.selectAllNewsByStateForSum(logf.getLid(),conn,2);
+	MyLog.log.debug("checkingNews="+checkingNews);
+	request.getSession().setAttribute("checkingNews", checkingNews);
+	//回收站文章数
+	int recycleNews=nd.selectAllNewsByStateForSum(logf.getLid(),conn,3);
+	MyLog.log.debug("recycleNews="+recycleNews);
+	request.getSession().setAttribute("recycleNews", recycleNews);
 	//当前页数
 	int pageNo=0;
 	if(request.getParameter("pageNo")==null){
@@ -511,18 +527,20 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 		
 			
 			<input type="submit" name="filter_action" id="post-query-submit" class="button" value="筛选"  />	</div>
-	<h2 class='screen-reader-text'>文章列表导航</h2><div class='tablenav-pages'><span class="displaying-num">${sessionScope.sumNews }项目</span>
-<span class='pagination-links'><span class="tablenav-pages-navspan" aria-hidden="true">&laquo;</span>
-<span class="tablenav-pages-navspan" aria-hidden="true">&lsaquo;</span>
-<span class="paging-input">第<label for="current-page-selector" class="screen-reader-text">当前页</label><input class='current-page' id='current-page-selector' type='text' name='paged' value='1' size='2' aria-describedby='table-paging' /><span class='tablenav-paging-text'>页，共<span class='total-pages'>15</span>页</span></span>
-<a class='next-page' href='https://weilaiche.cc/wp-admin/edit.php?paged=2'><span class='screen-reader-text'>下一页</span><span aria-hidden='true'>&rsaquo;</span></a>
-<a class='last-page' href='https://weilaiche.cc/wp-admin/edit.php?paged=15'><span class='screen-reader-text'>尾页</span><span aria-hidden='true'>&raquo;</span></a></span></div>
+	<h2 class='screen-reader-text'>文章列表导航</h2><div class='tablenav-pages'><span class="displaying-num">${sessionScope.sumNews }篇文章</span>
 		<br class="clear" />
+		
+		
+		
+		
+		
 	</div>
 <h2 class='screen-reader-text'>文章列表</h2><table class="wp-list-table widefat fixed striped posts">
 	<thead>
 	<tr>
+	
 		<td  id='cb' class='manage-column column-cb check-column'><label class="screen-reader-text" for="cb-select-all-1">全选</label><input id="cb-select-all-1" type="checkbox" /></td><th scope="col" id='5cb165b970a37' class='manage-column column-5cb165b970a37'>状态</th><th scope="col" id='title' class='manage-column column-title column-primary sorted desc'><a href="https://weilaiche.cc/wp-admin/edit.php?orderby=title&#038;order=asc"><span>标题</span><span class="sorting-indicator"></span></a></th><th scope="col" id='5cb168afcc30c' class='manage-column column-5cb168afcc30c'>作者</th><th scope="col" id='categories' class='manage-column column-categories sortable desc'><a href="https://weilaiche.cc/wp-admin/edit.php?orderby=categories&#038;order=asc"><span>分类目录</span><span class="sorting-indicator"></span></a></th><th scope="col" id='tags' class='manage-column column-tags sortable desc'><a href="https://weilaiche.cc/wp-admin/edit.php?orderby=tags&#038;order=asc"><span>标签</span><span class="sorting-indicator"></span></a></th><th scope="col" id='date' class='manage-column column-date sortable asc'><a href="https://weilaiche.cc/wp-admin/edit.php?orderby=date&#038;order=desc"><span>日期</span><span class="sorting-indicator"></span></a></th>	</tr>
+		
 	</thead>
 
 	<tbody id="the-list">
@@ -585,32 +603,25 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 	</c:forEach>	
 			</tbody>
 
-	<tfoot>
-	<tr>
-		<td   class='manage-column column-cb check-column'><label class="screen-reader-text" for="cb-select-all-2">全选</label><input id="cb-select-all-2" type="checkbox" /></td><th scope="col"  class='manage-column column-5cb165b970a37'>状态</th><th scope="col"  class='manage-column column-title column-primary sorted desc'><a href="https://weilaiche.cc/wp-admin/edit.php?orderby=title&#038;order=asc"><span>标题</span><span class="sorting-indicator"></span></a></th><th scope="col"  class='manage-column column-5cb168afcc30c'>作者</th><th scope="col"  class='manage-column column-categories sortable desc'><a href="https://weilaiche.cc/wp-admin/edit.php?orderby=categories&#038;order=asc"><span>分类目录</span><span class="sorting-indicator"></span></a></th><th scope="col"  class='manage-column column-tags sortable desc'><a href="https://weilaiche.cc/wp-admin/edit.php?orderby=tags&#038;order=asc"><span>标签</span><span class="sorting-indicator"></span></a></th><th scope="col"  class='manage-column column-date sortable asc'><a href="https://weilaiche.cc/wp-admin/edit.php?orderby=date&#038;order=desc"><span>日期</span><span class="sorting-indicator"></span></a></th>	</tr>
-	</tfoot>
 
 </table>
-	<div class="tablenav bottom">
-
-				<div class="alignleft actions bulkactions">
-			<label for="bulk-action-selector-bottom" class="screen-reader-text">选择批量操作</label><select name="action2" id="bulk-action-selector-bottom">
-<option value="-1">批量操作</option>
-	<option value="edit" class="hide-if-no-js">编辑</option>
-	<option value="trash">移至回收站</option>
-</select>
-<input type="submit" id="doaction2" class="button action" value="应用"  />
-		</div>
-				<div class="alignleft actions">
-				</div>
-	<div class='tablenav-pages'><span class="displaying-num">281项目</span>
-<span class='pagination-links'><span class="tablenav-pages-navspan" aria-hidden="true">&laquo;</span>
-<span class="tablenav-pages-navspan" aria-hidden="true">&lsaquo;</span>
-<span class="screen-reader-text">当前页</span><span id="table-paging" class="paging-input"><span class="tablenav-paging-text">第1页，共<span class='total-pages'>15</span>页</span></span>
-<a class='next-page' href='https://weilaiche.cc/wp-admin/edit.php?paged=2'><span class='screen-reader-text'>下一页</span><span aria-hidden='true'>&rsaquo;</span></a>
-<a class='last-page' href='https://weilaiche.cc/wp-admin/edit.php?paged=15'><span class='screen-reader-text'>尾页</span><span aria-hidden='true'>&raquo;</span></a></span></div>
-		<br class="clear" />
-	</div>
+	
+	当前是第${pageNo }页&nbsp;&nbsp;总共有${maxPage }页&nbsp;&nbsp;
+   <a href="edit.jsp?pageNo=${1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 首页</a>&nbsp;&nbsp;
+    <c:if test="${pageNo ge 2 }">
+   <a href="edit.jsp?pageNo=${pageNo-1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 上一页</a>
+   </c:if>
+   
+   <c:forEach begin="1" end="${maxPage }" var="i">
+      <c:if test="${i ge pageNo-2 and i le pageNo+2 }">
+        <a class='page-numbers' href="edit.jsp?pageNo=${i }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"><span class="meta-nav screen-reader-text">页 </span>${i }</a>&nbsp;&nbsp;
+      </c:if>
+   </c:forEach>
+   
+   <c:if test="${pageNo le maxPage-1 }">
+   <a href="edit.jsp?pageNo=${pageNo+1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 下一页</a>&nbsp;&nbsp;
+   </c:if>
+   <a href="edit.jsp?pageNo=${maxPage }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 尾页</a>&nbsp;&nbsp;
 
 </form>
 
@@ -904,10 +915,10 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 		<div id="wp-auth-check-bg"></div>
 		<div id="wp-auth-check">
 			<button type="button" class="wp-auth-check-close button-link"><span class="screen-reader-text">关闭对话框</span></button>
-							<div id="wp-auth-check-form" class="loading" data-src="https://weilaiche.cc/wp-login.php?interim-login=1"></div>
+							<div id="wp-auth-check-form" class="loading" data-src="login.jsp?interim-login=1"></div>
 							<div class="wp-auth-fallback">
 				<p><b class="wp-auth-fallback-expired" tabindex="0">会话已过期</b></p>
-				<p><a href="https://weilaiche.cc/wp-login.php" target="_blank">请重新登录。</a>
+				<p><a href="login.jsp" target="_blank">请重新登录。</a>
 					登录页会在新窗口中打开，在登录后您可关闭该窗口并返回本页。</p>
 				</div>
 			</div>

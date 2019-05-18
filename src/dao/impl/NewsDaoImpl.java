@@ -394,7 +394,6 @@ public class NewsDaoImpl implements NewsDao{
 			  if(rs.next())
 			  {
 				  count=rs.getInt("max");
-				  System.out.println("count===="+count);
 			  }
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -412,12 +411,79 @@ public class NewsDaoImpl implements NewsDao{
 			  if(rs.next())
 			  {
 				  count=rs.getInt("max");
-				  System.out.println("count===="+count);
 			  }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return count;
+	}
+	public List<NewsImpl> selectAllNewsByState(int nid_uid_key,
+			Connection conn, int pageNo, int pageSize, int state)
+			throws Exception {
+		List<NewsImpl> list=new ArrayList<NewsImpl>();
+		  String sql="select *from news,type where nid_uid_key=? and nid_tid_key=tid and news_state=? limit ?,?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  ps.setInt(1, nid_uid_key);
+		  ps.setInt(2, state);
+		  ps.setInt(3, (pageNo-1)*pageSize);
+		  ps.setInt(4, pageSize);
+		  rs=ps.executeQuery();
+		  while(rs.next())
+		  {
+			  NewsImpl n=new NewsImpl();
+			  n.setNamend_time(rs.getTimestamp("namend_time"));
+			  n.setNcontent(rs.getString("ncontent"));
+			  n.setNews_state(rs.getInt("news_state"));
+			  n.setNid(rs.getInt("nid"));
+			  n.setNid_tid_key(rs.getInt("nid_tid_key"));
+			  n.setNid_uid_key(rs.getInt("nid_uid_key"));
+			  n.setNsalary(rs.getDouble("nsalary"));
+			  n.setNsalary_state(rs.getInt("nsalary_state"));
+			  n.setNupload_time(rs.getTimestamp("nupload_time"));
+			  n.setTitle(rs.getString("ntitle"));
+			  n.setTypename(rs.getString("tname"));
+			  list.add(n);
+		  }
+		  return list;
+	}
+	public int selectAllNewsByStateFormaxPage(int nid_uid_key, Connection conn,
+			int pageSize, int state) throws Exception {
+		String sql="select count(*) as max from news where nid_uid_key=? and news_state=?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ps.setInt(1, nid_uid_key);
+		  ps.setInt(2, state);
+		  ResultSet rs=null;
+		  int count=0;
+		  try {
+			  rs=ps.executeQuery();
+			  if(rs.next())
+			  {
+				  count=rs.getInt("max");
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return count%pageSize==0?count/pageSize:count/pageSize+1;
+	}
+	public int selectAllNewsByStateForSum(int nid_uid_key, Connection conn,
+			int state) throws Exception {
+		String sql="select count(*) as max from news where nid_uid_key=? and news_state=?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ps.setInt(1, nid_uid_key);
+		  ps.setInt(2, state);
+		  ResultSet rs=null;
+		  int count=0;
+		  try {
+			  rs=ps.executeQuery();
+			  if(rs.next())
+			  {
+				  count=rs.getInt("max");
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return count;
 	}
 	
 }

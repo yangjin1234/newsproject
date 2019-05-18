@@ -19,6 +19,18 @@ public interface NewsDao {
 	public int getMaxPageByUid(Connection conn,int pageSize,int uid) throws Exception;
 	public int getAllNewsSum(Connection conn,int uid)throws Exception;
 	/**
+	 * 各种状态下的文章
+	 * @param nid_uid_key
+	 * @param conn
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	List<NewsImpl> selectAllNewsByState(int nid_uid_key,Connection conn,int pageNo,int pageSize,int state) throws Exception;
+	int selectAllNewsByStateFormaxPage(int nid_uid_key,Connection conn,int pageSize,int state) throws Exception;
+	int selectAllNewsByStateForSum(int nid_uid_key,Connection conn,int state) throws Exception;
+	/**
 	 * 按时间查询分类并统计数量
 	 */
 	List<TimeTypec> selectAllByTime(Connection conn, int nid_uid_key)throws Exception;

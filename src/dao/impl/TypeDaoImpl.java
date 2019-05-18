@@ -31,4 +31,19 @@ public class TypeDaoImpl implements TypeDao{
 		return list;
 	}
 
+	public Type selectTypeByTname(Connection conn, String typename)
+			throws Exception {
+		String sql="select * from type where tname=?";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		ps.setString(1, typename);
+		ResultSet rs=ps.executeQuery();
+		Type t=new Type();
+		if(rs.next()){
+			t.setTid(rs.getInt("tid"));
+			t.setTname(typename);
+			t.setTid_nid_key(0);
+		}
+		return t;
+	}
+
 }

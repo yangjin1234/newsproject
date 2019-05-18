@@ -175,7 +175,7 @@ var ACP_Export = {"total_num_items":"281","i18n":{"Export":"Export","Export to C
 	<li class="wp-not-current-submenu wp-menu-separator" aria-hidden="true"><div class="separator"></div></li>
 	<li class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-icon-post open-if-no-js menu-top-first menu-top-last" id="menu-posts">
 	<a href='edit.php' class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-icon-post open-if-no-js menu-top-first menu-top-last" ><div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-post'><br /></div><div class='wp-menu-name'>文章</div></a>
-	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>文章</li><li class="wp-first-item current"><a href='edit.jsp' class="wp-first-item current">所有文章</a></li><li><a href='post-new.jsp'>写文章</a></li></ul></li>
+	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>文章</li><li class="wp-first-item current"><a href='edit.jsp' class="wp-first-item current">所有文章</a></li><li><a href='./post-new.jsp'>写文章</a></li></ul></li>
 	<li class="wp-not-current-submenu wp-menu-separator" aria-hidden="true"><div class="separator"></div></li>
 	<li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-users menu-top-first" id="menu-users">
 	<a href='profile.php' class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-users menu-top-first" aria-haspopup="true"><div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-users'><br /></div><div class='wp-menu-name'>个人资料</div></a>

@@ -197,6 +197,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	 log=(LoginImpl)request.getSession().getAttribute("account");
 	 //得到id
 	 Login logf=ld.selectUserPassByName(log.getLname(), conn);
+	 session.setAttribute("logf", logf);
 	 request.setAttribute("type", list2);
 	 List<TimeTypec> list3=nd.selectAllByTime(conn, logf.getLid());
 	 MyLog.log.debug(list3.toString());
@@ -213,7 +214,8 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	int maxSize=2;
 	  pageContext.setAttribute("maxSize", maxSize);
 	//最大页数
-	int maxPage=nd.getMaxPage(conn, maxSize);
+	//int maxPage=nd.getMaxPage(conn, maxSize);
+	int maxPage=nd.getMaxPageByUid(conn, maxSize, logf.getLid());
 	
 	//当前页数
 	int pageNo=0;
@@ -230,7 +232,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	  
 	  if(typeName==null||typeName.equals("")){
 	   list=nd.selectAllNews(logf.getLid(), conn, pageNo, maxSize);
-	   MyLog.log.debug("adsfadsf");
+	   MyLog.log.debug("list="+list.size());
 	  }else {
 	 // if(!"".equals(typeName)){
 	  list=nd.selectNewsByTypeName(logf.getLid(), conn, typeName, pageNo, maxSize);

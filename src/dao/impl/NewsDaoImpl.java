@@ -382,5 +382,24 @@ public class NewsDaoImpl implements NewsDao{
 		  }
 		  return false;
 	  }
+	public int getMaxPageByUid(Connection conn, int pageSize, int uid)
+			throws Exception {
+		  String sql="select count(*) as max from news where nid_uid_key=?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ps.setInt(1, uid);
+		  ResultSet rs=null;
+		  int count=0;
+		  try {
+			  rs=ps.executeQuery();
+			  if(rs.next())
+			  {
+				  count=rs.getInt("max");
+				  System.out.println("count===="+count);
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return count%pageSize==0?count/pageSize:count/pageSize+1;
+	  }
 	
 }

@@ -6,9 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.NewsDao;
+import dao.TypeDao;
 import dao.impl.NewsDaoImpl;
+import dao.impl.TypeDaoImpl;
 import db.DBHelper;
+import pojo.Login;
 import pojo.News;
+import pojo.Type;
 import util.GetDate;
 import util.MyLog;
 import util.creatkey;
@@ -24,21 +28,29 @@ public class NewsAction extends DispatcherAction{
 			HttpServletResponse response, ActionForm af) {
 		NewsForm nf=(NewsForm) af;
 		NewsDao nd=new NewsDaoImpl();
+		TypeDao td=new TypeDaoImpl();
 		Connection conn=DBHelper.getConnection();
-		MyLog.log.debug("newsform="+nf.toString());
 		String ntitle=nf.getNpost_title();//标题
 		String typename=nf.getTypename();//类型
 		String committype=nf.getNpublish();//提交审核为空是草稿
 		String content=nf.getContent();//内容
-		String userid=(String) request.getSession().getAttribute("account");
+		Login account= (Login) request.getSession().getAttribute("logf");
+		MyLog.log.debug("account="+account.getLid());
 		int nid=creatkey.getCeartKey();
 		News ns=new News();
 		ns.setNamend_time(GetDate.getNowDate2(GetDate.getNowDate()));
 		ns.setNupload_time(GetDate.getNowDate2(GetDate.getNowDate()));
 		ns.setNid(nid);
 		ns.setTitle(ntitle);
-		ns.setNid_tid_key(1);////
-		ns.setNid_uid_key(1);/////
+		ns.setNid_uid_key(account.getLid());/////
+		Type ty=null;
+		try {
+			ty=td.selectTypeByTname(conn, typename);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		ns.setNid_tid_key(ty.getTid());////
 		ns.setNcontent(content);
 		if(committype==null){
 			ns.setNews_state(2);//存为草稿

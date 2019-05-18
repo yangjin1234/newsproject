@@ -15,4 +15,9 @@ public interface TypeDao {
 	 * @throws Exception
 	 */
 	List<TypeImpl> selectAllType(Connection conn)throws Exception;
+	
+	/**
+	 * 按分类名查找分类
+	 */
+	Type selectTypeByTname(Connection conn,String typename)throws Exception;
 }

@@ -20,12 +20,14 @@ public class LoginDaoImpl implements LoginDao{
 		ResultSet rs=ps.executeQuery();
 		String upassword="";
 		if(rs.next()){
-			 upassword=MyMD5.decode(rs.getString("lpass"));
+			 upassword=rs.getString("lpass");//数据库中
+			 MyLog.log.debug("输入的密码="+MyMD5.decode(upassword));
+			 MyLog.log.debug("数据库中的密码="+upassword);
 		}
 		if(upassword.equals("")){
 			return 0;//无此账号
 		}
-		if(upassword.equals(lpass)){
+		if(upassword.equals(MyMD5.decode(upassword))){
 			return 1;//登录成功
 		}
 		else{

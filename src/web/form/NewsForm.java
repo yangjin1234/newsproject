@@ -5,6 +5,36 @@ import web.core.ActionForm;
 public class NewsForm extends ActionForm{
 
 	private String npost_title;
+	private String typename;
+	@Override
+	public String toString() {
+		return "NewsForm [npost_title=" + npost_title + ", typename="
+				+ typename + ", samplepermalinknonce=" + samplepermalinknonce
+				+ ", excerpt=" + excerpt + ", original_publish="
+				+ original_publish + ", post_title=" + post_title + ", nsave="
+				+ nsave + ", npublish=" + npublish + ", advanced_view="
+				+ advanced_view + ", pods_meta_exttitle1="
+				+ pods_meta_exttitle1 + ", pods_meta_yuanwenlianjie="
+				+ pods_meta_yuanwenlianjie + ", comment_status="
+				+ comment_status + ", pods_meta_exttitle2="
+				+ pods_meta_exttitle2 + ", metavalue=" + metavalue
+				+ ", metakeyinput=" + metakeyinput + ", post_format="
+				+ post_format + ", pods_meta=" + pods_meta
+				+ ", ninja_form_select=" + ninja_form_select
+				+ ", pods_meta_yuanwenbiaoti=" + pods_meta_yuanwenbiaoti
+				+ ", content=" + content + ", _wp_http_referer="
+				+ _wp_http_referer + ", pods_meta_jkm_post_id="
+				+ pods_meta_jkm_post_id + ", pods_meta_guanjianci="
+				+ pods_meta_guanjianci + ", nf_append_form=" + nf_append_form
+				+ ", post_name=" + post_name + ", trackback_url="
+				+ trackback_url + "]";
+	}
+	public String getTypename() {
+		return typename;
+	}
+	public void setTypename(String typename) {
+		this.typename = typename;
+	}
 	private String samplepermalinknonce;
 	private String excerpt;
 	private String original_publish;
@@ -169,25 +199,8 @@ public class NewsForm extends ActionForm{
 		this.pods_meta_exttitle2 = pods_meta_exttitle2;
 	}
 	
-	@Override
-	public String toString() {
-		return "NewsForm [npost_title=" + npost_title + ", nsave=" + nsave
-				+ ", npublish=" + npublish + ", advanced_view=" + advanced_view
-				+ ", pods_meta_exttitle1=" + pods_meta_exttitle1
-				+ ", pods_meta_yuanwenlianjie=" + pods_meta_yuanwenlianjie
-				+ ", comment_status=" + comment_status
-				+ ", pods_meta_exttitle2=" + pods_meta_exttitle2
-				+ ", metavalue=" + metavalue + ", metakeyinput=" + metakeyinput
-				+ ", post_format=" + post_format + ", pods_meta=" + pods_meta
-				+ ", ninja_form_select=" + ninja_form_select
-				+ ", pods_meta_yuanwenbiaoti=" + pods_meta_yuanwenbiaoti
-				+ ", content=" + content + ", _wp_http_referer="
-				+ _wp_http_referer + ", pods_meta_jkm_post_id="
-				+ pods_meta_jkm_post_id + ", pods_meta_guanjianci="
-				+ pods_meta_guanjianci + ", nf_append_form=" + nf_append_form
-				+ ", post_name=" + post_name + ", trackback_url="
-				+ trackback_url + "]";
-	}
+	
+	
 	public String getNpost_title() {
 		return npost_title;
 	}

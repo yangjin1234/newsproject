@@ -20,6 +20,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>撰写新文章 &lsaquo; 未来车平台 &#8212; WordPress</title>
+<script type="text/javascript"  src="./js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
 addLoadEvent = function(func){if(typeof jQuery!="undefined")jQuery(document).ready(func);else if(typeof wpOnload!='function'){wpOnload=func;}else{var oldonload=wpOnload;wpOnload=function(){oldonload();func();}}};
 var ajaxurl = '/wp-admin/admin-ajax.php',
@@ -334,7 +335,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 <div id="publishing-action">
 <span class="spinner"></span>
 		<input name="original_publish" type="hidden" id="original_publish" value="提交审核" />
-		<input type="submit" name="npublish" id="publish" class="button button-primary button-large" value="提交审核"  /></div>
+		<input type="submit" name="npublish" id="npublish" class="button button-primary button-large" value="提交审核"  /></div>
 <div class="clear"></div>
 </div>
 </div>
@@ -369,7 +370,20 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 			<li class="tabs"><a href="#category-all">所有分类目录</a></li>
 			<li class="hide-if-no-js"><a href="#category-pop">最常用</a></li>
 		</ul>
-
+		
+<script type="text/javascript" >
+  function oncheckBox() {
+  var typename=document.getElementsByName("typename");
+  var value="";
+  for(var i=0;i<typename.length;i++){
+    if(typename[i].checked){
+      value=typename[i].value;
+      alert(value);
+    }
+  }
+  typename.value=value;
+}
+</script>
 		<div id="category-pop" class="tabs-panel" style="display: none;">
 			<ul id="categorychecklist-pop" class="categorychecklist form-no-clear" >
 				
@@ -381,9 +395,9 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 		 %>
 
 		<c:forEach items="${typec }" var="tpe" varStatus="cb">
-		<li id="popular-category-6517" class="popular-category">
+		<li id="popular-category-6517" class="popular-category" >
 			<label class="selectit">
-				<input id="in-popular-category-6517" type="checkbox"  value="6517"  />
+				<input id="in-popular-category-6517" type="checkbox"  />
 				${tpe.tname }			</label>
 		</li>
 </c:forEach>
@@ -394,7 +408,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 			<input type='hidden'  value='0' />			<ul id="categorychecklist" data-wp-lists="list:category" class="categorychecklist form-no-clear">
 			<c:forEach items="${typec }" var="tpe" varStatus="cb">	
 
-<li id='category-173'><label class="selectit"><input value="173" type="checkbox"  id="in-category-173" /> ${tpe.tname }</label></li>
+<li id='category-173'><label class="selectit"><input value="${tpe.tname }" id="typename" name="typename" type="checkbox" onclick="oncheckBox()" id="in-category-173" /> ${tpe.tname }</label></li>
 </c:forEach>
 			</ul>
 		</div>
@@ -2013,7 +2027,7 @@ tinymce.ScriptLoader.markDone( 'https://weilaiche.cc/wp-includes/js/tinymce/lang
 		</div>
 		<script>
 		jQuery(function($){
-			$('#publish, #save-post').click(function(e){
+			$('#npublish, #save-post').click(function(e){
 				if($('#taxonomy-category input:checked').length == 0){
 					alert('抱歉，请先选择一个文章的分类目录，再提交');
 					e.stopImmediatePropagation();
@@ -2035,7 +2049,8 @@ tinymce.ScriptLoader.markDone( 'https://weilaiche.cc/wp-includes/js/tinymce/lang
 								}
 							}
 							});
-							var publish_click_events = $('#publish').data('events').click;
+							var publish_click_events = $('#npublish').data('events').click;
+							//alert("publish_click_events2052="+publish_click_events.length);
 							if(publish_click_events){
 								if(publish_click_events.length>1){
 									publish_click_events.unshift(publish_click_events.pop());

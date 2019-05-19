@@ -41,11 +41,12 @@ public class ProfileAction extends Action{
 				user.setUphone(uphone);
 				user.setUphoto(uphoto);
 				UserInformationService useris=new UserInformationServiceImpl();
-				useris.updateUser(user);
-				request.getSession().setAttribute("uname", uname);
-				request.getSession().setAttribute("uemail", uemail);
-				request.getSession().setAttribute("umobile", uphone);
-				request.getSession().setAttribute("uphoto", uphoto);
+				boolean flag=useris.updateUser(user);
+				MyLog.log.debug("flag="+flag);
+				request.getSession().setAttribute("uname", user.getUname());
+				request.getSession().setAttribute("uemail", user.getUemail());
+				request.getSession().setAttribute("umobile", user.getUphone());
+				request.getSession().setAttribute("uphoto", user.getUphoto());
 				return new ActionForward("profileweb");
 	}
 

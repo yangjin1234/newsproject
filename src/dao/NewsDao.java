@@ -77,6 +77,34 @@ public interface NewsDao {
 	 * 根据用户主键及文章已通过审核，计算出最大页数
 	 */
 		 public int getMaxPage(Connection conn,int pageSize,int nid_uid_key,int news_state) throws Exception;
+		 
+		 
+		 /**
+		  * 根据用户名主键及文章已通过审核，分页今日查询出每页数据
+		  */
+		 		 public List<News> selectNewsDay(Connection conn,int nid_uid_key,int news_state,int pageNo,int pageSize) throws Exception;
+		 /**
+		  *  根据用户名主键及文章已通过审核，每页显示几条数据，计算出今日总共有多少页
+		  */
+		 		 public int getMaxPageDay(Connection conn,int pageSize,int nid_uid_key,int news_state) throws Exception;
+		 /**
+		  * 根据用户名主键及文章已通过审核，计算出今日的文章数
+		  */
+		 		 public int selectNewsLastDayCount(int nid_uid_key,int news_state,Connection conn) throws Exception;
+		 		
+		 		 
+		 		 /**
+		 		  * 根据用户名主键及文章已通过审核，分页昨日查询出每页数据
+		 		  */
+		 		 public List<News> selectNewsLastDay(Connection conn,int nid_uid_key,int news_state,int pageNo,int pageSize) throws Exception;
+		 		 /**
+		 		  *  根据用户名主键及文章已通过审核，每页显示几条数据，计算出昨日总共有多少页
+		 		  */
+		 		 public int getMaxPageLastDay(Connection conn,int pageSize,int nid_uid_key,int news_state) throws Exception;
+		 		 /**
+		 		  * 根据用户名主键及文章已通过审核，计算出昨日的文章数
+		 		  */
+		 		 public int selectNewsDayCount(int nid_uid_key,int news_state,Connection conn) throws Exception;
 
 
 

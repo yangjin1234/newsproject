@@ -575,6 +575,264 @@ public class NewsDaoImpl implements NewsDao{
 		}
 		return false;
 	}
+	
+	
+	 public List<News> selectNewsDay(Connection conn,int nid_uid_key,int news_state,int pageNo,int pageSize) throws Exception
+	 {
+
+			    MyLog.log.debug("进入查询文章的今日的分页数据");
+		    	String sql="select *from news where nid_uid_key=? and news_state=? and MONTH(namend_time)=? and YEAR(namend_time)=? and DAY(namend_time)=? limit ?,?";
+		    	PreparedStatement ps=conn.prepareStatement(sql);
+			    ResultSet rs=null;
+		    	List<News> list=new ArrayList<News>();
+		    	String nowdate=GetDate.getNowDate();
+		    	
+		    	MyLog.log.debug("当前时间为：=="+nowdate);
+		    	int a=nowdate.lastIndexOf("-");
+		    	int b=nowdate.indexOf("-");
+		    	String year=nowdate.substring(0, b);
+		    	MyLog.log.debug("year=="+year);
+		    	
+		    	String month=nowdate.substring(b+1, a);
+		    	MyLog.log.debug("month=="+month);
+		    	
+		    	String day=nowdate.substring(a+1, a+3);
+		    	MyLog.log.debug("day=="+day);
+		    	
+		    	ps.setInt(1, nid_uid_key);
+		    	ps.setInt(2, news_state);
+		    	ps.setString(3, month);
+		    	ps.setString(4, year);
+		    	ps.setString(5, day);
+		    	ps.setInt(6, (pageNo-1)*pageSize);
+				ps.setInt(7, pageSize);
+				rs=ps.executeQuery();
+				  while(rs.next())
+				  {
+					  News n=new News();
+					  n.setNamend_time(rs.getTimestamp("namend_time"));
+					  n.setNcontent(rs.getString("ncontent"));
+					  n.setNews_state(rs.getInt("news_state"));
+					  n.setNid(rs.getInt("nid"));
+					  n.setNid_uid_key(rs.getInt("nid_uid_key"));
+					  n.setNsalary(rs.getDouble("nsalary"));
+					  n.setNsalary_state(rs.getInt("nsalary_state"));
+					  n.setNupload_time(rs.getTimestamp("nupload_time"));
+					  n.setTitle(rs.getString("ntitle"));
+					  n.setNid_tid_key(rs.getInt("nid_tid_key"));
+					  n.setNid_sid_key(rs.getInt("nid_sid_key"));
+					  MyLog.log.debug("查询出了数据===");
+					  list.add(n);
+				  }
+				  return list;
+		    }
+	 
+	 public int getMaxPageLastDay(Connection conn,int pageSize,int nid_uid_key,int news_state) throws Exception
+	  {
+		  MyLog.log.debug("进入查询文章的今日的最大页数");
+		  String sql="select count(*) as max from news where nid_uid_key=? and news_state=? and MONTH(namend_time)=? and YEAR(namend_time)=? and DAY(namend_time)=?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  String nowdate=GetDate.getNowDate();
+		  MyLog.log.debug("getMaxPageLastDay当前时间为："+nowdate);
+	      int a=nowdate.lastIndexOf("-");
+	      int b=nowdate.indexOf("-");
+	      
+	      String year=nowdate.substring(0, b);
+	      MyLog.log.debug("year=="+year);
+	      
+	      String month=nowdate.substring(b+1, a);
+	      MyLog.log.debug("month=="+month);
+	      
+	      String day=nowdate.substring(a+1, a+3);
+	      MyLog.log.debug("day=="+day);
+	      int d=Integer.parseInt(day);
+	      MyLog.log.debug("d=="+d);
+	      d=d-1;
+	      day=String.valueOf(d);
+	      MyLog.log.debug("day转换=="+day);
+	      
+		  ps.setInt(1, nid_uid_key);
+		  ps.setInt(2, news_state);
+		  ps.setString(3,month );
+		  ps.setString(4, year);
+		  ps.setString(5, day);
+		  ResultSet rs=null;
+		  int count=0;
+		  try {
+			  rs=ps.executeQuery();
+			  while(rs.next())
+			  {
+				  count=rs.getInt("max");
+				  MyLog.log.debug("count=="+count);
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return count%pageSize==0?count/pageSize:count/pageSize+1;
+	  }
+	 public int selectNewsLastDayCount(int nid_uid_key,int news_state,Connection conn) throws Exception
+		{
+		    MyLog.log.debug("进入查询文章的今日数量");
+			
+			String sql="select count(*) as number from news where nid_uid_key=? and news_state=? and MONTH(namend_time)=? and YEAR(namend_time)=? and DAY(namend_time)=?";
+			 PreparedStatement ps=null;
+			  ps=conn.prepareStatement(sql);
+			  ResultSet rs=null;
+			  String nowdate=GetDate.getNowDate();
+			  MyLog.log.debug("selectNewsLastDayCount当前时间为："+nowdate);
+		      int a=nowdate.lastIndexOf("-");
+		      int b=nowdate.indexOf("-");
+		      
+		      String year=nowdate.substring(0, b);
+		      MyLog.log.debug("year=="+year);
+		      
+		      String month=nowdate.substring(b+1, a);
+		      MyLog.log.debug("month=="+month);
+		      
+		      String day=nowdate.substring(a+1, a+3);
+		      MyLog.log.debug("day=="+day);
+		      int d=Integer.parseInt(day);
+		      MyLog.log.debug("d=="+d);
+		      d=d-1;
+		      day=String.valueOf(d);
+		      MyLog.log.debug("day转换=="+day);
+		      
+			  ps.setInt(1, nid_uid_key);
+			  ps.setInt(2, news_state);
+			  ps.setString(3, month);
+			  ps.setString(4, year);
+			  ps.setString(5, day);
+			   rs=ps.executeQuery();
+			   int count=0;
+				  if(rs.next()){
+					  count=rs.getInt("number");
+					  MyLog.log.debug("该用户已通过审核的新闻数为"+count);
+				  }
+				return count;
+		}	
+	 public List<News> selectNewsLastDay(Connection conn,int nid_uid_key,int news_state,int pageNo,int pageSize) throws Exception
+	 {
+		 
+		 MyLog.log.debug("进入查询文章的今日的分页数据");
+		 String sql="select *from news where nid_uid_key=? and news_state=? and MONTH(namend_time)=? and YEAR(namend_time)=? and DAY(namend_time)=? limit ?,?";
+		 PreparedStatement ps=conn.prepareStatement(sql);
+		 ResultSet rs=null;
+		 List<News> list=new ArrayList<News>();
+		 String nowdate=GetDate.getNowDate();
+		  MyLog.log.debug("selectNewsLastDay当前时间为："+nowdate);
+	      int a=nowdate.lastIndexOf("-");
+	      int b=nowdate.indexOf("-");
+	      
+	      String year=nowdate.substring(0, b);
+	      MyLog.log.debug("year=="+year);
+	      
+	      String month=nowdate.substring(b+1, a);
+	      MyLog.log.debug("month=="+month);
+	      
+	      String day=nowdate.substring(a+1, a+3);
+	      MyLog.log.debug("day=="+day);
+	      int d=Integer.parseInt(day);
+	      MyLog.log.debug("d=="+d);
+	      d=d-1;
+	      day=String.valueOf(d);
+	      MyLog.log.debug("day转换=="+day);
+		 
+		 ps.setInt(1, nid_uid_key);
+		 ps.setInt(2, news_state);
+		 ps.setString(3, month);
+		 ps.setString(4, year);
+		 ps.setString(5, day);
+		 ps.setInt(6, (pageNo-1)*pageSize);
+		 ps.setInt(7, pageSize);
+		 rs=ps.executeQuery();
+		 while(rs.next())
+		 {
+			 News n=new News();
+			 n.setNamend_time(rs.getTimestamp("namend_time"));
+			 n.setNcontent(rs.getString("ncontent"));
+			 n.setNews_state(rs.getInt("news_state"));
+			 n.setNid(rs.getInt("nid"));
+			 n.setNid_uid_key(rs.getInt("nid_uid_key"));
+			 n.setNsalary(rs.getDouble("nsalary"));
+			 n.setNsalary_state(rs.getInt("nsalary_state"));
+			 n.setNupload_time(rs.getTimestamp("nupload_time"));
+			 n.setTitle(rs.getString("ntitle"));
+			 n.setNid_tid_key(rs.getInt("nid_tid_key"));
+			 n.setNid_sid_key(rs.getInt("nid_sid_key"));
+			 MyLog.log.debug("查询出了数据===");
+			 list.add(n);
+		 }
+		 return list;
+	 }
+	 
+	 public int getMaxPageDay(Connection conn,int pageSize,int nid_uid_key,int news_state) throws Exception
+	 {
+		 MyLog.log.debug("进入查询文章的今日的最大页数");
+		 String sql="select count(*) as max from news where nid_uid_key=? and news_state=? and MONTH(namend_time)=? and YEAR(namend_time)=? and DAY(namend_time)=?";
+		 PreparedStatement ps=conn.prepareStatement(sql);
+		 String nowdate=GetDate.getNowDate();
+		 System.out.println("当前时间为："+nowdate);
+		 int a=nowdate.lastIndexOf("-");
+		 int b=nowdate.indexOf("-");
+		 String year=nowdate.substring(0, b);
+		 System.out.println("year"+year);
+		 String month=nowdate.substring(b+1, a);
+		 String day=nowdate.substring(a+1, a+3);
+		 ps.setInt(1, nid_uid_key);
+		 ps.setInt(2, news_state);
+		 ps.setString(3,month );
+		 ps.setString(4, year);
+		 ps.setString(5, day);
+		 ResultSet rs=null;
+		 int count=0;
+		 try {
+			 rs=ps.executeQuery();
+			 while(rs.next())
+			 {
+				 count=rs.getInt("max");
+				 MyLog.log.debug("count=="+count);
+			 }
+		 } catch (Exception e) {
+			 e.printStackTrace();
+		 }
+		 return count%pageSize==0?count/pageSize:count/pageSize+1;
+	 }
+	 public int selectNewsDayCount(int nid_uid_key,int news_state,Connection conn) throws Exception
+	 {
+		 MyLog.log.debug("进入查询文章的今日数量");
+		 
+		 String sql="select count(*) as number from news where nid_uid_key=? and news_state=? and MONTH(namend_time)=? and YEAR(namend_time)=? and DAY(namend_time)=?";
+		 PreparedStatement ps=null;
+		 ps=conn.prepareStatement(sql);
+		 ResultSet rs=null;
+		 String nowdate=GetDate.getNowDate();
+		 System.out.println("当前时间为："+nowdate);
+		 int a=nowdate.lastIndexOf("-");
+		 int b=nowdate.indexOf("-");
+		 
+		 String year=nowdate.substring(0, b);
+		 MyLog.log.debug("year=="+year);
+		 
+		 String month=nowdate.substring(b+1, a);
+		 MyLog.log.debug("month=="+month);
+		 
+		 String day=nowdate.substring(a+1, a+3);
+		 MyLog.log.debug("day=="+day);
+		 
+		 ps.setInt(1, nid_uid_key);
+		 ps.setInt(2, news_state);
+		 ps.setString(3, month);
+		 ps.setString(4, year);
+		 ps.setString(5, day);
+		 rs=ps.executeQuery();
+		 int count=0;
+		 if(rs.next()){
+			 count=rs.getInt("number");
+			 MyLog.log.debug("该用户已通过审核的新闻数为"+count);
+		 }
+		 return count;
+	 }	
+	
 }
 	
 

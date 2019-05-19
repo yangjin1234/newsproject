@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>金钱 历史记录 &lsaquo; 未来车平台 &#8212; WordPress</title>
+<script type="text/javascript" src="static/jquery/3.2.1/jquery-1.8.3.js"></script>
 <script type="text/javascript">
  var selectdelete; //得到文本框选中的内容
  var datavalue; //得到选中checkbox的值
@@ -38,13 +39,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	boxname=document.getElementsByName("checkboxname");
  	for(var i=0;i<boxname.length;i++)
  	{
- 	if(boxname[i].checked)
- 	{
- 	datavalue=boxname[i].value+",";
- 	//alert("datavalue"+datavalue);
- 	alldatavalue+=datavalue;
- 	}
- 	alert("alldatavalue"+alldatavalue)
+	 	if(boxname[i].checked)
+	 	{
+	 	datavalue=boxname[i].value+",";
+	 	alert("if=="+alldatavalue.indexOf(boxname[i].value,0));
+		 	if(alldatavalue.indexOf(boxname[i].value, 0)==-1)
+		 	{
+		 	alldatavalue+=datavalue;
+		 	}
+	 	
+	 	}
+	 	else
+	 	{
+		 	alert("else=="+alldatavalue.indexOf(boxname[i].value),0);
+		 	if(alldatavalue.indexOf(boxname[i].value, 0)!=-1)
+			{
+			alert("boxname=="+boxname[i].value);
+			alldatavalue=alldatavalue.replace(boxname[i].value+",","");
+			}
+		}
+ 	alert("alldatavalue=="+alldatavalue)
  	}
  } 
  
@@ -52,8 +66,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	 {
   	 		  alert("aaa");
   	          selectdelete=document.getElementById("textvalue").value;
-  	          alert("selectdelete"+selectdelete);
-  	          alert("alldatavalue"+typeof(alldatavalue));
+  	          alert("selectdelete=="+selectdelete);
+  	          alert("data=="+alldatavalue);
+  	          alert("alldatavalue=="+typeof(alldatavalue));
 		      if(selectdelete=="删除")
 		      {
 		         if(""!=alldatavalue)
@@ -67,7 +82,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								     if("true"==returnval)
 								     {							  	
 								     alert("删除成功");	
-								     //window.location.href="login.jsp";
+								     window.location.href="profile.jsp";
+								     alert("更新成功");
 								     } 
 								     else
 								     {
@@ -250,7 +266,12 @@ jQuery(function($) {
 		<div class="wrap" id="myCRED-wrap">
 	<h1>我的 金钱 历史 </h1>
 
-	<ul class="subsubsub"><li class=""><a href="https://weilaiche.cc/wp-admin/users.php?page=mycred_money-history" class="current">所有的</a> | </li><li class="today"><a href="https://weilaiche.cc/wp-admin/users.php?page=mycred_money-history&#038;show=today">今日</a> | </li><li class="yesterday"><a href="https://weilaiche.cc/wp-admin/users.php?page=mycred_money-history&#038;show=yesterday">昨日</a> | </li><li class="thisweek"><a href="https://weilaiche.cc/wp-admin/users.php?page=mycred_money-history&#038;show=thisweek">本周</a> | </li><li class="thismonth"><a href="https://weilaiche.cc/wp-admin/users.php?page=mycred_money-history&#038;show=thismonth">本月</a></li></ul>
+	<ul class="subsubsub">
+	<li class=""><a href="profile.jsp" class="current">所有的</a> | </li>
+	<li class="today"><a href="profile.jsp?show=today">今日</a> | </li>
+	<li class="yesterday"><a href="profile.jsp?show=yesterday">昨日</a> | </li>
+	<li class="thisweek"><a href="https://weilaiche.cc/wp-admin/users.php?page=mycred_money-history&#038;show=thisweek">本周</a> | </li>
+	<li class="thismonth"><a href="profile.jsp?show=thismonth">本月</a></li></ul>
 	<div style="display:none;" class="clear" id="export-log-history">
 	<strong>出口:</strong>
 	<div>
@@ -258,15 +279,18 @@ jQuery(function($) {
 	<p><span class="description">日志条目导出到CSV文件，根据所选条目的数量，这个过程可能需要几秒钟。</span></p>
 </div>
 
-   <%
-   MyLog.log.debug("asdf");
-   Connection conn=DBHelper.getConnection();
+   <% 
+    String show=request.getParameter("show");
+    MyLog.log.debug("show=="+show);
+    Connection conn=DBHelper.getConnection();
     NewsDao news=new NewsDaoImpl();
+    List<News> list=new ArrayList<News>();
     String pn=request.getParameter("pageNo");
     String ps=request.getParameter("pageSize");
     int pageNo=0;
     int max=0;
     int pageSize=0;
+    int n=0;
 	    if(ps==null)
 	    {
 	   	    pageSize=2;
@@ -284,7 +308,20 @@ jQuery(function($) {
 		    }
 		}
 		//计算最大页码数
+		if(show==null)
+		{
+		//根据每页显示几条数据，计算出总共有多少页
 		max=news.getMaxPage(conn, pageSize, 11, 1);
+		}
+		if("today".equals(show))
+		{
+		max=news.getMaxPageDay(conn, pageSize, 11, 1);
+		}
+		if("yesterday".equals(show))
+		{
+		max=news.getMaxPageLastDay(conn, pageSize, 11, 1);
+		}
+		
 		if(pn==null){
 			//第一次进入页面
 			pageNo = 1;
@@ -299,15 +336,32 @@ jQuery(function($) {
 				pageNo=1;
 			}
 		}
-		
-		List<News> list = news.selectAllNews(11, 1, conn, pageNo, pageSize);
+		if(show==null)
+		{
+		//分页查询出每页数据
+		 list = news.selectAllNews(11, 1, conn, pageNo, pageSize);
 		//得到一共有多少篇文章
-		int n=news.selectAllNews(11, 1, conn);
+		 n=news.selectAllNews(11, 1, conn);
+		}
+		if("today".equals(show))
+		{
+		list=news.selectNewsDay(conn, 11, 1, pageNo, pageSize);
+		n=news.selectNewsDayCount(11, 1, conn);
+		MyLog.log.debug("分页查询出每页数据="+list.size());
+		}
+		if("yesterday".equals(show))
+		{
+		list=news.selectNewsLastDay(conn, 11, 1, pageNo, pageSize);
+		n=news.selectNewsLastDayCount(11, 1, conn);
+		MyLog.log.debug("分页查询出每页数据="+list.size());
+		}
+		
 		pageContext.setAttribute("list", list);
 		pageContext.setAttribute("pageNo", pageNo);
 		pageContext.setAttribute("pageSize", pageSize);
 		pageContext.setAttribute("max", max);
 		pageContext.setAttribute("newscount", n);
+		pageContext.setAttribute("show", show);
 		
 	%>
 	<form method="get" action="" name="mycred-mylog-form" novalidate>
@@ -343,10 +397,10 @@ jQuery(function($) {
 
 <span class="displaying-num">${newscount } entries</span>
 <span class='pagination-links'><span class="tablenav-pages-navspan" aria-hidden="true">&laquo;</span>
-<a class='next-page' href="profile.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize }"><span class='screen-reader-text'>上一页</span><span aria-hidden="true">&lsaquo;</span></a>
+<a class='next-page' href="profile.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize }&show=${show } "><span class='screen-reader-text'>上一页</span><span aria-hidden="true">&lsaquo;</span></a>
 <span class="paging-input">第<label for="current-page-selector" class="screen-reader-text">当前页</label><input class='current-page' id='current-page-selector' type='text' name='paged' value='${pageNo }' size='5' aria-describedby='table-paging' />页，共<span class='total-pages'>${max }</span>页</span>
-<a class='next-page' href="profile.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize }"><span class='screen-reader-text'>下一页</span><span aria-hidden='true'>&rsaquo;</span></a>
-<a class='last-page' href="profile.jsp?pageNo=${max}&pageSize=${pageSize }"><span class='screen-reader-text'>尾页</span><span aria-hidden='true'>&raquo;</span></a></span>
+<a class='next-page' href="profile.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize }&show=${show }"><span class='screen-reader-text'>下一页</span><span aria-hidden='true'>&rsaquo;</span></a>
+<a class='last-page' href="profile.jsp?pageNo=${max}&pageSize=${pageSize }&show=${show }"><span class='screen-reader-text'>尾页</span><span aria-hidden='true'>&raquo;</span></a></span>
 			</div>
 			<br class="clear" />
 		</div>

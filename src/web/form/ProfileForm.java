@@ -7,7 +7,14 @@ public class ProfileForm extends ActionForm{
 	private String user_sex;
 	private String email;
 	private String mobile;
-//	private String pass1;
+	private String photo;
+public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	//	private String pass1;
 //	private String pass2;
 	public String getUser_name() {
 		return user_name;

@@ -86,16 +86,13 @@ public class UserinformationDaoImpl implements UserinformationDao{
 	}
 
 	public boolean updateUser(Userinformation user, Connection conn) throws Exception {
-		String sql="update user set uname=?,usex=?,uemail=?,uphone=?,uphoto=?,ustate=?,uproblem=?,uanswer=? where uid=?";
+		String sql="update user set uname=?,usex=?,uemail=?,uphone=?,uphoto=? where uid=?";
 		PreparedStatement ps=conn.prepareStatement(sql);
 		ps.setString(1, user.getUname());
 		ps.setString(2, user.getUsex());
 		ps.setString(3, user.getUemail());
 		ps.setString(4, user.getUphone());
 		ps.setString(5, user.getUphoto());
-		ps.setInt(6, user.getUstate());
-		ps.setString(7, user.getUproblem());
-		ps.setString(8, user.getUanswer());
 		ps.setInt(9, user.getUid());
 		int count = ps.executeUpdate();
 		if(count>0){

@@ -7,6 +7,13 @@ public class NewsForm extends ActionForm{
 	private String npost_title;
 	private String typename;
 	private String save;
+	private String nid;
+	public String getNid() {
+		return nid;
+	}
+	public void setNid(String nid) {
+		this.nid = nid;
+	}
 	public String getSave() {
 		return save;
 	}

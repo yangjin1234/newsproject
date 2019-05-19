@@ -59,5 +59,5 @@ public interface UserinformationDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean updateUser(Userinformation user,Connection conn)throws Exception;//
+	public boolean updateUser(Userinformation user,Connection conn)throws Exception;
 }

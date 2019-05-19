@@ -97,8 +97,9 @@ public class UserinformationDaoImpl implements UserinformationDao{
 		int count = ps.executeUpdate();
 		if(count>0){
 				return true;
-		}
+		}else{
 		return false;
+		}
 	}
 
 }

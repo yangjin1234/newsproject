@@ -17,7 +17,6 @@ public class ProfileAction extends Action{
 		MyLog.log.debug("user_name="+uname);
 		String usex=request.getParameter("user_sex");
 		MyLog.log.debug("user_sex="+usex);
-		MyLog.log.debug("user_sex="+usex);
 		String email=request.getParameter("email");
 		String mobile=request.getParameter("mobile");
 		request.getSession().setAttribute("uname", uname);

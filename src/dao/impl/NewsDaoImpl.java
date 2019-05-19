@@ -12,6 +12,7 @@ import pojo.News;
 import pojo.impl.NewsImpl;
 import pojo.impl.TimeTypec;
 import util.GetDate;
+import util.MyLog;
 
 /*
  * 1.表示工资为发放
@@ -486,4 +487,82 @@ public class NewsDaoImpl implements NewsDao{
 		  return count;
 	}
 	
+	public int selectAllNews(int nid_uid_key,int news_state,Connection conn) throws Exception
+	{
+		
+		String sql="select count(*) as number from news where nid_uid_key=? and news_state=?";
+		 PreparedStatement ps=null;
+		  ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  ps.setInt(1, nid_uid_key);
+		  ps.setInt(2, news_state);
+		   rs=ps.executeQuery();
+		   int count=0;
+			  if(rs.next()){
+				  count=rs.getInt("number");
+				  MyLog.log.debug("该用户已通过审核的新闻数为"+count);
+			  }
+			return count;
+		
+		
+	}	
+	 public List<News>  selectAllNews(int nid_uid_key,int news_state,Connection conn,int pageNo,int pageSize) throws Exception
+	  {
+		  List<News> list=new ArrayList<News>();		
+		  String sql="select *from news where nid_uid_key=? and news_state=? limit ?,?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  ps.setInt(1, nid_uid_key);
+		  ps.setInt(2,news_state );
+		  ps.setInt(3, (pageNo-1)*pageSize);
+		  ps.setInt(4, pageSize);
+		  rs=ps.executeQuery();
+		  while(rs.next())
+		  {
+			  News n=new News();
+			  n.setNamend_time(rs.getTimestamp("namend_time"));
+			  n.setNcontent(rs.getString("ncontent"));
+			  n.setNews_state(rs.getInt("news_state"));
+			  n.setNid(rs.getInt("nid"));
+			  n.setNid_uid_key(rs.getInt("nid_uid_key"));
+			  n.setNsalary(rs.getDouble("nsalary"));
+			  n.setNsalary_state(rs.getInt("nsalary_state"));
+			  n.setNupload_time(rs.getTimestamp("nupload_time"));
+			  n.setTitle(rs.getString("ntitle"));
+			  n.setNid_tid_key(rs.getInt("nid_tid_key"));
+			  n.setNid_sid_key(rs.getInt("nid_sid_key"));
+			  MyLog.log.debug("查询出了数据===");
+			  list.add(n);
+		  }
+		  return list;
+	  }
+	/**
+	 *计算最大页数
+	 */
+
+	 public int getMaxPage(Connection conn,int pageSize,int nid_uid_key,int news_state) throws Exception
+	  {
+		  String sql="select count(*) as max from news where nid_uid_key=? and news_state=?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ps.setInt(1, nid_uid_key);
+		  ps.setInt(2, news_state);
+		  ResultSet rs=null;
+		  int count=0;
+		  try {
+			  rs=ps.executeQuery();
+			  while(rs.next())
+			  {
+				  count=rs.getInt("max");
+				  MyLog.log.debug("count=="+count);
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return count%pageSize==0?count/pageSize:count/pageSize+1;
+	  }
 }
+	
+
+
+	
+

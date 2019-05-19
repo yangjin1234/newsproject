@@ -64,9 +64,18 @@ public interface NewsDao {
 	 */
 	double selectSumSalaryNo(int nid_uid_key,Connection conn,int state)throws Exception;
 	/**
-	 * 根据用户主键及工资表主键，查询新闻的主键
+	 * 根据用户主键及文章已通过审核，查询本用户的所有文章
 	 */
-	public boolean selectNewsKey(int nid_uid_key,int sid,Connection conn) throws Exception;
+		public List<News>  selectAllNews(int nid_uid_key,int news_state,Connection conn,int pageNo,int pageSize) throws Exception;
+	/**
+	 * 根据用户主键及文章已通过审核，查询本用户的文章数
+	 */
+		public int selectAllNews(int nid_uid_key,int news_state,Connection conn) throws Exception;
+
+	/**
+	 * 根据用户主键及文章已通过审核，计算出最大页数
+	 */
+		 public int getMaxPage(Connection conn,int pageSize,int nid_uid_key,int news_state) throws Exception;
 
 
 

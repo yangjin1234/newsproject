@@ -33,4 +33,23 @@ public class UserInformationServiceImpl implements UserInformationService{
 			return uid;
 	}
 
+	public boolean updateUser(Userinformation user) {
+		Connection conn=DBHelper.getConnection();
+		boolean flag=false;
+		try {
+			conn.setAutoCommit(false);
+			flag=dao.updateUser(user, conn);
+			conn.commit();
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}finally{
+			DBHelper.closeCon(conn);
+		}
+		return flag;
+	}
+
 }

@@ -3,7 +3,7 @@ package web.form;
 import web.core.ActionForm;
 
 public class ProfileForm extends ActionForm{
-	private String user_login;
+	private String user_name;
 	private String email;
 	private String mobile;
 	private String pass1;
@@ -16,10 +16,10 @@ public class ProfileForm extends ActionForm{
 		this.mobile = mobile;
 	}
 	public String getUser_login() {
-		return user_login;
+		return user_name;
 	}
 	public void setUser_login(String user_login) {
-		this.user_login = user_login;
+		this.user_name = user_login;
 	}
 	public String getEmail() {
 		return email;

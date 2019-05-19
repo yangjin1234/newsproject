@@ -204,7 +204,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 <table class="form-table">
 <tr class="user-email-wrap">
 	<th><label for="email">电子邮件 <span class="description">（必填）</span></label></th>
-	<td><input type="email" name="email" id="email" value="544964946@qq.com" class="regular-text ltr" />
+	<td><input type="email" name="uemail" id="email" value="544964946@qq.com" class="regular-text ltr" />
 		</td>
 </tr>
 <tr class=user-mobile-wrap>

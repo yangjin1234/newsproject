@@ -279,7 +279,8 @@ jQuery(function($) {
 	<p><span class="description">日志条目导出到CSV文件，根据所选条目的数量，这个过程可能需要几秒钟。</span></p>
 </div>
 
-   <% 
+   <%
+   //修改 
     String show=request.getParameter("show");
     MyLog.log.debug("show=="+show);
     Connection conn=DBHelper.getConnection();
@@ -482,5 +483,6 @@ var commonL10n = {"warnDelete":"\u60a8\u5c06\u6c38\u4e45\u5220\u9664\u8fd9\u4e9b
 
 <div class="clear"></div></div><!-- wpwrap -->
 <script type="text/javascript">if(typeof wpOnload=='function')wpOnload();</script>
+
 </body>
 </html>

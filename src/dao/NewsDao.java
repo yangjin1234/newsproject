@@ -11,6 +11,7 @@ public interface NewsDao {
 	public boolean deleteNews(int nid,Connection conn) throws Exception;
 	public boolean updateNewsSalary(double nsalary,Connection conn,int nid) throws Exception;
 	public boolean updateState(int state,Connection conn,int nid) throws Exception;
+	public boolean updateNews(News n,Connection conn) throws Exception;
 	public boolean updateSalaryState(int nid,int nsalary_state,Connection conn) throws Exception;
 	public boolean updateNewsState(int nid,int news_state,Connection conn) throws Exception;
 	public List<NewsImpl> selectAllNews(int nid_uid_key,Connection conn,int pageNo,int pageSize) throws Exception;

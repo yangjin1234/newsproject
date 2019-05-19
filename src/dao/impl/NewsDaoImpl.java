@@ -560,6 +560,10 @@ public class NewsDaoImpl implements NewsDao{
 		}
 		  return count%pageSize==0?count/pageSize:count/pageSize+1;
 	  }
+	public boolean updateNews(News n, Connection conn) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
 	
 

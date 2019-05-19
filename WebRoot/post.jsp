@@ -245,7 +245,11 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 	<p><span class="spinner"></span> <strong>连接丢失。</strong>保存已被禁用，直到您重新连接。	<span class="hide-if-no-sessionstorage">我们正在您的浏览器中备份此文章，以防不测。</span>
 	</p>
 </div>
-<form name="post" action="news.do" method="post" id="post" class="pods-submittable pods-form">
+<%
+String nid=request.getParameter("nid");
+				pageContext.setAttribute("nid", nid);
+%>
+<form name="post" action="news.do?nid=${nid }" method="post" id="post" class="pods-submittable pods-form">
 <!--  
 <input type="hidden" id="_wpnonce" name="_wpnonce" value="fdf986ccd8" /><input type="hidden" name="_wp_http_referer" value="/wp-admin/post-new.php" /><input type="hidden" id="user-id" name="user_ID" value="1165" />
 <input type="hidden" id="hiddenaction" name="action" value="editpost" />
@@ -262,8 +266,14 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 
 <div id="titlediv">
 <div id="titlewrap">
+<%
+    String ntitle=request.getParameter("ntitle");
+	pageContext.setAttribute("ntitle", ntitle);
+				String ncontent=request.getParameter("ncontent");
+	pageContext.setAttribute("ncontent", ncontent);
+%>
 		<label class="screen-reader-text" id="title-prompt-text" for="title">在此输入标题</label>
-	<input type="text" name="npost_title" size="30" value="" id="title" spellcheck="true" autocomplete="off" />
+	<input type="text" name="npost_title" size="30" value="${ntitle }" id="title" spellcheck="true" autocomplete="off"  />
 </div>
 <div class="inside">
 	<div id="edit-slug-box" class="hide-if-no-js">
@@ -277,7 +287,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 <button type="button" id="content-html" class="wp-switch-editor switch-html" data-wp-editor-id="content">文本</button>
 </div>
 </div>
-<div id="wp-content-editor-container" class="wp-editor-container"><div id="ed_toolbar" class="quicktags-toolbar"></div><textarea class="wp-editor-area" style="height: 300px" autocomplete="off" cols="40" name="content" id="content"></textarea></div>
+<div id="wp-content-editor-container" class="wp-editor-container"><div id="ed_toolbar" class="quicktags-toolbar"></div><textarea class="wp-editor-area" style="height: 300px" autocomplete="off" cols="40" name="content" id="content">${ncontent }</textarea></div>
 </div>
 
 <table id="post-status-info"><tbody><tr>

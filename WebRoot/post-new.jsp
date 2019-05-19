@@ -245,7 +245,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 	<p><span class="spinner"></span> <strong>连接丢失。</strong>保存已被禁用，直到您重新连接。	<span class="hide-if-no-sessionstorage">我们正在您的浏览器中备份此文章，以防不测。</span>
 	</p>
 </div>
-<form name="post" action="news.do" method="post" id="post" class="pods-submittable pods-form">
+<form name="post" action="news.do?nid=null" method="post" id="post" class="pods-submittable pods-form">
 <!--  
 <input type="hidden" id="_wpnonce" name="_wpnonce" value="fdf986ccd8" /><input type="hidden" name="_wp_http_referer" value="/wp-admin/post-new.php" /><input type="hidden" id="user-id" name="user_ID" value="1165" />
 <input type="hidden" id="hiddenaction" name="action" value="editpost" />

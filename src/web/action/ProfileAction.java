@@ -41,7 +41,8 @@ public class ProfileAction extends Action{
 				user.setUphone(uphone);
 				user.setUphoto(uphoto);
 				UserInformationService useris=new UserInformationServiceImpl();
-				useris.updateUser(user);
+				boolean flag=useris.updateUser(user);
+				MyLog.log.debug("flag="+flag);
 				request.getSession().setAttribute("uname", user.getUname());
 				request.getSession().setAttribute("uemail", user.getUemail());
 				request.getSession().setAttribute("umobile", user.getUphone());

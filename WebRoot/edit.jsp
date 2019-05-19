@@ -180,6 +180,81 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	document.body.className = document.body.className.replace('no-js','js');
 </script>
 
+<script type="text/javascript">
+ var selectdelete; //得到文本框选中的内容
+ var datavalue; //得到选中checkbox的值
+ var checkboxb;//checkbox
+ var boxname;//得到checkbox的name
+ var flag;
+ var alldatavalue="";//得到所有选中checkbox的值,拼接为字符串
+ function oncheckbox()
+ {
+ 	boxname=document.getElementsByName("checkboxname");
+ 	for(var i=0;i<boxname.length;i++)
+ 	{
+	 	if(boxname[i].checked)
+	 	{
+	 	datavalue=boxname[i].value+",";
+		 	if(alldatavalue.indexOf(boxname[i].value, 0)==-1)
+		 	{
+		 	alldatavalue+=datavalue;
+		 	}
+	 	
+	 	}
+	 	else
+	 	{
+		 	if(alldatavalue.indexOf(boxname[i].value, 0)!=-1)
+			{
+			alldatavalue=alldatavalue.replace(boxname[i].value+",","");
+			}
+		}
+ 	}
+ 	alert("alldatavalue=="+alldatavalue);
+ } 
+ 
+ function deletenews(sh)
+  	 {
+  	          alert("aaa"); 
+  	          var show=sh;
+  	          alert("show=="+show);
+  	          selectdelete=document.getElementById("textvalue").value;
+  	          alert("selectdelete=="+selectdelete);
+  	          alert("data=="+alldatavalue);
+  	          alert("alldatavalue=="+typeof(alldatavalue));
+		      if(selectdelete=="删除")
+		      {
+		         if(""!=alldatavalue)
+				   {
+					    $.ajax({
+					        type:"POST",
+					        url:"deletenewsmessage.do",
+					        data:"data="+alldatavalue,
+					        success:function(returnval)
+							     {
+								     if("true"==returnval)
+								     {							  	
+								     alert("删除成功");	
+								     window.location.href="profile.jsp?show="+show;
+								     alert("更新成功");
+								     } 
+								     else
+								     {
+								     alert("删除失败");
+								     }
+							     }
+					        	});
+				     }
+				     else
+				     {
+				     alert("请选择你要删除的数据");
+				     }
+			      }
+			       else
+			       {
+			       alert("请选择文本框的类型");
+			       }
+  	 } 
+</script>
 
 <div id="wpwrap">
 
@@ -569,7 +644,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	    
 		<tr id="post-486356" class="iedit author-self level-0 post-486356 type-post status-pending format-standard hentry category-jstw">
 			<th scope="row" class="check-column">			<label class="screen-reader-text" for="cb-select-486356">${listc.title }</label>
-			<input id="cb-select-486356" type="checkbox" name="post[]" value="486356" />
+			<input id="cb-select-486356" type="checkbox" name="checkboxname" value="${listc.nid }" onclick="oncheckbox()"/>
 			<div class="locked-indicator">
 				<span class="locked-indicator-icon" aria-hidden="true"></span>
 				<span class="screen-reader-text">“${listc.title }”已被锁定</span>

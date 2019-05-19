@@ -43,6 +43,7 @@
 <url-pattern>/needs.jsp</url-pattern>
 <url-pattern>/edit.jsp</url-pattern>
 <url-pattern>/post-new.jsp</url-pattern>
+<url-pattern>/post.jsp</url-pattern>
 </filter-mapping>  
   
   <welcome-file-list>

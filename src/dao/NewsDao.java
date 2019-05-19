@@ -119,9 +119,7 @@ public interface NewsDao {
 		 		  * 根据用户名主键及文章已通过审核，计算出本月的文章数
 		 		  */
 		 		 public int selectNewsMonthCount(int nid_uid_key,int news_state,Connection conn) throws Exception;
-//修改
-		 		 //修改
-		 		 //修改
 
+		 		 
 
 }

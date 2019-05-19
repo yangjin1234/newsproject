@@ -219,50 +219,12 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 <tr class="user-profile-picture">
 	<th>资料图片</th>
 	<td>
+		<input>
 		<img name="photo" alt='' src='https://secure.gravatar.com/avatar/54311cd9e80d1ddcad3697b15ae032be?s=96&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/54311cd9e80d1ddcad3697b15ae032be?s=192&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' />		
 	</td>
 </tr>
 </table>
 
-<!-- <h2>账户管理</h2>
-<table class="form-table">
-<tr id="password" class="user-pass1-wrap">
-	<th><label for="pass1">新密码</label></th>
-	<td>
-		<input class="hidden" value=" " /><!-- #24364 workaround 
-		<button type="button" class="button wp-generate-pw hide-if-no-js">生成密码</button>
-		<div class="wp-pwd hide-if-js">
-			<span class="password-input-wrapper">
-				<input type="password" name="pass1" id="pass1" class="regular-text" value="" autocomplete="off" data-pw="Gm8g!SXPJ0T!6KUDJ*byvdDp" aria-describedby="pass-strength-result" />
-			</span>
-			<button type="button" class="button wp-hide-pw hide-if-no-js" data-toggle="0" aria-label="隐藏密码">
-				<span class="dashicons dashicons-hidden"></span>
-				<span class="text">隐藏</span>
-			</button>
-			<button type="button" class="button wp-cancel-pw hide-if-no-js" data-toggle="0" aria-label="取消密码修改">
-				<span class="text">取消</span>
-			</button>
-			<div style="display:none" id="pass-strength-result" aria-live="polite"></div>
-		</div>
-	</td>
-</tr>
-<tr class="user-pass2-wrap hide-if-js">
-	<th scope="row"><label for="pass2">重复新密码</label></th>
-	<td>
-	<input name="pass2" type="password" id="pass2" class="regular-text" value="" autocomplete="off" />
-	<p class="description">再输入一遍新密码。</p>
-	</td>
-</tr>
-<tr class="pw-weak">
-	<th>确认密码</th>
-	<td>
-		<label>
-			<input type="checkbox" name="pw_weak" class="pw-checkbox" />
-			<span id="pw-weak-text-label">确认使用可能的弱密码</span>
-		</label>
-	</td>
-</tr>
-</table>-->
 
     <h3>更多字段</h3>
 	<input data-name-clean="pods-meta" id="pods-form-ui-pods-meta" class="pods-form-ui-field pods-form-ui-field-type-text pods-form-ui-field-name-pods-meta" type="hidden" value="0ff28bcf6b" />

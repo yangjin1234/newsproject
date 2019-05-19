@@ -62,9 +62,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	}
  } 
  
- function deletenews()
+ function deletenews(sh)
   	 {
-  	 		  alert("aaa");
+  	          alert("aaa"); 
+  	          var show=sh;
+  	          alert("show=="+show);
   	          selectdelete=document.getElementById("textvalue").value;
   	          alert("selectdelete=="+selectdelete);
   	          alert("data=="+alldatavalue);
@@ -82,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								     if("true"==returnval)
 								     {							  	
 								     alert("删除成功");	
-								     window.location.href="profile.jsp";
+								     window.location.href="profile.jsp?show="+show;
 								     alert("更新成功");
 								     } 
 								     else
@@ -267,7 +269,7 @@ jQuery(function($) {
 	<h1>我的 金钱 历史 </h1>
 
 	<ul class="subsubsub">
-	<li class=""><a href="profile.jsp" class="current">所有的</a> | </li>
+	<li class=""><a href="profile.jsp?show=null" class="current">所有的</a> | </li>
 	<li class="today"><a href="profile.jsp?show=today">今日</a> | </li>
 	<li class="yesterday"><a href="profile.jsp?show=yesterday">昨日</a> | </li>
 	<li class="thisweek"><a href="https://weilaiche.cc/wp-admin/users.php?page=mycred_money-history&#038;show=thisweek">本周</a> | </li>
@@ -283,7 +285,7 @@ jQuery(function($) {
    //修改 
     //修改
     String show=request.getParameter("show");
-    MyLog.log.debug("show=="+show);
+    MyLog.log.debug("show11=="+show);
     Connection conn=DBHelper.getConnection();
     NewsDao news=new NewsDaoImpl();
     List<News> list=new ArrayList<News>();
@@ -312,7 +314,13 @@ jQuery(function($) {
 		//计算最大页码数
 		if(show==null)
 		{
+		MyLog.log.debug("根据每页显示几条数据，计算出总共有多少页="+list.size());
+		max=news.getMaxPage(conn, pageSize, 11, 1);
+		}
+		if("null".equals(show))
+		{
 		//根据每页显示几条数据，计算出总共有多少页
+		MyLog.log.debug("根据每页显示几条数据，计算出总共有多少页="+list.size());
 		max=news.getMaxPage(conn, pageSize, 11, 1);
 		}
 		if("today".equals(show))
@@ -322,6 +330,11 @@ jQuery(function($) {
 		if("yesterday".equals(show))
 		{
 		max=news.getMaxPageLastDay(conn, pageSize, 11, 1);
+		}
+		if("thismonth".equals(show))
+		{
+		max=news.getMaxPageMonth(conn, pageSize, 11, 1);
+		
 		}
 		
 		if(pn==null){
@@ -338,10 +351,19 @@ jQuery(function($) {
 				pageNo=1;
 			}
 		}
+		if("null".equals(show))
+		{
+		//分页查询出每页数据
+		MyLog.log.debug("分页查询出每页数据="+list.size());
+		list = news.selectAllNews(11, 1, conn, pageNo, pageSize);
+		//得到一共有多少篇文章
+		 n=news.selectAllNews(11, 1, conn);
+		}
 		if(show==null)
 		{
 		//分页查询出每页数据
-		 list = news.selectAllNews(11, 1, conn, pageNo, pageSize);
+		MyLog.log.debug("分页查询出每页数据="+list.size());
+		list = news.selectAllNews(11, 1, conn, pageNo, pageSize);
 		//得到一共有多少篇文章
 		 n=news.selectAllNews(11, 1, conn);
 		}
@@ -349,7 +371,6 @@ jQuery(function($) {
 		{
 		list=news.selectNewsDay(conn, 11, 1, pageNo, pageSize);
 		n=news.selectNewsDayCount(11, 1, conn);
-		MyLog.log.debug("分页查询出每页数据="+list.size());
 		}
 		if("yesterday".equals(show))
 		{
@@ -357,12 +378,18 @@ jQuery(function($) {
 		n=news.selectNewsLastDayCount(11, 1, conn);
 		MyLog.log.debug("分页查询出每页数据="+list.size());
 		}
+		if("thismonth".equals(show))
+		{
+		list=news.selectNewsMonth(conn, 11, 1, pageNo, pageSize);
+		n=news.selectNewsMonthCount(11, 1, conn);
+		}
 		
 		pageContext.setAttribute("list", list);
 		pageContext.setAttribute("pageNo", pageNo);
 		pageContext.setAttribute("pageSize", pageSize);
 		pageContext.setAttribute("max", max);
 		pageContext.setAttribute("newscount", n);
+		MyLog.log.debug("show22="+show);
 		pageContext.setAttribute("show", show);
 		
 	%>
@@ -380,7 +407,7 @@ jQuery(function($) {
 						<div class="alignleft actions bulkactions">
 				<select name="action" id="textvalue">
 					<option value="-1">Bulk Actions</option><option value="删除" >刪除</option>				</select>
-				<input type="button" class="button action" id="doaction" value="Apply" onclick="deletenews()"/>
+				<input type="button" class="button action" id="doaction" value="Apply" onclick="deletenews('${show}')"/>
 			</div>
 				<div class="alignleft actions">
 				<select name="ref" id="myCRED-reference-filter">

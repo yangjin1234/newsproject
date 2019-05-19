@@ -105,7 +105,22 @@ public interface NewsDao {
 		 		  * 根据用户名主键及文章已通过审核，计算出昨日的文章数
 		 		  */
 		 		 public int selectNewsDayCount(int nid_uid_key,int news_state,Connection conn) throws Exception;
+		 		 
+		 		 
+		 		 /**
+		 		  * 根据用户名主键及文章已通过审核，分页出本月查询出每页数据
+		 		  */
+		 		 public List<News> selectNewsMonth(Connection conn,int nid_uid_key,int news_state,int pageNo,int pageSize) throws Exception;
+		 		 /**
+		 		  *  根据用户名主键及文章已通过审核，每页显示几条数据，计算出本月总共有多少页
+		 		  */
+		 		 public int getMaxPageMonth(Connection conn,int pageSize,int nid_uid_key,int news_state) throws Exception;
+		 		 /**
+		 		  * 根据用户名主键及文章已通过审核，计算出本月的文章数
+		 		  */
+		 		 public int selectNewsMonthCount(int nid_uid_key,int news_state,Connection conn) throws Exception;
 //修改
+		 		 //修改
 		 		 //修改
 
 

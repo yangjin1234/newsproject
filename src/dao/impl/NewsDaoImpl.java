@@ -125,7 +125,7 @@ public class NewsDaoImpl implements NewsDao{
 	  public List<NewsImpl> selectAllNews(int nid_uid_key,Connection conn,int pageNo,int pageSize) throws Exception
 	  {
 		  List<NewsImpl> list=new ArrayList<NewsImpl>();
-		  String sql="select *from news,type where nid_uid_key=? and nid_tid_key=tid  limit ?,?";
+		  String sql="select *from news,type where nid_uid_key=? and nid_tid_key=tid and news_state<3 limit ?,?";
 		  PreparedStatement ps=conn.prepareStatement(sql);
 		  ResultSet rs=null;
 		  ps.setInt(1, nid_uid_key);

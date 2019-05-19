@@ -126,6 +126,7 @@ img.emoji {
 <link rel='stylesheet' id='acp-filtering-table-css'  href='https://weilaiche.cc/wp-content/plugins/admin-columns-pro/classes/Filtering/assets/css/table.css?ver=4.3.8' type='text/css' media='all' />
 <link rel='stylesheet' id='acp-export-listscreen-css'  href='https://weilaiche.cc/wp-content/plugins/admin-columns-pro/classes/Export/assets/css/listscreen.css?ver=4.3.8' type='text/css' media='all' />
 <link rel='stylesheet' id='pods-styles-css'  href='https://weilaiche.cc/wp-content/plugins/pods/ui/styles/dist/pods.css?ver=2.7.1' type='text/css' media='all' />
+<script type="text/javascript" src="static/jquery/3.2.1/jquery-1.8.3.js"></script>
 		<script type="text/javascript">
 			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/weilaiche.cc\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.53"}};
 			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
@@ -189,6 +190,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
  var alldatavalue="";//得到所有选中checkbox的值,拼接为字符串
  function oncheckbox()
  {
+	 var nid=document.getElementsByName("nid");
  	boxname=document.getElementsByName("checkboxname");
  	for(var i=0;i<boxname.length;i++)
  	{
@@ -209,33 +211,23 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 			}
 		}
  	}
- 	alert("alldatavalue=="+alldatavalue);
+ 	nid.value=alldatavalue;
  } 
  
- function deletenews(sh)
+ function deletenews()
   	 {
-  	          alert("aaa"); 
-  	          var show=sh;
-  	          alert("show=="+show);
-  	          selectdelete=document.getElementById("textvalue").value;
-  	          alert("selectdelete=="+selectdelete);
-  	          alert("data=="+alldatavalue);
-  	          alert("alldatavalue=="+typeof(alldatavalue));
-		      if(selectdelete=="删除")
-		      {
+		     
 		         if(""!=alldatavalue)
 				   {
 					    $.ajax({
 					        type:"POST",
-					        url:"deletenewsmessage.do",
-					        data:"data="+alldatavalue,
+					        url:"news.do?param=removeToRecycle",
+					        data:"nid="+alldatavalue,
 					        success:function(returnval)
 							     {
 								     if("true"==returnval)
 								     {							  	
-								     alert("删除成功");	
-								     window.location.href="profile.jsp?show="+show;
-								     alert("更新成功");
+								     window.location.href="edit.jsp";
 								     } 
 								     else
 								     {
@@ -248,11 +240,8 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 				     {
 				     alert("请选择你要删除的数据");
 				     }
-			      }
-			       else
-			       {
-			       alert("请选择文本框的类型");
-			       }
+			      
+			      
   	 } 
 </script>
 
@@ -568,35 +557,35 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	DBHelper.closeCon(conn);
 	 %>
 
-<form id="posts-filter" method="get">
+<form id="posts-filter" method="get" action="news.do">
 
-<input type="hidden" name="orderby" value="title" /><input type="hidden" name="order" value="desc" /><p class="search-box">
+<input type="hidden"  value="title" /><input type="hidden"  value="desc" /><p class="search-box">
 	<label class="screen-reader-text" for="post-search-input">搜索文章:</label>
-	<input type="search" id="post-search-input" name="s" value="" />
+	<input type="search" id="post-search-input"  value="" />
 	<input type="submit" id="search-submit" class="button" value="搜索文章"  /></p>
 
-<input type="hidden" name="post_status" class="post_status_page" value="all" />
-<input type="hidden" name="post_type" class="post_type_page" value="post" />
+<input type="hidden"  class="post_status_page" value="all" />
+<input type="hidden"  class="post_type_page" value="post" />
 
-<input type="hidden" id="_wpnonce" name="_wpnonce" value="dcf7b0bb0c" /><input type="hidden" name="_wp_http_referer" value="/wp-admin/edit.php" />	<div class="tablenav top">
+<input type="hidden" id="_wpnonce"  value="dcf7b0bb0c" /><input type="hidden" name="_wp_http_referer" value="/wp-admin/edit.php" />	<div class="tablenav top">
 
 				<div class="alignleft actions bulkactions">
 			<label for="bulk-action-selector-top" class="screen-reader-text">选择批量操作</label><select name="action" id="bulk-action-selector-top">
-<option value="-1">批量操作</option>
-	<option value="edit" class="hide-if-no-js">编辑</option>
 	<option value="trash">移至回收站</option>
 </select>
-<input type="submit" id="doaction" class="button action" value="应用"  />
+<input type="hidden" name="param" value="removeToRecycle"/>
+<input type="hidden" name="nid" />
+<input type="button" id="doaction" class="button action" value="应用"  onclick="deletenews()"/>
 		</div>
 				<div class="alignleft actions">
 					<label for="filter-by-date" class="screen-reader-text">按日期筛选</label>
-		<select name="m" id="filter-by-date">
+		<select  id="filter-by-date">
 			<option selected='selected' value="0">全部日期</option>
 <c:forEach items="${requestScope.timetype }" var="timetypec" varStatus="cb">
 <option  value='201710'>${timetypec.timec }</option>
 	</c:forEach>
 		</select>
-<label class="screen-reader-text" for="cat">按分类过滤</label><select  name='cat' id='cat' class='postform' >
+<label class="screen-reader-text" for="cat">按分类过滤</label><select   id='cat' class='postform' >
 	<option value='0'>所有分类目录</option>
 	<c:forEach items="${requestScope.type }" var="typec" varStatus="cb">
 	<option class="level-0" value="173">${typec.tname }</option>
@@ -607,7 +596,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 			Filter by 全部状态		</label>
 
 		
-			<select name="acp_filter[5cb165b970a37]" id="acp-filter-5cb165b970a37" class="postform acp-filter" data-current="d41d8cd98f00b204e9800998ecf8427e">
+			<select  id="acp-filter-5cb165b970a37" class="postform acp-filter" data-current="d41d8cd98f00b204e9800998ecf8427e">
 				<option value="" selected="selected" data-value="d41d8cd98f00b204e9800998ecf8427e">全部状态</option>
 <option value="publish" data-value="9b6d0bb3102b87fae57bc4a39149518e">已发布</option>
 <option value="pending" data-value="7c6c2e5d48ab37a007cbf70d3ea25fa4">待审核</option>
@@ -987,13 +976,6 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 <div class="clear"></div></div><!-- wpbody -->
 <div class="clear"></div></div><!-- wpcontent -->
 
-<div id="wpfooter" role="contentinfo">
-		<p id="footer-left" class="alignleft">
-		<span id="footer-thankyou">感谢使用<a href="https://cn.wordpress.org/">WordPress</a>进行创作。</span>	</p>
-	<p id="footer-upgrade" class="alignright">
-		4.7.53版本	</p>
-	<div class="clear"></div>
-</div>
 		<form action="" method="post" id="acp-export">
 			<input type="hidden" id="_wpnonce" name="_wpnonce" value="a0f52f2db0" />			<input type="submit" class="button button-secondary"/>
 		</form>

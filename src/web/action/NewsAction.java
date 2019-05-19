@@ -1,5 +1,7 @@
 package web.action;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +21,7 @@ import util.creatkey;
 import web.core.ActionForm;
 import web.core.ActionForward;
 import web.core.DispatcherAction;
+import web.form.DeleteNewsMessageForm;
 import web.form.NewsForm;
 
 public class NewsAction extends DispatcherAction{
@@ -114,5 +117,61 @@ public class NewsAction extends DispatcherAction{
 		DBHelper.closeCon(conn);
 		return new ActionForward("edit");
 	}
-	
+	public ActionForward removeToRecycle(HttpServletRequest request,
+			HttpServletResponse response, ActionForm af){
+//
+//		
+//		
+		NewsForm ge= (NewsForm)af;
+		String data=ge.getNid();
+		MyLog.log.debug("data=="+data);
+		String str[]=data.split(",");
+		int l=str.length;
+		int count=0;
+	    Connection conn=DBHelper.getConnection();
+	    MyLog.log.debug("conn=="+conn);
+	    NewsDao u=new NewsDaoImpl();
+	    int nid;
+	    boolean flag=false;
+	    for (String string : str) {
+			MyLog.log.debug("datavalue=="+string);
+			nid=Integer.parseInt(string);
+			count++;
+			MyLog.log.debug("删除一篇文章成功");
+			try {
+				u.updateNewsState(nid, 3, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	    if(l==count)
+	    {
+	    	flag=true;
+	    }
+	    else
+	    {
+	    	flag=false;
+	    }
+	    String f="";
+	    if(flag)
+	    {
+				f="true";
+				
+		}
+		else
+		{
+				f="false";
+		}
+			PrintWriter pw;
+			try {
+				pw=response.getWriter();
+				pw.write(f);
+				MyLog.log.debug("f=="+f);
+				pw.flush();
+				pw.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return null;
+	}
 }

@@ -120,6 +120,5 @@ public interface NewsDao {
 		 		  */
 		 		 public int selectNewsMonthCount(int nid_uid_key,int news_state,Connection conn) throws Exception;
 
-		 		 
 
 }

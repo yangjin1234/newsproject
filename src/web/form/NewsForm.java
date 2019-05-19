@@ -5,9 +5,30 @@ import web.core.ActionForm;
 public class NewsForm extends ActionForm{
 
 	private String npost_title;
+	private String checkboxname;
+	public String getCheckboxname() {
+		return checkboxname;
+	}
+	public void setCheckboxname(String checkboxname) {
+		this.checkboxname = checkboxname;
+	}
+	public String getAction() {
+		return action;
+	}
+	public void setAction(String action) {
+		this.action = action;
+	}
+	private String action;
 	private String typename;
 	private String save;
 	private String nid;
+	private String data;
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
+	}
 	public String getNid() {
 		return nid;
 	}

@@ -833,6 +833,7 @@ public class NewsDaoImpl implements NewsDao{
 		 return count;
 	 }	
 	 //ÐÞ¸Ä
+	 //ÐÞ¸Ä
 	
 }
 	

@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class Userinformation implements Serializable{
 	public Userinformation() {
-		// TODO Auto-generated constructor stub
 	}
 	private int uid;
 	private String uname;

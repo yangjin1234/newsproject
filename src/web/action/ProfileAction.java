@@ -13,11 +13,14 @@ public class ProfileAction extends Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response, ActionForm af) {
-		String nickname=request.getParameter("nickname");
-		MyLog.log.debug("nickname="+nickname);
-		MyLog.log.debug("nickname="+nickname);
-		request.getSession().setAttribute("nickname", nickname);
-		return new ActionForward("profile");
+		String uname=request.getParameter("user_name");
+		MyLog.log.debug("user_name="+uname);
+		String email=request.getParameter("email");
+		String mobile=request.getParameter("mobile");
+		request.getSession().setAttribute("uname", uname);
+		request.getSession().setAttribute("email", email);
+		request.getSession().setAttribute("mobile", mobile);
+		return new ActionForward("profileweb");
 	}
 
 }

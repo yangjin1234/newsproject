@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <%@page import="pojo.impl.LoginImpl"%>
 <%@page import="dao.impl.LoginDaoImpl"%>
 <%@page import="dao.LoginDao"%>
@@ -67,7 +67,7 @@ img.emoji {
 <!--[if lt IE 8]>
 <link rel='stylesheet' id='twentyfifteen-ie7-css'  href='./wp-content/themes/twentyfifteen/css/ie7.css?ver=20141010' type='text/css' media='all' />
 <![endif]-->
-<link rel='stylesheet' id='mycred-front-css'  href='./wp-content/plugins/mycred/assets/css/mycred-front.css?ver=1.7.9.1' type='text/css' media='all' />
+<link rel='stylesheet' id='mycred-front-css'  href='http://weilaiche.cc/wp-content/plugins/mycred/assets/css/mycred-front.css?ver=1.7.9.1' type='text/css' media='all' />
 <link rel='stylesheet' id='mycred-notifications-css'  href='./wp-content/plugins/mycred/addons/notifications/assets/css/notify.css?ver=1.1.2.2' type='text/css' media='all' />
 <script type='text/javascript' src='./wp-content/plugins/site-announcements/public/js/js.cookie.js?ver=1.0.3'></script>
 <script type='text/javascript' src='./wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
@@ -127,10 +127,10 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 		* html body { margin-top: 46px !important; }
 	}
 </style>
-<script src="/static/jquery/3.2.1/jquery.min.js"></script>
-<link href="/static/semantic-ui/2.3.1/components/icon.min.css" rel="stylesheet">
-<link href="/static/semantic-ui/2.3.1/components/message.min.css" rel="stylesheet">
-<link href="/static/semantic-ui/2.3.1/components/table.min.css" rel="stylesheet">
+<script src="http://weilaiche.cc/static/jquery/3.2.1/jquery.min.js"></script>
+<link href="http://weilaiche.cc/static/semantic-ui/2.3.1/components/icon.min.css" rel="stylesheet">
+<link href="http://weilaiche.cc/static/semantic-ui/2.3.1/components/message.min.css" rel="stylesheet">
+<link href="http://weilaiche.cc/static/semantic-ui/2.3.1/components/table.min.css" rel="stylesheet">
 </head>
 
 <body class="home blog logged-in admin-bar no-customize-support custom-background">
@@ -399,13 +399,13 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	</div><!-- .site -->
 
 	<script type='text/javascript' src='./wp-includes/js/admin-bar.min.js?ver=4.7.53'></script>
-<script type='text/javascript' src='./wp-content/themes/twentyfifteen/js/skip-link-focus-fix.js?ver=20141010'></script>
+<script type='text/javascript' src='http://weilaiche.cc/wp-content/themes/twentyfifteen/js/skip-link-focus-fix.js?ver=20141010'></script>
 <script type='text/javascript'>
 /* <![CDATA[ */
 var screenReaderText = {"expand":"<span class=\"screen-reader-text\">\u5c55\u5f00\u5b50\u83dc\u5355<\/span>","collapse":"<span class=\"screen-reader-text\">\u6298\u53e0\u5b50\u83dc\u5355<\/span>"};
 /* ]]> */
 </script>
-<script type='text/javascript' src='./wp-content/themes/twentyfifteen/js/functions.js?ver=20150330'></script>
+<script type='text/javascript' src='http://weilaiche.cc/wp-content/themes/twentyfifteen/js/functions.js?ver=20150330'></script>
 <script type='text/javascript'>
 /* <![CDATA[ */
 var myCRED_Notice = {"ajaxurl":"https:\/\/weilaiche.cc\/wp-admin\/admin-ajax.php","duration":"5"};

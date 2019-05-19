@@ -42,10 +42,10 @@ public class ProfileAction extends Action{
 				user.setUphoto(uphoto);
 				UserInformationService useris=new UserInformationServiceImpl();
 				useris.updateUser(user);
-				request.getSession().setAttribute("uname", uname);
-				request.getSession().setAttribute("uemail", uemail);
-				request.getSession().setAttribute("umobile", uphone);
-				request.getSession().setAttribute("uphoto", uphoto);
+				request.getSession().setAttribute("uname", user.getUname());
+				request.getSession().setAttribute("uemail", user.getUemail());
+				request.getSession().setAttribute("umobile", user.getUphone());
+				request.getSession().setAttribute("uphoto", user.getUphoto());
 				return new ActionForward("profileweb");
 	}
 

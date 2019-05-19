@@ -34,7 +34,14 @@ public class ProfileAction extends Action{
 				uemail=request.getParameter("email");
 				uphone=request.getParameter("mobile");
 				uphoto=request.getParameter("photo");
-				
+				Userinformation user=new Userinformation();
+				user.setUname(uname);
+				user.setUsex(usex);
+				user.setUemail(uemail);
+				user.setUphone(uphone);
+				user.setUphoto(uphoto);
+				UserInformationService useris=new UserInformationServiceImpl();
+				useris.updateUser(user);
 				request.getSession().setAttribute("uname", uname);
 				request.getSession().setAttribute("uemail", uemail);
 				request.getSession().setAttribute("umobile", uphone);

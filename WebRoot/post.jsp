@@ -334,7 +334,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 
 <div id="publishing-action">
 <span class="spinner"></span>
-		<input name="param" type="hidden" id="original_publish" value="insertNews" />
+		<input name="param" type="hidden" id="original_publish" value="updataNews" />
 		<input name="original_publish" type="hidden" id="original_publish" value="提交审核" />
 		<input type="submit" name="npublish" id="npublish" class="button button-primary button-large" value="提交审核"  /></div>
 <div class="clear"></div>

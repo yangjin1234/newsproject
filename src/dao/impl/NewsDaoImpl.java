@@ -561,7 +561,18 @@ public class NewsDaoImpl implements NewsDao{
 		  return count%pageSize==0?count/pageSize:count/pageSize+1;
 	  }
 	public boolean updateNews(News n, Connection conn) throws Exception {
-		// TODO Auto-generated method stub
+		String sql="update news set ntitle=?,ncontent=?,nid_tid_key=?,news.namend_time=? WHERE nid=?";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		ps.setString(1, n.getTitle());
+		ps.setString(2, n.getNcontent());
+		ps.setInt(3, n.getNid_tid_key());
+		ps.setTimestamp(4, n.getNamend_time());
+		ps.setInt(5, n.getNid());
+		int m=ps.executeUpdate();
+		if(m>0){
+			MyLog.log.debug("updateNewsĞŞ¸Ä³É¹¦");
+			return true;
+		}
 		return false;
 	}
 }

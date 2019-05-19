@@ -219,7 +219,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 <tr class="user-profile-picture">
 	<th>资料图片</th>
 	<td>
-		<img alt='' src='https://secure.gravatar.com/avatar/54311cd9e80d1ddcad3697b15ae032be?s=96&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/54311cd9e80d1ddcad3697b15ae032be?s=192&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' />		
+		<img name="photo" alt='' src='https://secure.gravatar.com/avatar/54311cd9e80d1ddcad3697b15ae032be?s=96&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/54311cd9e80d1ddcad3697b15ae032be?s=192&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' />		
 	</td>
 </tr>
 </table>

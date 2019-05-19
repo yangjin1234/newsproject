@@ -93,7 +93,7 @@ public class UserinformationDaoImpl implements UserinformationDao{
 		ps.setString(3, user.getUemail());
 		ps.setString(4, user.getUphone());
 		ps.setString(5, user.getUphoto());
-		ps.setInt(9, user.getUid());
+		ps.setInt(6, user.getUid());
 		int count = ps.executeUpdate();
 		if(count>0){
 				return true;

@@ -1,5 +1,8 @@
 package web.action;
 
+import java.io.FileOutputStream;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +15,7 @@ import web.core.Action;
 import web.core.ActionForm;
 import web.core.ActionForward;
 import web.core.DispatcherAction;
+
 
 public class ProfileAction extends DispatcherAction{
 
@@ -37,6 +41,15 @@ public class ProfileAction extends DispatcherAction{
 	public ActionForward updateUser(HttpServletRequest request,
 			HttpServletResponse response, ActionForm af) {
 		//上传修改信息
+//		String uphoto = request.getParameter("photo");
+//		uphoto = uphoto.substring(uphoto.indexOf(",")+1);
+//		BASE64Decoder bd = new BASE64Decoder();
+//		byte[] b = bd.decodeBuffer(uphoto);
+//		String path = request.getSession().getServletContext().getRealPath("/")+"upload/"+new Date().getTime()+".jpg";
+//		FileOutputStream fos = new FileOutputStream(path);
+//		fos.write(b);
+//		fos.flush();
+//		fos.close();
 		String uname=request.getParameter("user_name");
 		MyLog.log.debug("user_name="+uname);
 		String usex=request.getParameter("user_sex");

@@ -59,7 +59,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 	</script>
 <script type="text/javascript">var _wpColorScheme = {"icons":{"base":"#999","focus":"#ccc","current":"#ccc"}};</script>
 <style type="text/css" media="print">#wpadminbar { display:none; }</style>
-<script type="text/javascript" src=""></script>
+<script type="text/javascript" src="jquery-1.8.3.js"></script>
 <script type="text/javascript">
 	function jump(){
 		var usex=document.getElementsByName("sex");
@@ -74,7 +74,17 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 		}
 	}
 	
-	
+	function upload(obj){
+			var fr = new FileReader();
+			var f = obj.files[0];
+			fr.readAsDataURL(f);
+			fr.onload = function(e){
+			//预览
+				var data = e.target.result;
+				document.getElementById("myimg").src=data;
+				document.getElementById("photo").value=data;
+			};
+		}
 </script>
 </head>
 <body class="wp-admin wp-core-ui no-js  profile-php auto-fold admin-bar branch-4-7 version-4-7-53 admin-color-light locale-zh-cn no-customize-support no-svg" onload="jump()">
@@ -176,7 +186,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 
 <div class="wrap" id="profile-page">
 <h1>个人资料</h1>
-<form id="your-profile" action="profile1.do?param=updateUser" method="post" novalidate="novalidate" enctype="multipart/form-data">
+<form id="your-profile" action="profile1.do?param=updateUser" method="post" novalidate="novalidate" >
 <table class="form-table">
 </table>
 <hr />
@@ -238,7 +248,9 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 	<th>资料图片</th>
 	<td>
 		<input type="file" name="photo" onchange="upload(this)"/><br/>
-		<a href="http://localhost:8080/Newsproject/avatar/84b1e930ec77021a8c343b7061cc3a9f.png"><img src="acatar/84b1e930ec77021a8c343b7061cc3a9f.png" width="200px" height="200px"/></a>
+   				<input type="hidden" name="photo" id="photodata"/>
+   			<img id="myimg"  width="200px" height="200px" onchange="upload(this)"/>
+		
 		<img name="photo" alt='' src='http://localhost:8080/Newsproject/avatar/54311cd9e80d1ddcad3697b15ae032be?s=96&#038;d=wavatar&#038;r=g' srcset='http://localhost:8080/Newsproject/avatar/54311cd9e80d1ddcad3697b15ae032be?s=192&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' />		
 	</td>
 </tr>

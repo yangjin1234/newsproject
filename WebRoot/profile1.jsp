@@ -59,8 +59,26 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 	</script>
 <script type="text/javascript">var _wpColorScheme = {"icons":{"base":"#999","focus":"#ccc","current":"#ccc"}};</script>
 <style type="text/css" media="print">#wpadminbar { display:none; }</style>
+<script type="text/javascript" src=""></script>
+<script type="text/javascript">
+	function jump(){
+		var usex=document.getElementsByName("sex");
+		if(usex=="女"){
+			var iuser_sex=document.getElementsByName("user_sex");
+				iuser_sex[0].checked=true;
+				iuser_sex[1].checked=false;
+		}else{
+			var iuser_sex=document.getElementsByName("user_sex");
+				iuser_sex[1].checked=true;
+				iuser_sex[0].checked=false;
+		}
+	}
+	
+	
+</script>
 </head>
-<body class="wp-admin wp-core-ui no-js  profile-php auto-fold admin-bar branch-4-7 version-4-7-53 admin-color-light locale-zh-cn no-customize-support no-svg">
+<body class="wp-admin wp-core-ui no-js  profile-php auto-fold admin-bar branch-4-7 version-4-7-53 admin-color-light locale-zh-cn no-customize-support no-svg" onload="jump()">
+<input name="sex" type="hidden" value=""${sessionScope.usex }/>
 <script type="text/javascript">
 	document.body.className = document.body.className.replace('no-js','js');
 </script>
@@ -158,7 +176,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 
 <div class="wrap" id="profile-page">
 <h1>个人资料</h1>
-<form id="your-profile" action="profile1.do?param=selectUser" method="post" novalidate="novalidate">
+<form id="your-profile" action="profile1.do?param=updateUser" method="post" novalidate="novalidate" enctype="multipart/form-data">
 <table class="form-table">
 </table>
 <hr />
@@ -193,8 +211,8 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 	</tr>
 	<tr class="user-user-sex-wrap">
 		<th><label for="user-sex">性别</label></th>
-		<td><input type="radio" name="user_sex" id="user-sex" value="男" checked="checked" ><label for="user-sex-men">男</label>
-			<input type="radio"  name="user_sex" id="user-sex" value="女" ><label for="user-sex-women">女</label>
+		<td><input type="radio" name="user_sex" id="user-men" value="男" checked="checked" ><label for="user-sex-men">男</label>
+			<input type="radio"  name="user_sex" id="user-women" value="女" ><label for="user-sex-women">女</label>
 		</td>
 	</tr>
 
@@ -219,7 +237,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 <tr class="user-profile-picture">
 	<th>资料图片</th>
 	<td>
-		<input>
+		<input type="file" name="photo" onchange="upload(this)"/><br/>
 		<a href="http://localhost:8080/Newsproject/avatar/84b1e930ec77021a8c343b7061cc3a9f.png"><img src="acatar/84b1e930ec77021a8c343b7061cc3a9f.png" width="200px" height="200px"/></a>
 		<img name="photo" alt='' src='http://localhost:8080/Newsproject/avatar/54311cd9e80d1ddcad3697b15ae032be?s=96&#038;d=wavatar&#038;r=g' srcset='http://localhost:8080/Newsproject/avatar/54311cd9e80d1ddcad3697b15ae032be?s=192&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' />		
 	</td>

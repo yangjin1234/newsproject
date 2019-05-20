@@ -27,47 +27,23 @@ public class ProfileAction extends DispatcherAction{
 				 String uemail=useri.getUemail();
 				 String uphone=useri.getUphone();
 				 String uphoto=useri.getUphoto();
-				 uname=request.getParameter("user_name");
-				MyLog.log.debug("user_name="+uname);
-				usex=request.getParameter("user_sex");
-				MyLog.log.debug("user_sex="+usex);
-				uemail=request.getParameter("email");
-				uphone=request.getParameter("mobile");
-				uphoto=request.getParameter("photo");
-				Userinformation user=new Userinformation();
-				user.setUname(uname);
-				user.setUsex(usex);
-				user.setUemail(uemail);
-				user.setUphone(uphone);
-				user.setUphoto(uphoto);
-				UserInformationService useris=new UserInformationServiceImpl();
-				boolean flag=useris.updateUser(user);
-				MyLog.log.debug("flag="+flag);
-				request.getSession().setAttribute("uname", user.getUname());
-				request.getSession().setAttribute("uemail", user.getUemail());
-				request.getSession().setAttribute("umobile", user.getUphone());
-				request.getSession().setAttribute("uphoto", user.getUphoto());
+				 request.getSession().setAttribute("usex", usex);
+				request.getSession().setAttribute("uname", uname);
+				request.getSession().setAttribute("uemail", uemail);
+				request.getSession().setAttribute("uphone", uphone);
+				request.getSession().setAttribute("uphoto", uphoto);
 				return new ActionForward("profileweb");
 	}
 	public ActionForward updateUser(HttpServletRequest request,
 			HttpServletResponse response, ActionForm af) {
-		//得到登录用户
-		LoginImpl log=new LoginImpl();
-		log=(LoginImpl)request.getSession().getAttribute("account");
-		String uname=log.getLname();
-		UserInformationService uis=new UserInformationServiceImpl();
-		Userinformation useri=uis.selectUserByName(uname);
-		String usex=useri.getUsex();
-		String uemail=useri.getUemail();
-		String uphone=useri.getUphone();
-		String uphoto=useri.getUphoto();
-		uname=request.getParameter("user_name");
+		//上传修改信息
+		String uname=request.getParameter("user_name");
 		MyLog.log.debug("user_name="+uname);
-		usex=request.getParameter("user_sex");
+		String usex=request.getParameter("user_sex");
 		MyLog.log.debug("user_sex="+usex);
-		uemail=request.getParameter("email");
-		uphone=request.getParameter("mobile");
-		uphoto=request.getParameter("photo");
+		String uemail=request.getParameter("email");
+		String uphone=request.getParameter("mobile");
+		String uphoto=request.getParameter("photo");
 		Userinformation user=new Userinformation();
 		user.setUname(uname);
 		user.setUsex(usex);
@@ -77,9 +53,10 @@ public class ProfileAction extends DispatcherAction{
 		UserInformationService useris=new UserInformationServiceImpl();
 		boolean flag=useris.updateUser(user);
 		MyLog.log.debug("flag="+flag);
+		 Userinformation useri=useris.selectUserByName(uname);
 		request.getSession().setAttribute("uname", user.getUname());
 		request.getSession().setAttribute("uemail", user.getUemail());
-		request.getSession().setAttribute("umobile", user.getUphone());
+		request.getSession().setAttribute("uphone", user.getUphone());
 		request.getSession().setAttribute("uphoto", user.getUphoto());
 		return new ActionForward("profileweb");
 	}

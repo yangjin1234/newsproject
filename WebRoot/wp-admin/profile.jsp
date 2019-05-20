@@ -220,7 +220,8 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 	<th>资料图片</th>
 	<td>
 		<input>
-		<img name="photo" alt='' src='https://secure.gravatar.com/avatar/54311cd9e80d1ddcad3697b15ae032be?s=96&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/54311cd9e80d1ddcad3697b15ae032be?s=192&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' />		
+		<a href="http://localhost:8080/Newsproject/avatar/84b1e930ec77021a8c343b7061cc3a9f.png"><img src="acatar/84b1e930ec77021a8c343b7061cc3a9f.png" width="200px" height="200px"/></a>
+		<img name="photo" alt='' src='http://localhost:8080/Newsproject/avatar/54311cd9e80d1ddcad3697b15ae032be?s=96&#038;d=wavatar&#038;r=g' srcset='http://localhost:8080/Newsproject/avatar/54311cd9e80d1ddcad3697b15ae032be?s=192&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' />		
 	</td>
 </tr>
 </table>

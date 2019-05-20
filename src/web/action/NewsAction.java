@@ -88,7 +88,6 @@ public class NewsAction extends DispatcherAction{
 		MyLog.log.debug("account="+account.getLid());
 		News ns=new News();
 		ns.setNamend_time(GetDate.getNowDate2(GetDate.getNowDate()));
-		ns.setNupload_time(GetDate.getNowDate2(GetDate.getNowDate()));
 		ns.setNid(nid);
 		ns.setTitle(ntitle);
 		ns.setNid_uid_key(account.getLid());/////

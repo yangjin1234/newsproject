@@ -36,6 +36,7 @@ public class ChangeUserEmailAction extends Action{
 				f="false";
 			}
 			MyLog.log.debug("flag=="+flag);
+			MyLog.log.debug("flag=="+flag);
 			PrintWriter pw;
 			pw=response.getWriter();
 			pw.write(f);

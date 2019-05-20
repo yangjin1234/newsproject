@@ -25,7 +25,6 @@ public class SessionFilter implements Filter{
 		HttpServletResponse response=(HttpServletResponse)arg1;
 		Object ob=request.getSession().getAttribute("account");
 		if(ob==null){
-			autoJump(request, response, "ÇëÏÈµÇÂ¼");
 			request.getRequestDispatcher("./login.jsp").forward(request, response);
 		}else{
 			arg2.doFilter(arg0, arg1);

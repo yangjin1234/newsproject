@@ -96,7 +96,6 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 	     divemail=document.getElementById("contentemail");
 	     email=$("#email").val();
 	     //alert("useremail"+useremail);
-	     //alert("useremail"+useremail);
 	     $.ajax({
 	     type:"POST",
 	     url:"changeuseremail.do",
@@ -112,7 +111,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 		     }
 		     else
 		     {
-			     if(""==user_email)
+			     if(""==email)
 			     {
 			     divemail.innerText="输入的邮箱不能为空";
 			     divemail.style.color="red";

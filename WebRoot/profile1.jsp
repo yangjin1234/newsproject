@@ -158,7 +158,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 
 <div class="wrap" id="profile-page">
 <h1>个人资料</h1>
-<form id="your-profile" action="profile.do" method="post" novalidate="novalidate">
+<form id="your-profile" action="profile1.do?param=selectUser" method="post" novalidate="novalidate">
 <table class="form-table">
 </table>
 <hr />

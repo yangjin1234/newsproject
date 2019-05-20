@@ -85,6 +85,75 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 				document.getElementById("photo").value=data;
 			};
 		}
+		
+		var email;
+		var mobile;
+		var divemail;
+		var divmobile;
+		var emailb;
+		function emailjudge()
+     {
+	     divemail=document.getElementById("contentemail");
+	     email=$("#email").val();
+	     //alert("useremail"+useremail);
+	     $.ajax({
+	     type:"POST",
+	     url:"changeuseremail.do",
+	     data:"data="+email,
+	     success:function(returnval)
+	     {
+	     alert(returnval);
+		     if("true"==returnval)
+		     {
+		      divemail.innerText="邮箱正确";
+		      divemail.style.color="green";
+		      emailb="true";
+		     }
+		     else
+		     {
+			     if(""==user_email)
+			     {
+			     divemail.innerText="输入的邮箱不能为空";
+			     divemail.style.color="red";
+			     emailb="false";
+			     }
+			     else
+			     {
+			     divemail.innerText="输入的邮箱格式有误";
+			     divemail.style.color="red";
+			     emailb="false";
+		     	 }
+		     }
+	     }
+	    });
+  }
+  	function changephone()
+     {
+	      divmobile=document.getElementById("contentphone");
+	      mobile=$("#mobile").val();
+	     // alert("user_pwd1"+user_pwd1);
+	      if(""==mobile)
+	      {
+	      divmobile.innerText="手机号不能为空";
+	      divmobile.style.color="red";
+	      mobileb="false";
+	      }
+	      else
+	      {
+		      if(mobile.length<=11)
+		      {
+		      divmonile.innerText="手机号至少大于11";
+		      divmonile.style.color="red";
+		      mobileb="false";
+		      }
+		      else
+		      {
+		      divmonile.innerText="输入手机格式正确";
+		      divmonile.style.color="green";
+		      mobileb="true";
+		      }
+	      }
+      }
 </script>
 </head>
 <body class="wp-admin wp-core-ui no-js  profile-php auto-fold admin-bar branch-4-7 version-4-7-53 admin-color-light locale-zh-cn no-customize-support no-svg" onload="jump()">
@@ -232,12 +301,14 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 <table class="form-table">
 <tr class="user-email-wrap">
 	<th><label for="email">电子邮件 <span class="description">（必填）</span></label></th>
-	<td><input type="email" name="email" id="email" value="${sessionScope.uemail }" class="regular-text ltr" />
+	<td><input type="email" name="email" id="email" value="${sessionScope.uemail }" onblur="emailjudge()" class="regular-text ltr" />
+	<div id="contentemail" style="display:inline"></div>
 		</td>
 </tr>
 <tr class=user-mobile-wrap>
 	<th><label for="mobile">手机号码<span class="description">（必填）</span></label></th>
 	<td><input type="number" name="mobile" id="mobile" value="${sessionScope.uphone }" class="regular-text code"/>
+	<div id="contentphone" style="display:inline"></div>
 	</td>
 </tr>
 </table>

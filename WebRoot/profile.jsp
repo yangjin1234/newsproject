@@ -1,3 +1,5 @@
+<%@page import="dao.impl.LoginDaoImpl"%>
+<%@page import="dao.LoginDao"%>
 <%@page import="dao.impl.UserinformationDaoImpl"%>
 <%@page import="dao.UserinformationDao"%>
 <%@page import="pojo.Login"%>
@@ -46,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	if(boxname[i].checked)
 	 	{
 	 	datavalue=boxname[i].value+",";
-	 	alert("if=="+alldatavalue.indexOf(boxname[i].value,0));
+	 	//alert("if=="+alldatavalue.indexOf(boxname[i].value,0));
 		 	if(alldatavalue.indexOf(boxname[i].value, 0)==-1)
 		 	{
 		 	alldatavalue+=datavalue;
@@ -55,26 +57,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	}
 	 	else
 	 	{
-		 	alert("else=="+alldatavalue.indexOf(boxname[i].value),0);
+		 	//alert("else=="+alldatavalue.indexOf(boxname[i].value),0);
 		 	if(alldatavalue.indexOf(boxname[i].value, 0)!=-1)
 			{
-			alert("boxname=="+boxname[i].value);
+			//alert("boxname=="+boxname[i].value);
 			alldatavalue=alldatavalue.replace(boxname[i].value+",","");
 			}
 		}
- 	alert("alldatavalue=="+alldatavalue)
+ 	//alert("alldatavalue=="+alldatavalue)
  	}
  } 
  
  function deletenews(sh)
   	 {
-  	          alert("aaa"); 
+  	         // alert("aaa"); 
   	          var show=sh;
-  	          alert("show=="+show);
+  	         // alert("show=="+show);
   	          selectdelete=document.getElementById("textvalue").value;
-  	          alert("selectdelete=="+selectdelete);
-  	          alert("data=="+alldatavalue);
-  	          alert("alldatavalue=="+typeof(alldatavalue));
+  	        //  alert("selectdelete=="+selectdelete);
+  	          //alert("data=="+alldatavalue);
+  	          //alert("alldatavalue=="+typeof(alldatavalue));
 		      if(selectdelete=="删除")
 		      {
 		         if(""!=alldatavalue)
@@ -110,24 +112,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	 } 
   	 
   	  //点击过滤，根据选择的降序，升序进行排序
-  	function clickorder(sh)
-  	{
-              alert("aaa"); 
-  	          var show=sh;
-  	          alert("show=="+show);
-  	          ordertype=document.getElementById("getorder").value;
-  	          alert("ordertype=="+ordertype);
-		      if(ordertype=="顺序"||ordertype=="显示顺序")
-		      {
-		    	window.location.href="profile.jsp?order1=1&show="+show;
-				alert("顺序成功");
-		      } 
-		      else
-		      {
-		      window.location.href="profile.jsp?order1=2&show="+show;
-			  alert("反序成功");
-		      }
-}
+  //	function clickorder(sh)
+ // 	{
+   //           alert("aaa"); 
+  //	          var show=sh;
+  	//          alert("show=="+show);
+  	  //        ordertype=document.getElementById("getorder").value;
+  	   //       alert("ordertype=="+ordertype);
+		 //     if(ordertype=="顺序"||ordertype=="显示顺序")
+		   //   {
+		    //	window.location.href="profile.jsp?order1=1&show="+show;
+				//alert("顺序成功");
+		      //} 
+		      //else
+		      //{
+		      //window.location.href="profile.jsp?order1=2&show="+show;
+			  //alert("反序成功");
+		      //}
+//}
   	 
   	 
 </script>
@@ -241,10 +243,10 @@ jQuery(function($) {
 		<li id="wp-admin-bar-comments"><a class="ab-item" href="https://weilaiche.cc/wp-admin/edit-comments.php"><span class="ab-icon"></span><span class="ab-label awaiting-mod pending-count count-0" aria-hidden="true">0</span><span class="screen-reader-text">0条评论待审</span></a>		</li>
 		<li id="wp-admin-bar-new-content" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/wp-admin/post-new.php"><span class="ab-icon"></span><span class="ab-label">新建</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
 		<li id="wp-admin-bar-new-post"><a class="ab-item" href="https://weilaiche.cc/wp-admin/post-new.php">文章</a>		</li></ul></div>		</li></ul><ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
-		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/wp-admin/profile.php">嗨，1996<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
-		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="https://weilaiche.cc/wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>1996</span></a>		</li>
-		<li id="wp-admin-bar-edit-profile"><a class="ab-item" href="https://weilaiche.cc/wp-admin/profile.php">编辑我的个人资料</a>		</li>
-		<li id="wp-admin-bar-logout"><a class="ab-item" href="https://weilaiche.cc/wp-login.php?action=logout&#038;_wpnonce=57ebb2a207">登出</a>		</li></ul><ul id="wp-admin-bar-my-account-default" class="ab-submenu">
+		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="">嗨,${loginname}<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
+		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="https://weilaiche.cc/wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>${loginname }</span></a>		</li>
+		<li id="wp-admin-bar-edit-profile"><a class="ab-item" href="profile1.jsp">编辑我的个人资料</a>		</li>
+		<li id="wp-admin-bar-logout"><a class="ab-item" href="login.jsp?action=logout&#038;_wpnonce=57ebb2a207">登出</a>		</li></ul><ul id="wp-admin-bar-my-account-default" class="ab-submenu">
 		<li id="wp-admin-bar-mycred-account" class="menupop ab-sub-secondary"><div class="ab-item ab-empty-item" aria-haspopup="true">余额</div><div class="ab-sub-wrapper"><ul id="wp-admin-bar-mycred-account-default" class="ab-submenu">
 		<li id="wp-admin-bar-mycred-account-balance-mycred-default"><div class="ab-item ab-empty-item">经验: 457 点</div>		</li>
 		<li id="wp-admin-bar-mycred-account-history-mycred-default"><a class="ab-item" href="https://weilaiche.cc/wp-admin/users.php?page=mycred_default-history">经验 历史记录</a>		</li>
@@ -298,7 +300,6 @@ jQuery(function($) {
 	<li class=""><a href="profile.jsp?show=null" class="current">所有的</a> | </li>
 	<li class="today"><a href="profile.jsp?show=today">今日</a> | </li>
 	<li class="yesterday"><a href="profile.jsp?show=yesterday">昨日</a> | </li>
-	<li class="thisweek"><a href="https://weilaiche.cc/wp-admin/users.php?page=mycred_money-history&#038;show=thisweek">本周</a> | </li>
 	<li class="thismonth"><a href="profile.jsp?show=thismonth">本月</a></li></ul>
 	<div style="display:none;" class="clear" id="export-log-history">
 	<strong>出口:</strong>
@@ -311,11 +312,16 @@ jQuery(function($) {
     String show=request.getParameter("show");
     MyLog.log.debug("show11=="+show);
     Connection conn=DBHelper.getConnection();
-    //得到登录用户
+    //得到登录用户，类
 	LoginImpl log=new LoginImpl();
+	//dao包
+	LoginDao login=new LoginDaoImpl();
+	MyLog.log.debug("查询登录表，根据用户名");
 	log=(LoginImpl)request.getSession().getAttribute("account");
+	MyLog.log.debug("进入查询登录表，根据用户名");
 	//得到登录id
-	Login logf=ld.selectUserPassByName(log.getLname(), conn);
+	String loginname=log.getLname();
+	Login logf=login.selectUserPassByName(loginname, conn);
 	int loginId=logf.getLid();
 	MyLog.log.debug("loginId=="+loginId);
 	//根据登录id，得到用户id
@@ -332,14 +338,14 @@ jQuery(function($) {
     int n=0;
 	    if(ps==null)
 	    {
-	   	    pageSize=2;
+	   	    pageSize=15;
 	    }
 	    else
 	    {
 		    pageSize=Integer.parseInt(ps);
 		    if(pageSize<1)
 		    {
-		    pageSize=2;       
+		    pageSize=15;       
 		    }
 		    if(pageSize>20)
 		    {
@@ -426,6 +432,8 @@ jQuery(function($) {
 		pageContext.setAttribute("newscount", n);
 		MyLog.log.debug("show22="+show);
 		pageContext.setAttribute("show", show);
+		session.setAttribute("loginname", loginname);
+		
 		
 	%>
 	<form method="get" action="" name="mycred-mylog-form" novalidate>

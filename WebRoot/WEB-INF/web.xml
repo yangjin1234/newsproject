@@ -47,7 +47,7 @@
 <url-pattern>/profile.jsp</url-pattern>
 <url-pattern>/register.jsp</url-pattern>
 <url-pattern>/login.jsp</url-pattern>
-<url-pattern>/wp-admin/profile1.jsp</url-pattern>
+<url-pattern>/profile1.jsp</url-pattern>
 </filter-mapping>  
   
   <welcome-file-list>

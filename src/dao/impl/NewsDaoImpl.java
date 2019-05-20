@@ -948,7 +948,83 @@ public class NewsDaoImpl implements NewsDao{
 		 return count;
 	 }	
 	 
-	
+	 public List<News> selectNewsMonthOrder(Connection conn,int nid_uid_key,int news_state,int pageNo,int pageSize) throws Exception
+		{
+			MyLog.log.debug("进入查询文章的本月的分页数据并根据时间排序");
+			 String sql="select *from news where nid_uid_key=? and news_state=? and MONTH(namend_time)=? and YEAR(namend_time)=?  limit ?,? order by namend_time asc";
+			 PreparedStatement ps=conn.prepareStatement(sql);
+			 ResultSet rs=null;
+			 List<News> list=new ArrayList<News>();
+			 String nowdate=GetDate.getNowDate();
+			 MyLog.log.debug("selectNewsLastDay当前时间为："+nowdate);
+			 int a=nowdate.lastIndexOf("-");
+			 int b=nowdate.indexOf("-");
+			 
+			 String year=nowdate.substring(0, b);
+			 MyLog.log.debug("year=="+year);
+			 
+			 String month=nowdate.substring(b+1, a);
+			 MyLog.log.debug("month=="+month);
+			 
+			 
+			 
+			 ps.setInt(1, nid_uid_key);
+			 ps.setInt(2, news_state);
+			 ps.setString(3, month);
+			 ps.setString(4, year);
+			 ps.setInt(5, (pageNo-1)*pageSize);
+			 ps.setInt(6, pageSize);
+			 rs=ps.executeQuery();
+			 while(rs.next())
+			 {
+				 News n=new News();
+				 n.setNamend_time(rs.getTimestamp("namend_time"));
+				 n.setNcontent(rs.getString("ncontent"));
+				 n.setNews_state(rs.getInt("news_state"));
+				 n.setNid(rs.getInt("nid"));
+				 n.setNid_uid_key(rs.getInt("nid_uid_key"));
+				 n.setNsalary(rs.getDouble("nsalary"));
+				 n.setNsalary_state(rs.getInt("nsalary_state"));
+				 n.setNupload_time(rs.getTimestamp("nupload_time"));
+				 n.setTitle(rs.getString("ntitle"));
+				 n.setNid_tid_key(rs.getInt("nid_tid_key"));
+				 n.setNid_sid_key(rs.getInt("nid_sid_key"));
+				 MyLog.log.debug("查询出了数据===");
+				 list.add(n);
+			 }
+			 return list;
+		}
+
+		 public List<News>  selectAllNewsOrder(int nid_uid_key,int news_state,Connection conn,int pageNo,int pageSize) throws Exception
+		  {
+			  List<News> list=new ArrayList<News>();		
+			  String sql="select *from news where nid_uid_key=? and news_state=? limit ?,? order by nid desc";
+			  PreparedStatement ps=conn.prepareStatement(sql);
+			  ResultSet rs=null;
+			  ps.setInt(1, nid_uid_key);
+			  ps.setInt(2,news_state );
+			  ps.setInt(3, (pageNo-1)*pageSize);
+			  ps.setInt(4, pageSize);
+			  rs=ps.executeQuery();
+			  while(rs.next())
+			  {
+				  News n=new News();
+				  n.setNamend_time(rs.getTimestamp("namend_time"));
+				  n.setNcontent(rs.getString("ncontent"));
+				  n.setNews_state(rs.getInt("news_state"));
+				  n.setNid(rs.getInt("nid"));
+				  n.setNid_uid_key(rs.getInt("nid_uid_key"));
+				  n.setNsalary(rs.getDouble("nsalary"));
+				  n.setNsalary_state(rs.getInt("nsalary_state"));
+				  n.setNupload_time(rs.getTimestamp("nupload_time"));
+				  n.setTitle(rs.getString("ntitle"));
+				  n.setNid_tid_key(rs.getInt("nid_tid_key"));
+				  n.setNid_sid_key(rs.getInt("nid_sid_key"));
+				  MyLog.log.debug("查询出了数据===");
+				  list.add(n);
+			  }
+			  return list;
+		  }
 }
 	
 

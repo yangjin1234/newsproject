@@ -104,6 +104,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			       alert("请选择文本框的类型");
 			       }
   	 } 
+  	 
+  	  //点击过滤，根据选择的降序，升序进行排序
+  	function clickorder(sh)
+  	{
+              alert("aaa"); 
+  	          var show=sh;
+  	          alert("show=="+show);
+  	          ordertype=document.getElementById("getorder").value;
+  	          alert("ordertype=="+ordertype);
+		      if(ordertype=="顺序"||ordertype=="显示顺序")
+		      {
+		    	window.location.href="profile.jsp?order1=1&show="+show;
+				alert("顺序成功");
+		      } 
+		      else
+		      {
+		      window.location.href="profile.jsp?order1=2&show="+show;
+			  alert("反序成功");
+		      }
+}
+  	 
+  	 
 </script>
 
 <script type="text/javascript">

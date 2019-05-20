@@ -23,13 +23,7 @@ public class News implements Serializable{
 	private Timestamp namend_time;
 	private int nsalary_state ;
 	private int nid_tid_key;
-	public int getNid_sid_key() {
-		return nid_sid_key;
-	}
-	public void setNid_sid_key(int nid_sid_key) {
-		this.nid_sid_key = nid_sid_key;
-	}
-	private int nid_sid_key;
+	
 	public int getNid() {
 		return nid;
 	}

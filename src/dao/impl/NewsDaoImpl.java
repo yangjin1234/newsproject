@@ -530,7 +530,6 @@ public class NewsDaoImpl implements NewsDao{
 			  n.setNupload_time(rs.getTimestamp("nupload_time"));
 			  n.setTitle(rs.getString("ntitle"));
 			  n.setNid_tid_key(rs.getInt("nid_tid_key"));
-			  n.setNid_sid_key(rs.getInt("nid_sid_key"));
 			  MyLog.log.debug("查询出了数据===");
 			  list.add(n);
 		  }
@@ -620,7 +619,6 @@ public class NewsDaoImpl implements NewsDao{
 					  n.setNupload_time(rs.getTimestamp("nupload_time"));
 					  n.setTitle(rs.getString("ntitle"));
 					  n.setNid_tid_key(rs.getInt("nid_tid_key"));
-					  n.setNid_sid_key(rs.getInt("nid_sid_key"));
 					  MyLog.log.debug("查询出了数据===");
 					  list.add(n);
 				  }
@@ -758,7 +756,6 @@ public class NewsDaoImpl implements NewsDao{
 			 n.setNupload_time(rs.getTimestamp("nupload_time"));
 			 n.setTitle(rs.getString("ntitle"));
 			 n.setNid_tid_key(rs.getInt("nid_tid_key"));
-			 n.setNid_sid_key(rs.getInt("nid_sid_key"));
 			 MyLog.log.debug("查询出了数据===");
 			 list.add(n);
 		 }
@@ -875,7 +872,6 @@ public class NewsDaoImpl implements NewsDao{
 			 n.setNupload_time(rs.getTimestamp("nupload_time"));
 			 n.setTitle(rs.getString("ntitle"));
 			 n.setNid_tid_key(rs.getInt("nid_tid_key"));
-			 n.setNid_sid_key(rs.getInt("nid_sid_key"));
 			 MyLog.log.debug("查询出了数据===");
 			 list.add(n);
 		 }
@@ -988,7 +984,6 @@ public class NewsDaoImpl implements NewsDao{
 				 n.setNupload_time(rs.getTimestamp("nupload_time"));
 				 n.setTitle(rs.getString("ntitle"));
 				 n.setNid_tid_key(rs.getInt("nid_tid_key"));
-				 n.setNid_sid_key(rs.getInt("nid_sid_key"));
 				 MyLog.log.debug("查询出了数据===");
 				 list.add(n);
 			 }
@@ -1019,7 +1014,6 @@ public class NewsDaoImpl implements NewsDao{
 				  n.setNupload_time(rs.getTimestamp("nupload_time"));
 				  n.setTitle(rs.getString("ntitle"));
 				  n.setNid_tid_key(rs.getInt("nid_tid_key"));
-				  n.setNid_sid_key(rs.getInt("nid_sid_key"));
 				  MyLog.log.debug("查询出了数据===");
 				  list.add(n);
 			  }

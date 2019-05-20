@@ -1,3 +1,7 @@
+<%@page import="dao.impl.UserinformationDaoImpl"%>
+<%@page import="dao.UserinformationDao"%>
+<%@page import="pojo.Login"%>
+<%@page import="pojo.impl.LoginImpl"%>
 <%@page import="pojo.News"%>
 <%@page import="pojo.SalaryTable"%>
 <%@page import="dao.impl.UserSalaryImpl"%>
@@ -304,11 +308,20 @@ jQuery(function($) {
 </div>
 
    <%
-   //修改 
-    //修改
     String show=request.getParameter("show");
     MyLog.log.debug("show11=="+show);
     Connection conn=DBHelper.getConnection();
+    //得到登录用户
+	LoginImpl log=new LoginImpl();
+	log=(LoginImpl)request.getSession().getAttribute("account");
+	//得到登录id
+	Login logf=ld.selectUserPassByName(log.getLname(), conn);
+	int loginId=logf.getLid();
+	MyLog.log.debug("loginId=="+loginId);
+	//根据登录id，得到用户id
+	UserinformationDao ui=new UserinformationDaoImpl();
+	int userId=ui.selectUserId(loginId, conn);
+	MyLog.log.debug("userId=="+userId);
     NewsDao news=new NewsDaoImpl();
     List<News> list=new ArrayList<News>();
     String pn=request.getParameter("pageNo");
@@ -337,25 +350,25 @@ jQuery(function($) {
 		if(show==null)
 		{
 		MyLog.log.debug("根据每页显示几条数据，计算出总共有多少页="+list.size());
-		max=news.getMaxPage(conn, pageSize, 11, 1);
+		max=news.getMaxPage(conn, pageSize, userId, 1);
 		}
 		if("null".equals(show))
 		{
 		//根据每页显示几条数据，计算出总共有多少页
 		MyLog.log.debug("根据每页显示几条数据，计算出总共有多少页="+list.size());
-		max=news.getMaxPage(conn, pageSize, 11, 1);
+		max=news.getMaxPage(conn, pageSize, userId, 1);
 		}
 		if("today".equals(show))
 		{
-		max=news.getMaxPageDay(conn, pageSize, 11, 1);
+		max=news.getMaxPageDay(conn, pageSize, userId, 1);
 		}
 		if("yesterday".equals(show))
 		{
-		max=news.getMaxPageLastDay(conn, pageSize, 11, 1);
+		max=news.getMaxPageLastDay(conn, pageSize, userId, 1);
 		}
 		if("thismonth".equals(show))
 		{
-		max=news.getMaxPageMonth(conn, pageSize, 11, 1);
+		max=news.getMaxPageMonth(conn, pageSize, userId, 1);
 		
 		}
 		
@@ -377,33 +390,33 @@ jQuery(function($) {
 		{
 		//分页查询出每页数据
 		MyLog.log.debug("分页查询出每页数据="+list.size());
-		list = news.selectAllNews(11, 1, conn, pageNo, pageSize);
+		list = news.selectAllNews(userId, 1, conn, pageNo, pageSize);
 		//得到一共有多少篇文章
-		 n=news.selectAllNews(11, 1, conn);
+		 n=news.selectAllNews(userId, 1, conn);
 		}
 		if(show==null)
 		{
 		//分页查询出每页数据
 		MyLog.log.debug("分页查询出每页数据="+list.size());
-		list = news.selectAllNews(11, 1, conn, pageNo, pageSize);
+		list = news.selectAllNews(userId, 1, conn, pageNo, pageSize);
 		//得到一共有多少篇文章
-		 n=news.selectAllNews(11, 1, conn);
+		 n=news.selectAllNews(userId, 1, conn);
 		}
 		if("today".equals(show))
 		{
-		list=news.selectNewsDay(conn, 11, 1, pageNo, pageSize);
-		n=news.selectNewsDayCount(11, 1, conn);
+		list=news.selectNewsDay(conn, userId, 1, pageNo, pageSize);
+		n=news.selectNewsDayCount(userId, 1, conn);
 		}
 		if("yesterday".equals(show))
 		{
-		list=news.selectNewsLastDay(conn, 11, 1, pageNo, pageSize);
-		n=news.selectNewsLastDayCount(11, 1, conn);
+		list=news.selectNewsLastDay(conn, userId, 1, pageNo, pageSize);
+		n=news.selectNewsLastDayCount(userId, 1, conn);
 		MyLog.log.debug("分页查询出每页数据="+list.size());
 		}
 		if("thismonth".equals(show))
 		{
-		list=news.selectNewsMonth(conn, 11, 1, pageNo, pageSize);
-		n=news.selectNewsMonthCount(11, 1, conn);
+		list=news.selectNewsMonth(conn, userId, 1, pageNo, pageSize);
+		n=news.selectNewsMonthCount(userId, 1, conn);
 		}
 		
 		pageContext.setAttribute("list", list);

@@ -45,7 +45,6 @@
 <url-pattern>/post-new.jsp</url-pattern>
 <url-pattern>/post.jsp</url-pattern>
 <url-pattern>/profile.jsp</url-pattern>
-<url-pattern>/register.jsp</url-pattern>
 <url-pattern>/login.jsp</url-pattern>
 <url-pattern>/profile1.jsp</url-pattern>
 </filter-mapping>  

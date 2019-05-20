@@ -60,4 +60,7 @@ public interface UserinformationDao {
 	 * @throws Exception
 	 */
 	public boolean updateUser(Userinformation user,Connection conn)throws Exception;
+
+	public int selectUserId(int loginId,Connection conn)throws Exception;
+
 }

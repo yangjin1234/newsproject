@@ -101,5 +101,27 @@ public class UserinformationDaoImpl implements UserinformationDao{
 		return false;
 		}
 	}
+	
+	public int selectUserId(int loginId,Connection conn)throws Exception
+	{
+		 String sql="select  *from user where uid_lid_key=?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ps.setInt(1, loginId);
+		  ResultSet rs=null;
+		  int userId=0;
+		  try {
+			  rs=ps.executeQuery();
+			  while(rs.next())
+			  {
+				  userId=rs.getInt("uid");
+				  return userId;
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return userId;
+	  }
+	}
 
-}
+
+

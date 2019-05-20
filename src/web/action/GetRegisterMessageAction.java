@@ -34,14 +34,19 @@ public ActionForward execute(HttpServletRequest request,
 		MyLog.log.debug("data=="+data);
 	    JSONObject ob=JSONObject.fromObject(data);
 	    User user=(User)JSONObject.toBean(ob, User.class);
-	    //得到注册的用户名及密码
+	    //得到注册的用户名及密码,为了存入登录表
 	    String password= user.getUser_pwd1();
 	    String uname=user.getUsername();
 	    MyLog.log.debug("password=="+password);
+	    //得到用户输入的验证码
+	    String usercode=user.getUser_code();
+	    //得到验证码
+	    String code=(String)request.getSession().getAttribute("code");
 	    Connection conn=DBHelper.getConnection();
 	    MyLog.log.debug("qqwes");
 	    UserDao u=new UserDaoImpl();
 	    try {
+	    	//根据注册的信息，存入用户表中，并将用户表中得到的登录主键，存入登录表
 			uid_lid_key=u.insertRegisterMessage(user, conn);
 			//对密码进行加密，然后将用户名和密码、主键传入登陆表
 			MyLog.log.debug("userm=="+uname);
@@ -57,9 +62,17 @@ public ActionForward execute(HttpServletRequest request,
 			e.printStackTrace();
 		}
 	    String f="";
+	    //通过用户输入的验证码，判断是否与验证码一致,并判断是否插入信息成功
 	    if(uid_lid_key!=0)
 	    {
-				f="true";
+	    	if(code.equals(usercode))
+			{
+	    		f="true";
+			}
+	    	else
+	    	{
+	    		f="error";
+	    	}
 				
 		}
 		else

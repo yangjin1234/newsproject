@@ -10,6 +10,13 @@ public class User implements Serializable{
 	private String user_email;
 	private String  user_answer;
 	private String user_question;
+	private String user_code;
+	public String getUser_code() {
+		return user_code;
+	}
+	public void setUser_code(String user_code) {
+		this.user_code = user_code;
+	}
 	public String getUser_pwd1() {
 		return user_pwd1;
 	}

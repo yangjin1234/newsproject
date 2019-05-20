@@ -89,6 +89,7 @@ body.login {
      var user_email;
      var user_answer;
      var user_question;
+     var user_code;
      var div;//用户名的div块
      var divpass1;//密码
      var divanswer;//问题答案
@@ -275,21 +276,23 @@ body.login {
 			//alert(JSON.stringify(typeof(new String(new Date().getTime()))));
 				     
      }
-      function uregistermessage(username,user_pwd1,user_email,user_question,user_answer)
+      function uregistermessage(username,user_pwd1,user_email,user_question,user_answer,user_code)
 		     {
 		     this.username=username;
 		     this.user_pwd1=user_pwd1;
 		     this.user_email=user_email;
 		     this.user_question=user_question;
 		     this.user_answer=user_answer;
+		     this.user_code=user_code;
 		     }
      function registersub()
      {
 		      //alert("aaa");
+		     user_code=document.getElementById("user_code").value;
 		     user_question=document.getElementById("userquestion").value;
 	         if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb=="true"&&user_answerb=="true")
 			   {
-				    var uu=new uregistermessage(username,user_pwd1,user_email,user_question,user_answer);
+				    var uu=new uregistermessage(username,user_pwd1,user_email,user_question,user_answer,user_code);
 			        //alert("uu=="+typeof(uu));
 				    //alert(JSON.stringify(uu));
 				    $.ajax({
@@ -303,9 +306,13 @@ body.login {
 							     alert("注册成功");	
 							      window.location.href="login.jsp";
 							     } 
-							     else
+							     if("false"==returnval)
 							     {
 							     alert("注册失败");
+							     }
+							     if("error"==returnval)
+							     {
+							     alert("验证码错误");
 							     }
 						     }
 				        	});
@@ -364,7 +371,7 @@ body.login {
    </p>
    <p>
       <label for="CAPTCHA">图片验证码 &nbsp;<span id="captchaErr" style="color:#ff5c57;font-size: 12px;"></span> <br/>
-         <input id="CAPTCHA" style="width:150px;*float:left;" class="input" type="text" size="10" value="" name="captcha_code" autocomplete="off" />
+         <input id="user_code" style="width:150px;*float:left;" class="input" type="text" size="10" value="" name="captcha_code" autocomplete="off" />
          看不清？
          <a href="javascript:changeImage1()">更换图片</a>
       </label>

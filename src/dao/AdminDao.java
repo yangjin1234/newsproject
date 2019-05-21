@@ -72,5 +72,9 @@ public interface AdminDao {
 	  * @throws Exception
 	  */
 	public List<Admin> selectAllNotPathAdmin(Connection conn,int pageNo,int pageSize)throws Exception;
+	public int selectAllNotPathAdminForMaxPage(Connection conn,int pageSize)throws Exception;
+	public int selectAllNotPathAdminSum(Connection conn)throws Exception;
+	
+	boolean updateAdminCheckState(int aid,Connection conn,int acheck)throws Exception;
 	
 }

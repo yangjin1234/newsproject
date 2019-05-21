@@ -163,4 +163,51 @@ public class AdminDaoImpl implements AdminDao {
 		return list;
 	}
 
+	public int selectAllNotPathAdminForMaxPage(Connection conn, int pageSize)
+			throws Exception {
+		 String sql="select count(*) as max from admin where astate=1 and acheck=0";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  int count=0;
+		  try {
+			  rs=ps.executeQuery();
+			  if(rs.next())
+			  {
+				  count=rs.getInt("max");
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return count%pageSize==0?count/pageSize:count/pageSize+1;
+	}
+
+	public int selectAllNotPathAdminSum(Connection conn) throws Exception {
+		String sql="select count(*) as max from admin where astate=1 and acheck=0";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  int count=0;
+		  try {
+			  rs=ps.executeQuery();
+			  if(rs.next())
+			  {
+				  count=rs.getInt("max");
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return count;
+	}
+
+	public boolean updateAdminCheckState(int aid, Connection conn, int acheck)throws Exception {
+		String sql="update admin set acheck=? where aid=?";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		ps.setInt(1, acheck);
+		ps.setInt(2, aid);
+		int n=ps.executeUpdate();
+		if(n>0){
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -46,7 +46,7 @@
 			    var div = document.getElementById("login_error");
 				div.innerHTML=msg;
 				}else{
-				  window.location="MainShow.jsp";
+				  window.location="admin_MainShow.jsp";
 				}
 			}
 		});

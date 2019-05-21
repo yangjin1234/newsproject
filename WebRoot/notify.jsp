@@ -298,9 +298,9 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 		<span class="comments-link"><a href="./p/486354#respond"></span></div>	</header><!-- .entry-header -->
 	<div class="entry-content">
 		
-				<div class="ui tiny icon positive message">
-				<i class="trophy icon"></i>
-				<!-- .entry-content -->
+				<p>${listc.icontent } &hellip; <a href="./p/486354" class="more-link">
+				</a></p>
+	</div><!-- .entry-content -->
 	</article><!-- #post-## -->
 	  </c:if>
 	</c:forEach>	

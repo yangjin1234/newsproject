@@ -170,10 +170,12 @@ public class UserSalaryImpl implements UserSalaryDao{
     public boolean updateSalaryState(int state,Connection conn,int sid) throws Exception
     {
     	System.out.println("xiugai------");
-    	String sql="update  salary set salarys_state=? where sid=? ";
+    	String sql="update  salary set salarys_state=?,sdate=? where sid=? ";
 		PreparedStatement ps=conn.prepareStatement(sql);
+		String nowdate=GetDate.getNowDate();
 		ps.setInt(1, state);
-		ps.setInt(2, sid);
+		ps.setTimestamp(2, GetDate.getNowDate2(nowdate));
+		ps.setInt(3, sid);
 		int result=ps.executeUpdate();
 		boolean flag=false;
 		if(result>0)

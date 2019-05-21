@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.util.List;
 
 import pojo.Admin;
 import pojo.Login;
@@ -62,6 +63,14 @@ public interface AdminDao {
 	 */
 	public boolean updatePass(String aname, String newpass, Connection conn)throws Exception;
 	 public boolean updateNewpass(int aid_aid_key,String pass,Connection conn) throws Exception;
-	
+	 /**
+	  * 分页查询出所有待审核的管理员
+	  * @param conn
+	  * @param pageNo
+	  * @param pageSize
+	  * @return
+	  * @throws Exception
+	  */
+	public List<Admin> selectAllNotPathAdmin(Connection conn,int pageNo,int pageSize)throws Exception;
 	
 }

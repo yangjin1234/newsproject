@@ -60,6 +60,15 @@
 <url-pattern>/profile1.jsp</url-pattern>
 </filter-mapping>  
   
+  <filter>
+  <filter-name>admin_session</filter-name>
+  <filter-class>web.filter.AdminSessionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  <filter-name>admin_session</filter-name>
+  <url-pattern>/admin_notify.jsp</url-pattern>
+  </filter-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

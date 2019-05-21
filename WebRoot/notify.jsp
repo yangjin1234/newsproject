@@ -1,7 +1,10 @@
-<!DOCTYPE html>
+
+<%@page import="dao.impl.InformDaoImpl"%>
+<%@page import="dao.InformDao"%>
 <%@page import="pojo.Inform"%>
-<%@page import="service.impl.InformServiceImpl"%>
-<%@page import="service.InformService"%>
+<%@page import="pojo.impl.LoginImpl"%>
+<%@page import="dao.impl.LoginDaoImpl"%>
+<%@page import="dao.LoginDao"%>
 <%@page import="pojo.impl.NewsImpl"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="java.net.URLEncoder"%>
@@ -67,7 +70,7 @@ img.emoji {
 <!--[if lt IE 8]>
 <link rel='stylesheet' id='twentyfifteen-ie7-css'  href='./wp-content/themes/twentyfifteen/css/ie7.css?ver=20141010' type='text/css' media='all' />
 <![endif]-->
-<link rel='stylesheet' id='mycred-front-css'  href='./wp-content/plugins/mycred/assets/css/mycred-front.css?ver=1.7.9.1' type='text/css' media='all' />
+<link rel='stylesheet' id='mycred-front-css'  href='http://weilaiche.cc/wp-content/plugins/mycred/assets/css/mycred-front.css?ver=1.7.9.1' type='text/css' media='all' />
 <link rel='stylesheet' id='mycred-notifications-css'  href='./wp-content/plugins/mycred/addons/notifications/assets/css/notify.css?ver=1.1.2.2' type='text/css' media='all' />
 <script type='text/javascript' src='./wp-content/plugins/site-announcements/public/js/js.cookie.js?ver=1.0.3'></script>
 <script type='text/javascript' src='./wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
@@ -127,10 +130,10 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 		* html body { margin-top: 46px !important; }
 	}
 </style>
-<script src="/static/jquery/3.2.1/jquery.min.js"></script>
-<link href="/static/semantic-ui/2.3.1/components/icon.min.css" rel="stylesheet">
-<link href="/static/semantic-ui/2.3.1/components/message.min.css" rel="stylesheet">
-<link href="/static/semantic-ui/2.3.1/components/table.min.css" rel="stylesheet">
+<script src="http://weilaiche.cc/static/jquery/3.2.1/jquery.min.js"></script>
+<link href="http://weilaiche.cc/static/semantic-ui/2.3.1/components/icon.min.css" rel="stylesheet">
+<link href="http://weilaiche.cc/static/semantic-ui/2.3.1/components/message.min.css" rel="stylesheet">
+<link href="http://weilaiche.cc/static/semantic-ui/2.3.1/components/table.min.css" rel="stylesheet">
 </head>
 
 <body class="home blog logged-in admin-bar no-customize-support custom-background">
@@ -150,10 +153,10 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 
 					<nav id="site-navigation" class="main-navigation" role="navigation">
 				<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="nav-menu"><li id="menu-item-192" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-192"><a href=MainShow.jsp>首页</a></li>
-<li id="menu-item-193" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-193"><a href="./gonggao">投稿须知(必读)</a></li>
-<li id="menu-item-291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-291"><a href="/wp-admin/edit.php">全部文章</a></li>
-<li id="menu-item-2621" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2621"><a href="./getrmb">申请提现</a></li>
+<li id="menu-item-193" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-193"><a href="needs.jsp">投稿须知(必读)</a></li>
+<li id="menu-item-291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-291"><a href="edit.jsp">全部文章</a></li>
 <li id="menu-item-248644" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-248644"><a href="./nav">功能大全</a></li>
+<li id="menu-item-2486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2486"><a href="see.jsp">查看公告</a></li>
 </ul></div>			</nav><!-- .main-navigation -->
 		
 		
@@ -164,7 +167,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 					<input type="search" class="search-field" placeholder="搜索&hellip;" value="" name="s" />
 				</label>
 				<input type="submit" class="search-submit screen-reader-text" value="搜索" />
-			</form></aside><aside id="mycred_widget_wallet-3" class="widget widget-my-wallet"><h2 class="widget-title">我的账户</h2><div class="myCRED-balance mycred-balance-mycred_default">经验: 452 点</div><div class="myCRED-balance mycred-balance-mycred_money">金钱: ￥ 20 元</div></aside><aside id="calendar-2" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
+			</form></aside><aside id="mycred_widget_wallet-3" class="widget widget-my-wallet"><h2 class="widget-title">我的账户</h2><div class="myCRED-balance mycred-balance-mycred_money">已发放: ￥${sessionScope.yesalary } 元</div><div class="myCRED-balance mycred-balance-mycred_money">待发放: ￥${sessionScope.nosalary } 元</div></aside><aside id="calendar-2" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
 	<caption>2019年五月</caption>
 	<thead>
 	<tr>
@@ -189,29 +192,36 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	<tbody>
 	<%
 	   NewsDao nd=new NewsDaoImpl();
-	   Connection conn=DBHelper.getConnection();
-	
+	InformDao id=new InformDaoImpl();
 	 TypeDao td=new TypeDaoImpl();
+	   Connection conn=DBHelper.getConnection();
+	LoginDao ld=new LoginDaoImpl();
 	 List<TypeImpl> list2=td.selectAllType(conn);
-	 
+	 //得到登录用户
+	 LoginImpl log=new LoginImpl();
+	 log=(LoginImpl)request.getSession().getAttribute("account");
+	 //得到id
+	 Login logf=ld.selectUserPassByName(log.getLname(), conn);
+	 session.setAttribute("logf", logf);
 	 request.setAttribute("type", list2);
-	 List<TimeTypec> list3=nd.selectAllByTime(conn, 1);
+	 List<TimeTypec> list3=nd.selectAllByTime(conn, logf.getLid());
 	 MyLog.log.debug(list3.toString());
 	 request.setAttribute("timetype", list3);
-	 String uname="yangjin",upass="111";
-	 //接收公告
-	 InformService informser=new InformServiceImpl();
-	 Inform inform=informser.selectInform();
-	 request.setAttribute("title", inform.getItitle());
-	 request.setAttribute("time", inform.getItime());
-	 request.setAttribute("content", inform.getIcontent());
-	
+	 String uname=logf.getLname(),upass=logf.getLpass();
+	//查出待发放的工资
+	double nosalary=nd.selectSumSalaryNo(logf.getLid(), conn,0);
+	//查出已发放的工资
+	double yesalary=nd.selectSumSalaryNo(logf.getLid(), conn,1);
+	request.getSession().setAttribute("nosalary", nosalary);
+	request.getSession().setAttribute("yesalary", yesalary);
+	MyLog.log.debug("nosalary="+nosalary);
 	//每页显示文章数量
-	int maxSize=2;
-	pageContext.setAttribute("maxSize", maxSize);
+	int maxSize=3;
+	  pageContext.setAttribute("maxSize", maxSize);
 	//最大页数
-	int maxPage=nd.getMaxPage(conn, maxSize);
-	pageContext.setAttribute("maxPage", maxPage);
+	//int maxPage=nd.getMaxPage(conn, maxSize);
+	int maxPage=id.selectInformMaxPage(conn, maxSize);
+	
 	//当前页数
 	int pageNo=0;
 	if(request.getParameter("pageNo")==null){
@@ -220,49 +230,21 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	pageNo=Integer.valueOf(request.getParameter("pageNo"));
 	}
 	pageContext.setAttribute("pageNo", pageNo);
-	   List<NewsImpl> list=nd.selectAllNews(1, conn, pageNo, maxSize);
+	   List<Inform> list=null;
+	   
+	  
+	   list=id.selectInform(conn, pageNo, maxSize);
+	   MyLog.log.debug("list="+list.size());
+	//  按时间分类
+	  String timetypecName=request.getParameter("timetypec");
+	 
+	  
 	MyLog.log.debug("maxPage"+maxPage);
-	 //存到cookie
-	 Cookie c1 = new Cookie("uname",URLEncoder.encode(uname, "UTF-8"));
-	    		c1.setDomain("localhost");
-	    		c1.setPath("/Newsproject");
-	    		c1.setMaxAge(60*60*24);
-	    		response.addCookie(c1);
-    			Cookie c2 = new Cookie("upass",upass);
-	    		c2.setDomain("localhost");
-	    		c2.setPath("/Newsproject");
-	    		c2.setMaxAge(60*60*24);
-	    		response.addCookie(c2);
-	    //从请求中拿到cookies
-	     Cookie[] cookies = request.getCookies();
-    		String valname = null;
-    		String valpass = null;
-    		//循环所有的cookie，得到我需要的数据
-    		if(cookies!=null){
-	    		for(Cookie c : cookies){
-	    			String key = c.getName();
-	    				MyLog.log.debug("key="+key);
-	    			if("uname".equals(key)){
-	    				valname = c.getValue();
-	    				MyLog.log.debug("valname="+valname);
-	    				//解码
-	    				valname = URLDecoder.decode(valname, "UTF-8");
-	    			}
-	    			if("upass".equals(key)){
-	    				valpass = c.getValue();
-	    			}
-	    		}
-    		}
-    		//把用户名存到list中
-    for(NewsImpl li:list){
-	 li.setUname(uname);
-	 }
-     Login log=new Login();
-	 log.setLid(1);
-	 log.setLname(valname);
-	 log.setLpass(valpass);
-	 request.setAttribute("login", log);
+	 
+    
 	  request.setAttribute("list", list);
+	pageContext.setAttribute("maxPage", maxPage);
+	DBHelper.closeCon(conn);
 	 %>
 	<tr>
 		<td colspan="2" class="pad">&nbsp;</td><td><a href="./p/date/2019/05/01" aria-label="于2019年5月1日上发布的文章">1</a></td><td><a href="./p/date/2019/05/02" aria-label="于2019年5月2日上发布的文章">2</a></td><td><a href="./p/date/2019/05/03" aria-label="于2019年5月3日上发布的文章">3</a></td><td><a href="./p/date/2019/05/04" aria-label="于2019年5月4日上发布的文章">4</a></td><td><a href="./p/date/2019/05/05" aria-label="于2019年5月5日上发布的文章">5</a></td>
@@ -282,14 +264,14 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	</tr>
 	</tbody>
 	</table></div></aside><aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">分类目录</h2>		<ul><c:forEach items="${requestScope.type }" var="typec" varStatus="cb">
-	<li class="cat-item cat-item-173"><a href="./c/%e9%9d%92%e5%b2%9b" >${typec.tname }</a> (${typec.number })
+	<li class="cat-item cat-item-173"><a href="MainShow.jsp?typec=${typec.tname }" >${typec.tname }</a> (${typec.number })
 </li>
 	</c:forEach>
 </ul>
 </aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">文章归档</h2>		<ul>
 	<c:forEach items="${requestScope.timetype }" var="timetypec" varStatus="cb">
 	
-	<li><a href='./p/date/2019/01'>${timetypec.timec}</a>&nbsp;(${timetypec.number })</li>
+	<li><a href='MainShow.jsp?timetypec=${timetypec.timec }'>${timetypec.timec}</a>&nbsp;(${timetypec.number })</li>
 	</c:forEach></ul>
 		</aside>			</div><!-- .widget-area -->
 		
@@ -299,53 +281,56 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 
 		<div id="content" class="site-content">
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<div id="primary" class="content-area">
+	<main id="main" class="site-main" role="main">
 
-		
-<article id="post-189" class="post-189 page type-page status-publish hentry">
-	
-	<header class="entry-header">
-		<h1 class="entry-title">最新公告</h1>	</header><!-- .entry-header -->
+		<c:forEach items="${requestScope.list }" var="listc" varStatus="cb">
+	  <c:if test="${!empty listc }">
+	    
 
+
+	<article id="post-486354" class="post-486354 post type-post status-publish format-standard hentry category-jstw">
+		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：${listc.iid }</span>
+		<h2 class="entry-title" style="margin-bottom:15px;"><a href="./p/486354" rel="bookmark">${listc.ititle }</a></h2>
+		<div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span>
+		<a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">${listc.itime }</time></a>
+		</span><span class="byline"><span class="author vcard"></span></span>
+		<span class="comments-link"><a href="./p/486354#respond"></span></div>	</header><!-- .entry-header -->
 	<div class="entry-content">
-	<p><em>${requestScope.title }:${requestScope.time }</em></p>
-<ol>
-<li>${requestScope.content }</li>
-</ol>
-			</div><!-- .entry-content -->
-
+		
+				<p>${listc.icontent } &hellip; <a href="./p/486354" class="more-link">
+				</a></p>
+	</div><!-- .entry-content -->
+	</article><!-- #post-## -->
+	  </c:if>
+	</c:forEach>	
 	
-</article><!-- #post-## -->
-
-		</main><!-- .site-main -->
-	</div><!-- .content-area -->
 
 
-</div><!-- .site-content -->
-
-<!-- <span class='page-numbers current'><span class="meta-nav screen-reader-text">页 </span>1</span>
+	<nav class="navigation pagination" role="navigation">
+		<h2 class="screen-reader-text">文章导航</h2>
+		<div class="nav-links"><!-- <span class='page-numbers current'><span class="meta-nav screen-reader-text">页 </span>1</span>
 <a class='page-numbers' href='./page/2'><span class="meta-nav screen-reader-text">页 </span>2</a>
 <span class="page-numbers dots">&hellip;</span>
 <a class='page-numbers' href='./page/40'><span class="meta-nav screen-reader-text">页 </span>40</a>
 <a class="next page-numbers" href="Newsproject.jsp">下一页</a> -->
 
  当前是第${pageNo }页&nbsp;&nbsp;总共有${maxPage }页&nbsp;&nbsp;
-   <a href="MainShow.jsp?pageNo=${1 }&pageSize=${pageSize}&name=${name}"> 首页</a>&nbsp;&nbsp;
+   <a href="notify.jsp?pageNo=${1 }&pageSize=${maxSize }"> 首页</a>&nbsp;&nbsp;
     <c:if test="${pageNo ge 2 }">
-   <a href="MainShow.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize}&name=${name}"> 上一页</a>
+   <a href="notify.jsp?pageNo=${pageNo-1 }&pageSize=${maxSize }"> 上一页</a>
    </c:if>
    
    <c:forEach begin="1" end="${maxPage }" var="i">
       <c:if test="${i ge pageNo-2 and i le pageNo+2 }">
-        <a class='page-numbers' href="MainShow.jsp?pageNo=${i }&pageSize=${pageSize}&name=${name}"><span class="meta-nav screen-reader-text">页 </span>${i }</a>&nbsp;&nbsp;
+        <a class='page-numbers' href="notify.jsp?pageNo=${i }&pageSize=${maxSize }"><span class="meta-nav screen-reader-text">页 </span>${i }</a>&nbsp;&nbsp;
       </c:if>
    </c:forEach>
    
    <c:if test="${pageNo le maxPage-1 }">
-   <a href="MainShow.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize}&name=${name}"> 下一页</a>&nbsp;&nbsp;
+   <a href="notify.jsp?pageNo=${pageNo+1 }&pageSize=${maxSize }"> 下一页</a>&nbsp;&nbsp;
    </c:if>
-   <a href="MainShow.jsp?pageNo=${maxPage }&pageSize=${pageSize}&name=${name}"> 尾页</a>&nbsp;&nbsp;
+   <a href="notify.jsp?pageNo=${maxPage }&pageSize=${maxSize }"> 尾页</a>&nbsp;&nbsp;
 
 
 </div>
@@ -367,13 +352,13 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	</div><!-- .site -->
 
 	<script type='text/javascript' src='./wp-includes/js/admin-bar.min.js?ver=4.7.53'></script>
-<script type='text/javascript' src='./wp-content/themes/twentyfifteen/js/skip-link-focus-fix.js?ver=20141010'></script>
+<script type='text/javascript' src='http://weilaiche.cc/wp-content/themes/twentyfifteen/js/skip-link-focus-fix.js?ver=20141010'></script>
 <script type='text/javascript'>
 /* <![CDATA[ */
 var screenReaderText = {"expand":"<span class=\"screen-reader-text\">\u5c55\u5f00\u5b50\u83dc\u5355<\/span>","collapse":"<span class=\"screen-reader-text\">\u6298\u53e0\u5b50\u83dc\u5355<\/span>"};
 /* ]]> */
 </script>
-<script type='text/javascript' src='./wp-content/themes/twentyfifteen/js/functions.js?ver=20150330'></script>
+<script type='text/javascript' src='http://weilaiche.cc/wp-content/themes/twentyfifteen/js/functions.js?ver=20150330'></script>
 <script type='text/javascript'>
 /* <![CDATA[ */
 var myCRED_Notice = {"ajaxurl":"https:\/\/weilaiche.cc\/wp-admin\/admin-ajax.php","duration":"5"};
@@ -397,14 +382,13 @@ var myCRED_Notice = {"ajaxurl":"https:\/\/weilaiche.cc\/wp-admin\/admin-ajax.php
 		<li id="wp-admin-bar-new-content" class="menupop"><a class="ab-item" aria-haspopup="true" href="./post-new.jsp"><span class="ab-icon"></span><span class="ab-label">新建</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
 		<li id="wp-admin-bar-new-post"><a class="ab-item" href="./post-new.jsp">文章</a>		</li></ul></div>		</li></ul><ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
 		<li id="wp-admin-bar-search" class="admin-bar-search"><div class="ab-item ab-empty-item" tabindex="-1"><form action="./" method="get" id="adminbarsearch"><input class="adminbar-input" name="s" id="adminbar-search" type="text" value="" maxlength="150" /><label for="adminbar-search" class="screen-reader-text">搜索</label><input type="submit" class="adminbar-button" value="搜索"/></form></div>		</li>
-		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="./wp-admin/profile.php">嗨，1996<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
-		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="./wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>1996</span></a>		</li>
-		<li id="wp-admin-bar-edit-profile"><a class="ab-item" href="./wp-admin/profile.php">编辑我的个人资料</a>		</li>
-		<li id="wp-admin-bar-logout"><a class="ab-item" href="./wp-login.php?action=logout&#038;_wpnonce=ec87a18305">登出</a>		</li></ul><ul id="wp-admin-bar-my-account-default" class="ab-submenu">
+		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="./wp-admin/profile.php">嗨，${sessionScope.account.lname }<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
+		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="./wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>${sessionScope.account.lname }</span></a>		</li>
+		<li id="wp-admin-bar-edit-profile"><a class="ab-item" href="http://localhost:8080/Newsproject/profile1.do?param=selectUser">编辑我的个人资料</a>		</li>
+		<li id="wp-admin-bar-logout"><a class="ab-item" href="./login.jsp?action=logout&#038;_wpnonce=ec87a18305">登出</a>		</li></ul><ul id="wp-admin-bar-my-account-default" class="ab-submenu">
 		<li id="wp-admin-bar-mycred-account" class="menupop ab-sub-secondary"><div class="ab-item ab-empty-item" aria-haspopup="true">余额</div><div class="ab-sub-wrapper"><ul id="wp-admin-bar-mycred-account-default" class="ab-submenu">
-		<li id="wp-admin-bar-mycred-account-balance-mycred-default"><div class="ab-item ab-empty-item">经验: 452 点</div>		</li>
-		<li id="wp-admin-bar-mycred-account-history-mycred-default"><a class="ab-item" href="./wp-admin/users.php?page=mycred_default-history">经验 历史记录</a>		</li>
-		<li id="wp-admin-bar-mycred-account-balance-mycred-money"><div class="ab-item ab-empty-item">金钱: ￥ 20 元</div>		</li>
+		<li id="wp-admin-bar-mycred-account-balance-mycred-default"><div class="ab-item ab-empty-item">以获得: ￥ ${sessionScope.yesalary }</div>		</li>
+		<li id="wp-admin-bar-mycred-account-balance-mycred-money"><div class="ab-item ab-empty-item">待发放: ￥ ${sessionScope.nosalary } 元</div>		</li>
 		<li id="wp-admin-bar-mycred-account-history-mycred-money"><a class="ab-item" href="./wp-admin/users.php?page=mycred_money-history">金钱 历史记录</a>		</li></ul></div>		</li></ul></div>		</li></ul>			</div>
 						<a class="screen-reader-shortcut" href="./wp-login.php?action=logout&#038;_wpnonce=ec87a18305">登出</a>
 					</div>

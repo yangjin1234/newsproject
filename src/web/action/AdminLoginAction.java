@@ -118,7 +118,7 @@ public class AdminLoginAction extends Action{
 		    		}
 	    		}
 				
-				request.getSession().setAttribute("account", l);
+				request.getSession().setAttribute("admin_account", l);
 				return new ActionForward("show");
 			}
 			else if(state==0){

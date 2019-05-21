@@ -3,8 +3,11 @@ package dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import pojo.Admin;
+import pojo.Inform;
 import pojo.Login;
 import util.MyLog;
 import util.MyMD5;
@@ -23,6 +26,7 @@ public class AdminDaoImpl implements AdminDao {
 		ps.setString(1, aname);
 		ResultSet rs = ps.executeQuery();
 		String upassword = "";
+		MyLog.log.debug("aname=" + aname);
 		if (rs.next()) {
 			upassword = rs.getString("apass");// 数据库中
 			MyLog.log.debug("输入的密码=" + MyMD5.decode(upassword));
@@ -92,9 +96,8 @@ public class AdminDaoImpl implements AdminDao {
 			admin.setAname(rs.getString("aname"));
 			admin.setApass(MyMD5.decode(rs.getString("apass")));
 			admin.setAstate(rs.getInt("astate"));
-			if (rs != null) {
-				return admin;
-			}
+			admin.setAdmin_type(rs.getInt("admin_type"));//管理员类型
+			return admin;
 		}
 		return null;
 	}
@@ -138,6 +141,26 @@ public class AdminDaoImpl implements AdminDao {
 			return flag;
 		}
 		return flag;
+	}
+
+	public List<Admin> selectAllNotPathAdmin(Connection conn, int pageNo,
+			int pageSize) throws Exception {
+		String sql="select * from admin where astate=1 and acheck=0 limit ?,?";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		List<Admin> list=new ArrayList<Admin>();
+		 ps.setInt(1, (pageNo-1)*pageSize);
+		  ps.setInt(2, pageSize);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			Admin admin=new Admin();
+			admin.setAid(rs.getInt("aid"));
+			admin.setAcheck(rs.getInt("acheck"));
+			admin.setAname(rs.getString("aname"));
+			admin.setApass(rs.getString("aname"));
+			admin.setAphone(rs.getString("aphone"));
+			list.add(admin);
+		}
+		return list;
 	}
 
 }

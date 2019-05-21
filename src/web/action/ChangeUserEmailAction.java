@@ -16,7 +16,7 @@ public class ChangeUserEmailAction extends Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response, ActionForm af) {
-		MyLog.log.debug("judgeuseremail");
+		MyLog.log.debug("changeuseremail");
 		ChangeUserEmailForm juf=(ChangeUserEmailForm) af;
 		MyLog.log.debug(juf);
 	    String data=juf.getData();

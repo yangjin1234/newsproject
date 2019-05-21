@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 
 import dao.LoginDao;
 import pojo.Login;
-import pojo.User;
 import util.MyLog;
 import util.MyMD5;
 
@@ -63,11 +62,7 @@ public class LoginDaoImpl implements LoginDao{
 		login.setLname(rs.getString("lname"));
 		login.setLpass(MyMD5.decode(rs.getString("lpass")));
 		login.setLstate(rs.getInt("lstate"));
-		if(rs==null){
-			return null;
-		}else{
-			return login;
-		}
+		return login;
 		}
 		return null;
 	}

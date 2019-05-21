@@ -3,7 +3,6 @@ package service.impl;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import pojo.Login;
 
 import dao.LoginDao;
 import dao.impl.LoginDaoImpl;

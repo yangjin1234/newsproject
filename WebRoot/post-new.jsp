@@ -390,8 +390,9 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 		<%
 		Connection conn=DBHelper.getConnection();
 		TypeDao td=new TypeDaoImpl();
-		List<TypeImpl> list=td.selectAllType(conn);
+		List<TypeImpl> list=td.selectAllTypeInDB(conn);
 		request.setAttribute("typec", list);
+		DBHelper.closeCon(conn);
 		 %>
 
 		<c:forEach items="${typec }" var="tpe" varStatus="cb">

@@ -15,6 +15,13 @@ public interface TypeDao {
 	 * @throws Exception
 	 */
 	List<TypeImpl> selectAllType(Connection conn)throws Exception;
+	/**
+	 * 查出數據庫中的所有類型
+	 * @param conn
+	 * @return
+	 * @throws Exception
+	 */
+	List<TypeImpl> selectAllTypeInDB(Connection conn)throws Exception;
 	
 	/**
 	 * 按分类名查找分类

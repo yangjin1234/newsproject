@@ -46,4 +46,19 @@ public class TypeDaoImpl implements TypeDao{
 		return t;
 	}
 
+	public List<TypeImpl> selectAllTypeInDB(Connection conn) throws Exception {
+		String sql="select *  from type";
+		List<TypeImpl> list=new ArrayList<TypeImpl>();
+		PreparedStatement ps=conn.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			TypeImpl t=new TypeImpl();
+			t.setTid(rs.getInt("tid"));
+			t.setTid_nid_key(1);//数据库设计失误，改数据无意义
+			t.setTname(rs.getString("tname"));
+			list.add(t);
+		}
+		return list;
+	}
+
 }

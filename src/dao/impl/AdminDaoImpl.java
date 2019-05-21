@@ -18,7 +18,7 @@ public class AdminDaoImpl implements AdminDao {
 	public int Login(String aname, String apass, Connection conn)
 			throws Exception {
 
-		String sql = "select apass from admin WHERE aname=?";
+		String sql = "select * from admin WHERE aname=? and acheck=1";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, aname);
 		ResultSet rs = ps.executeQuery();
@@ -28,7 +28,7 @@ public class AdminDaoImpl implements AdminDao {
 			MyLog.log.debug("输入的密码=" + MyMD5.decode(upassword));
 			MyLog.log.debug("数据库中的密码=" + upassword);
 		}
-		if (upassword.equals("")) {
+		if ("".equals(upassword)) {
 			return 0;// 无此账号
 		}
 		if (upassword.equals(MyMD5.decode(upassword))) {

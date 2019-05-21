@@ -46,11 +46,7 @@
 			    var div = document.getElementById("login_error");
 				div.innerHTML=msg;
 				}else{
-<<<<<<< HEAD
 				  window.location="admin_MainShow.jsp";
-=======
-				  window.location="admin_notify.jsp";
->>>>>>> branch 'master' of https://github.com/yangjin1234/newsproject.git
 				}
 			}
 		});

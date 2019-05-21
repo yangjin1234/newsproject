@@ -59,7 +59,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 	</script>
 <script type="text/javascript">var _wpColorScheme = {"icons":{"base":"#999","focus":"#ccc","current":"#ccc"}};</script>
 <style type="text/css" media="print">#wpadminbar { display:none; }</style>
-<script type="text/javascript" src="jquery-1.8.3.js"></script>
+<script type="text/javascript"  src="js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
 	function jump(){
 		var usex=document.getElementsByName("sex");
@@ -91,11 +91,10 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 		var divemail;
 		var divmobile;
 		var emailb;
-		function emailjudge()
-     {
+		function emailjudge() {
 	     divemail=document.getElementById("contentemail");
 	     email=$("#email").val();
-	     //alert("useremail"+useremail);
+	     alert("email");
 	     $.ajax({
 	     type:"POST",
 	     url:"changeuseremail.do",
@@ -127,11 +126,10 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 	     }
 	    });
   }
-  	function changephone()
-     {
+  	function changephone(){
 	      divmobile=document.getElementById("contentphone");
 	      mobile=$("#mobile").val();
-	     // alert("user_pwd1"+user_pwd1);
+	     //alert("mobile"+mobile);
 	      if(""==mobile)
 	      {
 	      divmobile.innerText="手机号不能为空";
@@ -140,16 +138,16 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 	      }
 	      else
 	      {
-		      if(mobile.length<=11)
+		      if(mobile.length<=10)
 		      {
-		      divmonile.innerText="手机号至少大于11";
-		      divmonile.style.color="red";
+		      divmobile.innerText="手机号至少大于11";
+		      divmobile.style.color="red";
 		      mobileb="false";
 		      }
 		      else
 		      {
-		      divmonile.innerText="输入手机格式正确";
-		      divmonile.style.color="green";
+		      divmobile.innerText="输入手机格式正确";
+		      divmobile.style.color="green";
 		      mobileb="true";
 		      }
 	      }
@@ -301,13 +299,13 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 <table class="form-table">
 <tr class="user-email-wrap">
 	<th><label for="email">电子邮件 <span class="description">（必填）</span></label></th>
-	<td><input type="email" name="email" id="email" value="${sessionScope.uemail }" onblur="emailjudge()" class="regular-text ltr" />
+	<td><input type="email" name="email" id="email" value="${sessionScope.uemail }"  onblur="emailjudge()" class="regular-text ltr" />
 	<div id="contentemail" style="display:inline"></div>
 		</td>
 </tr>
 <tr class=user-mobile-wrap>
 	<th><label for="mobile">手机号码<span class="description">（必填）</span></label></th>
-	<td><input type="number" name="mobile" id="mobile" value="${sessionScope.uphone }" class="regular-text code"/>
+	<td><input type="number" name="mobile" id="mobile" value="${sessionScope.uphone }"  onblur="changephone()" class="regular-text code"/>
 	<div id="contentphone" style="display:inline"></div>
 	</td>
 </tr>

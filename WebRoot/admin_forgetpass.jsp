@@ -40,7 +40,7 @@
 	     //alert("user_pwd2"+user_pwd2);
 	     $.ajax({
 	     type:"POST",
-	     url:"adminjudgeuser.do",
+	     url:"judgeuser.do",
 	     data:"data="+username,
 	     success:function(returnval)
 	     {

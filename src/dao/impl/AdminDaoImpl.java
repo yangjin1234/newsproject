@@ -9,8 +9,10 @@ import java.util.List;
 import pojo.Admin;
 import pojo.Inform;
 import pojo.Login;
+import pojo.impl.AdminImpl;
 import util.MyLog;
 import util.MyMD5;
+import util.creatkey;
 import dao.AdminDao;
 
 public class AdminDaoImpl implements AdminDao {
@@ -209,5 +211,38 @@ public class AdminDaoImpl implements AdminDao {
 		}
 		return false;
 	}
+	
+	
+	public boolean insertRegisterMessage(AdminImpl u,Connection conn) throws Exception
+    {
+	    MyLog.log.debug("进入查询方法了");
+	    int  aid =creatkey.getCeartKey();
+	    
+	    MyLog.log.debug("aid==="+aid);
+	    String aname=u.getAname();
+	    MyLog.log.debug("uname==="+aname);
+	    
+	    String aquestion=u.getAdmin_question();
+	    
+	    String aanswer=u.getAdmin_answer();
+	    
+	    String apass=u.getApass();
+	    apass= MyMD5.encrypt(apass);
+    	String sql="insert into admin(aid,aname,apass,aquestion,aanswer) value(?,?,?,?,?)";
+    	PreparedStatement ps=conn.prepareStatement(sql);
+    	ps.setInt(1,aid);
+    	ps.setString(2,aname);
+    	ps.setString(3,apass );
+    	ps.setString(4, aquestion);
+    	ps.setString(5, aanswer);
+    	int result=ps.executeUpdate();
+    	if(result>0)
+    	{
+    		MyLog.log.debug("查询");
+    		MyLog.log.debug("插入注册信息成功");
+    		return true;
+    	}
+    	return false;	
+}
 
 }

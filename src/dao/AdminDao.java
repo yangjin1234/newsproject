@@ -5,6 +5,7 @@ import java.util.List;
 
 import pojo.Admin;
 import pojo.Login;
+import pojo.impl.AdminImpl;
 
 public interface AdminDao {
 
@@ -76,5 +77,14 @@ public interface AdminDao {
 	public int selectAllNotPathAdminSum(Connection conn)throws Exception;
 	
 	boolean updateAdminCheckState(int aid,Connection conn,int acheck)throws Exception;
+	/**
+	 * 将注册信息存入admin表中
+	 * @param u
+	 * @param conn
+	 * @return
+	 * @throws Exception
+	 */
 	
+	public boolean insertRegisterMessage(AdminImpl u,Connection conn) throws Exception;
+
 }

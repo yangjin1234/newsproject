@@ -23,9 +23,9 @@ public class AdminSessionFilter implements Filter{
 			FilterChain arg2) throws IOException, ServletException {
 		HttpServletRequest request=(HttpServletRequest)arg0;
 		HttpServletResponse response=(HttpServletResponse)arg1;
-		Object ob=request.getSession().getAttribute("account");
+		Object ob=request.getSession().getAttribute("admin_account");
 		if(ob==null){
-			request.getRequestDispatcher("./login.jsp").forward(request, response);
+			request.getRequestDispatcher("./admin_login.jsp").forward(request, response);
 		}else{
 			arg2.doFilter(arg0, arg1);
 		}

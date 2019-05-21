@@ -23,6 +23,7 @@ public class AdminDaoImpl implements AdminDao {
 		ps.setString(1, aname);
 		ResultSet rs = ps.executeQuery();
 		String upassword = "";
+		MyLog.log.debug("aname=" + aname);
 		if (rs.next()) {
 			upassword = rs.getString("apass");// 数据库中
 			MyLog.log.debug("输入的密码=" + MyMD5.decode(upassword));

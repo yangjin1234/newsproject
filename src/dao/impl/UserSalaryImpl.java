@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.UserSalaryDao;
+import dao.UserinformationDao;
 import pojo.SalaryTable;
 import pojo.impl.NewsImpl;
+import pojo.impl.SalaryTableImpl;
 import util.GetDate;
 import util.MyLog;
 
@@ -246,4 +248,77 @@ public class UserSalaryImpl implements UserSalaryDao{
 		}
 		  return count%pageSize==0?count/pageSize:count/pageSize+1;
 	  }
+    
+    
+    
+    
+    
+    public List<SalaryTableImpl>  selectUserAllSalary(Connection conn,int pageNo,int pageSize) throws Exception
+	  {
+		  List<SalaryTableImpl> list=new ArrayList<SalaryTableImpl>();
+		  String sql="select *from salary  limit ?,?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  ps.setInt(1, (pageNo-1)*pageSize);
+		  ps.setInt(2, pageSize);
+		  rs=ps.executeQuery();
+		  while(rs.next())
+		  {
+			  
+			  SalaryTableImpl s=new SalaryTableImpl();
+			  s.setSalarys(rs.getDouble("salarys"));
+			  s.setSalarys_state(rs.getInt("salarys_state"));
+			  s.setSdate(rs.getTimestamp("sdate"));
+			  int sid=rs.getInt("sid");
+			  int sid_uid_key=rs.getInt("sid_uid_key");
+			  //查询用户名
+			  UserinformationDao user=new UserinformationDaoImpl();
+			  String username=user.selectUserName(sid, conn);
+			  s.setSid(sid);
+			  s.setSid_uid_key(sid_uid_key);
+			  s.setUsername(username);
+			  MyLog.log.debug("查询分页的数据成功");
+			 list.add(s);
+		  }
+		  return list;
+	  }
+  
+  
+  public int getSalaryMaxPage(Connection conn,int pageSize) throws Exception
+	 {
+		 MyLog.log.debug("进入查询文章的今日的最大页数");
+		 String sql="select count(*) as max from salary ";
+		 PreparedStatement ps=conn.prepareStatement(sql);
+		 ResultSet rs=null;
+		 int count=0;
+		 try {
+			 rs=ps.executeQuery();
+			 while(rs.next())
+			 {
+				 count=rs.getInt("max");
+				 MyLog.log.debug("count=="+count);
+			 }
+		 } catch (Exception e) {
+			 e.printStackTrace();
+		 }
+		 return count%pageSize==0?count/pageSize:count/pageSize+1;
+	 }
+  
+  
+  public int selectAllUserSalaryCount(Connection conn) throws Exception
+	{
+	    MyLog.log.debug("进入查询文章的今日数量");
+		
+		String sql="select count(*) as number from salary ";
+		 PreparedStatement ps=null;
+		  ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  rs=ps.executeQuery();
+		   int count=0;
+			  if(rs.next()){
+				  count=rs.getInt("number");
+				  MyLog.log.debug("该用户已通过审核的新闻数为"+count);
+			  }
+			return count;
+	}	
 }

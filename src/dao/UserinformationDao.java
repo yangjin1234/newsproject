@@ -63,4 +63,12 @@ public interface UserinformationDao {
 
 	public int selectUserId(int loginId,Connection conn)throws Exception;
 
+	
+	/**
+	 * 根据工资表主键，查询用户名
+	 */
+	public String selectUserName(int sid,Connection conn)throws Exception;
+
+	
+	
 }

@@ -46,7 +46,7 @@
 			    var div = document.getElementById("login_error");
 				div.innerHTML=msg;
 				}else{
-				  window.location="MainShow.jsp";
+				  window.location="admin_notify.jsp";
 				}
 			}
 		});
@@ -128,7 +128,7 @@ body.login {
 	<body class="login login-action-login wp-core-ui  locale-zh-cn">
 		<div id="login">
 		<h1><a href="." title="新媒体创作者服务平台" tabindex="-1">未来车平台</a></h1>
-	<div id="login_error">	本平台仅对内部会员开放<br />
+	<div id="login_error">	欢迎来到新媒体管理员系统<br />
 </div>
 
 <form name="loginform" id="loginform" action="login.do" method="post">

@@ -19,7 +19,7 @@
 <!--<![endif]-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>撰写新文章 &lsaquo; 未来车平台 &#8212; WordPress</title>
+<title>撰写新公告 &lsaquo; 未来车平台 &#8212; WordPress</title>
 <script type="text/javascript"  src="./js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
 addLoadEvent = function(func){if(typeof jQuery!="undefined")jQuery(document).ready(func);else if(typeof wpOnload!='function'){wpOnload=func;}else{var oldonload=wpOnload;wpOnload=function(){oldonload();func();}}};
@@ -235,7 +235,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 				</div>
 		
 <div class="wrap">
-<h1 class="wp-heading-inline">撰写新文章</h1>
+<h1 class="wp-heading-inline">撰写新公告</h1>
 
 
 
@@ -304,11 +304,9 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 
 <div id="minor-publishing-actions">
 <div id="save-action">
-<input  type="submit" name="save" id="save-post" value="保存草稿" class="button" />
 <span class="spinner"></span>
 </div>
 <div id="preview-action">
-<a class="preview button" href="https://weilaiche.cc/?p=549872&#038;preview=true" target="wp-preview-549872" id="post-preview">预览</a>
 <input type="hidden"  id="wp-preview" value="" />
 </div>
 <div class="clear"></div>
@@ -317,7 +315,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 <div id="misc-publishing-actions">
 
 <div class="misc-pub-section misc-pub-post-status">
-状态： <span id="post-status-display">草稿</span>
+状态： <span id="post-status-display">未发布</span>
 </div><!-- .misc-pub-section -->
 
 
@@ -329,14 +327,12 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 </div>
 
 <div id="major-publishing-actions">
-<div id="delete-action">
-<a class="submitdelete deletion" href="https://weilaiche.cc/wp-admin/post.php?post=549872&amp;action=trash&amp;_wpnonce=8c06afc427">移至回收站</a></div>
 
 <div id="publishing-action">
 <span class="spinner"></span>
 		<input name="param" type="hidden" id="original_publish" value="insertNews" />
-		<input name="original_publish" type="hidden" id="original_publish" value="提交审核" />
-		<input type="submit" name="npublish" id="npublish" class="button button-primary button-large" value="提交审核"  /></div>
+		<input name="original_publish" type="hidden" id="original_publish" value="发布通告" />
+		<input type="submit" name="npublish" id="npublish" class="button button-primary button-large" value="发布通告"  /></div>
 <div class="clear"></div>
 </div>
 </div>
@@ -363,62 +359,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 	</div>
 	</div>
 </div>
-<div id="categorydiv" class="postbox " >
-<button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">切换面板：分类目录</span><span class="toggle-indicator" aria-hidden="true"></span></button><h2 class='hndle'><span>分类目录</span></h2>
-<div class="inside">
-	<div id="taxonomy-category" class="categorydiv">
-		<ul id="category-tabs" class="category-tabs">
-			<li class="tabs"><a href="#category-all">所有分类目录</a></li>
-			<li class="hide-if-no-js"><a href="#category-pop">最常用</a></li>
-		</ul>
-		
-<script type="text/javascript" >
-  function oncheckBox() {
-  var typename=document.getElementsByName("typename");
-  var value="";
-  for(var i=0;i<typename.length;i++){
-    if(typename[i].checked){
-      value=typename[i].value;
-    }
-  }
-  typename.value=value;
-}
-</script>
-		<div id="category-pop" class="tabs-panel" style="display: none;">
-			<ul id="categorychecklist-pop" class="categorychecklist form-no-clear" >
-				
-		<%
-		Connection conn=DBHelper.getConnection();
-		TypeDao td=new TypeDaoImpl();
-		List<TypeImpl> list=td.selectAllTypeInDB(conn);
-		request.setAttribute("typec", list);
-		DBHelper.closeCon(conn);
-		 %>
 
-		<c:forEach items="${typec }" var="tpe" varStatus="cb">
-		<li id="popular-category-6517" class="popular-category" >
-			<label class="selectit">
-				<input id="in-popular-category-6517" type="checkbox"  />
-				${tpe.tname }			</label>
-		</li>
-</c:forEach>
-					</ul>
-		</div>
-
-		<div id="category-all" class="tabs-panel">
-			<input type='hidden'  value='0' />			<ul id="categorychecklist" data-wp-lists="list:category" class="categorychecklist form-no-clear">
-			<c:forEach items="${typec }" var="tpe" varStatus="cb">	
-
-<li id='category-173'><label class="selectit"><input value="${tpe.tname }" id="typename" name="typename" type="checkbox" onclick="oncheckBox()" id="in-category-173" /> ${tpe.tname }</label></li>
-</c:forEach>
-			</ul>
-		</div>
-		</div>
-	</div>
-</div>
-</div>
-</div>
-</div>
 <div id="nf_admin_metaboxes_appendaform" class="postbox " >
 <button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">切换面板：Append a Ninja Form</span><span class="toggle-indicator" aria-hidden="true"></span></button><h2 class='hndle'><span>Append a Ninja Form</span></h2>
 <div class="inside">
@@ -2026,47 +1967,7 @@ tinymce.ScriptLoader.markDone( 'https://weilaiche.cc/wp-includes/js/tinymce/lang
 		</div>
 		</form>
 		</div>
-		<script>
-		jQuery(function($){
-			$('#npublish, #save-post').click(function(e){
-				if($('#taxonomy-category input:checked').length == 0){
-					alert('抱歉，请先选择一个文章的分类目录，再提交');
-					e.stopImmediatePropagation();
-					return false;
-					}else{
-						var toReturn = true;
-						$('#taxonomy-category input:checked').each(function () {
-							if(this.value == 1){
-								toReturn = false;
-								return false;
-							}
-							});
-							if (toReturn == false){
-								alert('抱歉，不能选择【未分类】这个文章目录');
-								e.stopImmediatePropagation();
-								return false;
-								}else{
-									return true;
-								}
-							}
-							});
-							var publish_click_events = $('#npublish').data('events').click;
-							//alert("publish_click_events2052="+publish_click_events.length);
-							if(publish_click_events){
-								if(publish_click_events.length>1){
-									publish_click_events.unshift(publish_click_events.pop());
-								}
-							}
-							if($('#save-post').data('events') != null){
-								var save_click_events = $('#save-post').data('events').click;
-								if(save_click_events){
-									if(save_click_events.length>1){
-										save_click_events.unshift(save_click_events.pop());
-									}
-								}
-							}
-							});
-							</script>
+		
 <div class="clear"></div></div><!-- wpwrap -->
 <script type="text/javascript">if(typeof wpOnload=='function')wpOnload();</script>
 </body>

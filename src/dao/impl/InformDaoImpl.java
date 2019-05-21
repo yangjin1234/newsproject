@@ -14,10 +14,12 @@ import dao.InformDao;
 public class InformDaoImpl implements InformDao{
 
 
-	public List<Inform> selectInform(Connection conn) throws Exception {
-		String sql="select * from inform";
+	public List<Inform> selectInform(Connection conn,int pageNo,int pageSize) throws Exception {
+		String sql="select * from inform where istate=1 limit ?,?";
 		PreparedStatement ps=conn.prepareStatement(sql);
 		List<Inform> list=new ArrayList<Inform>();
+		 ps.setInt(1, (pageNo-1)*pageSize);
+		  ps.setInt(2, pageSize);
 		ResultSet rs=ps.executeQuery();
 		while(rs.next()){
 			Inform inform=new Inform();
@@ -45,5 +47,23 @@ public class InformDaoImpl implements InformDao{
 			return  true;
 		}
 		return false;
+	}
+
+	public int selectInformMaxPage(Connection conn, int pageSize)
+			throws Exception {
+		 String sql="select count(*) as max from inform where istate=1";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  int count=0;
+		  try {
+			  rs=ps.executeQuery();
+			  if(rs.next())
+			  {
+				  count=rs.getInt("max");
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return count%pageSize==0?count/pageSize:count/pageSize+1;
 	}
 }

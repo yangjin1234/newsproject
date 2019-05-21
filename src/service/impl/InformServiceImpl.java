@@ -2,6 +2,8 @@ package service.impl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import dao.InformDao;
 import dao.impl.InformDaoImpl;
@@ -12,12 +14,12 @@ import service.InformService;
 public class InformServiceImpl implements InformService{
 
 	private InformDao dao=new InformDaoImpl();
-	public Inform selectInform() {
+	public List<Inform> selectInform() {
 			Connection conn=DBHelper.getConnection();
-			Inform inform=new Inform();
+			List<Inform> list=new ArrayList<Inform>();
 			try {
 				conn.setAutoCommit(false);
-				inform=dao.selectInform(conn);
+				list= dao.selectInform(conn);
 				conn.commit();
 			} catch (Exception e) {
 				try {
@@ -28,6 +30,6 @@ public class InformServiceImpl implements InformService{
 			}finally{
 				DBHelper.closeCon(conn);
 			}
-			return inform;
+			return list;
 		}
 }

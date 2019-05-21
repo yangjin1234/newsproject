@@ -1,8 +1,10 @@
 package service;
 
 
+import java.util.List;
+
 import pojo.Inform;
 
 public interface InformService {
-	public Inform selectInform();
+	public List<Inform> selectInform();
 }

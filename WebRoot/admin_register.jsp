@@ -146,9 +146,9 @@ body.login {
 	      }
 	      else
 	      {
-		      if(user_pwd1.length<=6)
+		      if(user_pwd1.length<6)
 		      {
-		      divpass1.innerText="密码至少大于6";
+		      divpass1.innerText="密码至少大于5";
 		      divpass1.style.color="red";
 		      user_pwd1b="false";
 		      }
@@ -194,7 +194,7 @@ body.login {
 		    {
 			      if(user_pwd1==user_pwd2)
 				  {
-			      divpass2.innerText="密码至少大于6";
+			      divpass2.innerText="密码至少大于5";
 			      divpass2.style.color="red";
 			      user_pwd2b="true";
 		          }
@@ -293,12 +293,12 @@ body.login {
 		     user_question=document.getElementById("userquestion").value;
 		   	         if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb=="true"&&user_answerb=="true")
 			        {
-			        alert("aaaa");
+			       // alert("aaaa");
 				    var uu=new uregistermessage(username,user_pwd1,user_email,user_question,user_answer,user_code);
 			        //alert("uu=="+typeof(uu));
 				    //alert(JSON.stringify(uu));
-				    alert("bbb");
-				    alert("admin_email=="+user_email+"admin_question=="+user_question+"admin_answer=="+user_answer+"admin_code=="+user_code);
+				   // alert("bbb");
+				  //  alert("admin_email=="+user_email+"admin_question=="+user_question+"admin_answer=="+user_answer+"admin_code=="+user_code);
 				    $.ajax({
 				        type:"POST",
 				        url:"admingetregistermessage.do",

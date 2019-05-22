@@ -95,9 +95,9 @@
 	      }
 	      else
 	      {
-		      if(user_pwd1.length<=6)
+		      if(user_pwd1.length<6)
 		      {
-		      divpass1.innerText="密码至少大于6";
+		      divpass1.innerText="密码至少大于5";
 		      divpass1.style.color="red";
 		      user_pwd1b="false";
 		      }

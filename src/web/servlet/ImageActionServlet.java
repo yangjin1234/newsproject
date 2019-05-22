@@ -20,7 +20,7 @@ import web.form.ImageForm;
 
 public class ImageActionServlet extends HttpServlet {
 
-	private static final int WIDTH = 140;
+	private static final int WIDTH = 170;
 	private static final int HEIGHT = 35;
 	private String[] str = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R",
 			"S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"};
@@ -100,9 +100,9 @@ public class ImageActionServlet extends HttpServlet {
 				g.drawString(sb.toString(), 10, 25);
 				
 				//画三根线
-				g.drawLine(10, 10, 130, 10);
-				g.drawLine(10, 15, 130, 20);
-				g.drawLine(10, 30, 130, 0);
+				g.drawLine(10, 10, 170, 10);
+				g.drawLine(10, 15, 170, 20);
+				g.drawLine(10, 30, 170, 0);
 				
 				//画干扰点
 //				for (int i = 0; i < 600; i++) {

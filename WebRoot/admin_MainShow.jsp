@@ -1,4 +1,5 @@
 
+<%@page import="pojo.Admin"%>
 <%@page import="pojo.impl.LoginImpl"%>
 <%@page import="dao.impl.LoginDaoImpl"%>
 <%@page import="dao.LoginDao"%>
@@ -194,20 +195,18 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	LoginDao ld=new LoginDaoImpl();
 	 List<TypeImpl> list2=td.selectAllType(conn);
 	 //得到登录用户
-	 LoginImpl log=new LoginImpl();
-	 log=(LoginImpl)request.getSession().getAttribute("account");
+	 Admin log=new Admin();
+	 log=(Admin)request.getSession().getAttribute("admin_account");
 	 //得到id
-	 Login logf=ld.selectUserPassByName(log.getLname(), conn);
-	 session.setAttribute("logf", logf);
+	 session.setAttribute("logf", log);
 	 request.setAttribute("type", list2);
-	 List<TimeTypec> list3=nd.selectAllByTime(conn, logf.getLid());
+	 List<TimeTypec> list3=nd.selectAllByTime(conn, 1);
 	 MyLog.log.debug(list3.toString());
 	 request.setAttribute("timetype", list3);
-	 String uname=logf.getLname(),upass=logf.getLpass();
 	//查出待发放的工资
-	double nosalary=nd.selectSumSalaryNo(logf.getLid(), conn,0);
+	double nosalary=nd.selectSumSalaryNo(1, conn,0);
 	//查出已发放的工资
-	double yesalary=nd.selectSumSalaryNo(logf.getLid(), conn,1);
+	double yesalary=nd.selectSumSalaryNo(1, conn,1);
 	request.getSession().setAttribute("nosalary", nosalary);
 	request.getSession().setAttribute("yesalary", yesalary);
 	MyLog.log.debug("nosalary="+nosalary);
@@ -216,7 +215,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	  pageContext.setAttribute("maxSize", maxSize);
 	//最大页数
 	//int maxPage=nd.getMaxPage(conn, maxSize);
-	int maxPage=nd.getMaxPageByUid(conn, maxSize, logf.getLid());
+	int maxPage=nd.getMaxPageByUid(conn, maxSize, 1);
 	
 	//当前页数
 	int pageNo=0;
@@ -232,12 +231,12 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	  String typeName=request.getParameter("typec");
 	  
 	  if(typeName==null||typeName.equals("")){
-	   list=nd.selectAllNews(logf.getLid(), conn, pageNo, maxSize);
+	   list=nd.selectAllNews(1, conn, pageNo, maxSize);
 	   MyLog.log.debug("list="+list.size());
 	  }else {
 	 // if(!"".equals(typeName)){
-	  list=nd.selectNewsByTypeName(logf.getLid(), conn, typeName, pageNo, maxSize);
-	  maxPage=nd.selectNewsByTypeNameForMaxSize(logf.getLid(), conn, typeName,maxSize);
+	  list=nd.selectNewsByTypeName(1, conn, typeName, pageNo, maxSize);
+	  maxPage=nd.selectNewsByTypeNameForMaxSize(1, conn, typeName,maxSize);
 	  MyLog.log.debug("typeName="+typeName);
 	  request.setAttribute("typec", typeName);
 	  MyLog.log.debug("maxPage232="+maxPage);
@@ -247,8 +246,8 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	  String timetypecName=request.getParameter("timetypec");
 	  if(timetypecName!=null){
 	  if(!"".equals(timetypecName)){
-	  maxPage=nd.selectNewsByTimeForMaxSize(logf.getLid(), conn, timetypecName,maxSize);
-	  list=nd.selectNewsByTime(logf.getLid(), conn, timetypecName, pageNo, maxSize);
+	  maxPage=nd.selectNewsByTimeForMaxSize(1, conn, timetypecName,maxSize);
+	  list=nd.selectNewsByTime(1, conn, timetypecName, pageNo, maxSize);
 	  request.setAttribute("timetypecName", timetypecName);
 	  MyLog.log.debug("timetypecName="+timetypecName);
 	  MyLog.log.debug(list.size());
@@ -256,41 +255,12 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	  }
 	  
 	MyLog.log.debug("maxPage"+maxPage);
-	 //存到cookie
-	 Cookie c1 = new Cookie("uname",URLEncoder.encode(uname, "UTF-8"));
-	    		c1.setDomain("localhost");
-	    		c1.setPath("/Newsproject");
-	    		c1.setMaxAge(60*60*24);
-	    		response.addCookie(c1);
-    			Cookie c2 = new Cookie("upass",upass);
-	    		c2.setDomain("localhost");
-	    		c2.setPath("/Newsproject");
-	    		c2.setMaxAge(60*60*24);
-	    		response.addCookie(c2);
-	    //从请求中拿到cookies
-	     Cookie[] cookies = request.getCookies();
+	
     		String valname = null;
     		String valpass = null;
     		//循环所有的cookie，得到我需要的数据
-    		if(cookies!=null){
-	    		for(Cookie c : cookies){
-	    			String key = c.getName();
-	    				MyLog.log.debug("key="+key);
-	    			if("uname".equals(key)){
-	    				valname = c.getValue();
-	    				MyLog.log.debug("valname="+valname);
-	    				//解码
-	    				valname = URLDecoder.decode(valname, "UTF-8");
-	    			}
-	    			if("upass".equals(key)){
-	    				valpass = c.getValue();
-	    			}
-	    		}
-    		}
-    		//把用户名存到list中
-    for(NewsImpl li:list){
-	 li.setUname(uname);
-	 }
+    		
+    	
     
 	  request.setAttribute("list", list);
 	pageContext.setAttribute("maxPage", maxPage);

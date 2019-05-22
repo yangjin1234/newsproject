@@ -7,7 +7,7 @@
 	<!--<![endif]-->
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>未来车平台 &lsaquo; 注册表单</title>
+	<title>新媒体平台 &lsaquo; 注册表单</title>
 	<meta name="generator" content="Custom Login v3.2.8" />
 <link rel='dns-prefetch' href='//s.w.org' />
 <link rel='stylesheet' href='./wp-admin/load-styles.php?c=0&amp;dir=ltr&amp;load%5B%5D=dashicons,buttons,forms,l10n,login&amp;ver=4.7.53' type='text/css' media='all' />
@@ -313,42 +313,21 @@ body.login {
 							     if("false"==returnval)
 							     {
 							     alert("注册失败");
-							     username="";
-				                 user_pwd1="";
-				                 user_pwd2="";
-				                 user_email="";
-				                 user_question="";
-				                 user_answer="";
-				                 user_code="";
 				                 // alert("修改失败");
-				                  window.location.href="admin_register.jsp";
+				                 // window.location.href="admin_register.jsp";
 							     }
 							     if("error"==returnval)
 							     {
 							     alert("验证码错误");
-							     username="";
-				                 user_pwd1="";
-				                 user_pwd2="";
-				                 user_email="";
-				                 user_question="";
-				                 user_answer="";
-				                 user_code="";
-							     window.location.href="admin_register.jsp";
+							    // window.location.href="admin_register.jsp";
 							     }
 						     }
 				        	});
 			         }
 			       else
 			       {
-			       username="";
-				   user_pwd1="";
-				   user_pwd2="";
-				   user_email="";
-				   user_question="";
-				   user_answer="";
-				   user_code="";
 			       alert("请填写正确信息");
-			       window.location.href="admin_register.jsp";
+			      // window.location.href="admin_register.jsp";
 			       }
 		     }
      
@@ -359,8 +338,8 @@ body.login {
 		</head>
 	<body class="login login-action-register wp-core-ui  locale-zh-cn">
 		<div id="login">
-		<h1><a href="." title="新媒体创作者服务平台" tabindex="-1">未来车平台</a></h1>
-	<p class="message register">在未来车平台注册账号</p>
+		<h1><a href="." title="新媒体创作者服务平台" tabindex="-1">新媒体平台</a></h1>
+	<p class="message register">在新媒体平台注册管理员账号</p>
 <form name="registerform" id="registerform"  novalidate="novalidate">
 	<p>
 		<label for="user_login">用户名<br />

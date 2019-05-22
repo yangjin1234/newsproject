@@ -310,28 +310,13 @@ body.login {
 							     {
 							     
 							     alert("注册失败");
-							     username="";
-				                 user_pwd1="";
-				                 user_pwd2="";
-				                 user_email="";
-				                 user_question="";
-				                 user_answer="";
-				                 user_code="";
-				                 // alert("修改失败");
-				                  window.location.href="register.jsp";
+				                 // window.location.href="register.jsp";
 							     }
 							     if("error"==returnval)
 							     {
 							     alert("验证码错误");
-							     username="";
-				                 user_pwd1="";
-				                 user_pwd2="";
-				                 user_email="";
-				                 user_question="";
-				                 user_answer="";
-				                 user_code="";
 				                 // alert("修改失败");
-				                  window.location.href="register.jsp";
+				                 // window.location.href="register.jsp";
 							     }
 						     }
 				        	});
@@ -339,15 +324,9 @@ body.login {
 			       else
 			       {
 			       alert("请填写正确信息");
-			       username="";
-				   user_pwd1="";
-				   user_pwd2="";
-				   user_email="";
-				   user_question="";
-				   user_answer="";
-				   user_code="";
+			       
 				    // alert("修改失败");
-				    window.location.href="register.jsp";
+				    //window.location.href="register.jsp";
 			       }
 		     }
      
@@ -358,8 +337,8 @@ body.login {
 		</head>
 	<body class="login login-action-register wp-core-ui  locale-zh-cn">
 		<div id="login">
-		<h1><a href="." title="新媒体创作者服务平台" tabindex="-1">未来车平台</a></h1>
-	<p class="message register">在未来车平台注册账号</p>
+		<h1><a href="." title="新媒体创作者服务平台" tabindex="-1">新媒体平台</a></h1>
+	<p class="message register">在新媒体平台注册账号</p>
 <form name="registerform" id="registerform"  novalidate="novalidate">
 	<p>
 		<label for="user_login">用户名<br />

@@ -1,3 +1,4 @@
+<%@page import="pojo.impl.SalaryTableImpl"%>
 <%@page import="dao.impl.LoginDaoImpl"%>
 <%@page import="dao.LoginDao"%>
 <%@page import="dao.impl.UserinformationDaoImpl"%>
@@ -31,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--<![endif]-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>金钱 历史记录 &lsaquo; 未来车平台 &#8212; WordPress</title>
+<title>工资 历史记录 &lsaquo; 新媒体平台 &#8212; WordPress</title>
 <script type="text/javascript" src="static/jquery/3.2.1/jquery-1.8.3.js"></script>
 <script type="text/javascript">
  var selectdelete; //得到文本框选中的内容
@@ -130,7 +131,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  //alert("反序成功");
 		      //}
 //}
-  	 
+	  	 function updatestate(ob)
+	  	 {
+	  	 alert("ob=="+ob);
+	  	 var sid=ob;
+	  	 alert("类型为："+typeof(sid));
+	  	 $.ajax({
+					        type:"POST",
+					        url:"adminsalarystate.do",
+					        data:"data="+sid,
+					        success:function(returnval)
+							     {
+								     if("true"==returnval)
+								     {							  	
+								     alert("修改成功");	
+								     window.location.href="adminprofile.jsp";
+								     } 
+								     else
+								     {
+								     alert("修改失败");
+								     }
+							     }
+					        	});
+	  	 
+	  	 }
   	 
 </script>
 
@@ -294,13 +318,8 @@ jQuery(function($) {
 			</div>
 				</div>
 		<div class="wrap" id="myCRED-wrap">
-	<h1>我的 金钱 历史 </h1>
+	<h1>工资 发放 历史 </h1>
 
-	<ul class="subsubsub">
-	<li class=""><a href="profile.jsp?show=null" class="current">所有的</a> | </li>
-	<li class="today"><a href="profile.jsp?show=today">今日</a> | </li>
-	<li class="yesterday"><a href="profile.jsp?show=yesterday">昨日</a> | </li>
-	<li class="thismonth"><a href="profile.jsp?show=thismonth">本月</a></li></ul>
 	<div style="display:none;" class="clear" id="export-log-history">
 	<strong>出口:</strong>
 	<div>
@@ -309,27 +328,27 @@ jQuery(function($) {
 </div>
 
    <%
-    String show=request.getParameter("show");
-    MyLog.log.debug("show11=="+show);
+    //String show=request.getParameter("show");
+    //MyLog.log.debug("show11=="+show);
     Connection conn=DBHelper.getConnection();
     //得到登录用户，类
-	LoginImpl log=new LoginImpl();
+	//LoginImpl log=new LoginImpl();
 	//dao包
-	LoginDao login=new LoginDaoImpl();
-	MyLog.log.debug("查询登录表，根据用户名");
-	log=(LoginImpl)request.getSession().getAttribute("account");
-	MyLog.log.debug("进入查询登录表，根据用户名");
+	//LoginDao login=new LoginDaoImpl();
+	//MyLog.log.debug("查询登录表，根据用户名");
+	//log=(LoginImpl)request.getSession().getAttribute("account");
+	//MyLog.log.debug("进入查询登录表，根据用户名");
 	//得到登录id
-	String loginname=log.getLname();
-	Login logf=login.selectUserPassByName(loginname, conn);
-	int loginId=logf.getLid();
-	MyLog.log.debug("loginId=="+loginId);
+	//String loginname=log.getLname();
+	//Login logf=login.selectUserPassByName(loginname, conn);
+	//int loginId=logf.getLid();
+	//MyLog.log.debug("loginId=="+loginId);
 	//根据登录id，得到用户id
-	UserinformationDao ui=new UserinformationDaoImpl();
-	int userId=ui.selectUserId(loginId, conn);
-	MyLog.log.debug("userId=="+userId);
-    NewsDao news=new NewsDaoImpl();
-    List<News> list=new ArrayList<News>();
+	//UserinformationDao ui=new UserinformationDaoImpl();
+	//int userId=ui.selectUserId(loginId, conn);
+	//MyLog.log.debug("userId=="+userId);
+	UserSalaryDao salarys=new UserSalaryImpl();
+    List<SalaryTableImpl> list=new ArrayList<SalaryTableImpl>();
     String pn=request.getParameter("pageNo");
     String ps=request.getParameter("pageSize");
     int pageNo=0;
@@ -353,32 +372,9 @@ jQuery(function($) {
 		    }
 		}
 		//计算最大页码数
-		max=news.getMaxPage(conn, pageSize, userId, 1);
-		if(show==null)
-		{
-		MyLog.log.debug("根据每页显示几条数据，计算出总共有多少页="+list.size());
-		max=news.getMaxPage(conn, pageSize, userId, 1);
-		}
-		if("null".equals(show))
-		{
-		//根据每页显示几条数据，计算出总共有多少页
-		MyLog.log.debug("根据每页显示几条数据，计算出总共有多少页="+list.size());
-		max=news.getMaxPage(conn, pageSize, userId, 1);
-		}
-		if("today".equals(show))
-		{
-		max=news.getMaxPageDay(conn, pageSize, userId, 1);
-		}
-		if("yesterday".equals(show))
-		{
-		max=news.getMaxPageLastDay(conn, pageSize, userId, 1);
-		}
-		if("thismonth".equals(show))
-		{
-		max=news.getMaxPageMonth(conn, pageSize, userId, 1);
 		
-		}
-		
+		max=salarys.getSalaryMaxPage(conn, pageSize);
+		MyLog.log.debug("max11213=="+max);
 		if(pn==null){
 			//第一次进入页面
 			pageNo = 1;
@@ -393,88 +389,38 @@ jQuery(function($) {
 				pageNo=1;
 			}
 		}
-		list = news.selectAllNews(userId, 1, conn, pageNo, pageSize);
-		 n=news.selectAllNews(userId, 1, conn);
-		if("null".equals(show))
-		{
-		//分页查询出每页数据
-		MyLog.log.debug("分页查询出每页数据="+list.size());
-		list = news.selectAllNews(userId, 1, conn, pageNo, pageSize);
-		//得到一共有多少篇文章
-		 n=news.selectAllNews(userId, 1, conn);
-		}
-		if(show==null)
-		{
-		//分页查询出每页数据
-		MyLog.log.debug("分页查询出每页数据="+list.size());
-		list = news.selectAllNews(userId, 1, conn, pageNo, pageSize);
-		//得到一共有多少篇文章
-		}
-		if("today".equals(show))
-		{
-		list=news.selectNewsDay(conn, userId, 1, pageNo, pageSize);
-		n=news.selectNewsDayCount(userId, 1, conn);
-		}
-		if("yesterday".equals(show))
-		{
-		list=news.selectNewsLastDay(conn, userId, 1, pageNo, pageSize);
-		n=news.selectNewsLastDayCount(userId, 1, conn);
-		MyLog.log.debug("分页查询出每页数据="+list.size());
-		}
-		if("thismonth".equals(show))
-		{
-		list=news.selectNewsMonth(conn, userId, 1, pageNo, pageSize);
-		n=news.selectNewsMonthCount(userId, 1, conn);
-		}
 		
+		
+		//分页查询出每页数据
+		list = salarys.selectUserAllSalary(conn, pageNo, pageSize);
+		MyLog.log.debug("list1231=="+list.size());
+		//得到一共有多少篇文章
+	    n=salarys.selectAllUserSalaryCount(conn);
+		MyLog.log.debug("n12313=="+n);
 		pageContext.setAttribute("list", list);
 		pageContext.setAttribute("pageNo", pageNo);
 		pageContext.setAttribute("pageSize", pageSize);
 		pageContext.setAttribute("max", max);
 		pageContext.setAttribute("newscount", n);
-		MyLog.log.debug("show22="+show);
-		pageContext.setAttribute("show", show);
-		session.setAttribute("loginname", loginname);
+		//MyLog.log.debug("show22="+show);
+		//pageContext.setAttribute("show", show);
+		//session.setAttribute("loginname", loginname);
 		
 		
 	%>
 	<form method="get" action="" name="mycred-mylog-form" novalidate>
 		<input type="hidden" name="page" value="mycred_money-history" />
-			<p class="search-box">
-				<label class="screen-reader-text">搜索日志:</label>
-				<input type="search" name="s" value="" placeholder="搜索日志条目" />
-				<input type="submit" id="search-submit" class="button button-medium button-secondary" value="搜索日志" />
-			</p>
-			
-		
 		<div class="tablenav top">
 
-						<div class="alignleft actions bulkactions">
-				<select name="action" id="textvalue">
-					<option value="-1">Bulk Actions</option><option value="删除" >刪除</option>				</select>
-				<input type="button" class="button action" id="doaction" value="Apply" onclick="deletenews('${show}')"/>
-			</div>
-				<div class="alignleft actions">
-				<select name="ref" id="myCRED-reference-filter">
-					<option value="">显示所有引用</option>
-					<option value="申请提现">申请提现</option>
-					<option value="获得稿酬">获得稿酬</option>
-				</select>
-				<select name="order" id="myCRED-order-filter">
-					<option value="">显示顺序</option>
-					<option value="ASC">顺序</option>
-					<option value="DESC" selected="selected">反序</option>
-				</select>
-				<input type="submit" class="btn btn-default button button-secondary" value="过滤" /></div>
 				<h2 class="screen-reader-text sr-only">Log entries navigation</h2>
 			<div class="tablenav-pages">
 
 <span class="displaying-num">${newscount } entries</span>
 <span class='pagination-links'><span class="tablenav-pages-navspan" aria-hidden="true">&laquo;</span>
-<a class='next-page' href="profile.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize }&show=${show } "><span class='screen-reader-text'>上一页</span><span aria-hidden="true">&lsaquo;</span></a>
+<a class='next-page' href="admin_profile.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize } "><span class='screen-reader-text'>上一页</span><span aria-hidden="true">&lsaquo;</span></a>
 <span class="paging-input">第<label for="current-page-selector" class="screen-reader-text">当前页</label><input class='current-page' id='current-page-selector' type='text' name='paged' value='${pageNo }' size='5' aria-describedby='table-paging' />页，共<span class='total-pages'>${max }</span>页</span>
-<a class='next-page' href="profile.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize }&show=${show }"><span class='screen-reader-text'>下一页</span><span aria-hidden='true'>&rsaquo;</span></a>
-<a class='last-page' href="profile.jsp?pageNo=${max}&pageSize=${pageSize }&show=${show }"><span class='screen-reader-text'>尾页</span><span aria-hidden='true'>&raquo;</span></a></span>
+<a class='next-page' href="admin_profile.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize }"><span class='screen-reader-text'>下一页</span><span aria-hidden='true'>&rsaquo;</span></a>
+<a class='last-page' href="admin_profile.jsp?pageNo=${max}&pageSize=${pageSize }"><span class='screen-reader-text'>尾页</span><span aria-hidden='true'>&raquo;</span></a></span>
 			</div>
 			<br class="clear" />
 		</div>
@@ -483,21 +429,26 @@ jQuery(function($) {
 			<thead>
 			<tr>
 					<td  id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select all</label></td>
-					<th scope="col" id="ref" class="manage-column column-ref">Reference</th>
-					<th scope="col" id="time" class="manage-column column-time">时间</th>
-					<th scope="col" id="creds" class="manage-column column-creds">金额</th>
-					<th scope="col" id="entry" class="manage-column column-entry">条目</th>
+					<th scope="col" id="ref" class="manage-column column-ref">用户名</th>
+					<th scope="col" id="creds" class="manage-column column-creds">发放时间</th>
+					<th scope="col" id="entry" class="manage-column column-entry">用户工资</th>
+					<th scope="col" id="entry" class="manage-column column-entry">发放情况</th>
+					
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${list }" var="news">
+			<c:forEach items="${list }" var="sa">
 			<tr height="50px;">
 					<td  class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-2">Select all</label>
-					<input type="checkbox" id="cb-select-all-2" name="checkboxname" value="${news.nid }" onclick="oncheckbox()" /></td>
-					<th  scope="col" class="manage-column column-ref">获得报酬</th>
-					<th scope="col" class="manage-column column-time">${news.namend_time}</th>
-					<th scope="col" class="manage-column column-creds">￥&nbsp;${news.nsalary}&nbsp;元</th>
-					<th scope="col" class="manage-column column-entry">您编号为${news.nid }的文章获得了${news.nsalary}报酬</th>
+					<th  scope="col" class="manage-column column-ref">${sa.username }</th>
+					<th scope="col" class="manage-column column-time">${sa.sdate}</th>
+					<th scope="col" class="manage-column column-creds">￥&nbsp;${sa.salarys }</th>
+					<c:if test="${sa.salarys_state eq 1}" >
+					<th scope="col" class="manage-column column-entry">&nbsp;&nbsp;已发放</th>
+					</c:if>
+					<c:if test="${sa.salarys_state eq 0 }" >
+					<th scope="col" class="manage-column column-entry"><input type="button" value="未发放" onclick="updatestate('${sa.sid}')" /></th>
+					</c:if>
 			</tr>
 			</tbody>
 			</c:forEach>
@@ -508,10 +459,10 @@ jQuery(function($) {
 
 				<span class="displaying-num">${newscount } entries</span>
 <span class='pagination-links'><span class="tablenav-pages-navspan" aria-hidden="true">&laquo;</span>
-<a class='next-page' href="profile.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize }"><span class='screen-reader-text'>上一页</span><span aria-hidden="true">&lsaquo;</span></a>
+<a class='next-page' href="admin_profile.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize }"><span class='screen-reader-text'>上一页</span><span aria-hidden="true">&lsaquo;</span></a>
 <span class="screen-reader-text">当前页</span><span id="table-paging" class="paging-input">第${pageNo }页，共<span class='total-pages'>${max }</span>页</span>
-<a class='nessxt-page' href="profile.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize }"><span class='screen-reader-text'>下一页</span><span aria-hidden='true'>&rsaquo;</span></a>
-<a class='last-page' href="profile.jsp?pageNo=${max}&pageSize=${pageSize }"><span class='screen-reader-text'>尾页</span><span aria-hidden='true'>&raquo;</span></a></span>
+<a class='nessxt-page' href="admin_profile.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize }"><span class='screen-reader-text'>下一页</span><span aria-hidden='true'>&rsaquo;</span></a>
+<a class='last-page' href="admin_profile.jsp?pageNo=${max}&pageSize=${pageSize }"><span class='screen-reader-text'>尾页</span><span aria-hidden='true'>&raquo;</span></a></span>
 			</div>
 			<br class="clear" />
 			

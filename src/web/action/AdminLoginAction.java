@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.AdminDao;
 import dao.impl.AdminDaoImpl;
 import db.DBHelper;
+import pojo.Admin;
 import pojo.Login;
 import pojo.impl.LoginImpl;
 import net.sf.json.JSONObject;
@@ -45,8 +46,15 @@ public class AdminLoginAction extends Action{
 		MyLog.log.debug("statea="+obj);
 		LoginImpl l=(LoginImpl)JSONObject.toBean(obj,LoginImpl.class);
 //		LoginService ls=new LoginServiceImpl();
-		AdminDao ad=new AdminDaoImpl();
 		Connection conn=DBHelper.getConnection();
+		AdminDao ad=new AdminDaoImpl();
+		Admin admin=new Admin();
+		try {
+			admin=ad.selectUserPassByName(loginf.getLname(), conn);
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		boolean flag=l.isLrememberme();
 		MyLog.log.debug("flag="+flag);
 		String sentence="";
@@ -118,7 +126,7 @@ public class AdminLoginAction extends Action{
 		    		}
 	    		}
 				
-				request.getSession().setAttribute("admin_account", l);
+				request.getSession().setAttribute("admin_account",admin );
 				return new ActionForward("admin_show");
 			}
 			else if(state==0){

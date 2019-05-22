@@ -444,7 +444,7 @@ jQuery(function($) {
 					<th scope="col" class="manage-column column-time">${sa.sdate}</th>
 					<th scope="col" class="manage-column column-creds">￥&nbsp;${sa.salarys }</th>
 					<c:if test="${sa.salarys_state eq 1}" >
-					<th scope="col" class="manage-column column-entry">已发放</th>
+					<th scope="col" class="manage-column column-entry">&nbsp;&nbsp;已发放</th>
 					</c:if>
 					<c:if test="${sa.salarys_state eq 0 }" >
 					<th scope="col" class="manage-column column-entry"><input type="button" value="未发放" onclick="updatestate('${sa.sid}')" /></th>

@@ -353,6 +353,7 @@ jQuery(function($) {
 		    }
 		}
 		//计算最大页码数
+		max=news.getMaxPage(conn, pageSize, userId, 1);
 		if(show==null)
 		{
 		MyLog.log.debug("根据每页显示几条数据，计算出总共有多少页="+list.size());
@@ -392,6 +393,8 @@ jQuery(function($) {
 				pageNo=1;
 			}
 		}
+		list = news.selectAllNews(userId, 1, conn, pageNo, pageSize);
+		 n=news.selectAllNews(userId, 1, conn);
 		if("null".equals(show))
 		{
 		//分页查询出每页数据
@@ -406,7 +409,6 @@ jQuery(function($) {
 		MyLog.log.debug("分页查询出每页数据="+list.size());
 		list = news.selectAllNews(userId, 1, conn, pageNo, pageSize);
 		//得到一共有多少篇文章
-		 n=news.selectAllNews(userId, 1, conn);
 		}
 		if("today".equals(show))
 		{

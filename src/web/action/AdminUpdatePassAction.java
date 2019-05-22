@@ -21,6 +21,7 @@ import util.MyMD5;
 import web.core.Action;
 import web.core.ActionForm;
 import web.core.ActionForward;
+import web.form.AdminUpdatePassForm;
 import web.form.GetRegisterMessageForm;
 import web.form.UpdatePassForm;
 
@@ -28,7 +29,7 @@ public class AdminUpdatePassAction extends Action{
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response, ActionForm af) {
 		
-		UpdatePassForm usf= (UpdatePassForm)af;
+		AdminUpdatePassForm usf= (AdminUpdatePassForm)af;
 		MyLog.log.debug("ge=="+usf);
 		String data=usf.getData();
 		MyLog.log.debug("data=="+data);

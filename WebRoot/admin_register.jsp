@@ -277,25 +277,36 @@ body.login {
 				     
      }
 	
-      function uregistermessage(aname,apass,admin_email,admin_question,admin_answer,admin_code)
+      function uregistermessage(username,user_pwd1,user_email,user_question,user_answer,user_code)
 		     {
-		     this.aname=username;
-		     this.apass=user_pwd1;
-		     this.admin_email=user_email;
-		     this.admin_question=user_question;
-		     this.admin_answer=user_answer;
-		     this.admin_code=user_code;
+		     this.username=username;
+		     this.user_pwd1=user_pwd1;
+		     this.user_email=user_email;
+		     this.user_question=user_question;
+		     this.user_answer=user_answer;
+		     this.user_code=user_code;
 		     }
      function registersub()
      {
 		      //alert("aaa");
 		     user_code=document.getElementById("user_code").value;
 		     user_question=document.getElementById("userquestion").value;
+		     alert("username==admin=="+username);
+		     alert("apass==admin=="+user_pwd1);
+		     alert("usernameb==admin=="+usernameb);
+		     alert("user_pwd1b==admin=="+user_pwd1b);
+		     alert("user_pwd2b==admin=="+user_pwd2b);
+		     alert("useremailb==admin=="+useremailb);
+		     alert("user_answerb==admin=="+user_answerb);
+		     
 	         if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb=="true"&&user_answerb=="true")
 			   {
-				    var uu=new uregistermessage(aname,apass,admin_email,admin_question,admin_answer,admin_code);
+			   alert("aaaa");
+				    var uu=new uregistermessage(username,user_pwd1,user_email,user_question,user_answer,user_code);
 			        //alert("uu=="+typeof(uu));
 				    //alert(JSON.stringify(uu));
+				    alert("bbb");
+				    alert("admin_email=="+user_email+"admin_question=="+user_question+"admin_answer=="+user_answer+"admin_code=="+user_code);
 				    $.ajax({
 				        type:"POST",
 				        url:"admingetregistermessage.do",

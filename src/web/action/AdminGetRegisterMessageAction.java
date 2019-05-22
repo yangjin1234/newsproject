@@ -23,6 +23,7 @@ import util.MyMD5;
 import web.core.Action;
 import web.core.ActionForm;
 import web.core.ActionForward;
+import web.form.AdminGetRegisterMessageForm;
 import web.form.GetRegisterMessageForm;
 
 public class AdminGetRegisterMessageAction extends Action{
@@ -30,16 +31,17 @@ public class AdminGetRegisterMessageAction extends Action{
 public ActionForward execute(HttpServletRequest request,
 		HttpServletResponse response, ActionForm af) {
 	   
-		GetRegisterMessageForm ge= (GetRegisterMessageForm)af;
+		AdminGetRegisterMessageForm ge= (AdminGetRegisterMessageForm)af;
 		MyLog.log.debug("ge=="+ge);
 		String data=ge.getData();
 		MyLog.log.debug("data=="+data);
 	    JSONObject ob=JSONObject.fromObject(data);
 	    AdminImpl user=(AdminImpl)JSONObject.toBean(ob, AdminImpl.class);
 	    //得到用户输入的验证码
-	    String usercode=user.getAdmin_code();
+	    String usercode=user.getUser_code();
 	    //得到图片验证码
 	    String code=(String)request.getSession().getAttribute("code");
+	    MyLog.log.debug("code图片验证码==="+code);
 	    Connection conn=DBHelper.getConnection();
 	    AdminDao u=new AdminDaoImpl();
 	    String f="";

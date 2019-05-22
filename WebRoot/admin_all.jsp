@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--<![endif]-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>管理员申请名单 &lsaquo; 新媒体平台 &#8212; WordPress</title>
+<title>当前所有管理员 &lsaquo; 新媒体平台 &#8212; WordPress</title>
 <script type="text/javascript" src="static/jquery/3.2.1/jquery-1.8.3.js"></script>
 <script type="text/javascript">
  var selectdelete; //得到文本框选中的内容
@@ -173,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								     if("true"==returnval)
 								     {							  	
 								     alert("修改成功");	
-								     window.location.href="admin_check.jsp";
+								     window.location.href="admin_all.jsp";
 								     } 
 								     else
 								     {
@@ -274,8 +274,8 @@ jQuery(function($) {
 	<li class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-icon-users menu-top-first" id="menu-users">
 	<a href='admin_check.jsp' class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-icon-users menu-top-first" >
 	<div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-users'><br /></div>
-	<div class='wp-menu-name'>管理员申请审核</div></a>
-	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>管理员申请审核</li>
+	<div class='wp-menu-name'>当前所有管理员</div></a>
+	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>当前所有管理员</li>
 	<li><a href='profile.php?page=mycred_default-history'>查看所有管理员</a></li>
 	<li><a href='profile.php?page=ludou-phone-menu'>修改手机号</a></li>
 	<li><a href='profile.php?page=shiming-renzheng'>实名认证</a></li></ul></li>
@@ -302,10 +302,14 @@ jQuery(function($) {
 		<li id="wp-admin-bar-site-name" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/">超级管理员平台</a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-site-name-default" class="ab-submenu">
 		<li id="wp-admin-bar-view-site"><a class="ab-item" href="https://weilaiche.cc/">查看站点</a>		</li></ul></div>		</li>
 		<li id="wp-admin-bar-comments"><a class="ab-item" href="https://weilaiche.cc/wp-admin/edit-comments.php"><span class="ab-icon"></span><span class="ab-label awaiting-mod pending-count count-0" aria-hidden="true">0</span><span class="screen-reader-text">0条评论待审</span></a>		</li>
-		<li id="wp-admin-bar-new-content" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/wp-admin/post-new.php"><span class="ab-icon"></span><span class="ab-label">新建</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
-		<li id="wp-admin-bar-new-post"><a class="ab-item" href="https://weilaiche.cc/wp-admin/post-new.php">文章</a>		</li></ul></div>		</li></ul><ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
-		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="">嗨,${loginname}<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
-		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="https://weilaiche.cc/wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>${loginname }</span></a>		</li>
+		<li id="wp-admin-bar-new-content" class="menupop">
+		<div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
+		<li id="wp-admin-bar-new-post"><a class="ab-item" href="https://weilaiche.cc/wp-admin/post-new.php">文章</a>		</li></ul></div>		</li></ul>
+		<ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
+		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="">嗨,${loginname}<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a>
+		<div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
+		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="https://weilaiche.cc/wp-admin/profile.php">
+		<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>${loginname }</span></a>		</li>
 		<li id="wp-admin-bar-edit-profile"><a class="ab-item" href="profile1.jsp">编辑我的个人资料</a>		</li>
 		<li id="wp-admin-bar-logout"><a class="ab-item" href="login.jsp?action=logout&#038;_wpnonce=57ebb2a207">登出</a>		</li></ul><ul id="wp-admin-bar-my-account-default" class="ab-submenu">
 		<li id="wp-admin-bar-mycred-account" class="menupop ab-sub-secondary"><div class="ab-item ab-empty-item" aria-haspopup="true">余额</div><div class="ab-sub-wrapper"><ul id="wp-admin-bar-mycred-account-default" class="ab-submenu">
@@ -355,7 +359,7 @@ jQuery(function($) {
 			</div>
 				</div>
 		<div class="wrap" id="myCRED-wrap">
-	<h1>管理员申请名单 </h1>
+	<h1>当前所有管理员 </h1>
 
 	<div style="display:none;" class="clear" id="export-log-history">
 	<strong>出口:</strong>
@@ -410,7 +414,7 @@ jQuery(function($) {
 		}
 		//计算最大页码数
 		
-		max=ad.selectAllNotPathAdminForMaxPage(conn, pageSize);
+		max=ad.selectAllAdminByAcheckForMaxPage(conn, pageSize, 1);
 		MyLog.log.debug("max11213=="+max);
 		if(pn==null){
 			//第一次进入页面
@@ -429,10 +433,10 @@ jQuery(function($) {
 		
 		
 		//分页查询出每页数据
-		list = ad.selectAllNotPathAdmin(conn, pageNo, pageSize);
+		list = ad.selectAllAdminByAcheck(conn, pageNo, pageSize, 1);
 		MyLog.log.debug("list1231=="+list.size());
 		//得到一共有多少篇文章
-	    n=ad.selectAllNotPathAdminSum(conn);
+	    n=ad.selectAllAdminByAcheckSum(conn, 1);
 		MyLog.log.debug("n12313=="+n);
 		pageContext.setAttribute("list", list);
 		pageContext.setAttribute("pageNo", pageNo);
@@ -468,8 +472,8 @@ jQuery(function($) {
 					<td  id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select all</label></td>
 					<th scope="col" id="ref" class="manage-column column-ref">管理员名</th>
 					<th scope="col" id="creds" class="manage-column column-creds">电话号码</th>
-					<th scope="col" id="entry" class="manage-column column-entry">条件符合</th>
-					<th scope="col" id="entry" class="manage-column column-entry">条件不符合</th>
+					<th scope="col" id="entry" class="manage-column column-entry">管理员类型</th>
+					<th scope="col" id="entry" class="manage-column column-entry">操作</th>
 					
 			</tr>
 			</thead>
@@ -479,8 +483,10 @@ jQuery(function($) {
 					<td  class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-2">Select all</label>
 					<th  scope="col" class="manage-column column-ref">${sa.aname }</th>
 					<th scope="col" class="manage-column column-creds">￥&nbsp;${sa.aphone }</th>
-					<th scope="col" class="manage-column column-entry"><input type="button" value="通过申请" onclick="checkpath('${sa.aid}')" /></th>
-					<th scope="col" class="manage-column column-entry"><input type="button" value="拒绝" onclick="checknot('${sa.aid}')" /></th>
+					<th scope="col" class="manage-column column-entry">
+					<c:if test="${sa.astate eq 0 }">普通管理员</c:if>
+					</th>
+					<th scope="col" class="manage-column column-entry"><input type="button" value="删除" onclick="checknot('${sa.aid}')" /></th>
 			</tr>
 			</tbody>
 			</c:forEach>

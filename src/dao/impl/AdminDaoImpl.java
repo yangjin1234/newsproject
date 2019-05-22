@@ -9,6 +9,7 @@ import java.util.List;
 import pojo.Admin;
 import pojo.Inform;
 import pojo.Login;
+import pojo.UpdatePass;
 import pojo.impl.AdminImpl;
 import util.MyLog;
 import util.MyMD5;
@@ -248,7 +249,39 @@ public class AdminDaoImpl implements AdminDao {
 	
 	
 	
-	
+	public boolean selectAdminMessage(UpdatePass d,Connection conn) throws Exception
+	{
+		System.out.println("conn"+conn);
+		String sql="select *from admin where aname=? ";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		String username=d.getUsername();
+		String user_answer=d.getUser_answer();
+		MyLog.log.debug("用户输入的uanswer=="+user_answer);
+		String  user_question=d.getUser_question();
+		MyLog.log.debug("用户输入的uproblem=="+user_question);
+		ps.setString(1, username);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next())
+		{
+			String uproblem=rs.getString("aquestion");
+			MyLog.log.debug("数据库的uproblem=="+uproblem);
+			String uanswer=rs.getString("aanswer");
+			MyLog.log.debug("数据库的uproblem=="+uanswer);
+			if(user_answer.equals(uanswer)&&user_question.equals(uproblem))
+			{
+				
+				MyLog.log.debug("管理员输入的与数据库的一致");
+				return true;
+			}
+			else
+			{
+				MyLog.log.debug("管理员输入的与数据库的不一致");
+				return false;
+			}
+		}
+		MyLog.log.debug("查询失败");
+		return false;
+	}
 	
 
 }

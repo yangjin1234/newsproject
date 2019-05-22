@@ -5,6 +5,7 @@ import java.util.List;
 
 import pojo.Admin;
 import pojo.Login;
+import pojo.UpdatePass;
 import pojo.impl.AdminImpl;
 
 public interface AdminDao {
@@ -86,5 +87,16 @@ public interface AdminDao {
 	 */
 	
 	public boolean insertRegisterMessage(AdminImpl u,Connection conn) throws Exception;
+
+	
+	/**
+	 * ÐÞ¸ÄÃÜÂë²Ù×÷
+	 * @param d
+	 * @param conn
+	 * @return
+	 * @throws Exception
+	 */
+		
+		public boolean selectAdminMessage(UpdatePass d,Connection conn) throws Exception;
 
 }

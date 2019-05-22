@@ -36,11 +36,11 @@
      {
 	     username=$("#username").val();
 	    // alert(typeof(username));
-	     alert("username"+username);
+	     alert("管理员用户username"+username);
 	     //alert("user_pwd2"+user_pwd2);
 	     $.ajax({
 	     type:"POST",
-	     url:"judgeuser.do",
+	     url:"adminjudgeuser.do",
 	     data:"data="+username,
 	     success:function(returnval)
 	     {
@@ -86,7 +86,7 @@
      {
 	      divpass1=document.getElementById("contentpass1");
 	      user_pwd1=$("#user_pwd1").val();
-	     alert("user_pwd1"+user_pwd1);
+	     alert("管理员用户密码user_pwd1"+user_pwd1);
 	      if(""==user_pwd1)
 	      {
 	      divpass1.innerText="密码不能为空";
@@ -110,6 +110,7 @@
 	      }
       }
 	function ajaxInvoke(){
+	alert("ddjd");
 	    user_question=document.getElementById("userquestion").value;
 		if(usernameb=="true"&&user_pwd1b=="true"&&user_answerb=="true")
 			   {
@@ -118,7 +119,7 @@
 				    //alert(JSON.stringify(uu));
 				    $.ajax({
 				        type:"POST",
-				        url:"updatepass.do",
+				        url:"adminupdatepass.do",
 				        data:"data="+JSON.stringify(uu),
 				        success:function(returnval)
 						     { 
@@ -126,18 +127,30 @@
 							     if("true"==returnval)
 							     {							  	
 							     alert("修改密码成功");	
-							     window.location.href="login.jsp";	
+							     window.location.href="admin_login.jsp";	
 							     }
 							     else
 							     {
 							     alert("修改失败");
+							      username="";
+				                  user_question="";
+				                  user_answer="";
+				                  user_pwd1="";
+				                  alert("修改失败");
+				                  window.location.href="admin_forgetpass.jsp";
 							     }
 						     }
 				        	});
-			         }
+			     }
 			       else
 			       {
 			       alert("请填写正确信息");
+			       username="";
+				   user_question="";
+				   user_answer="";
+				   user_pwd1="";
+				   alert("修改失败");
+				   window.location.href="admin_forgetpass.jsp";
 			       }
 		     }
 	</script>
@@ -242,7 +255,7 @@ body.login {
 		<input type="password" name="user_pwd1" id="user_pwd1" aria-describedby="login_error" class="input" value="" size="20" onblur="judgepass1()"/><div id="contentpass1" style="display:inline"></div></label>
 	</p>
 	<p class="submit">
-		<input type="button" id="wp-submit" class="button button-primary button-large" onclick="ajaxInvoke()"value="确认" />
+		<input type="button" id="wp-submit" class="button button-primary button-large" onclick="ajaxInvoke()" value="确认" />
 		<input type="hidden" name="redirect_to" value="./wp-admin/" />
 		<input type="hidden" name="testcookie" value="1" />
 	</p>

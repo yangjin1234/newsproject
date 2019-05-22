@@ -37,25 +37,37 @@ public class AdminUpdatePassAction extends Action{
 		MyLog.log.debug("data=="+data);
 	    JSONObject ob=JSONObject.fromObject(data);
 	    UpdatePass up=(UpdatePass)JSONObject.toBean(ob, UpdatePass.class);
-	    MyLog.log.debug("username=="+up.getUsername());
+	    MyLog.log.debug("管理员用户名username=="+up.getUsername());
 	    String pass=up.getUser_pwd1();
 	    String aname=up.getUsername();
-	    MyLog.log.debug("pass=="+pass);
+	    MyLog.log.debug("管理员密码pass=="+pass);
+	    
 	    pass=MyMD5.encrypt(pass);
 	    Connection conn=DBHelper.getConnection();
 	    String f="";
 	    AdminDao u=new AdminDaoImpl();
 	    try {
+	    	boolean ff=u.selectAdminMessage(up, conn);
 			boolean flag=u.updatePass(aname, pass, conn);
-			if(flag)
+			MyLog.log.debug("管理员忘记密码=="+flag);
+			if(ff)
 			{
-				f="true";
-				
-				MyLog.log.debug("插入新密码成功==");
-				
+				if(flag)
+				{
+					f="true";
+					
+					MyLog.log.debug("管理员更改新密码成功==");
+					
+				}
+				else
+				{
+					f="false";
+					MyLog.log.debug("管理员更改新密码成功==");
+				}
 			}
 			else
 			{
+				MyLog.log.debug("管理员输入的答案不正确");
 				f="false";
 			}
 		} catch (Exception e) {

@@ -414,7 +414,7 @@ body.login {
  -->
 <p id="nav">
 <a href="./login.jsp">登录</a> |
-<a href="./forgetpass.jsp">忘记密码？</a>
+<a href="./admin_forgetpass.jsp">忘记密码？</a>
 </p>
 
 	<p id="backtoblog"><a href="./">&larr; 返回到新媒体平台</a></p>

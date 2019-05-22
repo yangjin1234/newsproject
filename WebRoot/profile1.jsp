@@ -62,19 +62,25 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 <script type="text/javascript"  src="js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
 	function jump(){
-		var usex=document.getElementsByName("sex");
+		var usex=document.getElementById("sex");
+		
+		//var usex=${sessionScope.usex};
+		alert(usex.value);
 		if(usex=="女"){
 			var iuser_sex=document.getElementsByName("user_sex");
-				iuser_sex[0].checked=true;
-				iuser_sex[1].checked=false;
+				iuser_sex[1].checked=true;
+				alert("女");
+				iuser_sex[0].checked=false;
 		}else{
 			var iuser_sex=document.getElementsByName("user_sex");
-				iuser_sex[1].checked=true;
-				iuser_sex[0].checked=false;
+				alert("男");
+				iuser_sex[0].checked=true;
+				iuser_sex[1].checked=false;
 		}
 	}
 	
 	function upload(obj){
+			alert("${sessionScope.uphoto}");
 			var fr = new FileReader();
 			var f = obj.files[0];
 			fr.readAsDataURL(f);
@@ -94,14 +100,12 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 		function emailjudge() {
 	     divemail=document.getElementById("contentemail");
 	     email=$("#email").val();
-	     alert("email");
 	     $.ajax({
 	     type:"POST",
 	     url:"changeuseremail.do",
 	     data:"data="+email,
 	     success:function(returnval)
 	     {
-	     alert(returnval);
 		     if("true"==returnval)
 		     {
 		      divemail.innerText="邮箱正确";
@@ -155,7 +159,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 </script>
 </head>
 <body class="wp-admin wp-core-ui no-js  profile-php auto-fold admin-bar branch-4-7 version-4-7-53 admin-color-light locale-zh-cn no-customize-support no-svg" onload="jump()">
-<input name="sex" type="hidden" value=""${sessionScope.usex }/>
+<input id="sex" name="sex" type="hidden" value="${sessionScope.usex }"/>
 <script type="text/javascript">
 	document.body.className = document.body.className.replace('no-js','js');
 </script>
@@ -316,11 +320,11 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 <tr class="user-profile-picture">
 	<th>资料图片</th>
 	<td>
-		<input type="file" name="photo" onchange="upload(this)"/><br/>
-   				<input type="hidden" name="photo" id="photodata"/>
-   			<img id="myimg"  width="200px" height="200px" onchange="upload(this)"/>
+		<input type="file" name="photo" value="${sessionScope.uphoto }" onchange="upload(this)"/><br/>
+   				<input type="hidden" value="${sessionScope.uphoto }" name="photo" id="photodata"/>
+   			<img id="myimg"  width="200px" height="200px" src="${sessionScope.uphoto }" onchange="upload(this)"/>
 		
-		<img name="photo" alt='' src='http://localhost:8080/Newsproject/avatar/54311cd9e80d1ddcad3697b15ae032be?s=96&#038;d=wavatar&#038;r=g' srcset='http://localhost:8080/Newsproject/avatar/54311cd9e80d1ddcad3697b15ae032be?s=192&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' />		
+			
 	</td>
 </tr>
 </table>

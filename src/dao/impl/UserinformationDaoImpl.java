@@ -8,6 +8,7 @@ import java.util.List;
 
 import dao.UserinformationDao;
 import pojo.impl.Userinformation;
+import util.MyLog;
 
 public class UserinformationDaoImpl implements UserinformationDao{
 
@@ -94,6 +95,7 @@ public class UserinformationDaoImpl implements UserinformationDao{
 		ps.setString(4, user.getUphone());
 		ps.setString(5, user.getUphoto());
 		ps.setInt(6, user.getUid());
+		MyLog.log.debug("sex="+user.getUsex());
 		int count = ps.executeUpdate();
 		if(count>0){
 				return true;

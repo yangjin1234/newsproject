@@ -20,13 +20,14 @@ public class LoginDaoImpl implements LoginDao{
 		String upassword="";
 		if(rs.next()){
 			 upassword=rs.getString("lpass");//数据库中
-			 MyLog.log.debug("输入的密码="+MyMD5.decode(upassword));
+			 MyLog.log.debug("输入的密码="+lpass);
+			 MyLog.log.debug("输入的密码加密后="+MyMD5.encrypt(lpass));
 			 MyLog.log.debug("数据库中的密码="+upassword);
 		}
 		if(upassword.equals("")){
 			return 0;//无此账号
 		}
-		if(upassword.equals(MyMD5.decode(upassword))){
+		if(upassword.equals(MyMD5.encrypt(MyMD5.encrypt(lpass)))){
 			return 1;//登录成功
 		}
 		else{
@@ -61,6 +62,7 @@ public class LoginDaoImpl implements LoginDao{
 		login.setLid(rs.getInt("lid"));
 		login.setLname(rs.getString("lname"));
 		login.setLpass(MyMD5.decode(rs.getString("lpass")));
+		MyLog.log.debug(MyMD5.decode(rs.getString("lpass")));
 		login.setLstate(rs.getInt("lstate"));
 		return login;
 		}
@@ -90,6 +92,8 @@ public class LoginDaoImpl implements LoginDao{
 		ps.setString(2, login.getLname());
 		ps.setString(3, MyMD5.encrypt(login.getLpass()));
 		int result=ps.executeUpdate();
+		MyLog.log.debug("加密前="+login.getLpass());
+		MyLog.log.debug("加密后="+MyMD5.encrypt(login.getLpass()));
 		if(result>0){
 			MyLog.log.debug("保存注册信息成功");
 			return true;

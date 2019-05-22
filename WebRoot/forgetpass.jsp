@@ -131,13 +131,26 @@
 							     else
 							     {
 							     alert("修改失败");
+							      username="";
+				                  user_question="";
+				                  user_answer="";
+				                  user_pwd1="";
+				                 // alert("修改失败");
+				                  window.location.href="forgetpass.jsp";
 							     }
 						     }
 				        	});
 			         }
 			       else
 			       {
+			       
 			       alert("请填写正确信息");
+			        username="";
+				    user_question="";
+				    user_answer="";
+				    user_pwd1="";
+				     // alert("修改失败");
+				    window.location.href="forgetpass.jsp";
 			       }
 		     }
 	</script>

@@ -131,7 +131,7 @@
 							     }
 							     else
 							     {
-							     alert("修改失败");
+							      alert("修改失败");
 							      username="";
 				                  user_question="";
 				                  user_answer="";

@@ -292,8 +292,8 @@ body.login {
 		     user_code=document.getElementById("user_code").value;
 		     user_question=document.getElementById("userquestion").value;
 		   	         if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb=="true"&&user_answerb=="true")
-			   {
-			   alert("aaaa");
+			        {
+			        alert("aaaa");
 				    var uu=new uregistermessage(username,user_pwd1,user_email,user_question,user_answer,user_code);
 			        //alert("uu=="+typeof(uu));
 				    //alert(JSON.stringify(uu));
@@ -308,22 +308,47 @@ body.login {
 							     if("true"==returnval)
 							     {							  	
 							     alert("注册成功");	
-							      window.location.href="admin_login.jsp";
+							     window.location.href="admin_login.jsp";
 							     } 
 							     if("false"==returnval)
 							     {
 							     alert("注册失败");
+							     username="";
+				                 user_pwd1="";
+				                 user_pwd2="";
+				                 user_email="";
+				                 user_question="";
+				                 user_answer="";
+				                 user_code="";
+				                 // alert("修改失败");
+				                  window.location.href="admin_register.jsp";
 							     }
 							     if("error"==returnval)
 							     {
 							     alert("验证码错误");
+							     username="";
+				                 user_pwd1="";
+				                 user_pwd2="";
+				                 user_email="";
+				                 user_question="";
+				                 user_answer="";
+				                 user_code="";
+							     window.location.href="admin_register.jsp";
 							     }
 						     }
 				        	});
 			         }
 			       else
 			       {
+			       username="";
+				   user_pwd1="";
+				   user_pwd2="";
+				   user_email="";
+				   user_question="";
+				   user_answer="";
+				   user_code="";
 			       alert("请填写正确信息");
+			       window.location.href="admin_register.jsp";
 			       }
 		     }
      

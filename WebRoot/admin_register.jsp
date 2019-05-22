@@ -271,7 +271,7 @@ body.login {
 			var a=document.getElementById("captcha_img");
 			//alert($("img").src);
 			//$("img").src="image.do?data="+new Date().getTime();
-			 a.src="image?data="+new Date().getTime()+"aaas";
+			 a.src="adminimage?data="+new Date().getTime()+"aaas";
 		//	alert(typeof(new String(new Date().getTime())));
 			//alert(JSON.stringify(typeof(new String(new Date().getTime()))));
 				     
@@ -379,7 +379,7 @@ body.login {
    </p>
    <p>
       <label>
-         <img id="captcha_img" src="image?data="+2019-12-23 />
+         <img id="captcha_img" src="adminimage?data="+2019-12-23 />
       </label>
    </p>
    <p>

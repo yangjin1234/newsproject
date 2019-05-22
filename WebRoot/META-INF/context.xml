@@ -9,7 +9,7 @@
              <!-- C3P0 -->
              <Resource name="mysql" auth="Container"	type="com.mchange.v2.c3p0.ComboPooledDataSource"
                factory="org.apache.naming.factory.BeanFactory"
-               user="root" password="123456" driverClass="com.mysql.jdbc.Driver"
+               user="root" password="750406" driverClass="com.mysql.jdbc.Driver"
                jdbcUrl="jdbc:mysql://localhost:3306/newsproject"
                maxPoolSize="100"/>
                

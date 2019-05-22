@@ -76,7 +76,26 @@ public interface AdminDao {
 	public List<Admin> selectAllNotPathAdmin(Connection conn,int pageNo,int pageSize)throws Exception;
 	public int selectAllNotPathAdminForMaxPage(Connection conn,int pageSize)throws Exception;
 	public int selectAllNotPathAdminSum(Connection conn)throws Exception;
+	/**
+	 * 分页查询出其他状态的管理员
+	 * @param conn
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Admin> selectAllAdminByAcheck(Connection conn,int pageNo,int pageSize,int acheck)throws Exception;
+	public int selectAllAdminByAcheckForMaxPage(Connection conn,int pageSize,int acheck)throws Exception;
+	public int selectAllAdminByAcheckSum(Connection conn,int acheck)throws Exception;
 	
+	/**
+	 * 修改状态
+	 * @param aid
+	 * @param conn
+	 * @param acheck
+	 * @return
+	 * @throws Exception
+	 */
 	boolean updateAdminCheckState(int aid,Connection conn,int acheck)throws Exception;
 	/**
 	 * 将注册信息存入admin表中

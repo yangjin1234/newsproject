@@ -22,7 +22,6 @@ public class ActionForward {
 	}
 	public void forward(HttpServletRequest request,HttpServletResponse response)
 			throws ServletException, IOException {
-		MyLog.log.debug("我进入了注册成功转登陆页面");
 		//从应用程序中拿出配置文件
 		MyLog.log.debug("path=="+path);
 		Properties config = (Properties)request.getSession().getServletContext().getAttribute("config");

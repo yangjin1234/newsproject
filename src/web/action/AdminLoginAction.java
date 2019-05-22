@@ -119,7 +119,7 @@ public class AdminLoginAction extends Action{
 	    		}
 				
 				request.getSession().setAttribute("admin_account", l);
-				return new ActionForward("show");
+				return new ActionForward("admin_show");
 			}
 			else if(state==0){
 				sentence+="ÓÃ»§Ãû´íÎó\r\n";

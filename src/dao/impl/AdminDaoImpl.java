@@ -282,6 +282,65 @@ public class AdminDaoImpl implements AdminDao {
 		MyLog.log.debug("≤È—Ø ß∞‹");
 		return false;
 	}
+
+	public List<Admin> selectAllAdminByAcheck(Connection conn, int pageNo,
+			int pageSize, int acheck) throws Exception {
+		String sql="select * from admin where astate=1 and acheck=? limit ?,?";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		List<Admin> list=new ArrayList<Admin>();
+		ps.setInt(1, acheck);
+		 ps.setInt(2, (pageNo-1)*pageSize);
+		  ps.setInt(3, pageSize);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			Admin admin=new Admin();
+			admin.setAid(rs.getInt("aid"));
+			admin.setAcheck(rs.getInt("acheck"));
+			admin.setAname(rs.getString("aname"));
+			admin.setApass(rs.getString("aname"));
+			admin.setAphone(rs.getString("aphone"));
+			list.add(admin);
+		}
+		return list;
+	}
+
+	public int selectAllAdminByAcheckForMaxPage(Connection conn, int pageSize,int acheck)
+			throws Exception {
+		 String sql="select count(*) as max from admin where astate=1 and acheck=?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+	      ps.setInt(1, acheck);
+		  ResultSet rs=null;
+		  int count=0;
+		  try {
+			  rs=ps.executeQuery();
+			  if(rs.next())
+			  {
+				  count=rs.getInt("max");
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return count%pageSize==0?count/pageSize:count/pageSize+1;
+	}
+
+	public int selectAllAdminByAcheckSum(Connection conn, int acheck)
+			throws Exception {
+		String sql="select count(*) as max from admin where astate=1 and acheck=?";
+		  PreparedStatement ps=conn.prepareStatement(sql);
+		  ps.setInt(1, acheck);
+		  ResultSet rs=null;
+		  int count=0;
+		  try {
+			  rs=ps.executeQuery();
+			  if(rs.next())
+			  {
+				  count=rs.getInt("max");
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  return count;
+	}
 	
 
 }

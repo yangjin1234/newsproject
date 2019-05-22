@@ -347,7 +347,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 				<i class="trophy icon"></i>
 				<div class="content">
 				<p>获得稿酬<span style="font-size:32px;">${listc.nsalary }元</span>，请继续加油哦！(实际总稿酬${listc.nsalary }元)</p>
-				</div></div><p>${listc.ncontent } &hellip; <a href="./p/486354" class="more-link">继续阅读<span class="screen-reader-text">${listc.title }wangyuhan</span></a></p>
+				</div></div><p>${listc.ncontent } &hellip; <span class="screen-reader-text">${listc.title }wangyuhan</span></a></p>
 	</div><!-- .entry-content -->
 	</article><!-- #post-## -->
 	  </c:if>

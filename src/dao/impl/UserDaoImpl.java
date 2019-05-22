@@ -92,6 +92,20 @@ public class UserDaoImpl implements UserDao{
 			MyLog.log.debug("≤È—Ø ß∞‹");
 			return 0;
 		}
+
+
+	public List<User> selectAllUser(Connection conn) throws Exception {
+		String sql="select * from user ";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();
+		List<User> list=new ArrayList<User>();
+		while(rs.next()){
+			User u=new User();
+			u.setUsername(rs.getString("uname"));
+			list.add(u);
+		}
+		return list;
+	}
 	 
 	 
 }

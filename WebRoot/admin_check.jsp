@@ -272,10 +272,19 @@ jQuery(function($) {
 	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>文章</li><li class="wp-first-item"><a href='edit.php' class="wp-first-item">所有文章</a></li><li><a href='post-new.php'>写文章</a></li></ul></li>
 	<li class="wp-not-current-submenu wp-menu-separator" aria-hidden="true"><div class="separator"></div></li>
 	<li class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-icon-users menu-top-first" id="menu-users">
-	<a href='profile.php' class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-icon-users menu-top-first" ><div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-users'><br /></div><div class='wp-menu-name'>个人资料</div></a>
-	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>个人资料</li><li class="wp-first-item"><a href='profile.php' class="wp-first-item">我的个人资料</a></li><li><a href='profile.php?page=mycred_default-history'>经验 历史记录</a></li><li class="current"><a href='profile.php?page=mycred_money-history' class="current">金钱 历史记录</a></li><li><a href='profile.php?page=ludou-phone-menu'>修改手机号</a></li><li><a href='profile.php?page=shiming-renzheng'>实名认证</a></li></ul></li>
+	<a href='admin_check.jsp' class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-icon-users menu-top-first" >
+	<div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-users'><br /></div>
+	<div class='wp-menu-name'>管理员申请审核</div></a>
+	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>管理员申请审核</li>
+	<li><a href='profile.php?page=mycred_default-history'>查看所有管理员</a></li>
+	<li><a href='profile.php?page=ludou-phone-menu'>修改手机号</a></li>
+	<li><a href='profile.php?page=shiming-renzheng'>实名认证</a></li></ul></li>
 	<li class="wp-not-current-submenu menu-top menu-icon-tools menu-top-last" id="menu-tools">
-	<a href='tools.php' class="wp-not-current-submenu menu-top menu-icon-tools menu-top-last" ><div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-tools'><br /></div><div class='wp-menu-name'>工具</div></a></li><li id="collapse-menu" class="hide-if-no-js"><button type="button" id="collapse-button" aria-label="折叠主菜单" aria-expanded="true"><span class="collapse-button-icon" aria-hidden="true"></span><span class="collapse-button-label">收起菜单</span></button></li></ul>
+	<a href='tools.php' class="wp-not-current-submenu menu-top menu-icon-tools menu-top-last" >
+	<div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-tools'><br /></div>
+	<div class='wp-menu-name'>工具</div></a></li><li id="collapse-menu" class="hide-if-no-js">
+	<button type="button" id="collapse-button" aria-label="折叠主菜单" aria-expanded="true">
+	<span class="collapse-button-icon" aria-hidden="true"></span><span class="collapse-button-label">收起菜单</span></button></li></ul>
 </div>
 </div>
 <div id="wpcontent">

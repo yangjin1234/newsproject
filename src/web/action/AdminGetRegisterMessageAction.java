@@ -39,6 +39,8 @@ public ActionForward execute(HttpServletRequest request,
 	    AdminImpl user=(AdminImpl)JSONObject.toBean(ob, AdminImpl.class);
 	    //得到用户输入的验证码
 	    String usercode=user.getUser_code();
+	    
+	    MyLog.log.debug("usercode图片验证码==="+usercode);
 	    //得到图片验证码
 	    String code=(String)request.getSession().getAttribute("code");
 	    MyLog.log.debug("code图片验证码==="+code);
@@ -46,25 +48,27 @@ public ActionForward execute(HttpServletRequest request,
 	    AdminDao u=new AdminDaoImpl();
 	    String f="";
 	    try {
-	    	//根据注册的信息，存入admin表
-			boolean flag=u.insertRegisterMessage(user, conn);
-			if(flag)
-			{
 				//通过用户输入的验证码，判断是否与验证码一致,并判断是否插入信息成功
 				if(code.equals(usercode))
 				{
+					//根据注册的信息，存入admin表
+					boolean flag=u.insertRegisterMessage(user, conn);
+					if(flag)
+					{
 					f="true";
+					}
+					else
+					{
+						f="false";
+					}
 				}
 				else
 				{
 					f="error";
+					MyLog.log.debug("验证码错误");
 				}
 				
-			}
-			else
-			{
-				f="false";
-			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

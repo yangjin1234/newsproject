@@ -19,7 +19,7 @@ import util.MyLog;
 
 public class AdminImageActionServlet extends HttpServlet {
 	private static final int WIDTH = 140;
-	private static final int HEIGHT = 30;
+	private static final int HEIGHT = 35;
 	private String[] str = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R",
 			"S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"};
 	private Random r = new Random();
@@ -73,6 +73,7 @@ public class AdminImageActionServlet extends HttpServlet {
 				BufferedImage bi = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 				//获得这张图片的画笔
 				Graphics g = bi.getGraphics();
+				
 				//着色画外框
 				g.setColor(Color.BLACK);
 				g.drawRect(0, 0, WIDTH, HEIGHT);
@@ -81,20 +82,22 @@ public class AdminImageActionServlet extends HttpServlet {
 				g.fillRect(0, 0, WIDTH, HEIGHT);
 				//写内容
 				g.setColor(Color.BLUE);
-				g.setFont(new Font("宋体",Font.BOLD,20));
-				g.drawString(sb.toString(), 10, 22);
+				g.setFont(new Font("宋体",Font.BOLD,25));
+				g.drawString(sb.toString(), 10, 25);
 				
 				//画三根线
 				g.drawLine(10, 10, 130, 10);
 				g.drawLine(10, 15, 130, 20);
 				g.drawLine(10, 30, 130, 0);
 				
+				
+				
 				//画干扰点
-				for (int i = 0; i < 600; i++) {
-					int x = r.nextInt(WIDTH)+1;
-					int y = r.nextInt(HEIGHT)+1;
-					g.drawLine(x, y, x, y);
-				}
+//				for (int i = 0; i < 600; i++) {
+//					int x = r.nextInt(WIDTH)+1;
+//					int y = r.nextInt(HEIGHT)+1;
+//					g.drawLine(x, y, x, y);
+//				}
 				g.dispose();
 				try {
 					ImageIO.write(bi, "jpg", sos);

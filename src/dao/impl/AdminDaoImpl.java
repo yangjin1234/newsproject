@@ -219,14 +219,14 @@ public class AdminDaoImpl implements AdminDao {
 	    int  aid =creatkey.getCeartKey();
 	    
 	    MyLog.log.debug("aid==="+aid);
-	    String aname=u.getAname();
+	    String aname=u.getUsername();
 	    MyLog.log.debug("uname==="+aname);
 	    
-	    String aquestion=u.getAdmin_question();
+	    String aquestion=u.getUser_question();
 	    
-	    String aanswer=u.getAdmin_answer();
+	    String aanswer=u.getUser_answer();
 	    
-	    String apass=u.getApass();
+	    String apass=u.getUser_pwd1();
 	    apass= MyMD5.encrypt(apass);
     	String sql="insert into admin(aid,aname,apass,aquestion,aanswer) value(?,?,?,?,?)";
     	PreparedStatement ps=conn.prepareStatement(sql);
@@ -238,11 +238,17 @@ public class AdminDaoImpl implements AdminDao {
     	int result=ps.executeUpdate();
     	if(result>0)
     	{
-    		MyLog.log.debug("查询");
+    		MyLog.log.debug("管理员表查询成功");
     		MyLog.log.debug("插入注册信息成功");
     		return true;
     	}
     	return false;	
 }
+	
+	
+	
+	
+	
+	
 
 }

@@ -1,40 +1,36 @@
 package pojo.impl;
 
 public class AdminImpl {
+	
+	
 	private int aid; // Ö÷¼ü
-	private String aname; // ÕËºÅ
-	private String apass; // ÃÜÂë
+	private String username; // ÕËºÅ
+	private String user_pwd1; // ÃÜÂë
 	private String aphone; // ÊÖ»úºÅÂë
 	private int astate; // ÓÃ»§×´Ì¬
 	private int acheck; // ÉóºË×´Ì¬
 	private int admin_type; // ¹ÜÀíÔ±ÀàĞÍ
-	private String admin_email;
-	@Override
-	public String toString() {
-		return "AdminImpl [aid=" + aid + ", aname=" + aname + ", apass="
-				+ apass + ", aphone=" + aphone + ", astate=" + astate
-				+ ", acheck=" + acheck + ", admin_type=" + admin_type
-				+ ", admin_email=" + admin_email + ", admin_answer="
-				+ admin_answer + ", admin_question=" + admin_question
-				+ ", admin_code=" + admin_code + "]";
-	}
+	private String user_email;//ÓÊ¼ş
+	private String  user_answer;
+	private String  user_question;
+	private String user_code;
 	public int getAid() {
 		return aid;
 	}
 	public void setAid(int aid) {
 		this.aid = aid;
 	}
-	public String getAname() {
-		return aname;
+	public String getUsername() {
+		return username;
 	}
-	public void setAname(String aname) {
-		this.aname = aname;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getApass() {
-		return apass;
+	public String getUser_pwd1() {
+		return user_pwd1;
 	}
-	public void setApass(String apass) {
-		this.apass = apass;
+	public void setUser_pwd1(String user_pwd1) {
+		this.user_pwd1 = user_pwd1;
 	}
 	public String getAphone() {
 		return aphone;
@@ -60,32 +56,40 @@ public class AdminImpl {
 	public void setAdmin_type(int admin_type) {
 		this.admin_type = admin_type;
 	}
-	public String getAdmin_email() {
-		return admin_email;
+	public String getUser_email() {
+		return user_email;
 	}
-	public void setAdmin_email(String admin_email) {
-		this.admin_email = admin_email;
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
-	public String getAdmin_answer() {
-		return admin_answer;
+	public String getUser_answer() {
+		return user_answer;
 	}
-	public void setAdmin_answer(String admin_answer) {
-		this.admin_answer = admin_answer;
+	public void setUser_answer(String user_answer) {
+		this.user_answer = user_answer;
 	}
-	public String getAdmin_question() {
-		return admin_question;
+	public String getUser_question() {
+		return user_question;
 	}
-	public void setAdmin_question(String admin_question) {
-		this.admin_question = admin_question;
+	public void setUser_question(String user_question) {
+		this.user_question = user_question;
 	}
-	public String getAdmin_code() {
-		return admin_code;
+	public String getUser_code() {
+		return user_code;
 	}
-	public void setAdmin_code(String admin_code) {
-		this.admin_code = admin_code;
+	public void setUser_code(String user_code) {
+		this.user_code = user_code;
 	}
-	private String  admin_answer;
-	private String  admin_question;
-	private String admin_code;
+	@Override
+	public String toString() {
+		return "AdminImpl [aid=" + aid + ", username=" + username
+				+ ", user_pwd1=" + user_pwd1 + ", aphone=" + aphone
+				+ ", astate=" + astate + ", acheck=" + acheck + ", admin_type="
+				+ admin_type + ", user_email=" + user_email + ", user_answer="
+				+ user_answer + ", user_question=" + user_question
+				+ ", user_code=" + user_code + "]";
+	}
+	
+	
 
 }

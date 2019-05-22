@@ -1019,6 +1019,52 @@ public class NewsDaoImpl implements NewsDao{
 			  }
 			  return list;
 		  }
+		public List<NewsImpl> selectAllNewsForAdmin(Connection conn,
+				int pageNo, int pageSize) throws Exception {
+			  List<NewsImpl> list=new ArrayList<NewsImpl>();
+			  String sql="select *from news,type,`user` where  nid_tid_key=tid and nid_uid_key=uid and news_state=1 limit ?,?";
+			  PreparedStatement ps=conn.prepareStatement(sql);
+			  ResultSet rs=null;
+			  ps.setInt(1, (pageNo-1)*pageSize);
+			  ps.setInt(2, pageSize);
+			  rs=ps.executeQuery();
+			  while(rs.next())
+			  {
+				  NewsImpl n=new NewsImpl();
+				  n.setNamend_time(rs.getTimestamp("namend_time"));
+				  n.setNcontent(rs.getString("ncontent"));
+				  n.setNews_state(rs.getInt("news_state"));
+				  n.setNid(rs.getInt("nid"));
+				  n.setNid_tid_key(rs.getInt("nid_tid_key"));
+				  n.setNid_uid_key(rs.getInt("nid_uid_key"));
+				  n.setNsalary(rs.getDouble("nsalary"));
+				  n.setNsalary_state(rs.getInt("nsalary_state"));
+				  n.setNupload_time(rs.getTimestamp("nupload_time"));
+				  n.setTitle(rs.getString("ntitle"));
+				  n.setTypename(rs.getString("tname"));
+				  n.setUname(rs.getString("uname"));
+				  list.add(n);
+			  }
+			  return list;
+		  }
+		public int selectAllNewsMaxPageForAdmin(Connection conn, int pageSize)
+				throws Exception {
+			  String sql="select count(*) as max from news,type,`user` where  nid_tid_key=tid and nid_uid_key=uid and news_state=1 limit ?,?";
+			  PreparedStatement ps=conn.prepareStatement(sql);
+			  ResultSet rs=null;
+			  int count=0;
+			  try {
+				  rs=ps.executeQuery();
+				  if(rs.next())
+				  {
+					  count=rs.getInt("max");
+					  System.out.println("count===="+count);
+				  }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			  return count%pageSize==0?count/pageSize:count/pageSize+1;
+		  }
 }
 	
 

@@ -15,6 +15,8 @@ public interface NewsDao {
 	public boolean updateSalaryState(int nid,int nsalary_state,Connection conn) throws Exception;
 	public boolean updateNewsState(int nid,int news_state,Connection conn) throws Exception;
 	public List<NewsImpl> selectAllNews(int nid_uid_key,Connection conn,int pageNo,int pageSize) throws Exception;
+	public List<NewsImpl> selectAllNewsForAdmin(Connection conn,int pageNo,int pageSize) throws Exception;
+	public int selectAllNewsMaxPageForAdmin(Connection conn,int pageSize) throws Exception;
 	public List<News>  selectNewsByTitle(int nid_uid_key,Connection conn,int pageNo,int pageSize,String title) throws Exception;
 	public int getMaxPage(Connection conn,int pageSize) throws Exception;
 	public int getMaxPageByUid(Connection conn,int pageSize,int uid) throws Exception;

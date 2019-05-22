@@ -45,41 +45,38 @@ public ActionForward execute(HttpServletRequest request,
 	    Connection conn=DBHelper.getConnection();
 	    MyLog.log.debug("qqwes");
 	    UserDao u=new UserDaoImpl();
-	    try {
-	    	//根据注册的信息，存入用户表中，并将用户表中得到的登录主键，存入登录表
-			uid_lid_key=u.insertRegisterMessage(user, conn);
-			//对密码进行加密，然后将用户名和密码、主键传入登陆表
-			MyLog.log.debug("userm=="+uname);
-//			String passwordencode=MyMD5.encrypt(password);
-//			MyLog.log.debug("passwordencode=="+passwordencode);
-			Login login =new Login();
-			login.setLid(uid_lid_key);
-			login.setLname(uname);
-			login.setLpass(MyMD5.encrypt(password));
-			LoginDao ld=new LoginDaoImpl();
-			ld.saveLogin(login, conn);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 	    String f="";
-	    //通过用户输入的验证码，判断是否与验证码一致,并判断是否插入信息成功
-	    if(uid_lid_key!=0)
-	    {
+	    try {
+	    	//通过用户输入的验证码，判断是否与验证码一致,并判断是否插入信息成功
 	    	if(code.equals(usercode))
 			{
+	    	//根据注册的信息，存入用户表中，并将用户表中得到的登录主键，存入登录表
+	    		uid_lid_key=u.insertRegisterMessage(user, conn);
+	    		if(uid_lid_key!=0)
+	    		{
+	    	//对密码进行加密，然后将用户名和密码、主键传入登陆表
+	    		Login login =new Login();
+	    		login.setLid(uid_lid_key);
+	    		login.setLname(uname);
+	    		login.setLpass(MyMD5.encrypt(password));
+	    		LoginDao ld=new LoginDaoImpl();
+	    		ld.saveLogin(login, conn);
 	    		f="true";
+	    		}
+	    		else
+	    		{
+	    			f="false";
+	    		}
 			}
 	    	else
 	    	{
 	    		f="error";
 	    	}
+	    } catch (Exception e) {
+			e.printStackTrace();
+		}
 				
-		}
-		else
-		{
-				f="false";
-		}
-			MyLog.log.debug("uid_lid_key=="+uid_lid_key);
 			PrintWriter pw;
 			try {
 				pw=response.getWriter();

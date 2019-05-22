@@ -20,7 +20,7 @@ import web.form.ImageForm;
 
 public class ImageActionServlet extends HttpServlet {
 
-	private static final int WIDTH = 170;
+	private static final int WIDTH = 180;
 	private static final int HEIGHT = 35;
 	private String[] str = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R",
 			"S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"};

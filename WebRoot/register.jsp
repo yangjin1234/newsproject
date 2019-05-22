@@ -146,9 +146,9 @@ body.login {
 	      }
 	      else
 	      {
-		      if(user_pwd1.length<=6)
+		      if(user_pwd1.length<6)
 		      {
-		      divpass1.innerText="密码至少大于6";
+		      divpass1.innerText="密码至少大于5";
 		      divpass1.style.color="red";
 		      user_pwd1b="false";
 		      }
@@ -194,7 +194,7 @@ body.login {
 		    {
 			      if(user_pwd1==user_pwd2)
 				  {
-			      divpass2.innerText="密码至少大于6";
+			      divpass2.innerText="密码至少大于5";
 			      divpass2.style.color="red";
 			      user_pwd2b="true";
 		          }
@@ -303,16 +303,35 @@ body.login {
 						     {
 							     if("true"==returnval)
 							     {							  	
-							     alert("注册成功");	
+							      alert("注册成功");	
 							      window.location.href="login.jsp";
 							     } 
 							     if("false"==returnval)
 							     {
+							     
 							     alert("注册失败");
+							     username="";
+				                 user_pwd1="";
+				                 user_pwd2="";
+				                 user_email="";
+				                 user_question="";
+				                 user_answer="";
+				                 user_code="";
+				                 // alert("修改失败");
+				                  window.location.href="register.jsp";
 							     }
 							     if("error"==returnval)
 							     {
 							     alert("验证码错误");
+							     username="";
+				                 user_pwd1="";
+				                 user_pwd2="";
+				                 user_email="";
+				                 user_question="";
+				                 user_answer="";
+				                 user_code="";
+				                 // alert("修改失败");
+				                  window.location.href="register.jsp";
 							     }
 						     }
 				        	});
@@ -320,6 +339,15 @@ body.login {
 			       else
 			       {
 			       alert("请填写正确信息");
+			       username="";
+				   user_pwd1="";
+				   user_pwd2="";
+				   user_email="";
+				   user_question="";
+				   user_answer="";
+				   user_code="";
+				    // alert("修改失败");
+				    window.location.href="register.jsp";
 			       }
 		     }
      

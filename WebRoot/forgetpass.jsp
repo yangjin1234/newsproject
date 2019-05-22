@@ -95,9 +95,9 @@
 	      }
 	      else
 	      {
-		      if(user_pwd1.length<=6)
+		      if(user_pwd1.length<6)
 		      {
-		      divpass1.innerText="密码至少大于6";
+		      divpass1.innerText="密码至少大于5";
 		      divpass1.style.color="red";
 		      user_pwd1b="false";
 		      }
@@ -131,13 +131,26 @@
 							     else
 							     {
 							     alert("修改失败");
+							      username="";
+				                  user_question="";
+				                  user_answer="";
+				                  user_pwd1="";
+				                 // alert("修改失败");
+				                  window.location.href="forgetpass.jsp";
 							     }
 						     }
 				        	});
 			         }
 			       else
 			       {
+			       
 			       alert("请填写正确信息");
+			        username="";
+				    user_question="";
+				    user_answer="";
+				    user_pwd1="";
+				     // alert("修改失败");
+				    window.location.href="forgetpass.jsp";
 			       }
 		     }
 	</script>

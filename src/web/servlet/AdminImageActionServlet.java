@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import util.MyLog;
 
 public class AdminImageActionServlet extends HttpServlet {
-	private static final int WIDTH = 140;
+	private static final int WIDTH = 170;
 	private static final int HEIGHT = 35;
 	private String[] str = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R",
 			"S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"};
@@ -86,9 +86,13 @@ public class AdminImageActionServlet extends HttpServlet {
 				g.drawString(sb.toString(), 10, 25);
 				
 				//»­Èý¸ùÏß
-				g.drawLine(10, 10, 130, 10);
-				g.drawLine(10, 15, 130, 20);
-				g.drawLine(10, 30, 130, 0);
+				
+//				g.drawLine(10, 10, 130, 10);
+//				g.drawLine(10, 15, 130, 20);
+//				g.drawLine(10, 30, 130, 0);
+				g.drawLine(10, 10, 170, 10);
+				g.drawLine(10, 15, 170, 20);
+				g.drawLine(10, 30, 170, 0);
 				
 				
 				

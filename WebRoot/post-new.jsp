@@ -398,7 +398,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 		<c:forEach items="${typec }" var="tpe" varStatus="cb">
 		<li id="popular-category-6517" class="popular-category" >
 			<label class="selectit">
-				<input id="in-popular-category-6517" type="checkbox"  />
+				<input id="in-popular-category-6517" type="radio" name="radiotype"  />
 				${tpe.tname }			</label>
 		</li>
 </c:forEach>
@@ -409,7 +409,7 @@ var userSettings = {"url":"\/","uid":"1165","time":"1557902562","secure":"1"};/*
 			<input type='hidden'  value='0' />			<ul id="categorychecklist" data-wp-lists="list:category" class="categorychecklist form-no-clear">
 			<c:forEach items="${typec }" var="tpe" varStatus="cb">	
 
-<li id='category-173'><label class="selectit"><input value="${tpe.tname }" id="typename" name="typename" type="checkbox" onclick="oncheckBox()" id="in-category-173" /> ${tpe.tname }</label></li>
+<li id='category-173'><label class="selectit"><input value="${tpe.tname }" id="typename" name="typename" type="radio" onclick="oncheckBox()" id="in-category-173" /> ${tpe.tname }</label></li>
 </c:forEach>
 			</ul>
 		</div>

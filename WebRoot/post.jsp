@@ -419,7 +419,7 @@ String nid=request.getParameter("nid");
 			<input type='hidden'  value='0' />			<ul id="categorychecklist" data-wp-lists="list:category" class="categorychecklist form-no-clear">
 			<c:forEach items="${typec }" var="tpe" varStatus="cb">	
 
-<li id='category-173'><label class="selectit"><input value="${tpe.tname }" id="typename" name="typename" type="checkbox" onclick="oncheckBox()" id="in-category-173" /> ${tpe.tname }</label></li>
+<li id='category-173'><label class="selectit"><input value="${tpe.tname }" id="typename" name="typename" type="radio" onclick="oncheckBox()" id="in-category-173" /> ${tpe.tname }</label></li>
 </c:forEach>
 			</ul>
 		</div>

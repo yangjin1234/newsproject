@@ -417,10 +417,10 @@ jQuery(function($) {
 
 <span class="displaying-num">${newscount } entries</span>
 <span class='pagination-links'><span class="tablenav-pages-navspan" aria-hidden="true">&laquo;</span>
-<a class='next-page' href="adminprofile.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize } "><span class='screen-reader-text'>上一页</span><span aria-hidden="true">&lsaquo;</span></a>
+<a class='next-page' href="admin_profile.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize } "><span class='screen-reader-text'>上一页</span><span aria-hidden="true">&lsaquo;</span></a>
 <span class="paging-input">第<label for="current-page-selector" class="screen-reader-text">当前页</label><input class='current-page' id='current-page-selector' type='text' name='paged' value='${pageNo }' size='5' aria-describedby='table-paging' />页，共<span class='total-pages'>${max }</span>页</span>
-<a class='next-page' href="adminprofile.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize }"><span class='screen-reader-text'>下一页</span><span aria-hidden='true'>&rsaquo;</span></a>
-<a class='last-page' href="adminprofile.jsp?pageNo=${max}&pageSize=${pageSize }"><span class='screen-reader-text'>尾页</span><span aria-hidden='true'>&raquo;</span></a></span>
+<a class='next-page' href="admin_profile.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize }"><span class='screen-reader-text'>下一页</span><span aria-hidden='true'>&rsaquo;</span></a>
+<a class='last-page' href="admin_profile.jsp?pageNo=${max}&pageSize=${pageSize }"><span class='screen-reader-text'>尾页</span><span aria-hidden='true'>&raquo;</span></a></span>
 			</div>
 			<br class="clear" />
 		</div>
@@ -444,7 +444,7 @@ jQuery(function($) {
 					<th scope="col" class="manage-column column-time">${sa.sdate}</th>
 					<th scope="col" class="manage-column column-creds">￥&nbsp;${sa.salarys }</th>
 					<c:if test="${sa.salarys_state eq 1}" >
-					<th scope="col" class="manage-column column-entry">已发放</th>
+					<th scope="col" class="manage-column column-entry">&nbsp;&nbsp;已发放</th>
 					</c:if>
 					<c:if test="${sa.salarys_state eq 0 }" >
 					<th scope="col" class="manage-column column-entry"><input type="button" value="未发放" onclick="updatestate('${sa.sid}')" /></th>
@@ -459,10 +459,10 @@ jQuery(function($) {
 
 				<span class="displaying-num">${newscount } entries</span>
 <span class='pagination-links'><span class="tablenav-pages-navspan" aria-hidden="true">&laquo;</span>
-<a class='next-page' href="profile.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize }"><span class='screen-reader-text'>上一页</span><span aria-hidden="true">&lsaquo;</span></a>
+<a class='next-page' href="admin_profile.jsp?pageNo=${pageNo-1 }&pageSize=${pageSize }"><span class='screen-reader-text'>上一页</span><span aria-hidden="true">&lsaquo;</span></a>
 <span class="screen-reader-text">当前页</span><span id="table-paging" class="paging-input">第${pageNo }页，共<span class='total-pages'>${max }</span>页</span>
-<a class='nessxt-page' href="profile.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize }"><span class='screen-reader-text'>下一页</span><span aria-hidden='true'>&rsaquo;</span></a>
-<a class='last-page' href="profile.jsp?pageNo=${max}&pageSize=${pageSize }"><span class='screen-reader-text'>尾页</span><span aria-hidden='true'>&raquo;</span></a></span>
+<a class='nessxt-page' href="admin_profile.jsp?pageNo=${pageNo+1 }&pageSize=${pageSize }"><span class='screen-reader-text'>下一页</span><span aria-hidden='true'>&rsaquo;</span></a>
+<a class='last-page' href="admin_profile.jsp?pageNo=${max}&pageSize=${pageSize }"><span class='screen-reader-text'>尾页</span><span aria-hidden='true'>&raquo;</span></a></span>
 			</div>
 			<br class="clear" />
 			

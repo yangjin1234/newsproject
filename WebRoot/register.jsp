@@ -310,28 +310,13 @@ body.login {
 							     {
 							     
 							     alert("注册失败");
-							     username="";
-				                 user_pwd1="";
-				                 user_pwd2="";
-				                 user_email="";
-				                 user_question="";
-				                 user_answer="";
-				                 user_code="";
-				                 // alert("修改失败");
-				                  window.location.href="register.jsp";
+				                 // window.location.href="register.jsp";
 							     }
 							     if("error"==returnval)
 							     {
 							     alert("验证码错误");
-							     username="";
-				                 user_pwd1="";
-				                 user_pwd2="";
-				                 user_email="";
-				                 user_question="";
-				                 user_answer="";
-				                 user_code="";
 				                 // alert("修改失败");
-				                  window.location.href="register.jsp";
+				                 // window.location.href="register.jsp";
 							     }
 						     }
 				        	});
@@ -339,15 +324,9 @@ body.login {
 			       else
 			       {
 			       alert("请填写正确信息");
-			       username="";
-				   user_pwd1="";
-				   user_pwd2="";
-				   user_email="";
-				   user_question="";
-				   user_answer="";
-				   user_code="";
+			       
 				    // alert("修改失败");
-				    window.location.href="register.jsp";
+				    //window.location.href="register.jsp";
 			       }
 		     }
      

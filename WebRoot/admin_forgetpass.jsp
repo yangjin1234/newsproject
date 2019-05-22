@@ -36,7 +36,7 @@
      {
 	     username=$("#username").val();
 	    // alert(typeof(username));
-	     alert("管理员用户username"+username);
+	     //alert("管理员用户username"+username);
 	     //alert("user_pwd2"+user_pwd2);
 	     $.ajax({
 	     type:"POST",
@@ -44,7 +44,7 @@
 	     data:"data="+username,
 	     success:function(returnval)
 	     {
-	     alert(returnval);
+	     //alert(returnval);
 		     if("true"==returnval)
 		     {
 		     //alert("用户名已存在");
@@ -86,7 +86,7 @@
      {
 	      divpass1=document.getElementById("contentpass1");
 	      user_pwd1=$("#user_pwd1").val();
-	     alert("管理员用户密码user_pwd1"+user_pwd1);
+	     //alert("管理员用户密码user_pwd1"+user_pwd1);
 	      if(""==user_pwd1)
 	      {
 	      divpass1.innerText="密码不能为空";
@@ -110,7 +110,7 @@
 	      }
       }
 	function ajaxInvoke(){
-	alert("ddjd");
+	//alert("ddjd");
 	    user_question=document.getElementById("userquestion").value;
 		if(usernameb=="true"&&user_pwd1b=="true"&&user_answerb=="true")
 			   {
@@ -123,7 +123,7 @@
 				        data:"data="+JSON.stringify(uu),
 				        success:function(returnval)
 						     { 
-						         alert("修改"+returnval);
+						         //alert("修改"+returnval);
 							     if("true"==returnval)
 							     {							  	
 							     alert("修改密码成功");	
@@ -136,7 +136,7 @@
 				                  user_question="";
 				                  user_answer="";
 				                  user_pwd1="";
-				                  alert("修改失败");
+				                 // alert("修改失败");
 				                  window.location.href="admin_forgetpass.jsp";
 							     }
 						     }
@@ -149,7 +149,7 @@
 				   user_question="";
 				   user_answer="";
 				   user_pwd1="";
-				   alert("修改失败");
+				   //alert("修改失败");
 				   window.location.href="admin_forgetpass.jsp";
 			       }
 		     }
@@ -262,7 +262,7 @@ body.login {
 </form>
 
 <p id="nav">
-<a href="./register.jsp">注册</a> | 	<a href="./wp-login.php?action=lostpassword">忘记密码？</a>
+<a href="./admin_register.jsp">注册</a> | 	<a href="./admin_forgetpass">忘记密码？</a>
 </p>
 
 <script type="text/javascript">

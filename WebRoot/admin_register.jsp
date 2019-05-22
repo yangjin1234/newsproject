@@ -291,15 +291,7 @@ body.login {
 		      //alert("aaa");
 		     user_code=document.getElementById("user_code").value;
 		     user_question=document.getElementById("userquestion").value;
-		     alert("username==admin=="+username);
-		     alert("apass==admin=="+user_pwd1);
-		     alert("usernameb==admin=="+usernameb);
-		     alert("user_pwd1b==admin=="+user_pwd1b);
-		     alert("user_pwd2b==admin=="+user_pwd2b);
-		     alert("useremailb==admin=="+useremailb);
-		     alert("user_answerb==admin=="+user_answerb);
-		     
-	         if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb=="true"&&user_answerb=="true")
+		   	         if(usernameb=="true"&&user_pwd1b=="true"&&user_pwd2b=="true"&&useremailb=="true"&&user_answerb=="true")
 			   {
 			   alert("aaaa");
 				    var uu=new uregistermessage(username,user_pwd1,user_email,user_question,user_answer,user_code);
@@ -413,7 +405,7 @@ body.login {
       <a href="javascript:changeImage1()">更换图片</a>
  -->
 <p id="nav">
-<a href="./login.jsp">登录</a> |
+<a href="./admin_login.jsp">登录</a> |
 <a href="./admin_forgetpass.jsp">忘记密码？</a>
 </p>
 

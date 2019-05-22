@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--<![endif]-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>工资 历史记录 &lsaquo; 新媒体平台 &#8212; WordPress</title>
+<title>管理员申请名单 &lsaquo; 新媒体平台 &#8212; WordPress</title>
 <script type="text/javascript" src="static/jquery/3.2.1/jquery-1.8.3.js"></script>
 <script type="text/javascript">
  var selectdelete; //得到文本框选中的内容
@@ -141,14 +141,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	 alert("类型为："+typeof(sid));
 	  	 $.ajax({
 					        type:"POST",
-					        url:"adminsalarystate.do",
+					        url:"admincheck.do？param=checkPath",
 					        data:"data="+sid,
 					        success:function(returnval)
 							     {
 								     if("true"==returnval)
 								     {							  	
 								     alert("修改成功");	
-								     window.location.href="adminprofile.jsp";
+								     window.location.href="admin_check.jsp";
 								     } 
 								     else
 								     {
@@ -166,7 +166,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	 alert("类型为："+typeof(sid));
 	  	 $.ajax({
 					        type:"POST",
-					        url:"admincheck.do",
+					        url:"admincheck.do?param=checkNot",
 					        data:"data="+sid,
 					        success:function(returnval)
 							     {
@@ -290,7 +290,7 @@ jQuery(function($) {
 		<li id="wp-admin-bar-documentation"><a class="ab-item" href="https://codex.wordpress.org/">文档</a>		</li>
 		<li id="wp-admin-bar-support-forums"><a class="ab-item" href="http://zh-cn.forums.wordpress.org/">支持论坛</a>		</li>
 		<li id="wp-admin-bar-feedback"><a class="ab-item" href="http://zh-cn.forums.wordpress.org/forum/suggestions">反馈</a>		</li></ul></div>		</li>
-		<li id="wp-admin-bar-site-name" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/">未来车平台</a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-site-name-default" class="ab-submenu">
+		<li id="wp-admin-bar-site-name" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/">超级管理员平台</a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-site-name-default" class="ab-submenu">
 		<li id="wp-admin-bar-view-site"><a class="ab-item" href="https://weilaiche.cc/">查看站点</a>		</li></ul></div>		</li>
 		<li id="wp-admin-bar-comments"><a class="ab-item" href="https://weilaiche.cc/wp-admin/edit-comments.php"><span class="ab-icon"></span><span class="ab-label awaiting-mod pending-count count-0" aria-hidden="true">0</span><span class="screen-reader-text">0条评论待审</span></a>		</li>
 		<li id="wp-admin-bar-new-content" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/wp-admin/post-new.php"><span class="ab-icon"></span><span class="ab-label">新建</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
@@ -346,7 +346,7 @@ jQuery(function($) {
 			</div>
 				</div>
 		<div class="wrap" id="myCRED-wrap">
-	<h1>工资 发放 历史 </h1>
+	<h1>管理员申请名单 </h1>
 
 	<div style="display:none;" class="clear" id="export-log-history">
 	<strong>出口:</strong>
@@ -457,10 +457,10 @@ jQuery(function($) {
 			<thead>
 			<tr>
 					<td  id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select all</label></td>
-					<th scope="col" id="ref" class="manage-column column-ref">用户名</th>
-					<th scope="col" id="creds" class="manage-column column-creds">发放时间</th>
-					<th scope="col" id="entry" class="manage-column column-entry">用户工资</th>
-					<th scope="col" id="entry" class="manage-column column-entry">发放情况</th>
+					<th scope="col" id="ref" class="manage-column column-ref">管理员名</th>
+					<th scope="col" id="creds" class="manage-column column-creds">电话号码</th>
+					<th scope="col" id="entry" class="manage-column column-entry">条件符合</th>
+					<th scope="col" id="entry" class="manage-column column-entry">条件不符合</th>
 					
 			</tr>
 			</thead>

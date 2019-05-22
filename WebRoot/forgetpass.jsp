@@ -131,7 +131,6 @@
 							     else
 							     {
 							     alert("修改失败");
-							      
 				                  //window.location.href="forgetpass.jsp";
 							     }
 						     }

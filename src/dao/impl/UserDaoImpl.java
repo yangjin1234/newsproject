@@ -14,6 +14,8 @@ import javax.ejb.CreateException;
 import pojo.SalaryTable;
 import pojo.UpdatePass;
 import pojo.User;
+import pojo.impl.NewsImpl;
+import pojo.impl.Userinformation;
 import util.GetDate;
 import util.MyLog;
 import util.creatkey;
@@ -107,5 +109,78 @@ public class UserDaoImpl implements UserDao{
 		return list;
 	}
 	 
+	
+	public List<Userinformation> selectAllUser( Connection conn,int pageNo, int pageSize) throws Exception {
+		List<NewsImpl> list=new ArrayList<NewsImpl>();
+		  String sql="select * from user limit ?,?";
+		  PreparedStatement ps=null;
+		  ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  ps.setInt(1, (pageNo-1)*pageSize);
+		  ps.setInt(2, pageSize);
+		  rs=ps.executeQuery();
+		  List<Userinformation> l=new ArrayList<Userinformation>();
+		  while(rs.next())
+		  {
+			  Userinformation n=new Userinformation();
+			  n.setUanswer(rs.getString("uanswer"));
+			  n.setUemail(rs.getString("uemail"));
+			  n.setUid(rs.getInt("uid"));
+			  n.setUid_lid_key(rs.getInt("uid_lid_key"));
+			  n.setUid_sid_key(rs.getInt("uid_sid_key"));
+			  n.setUname(rs.getString("uname"));
+			  n.setUphone(rs.getString("uphone"));
+			  n.setUphoto(rs.getString("uphoto"));
+			  n.setUproblem(rs.getString("uproblem"));
+			  n.setUsex(rs.getString("usex"));
+			  n.setUstate(rs.getInt("ustate"));
+			  System.out.println("查询成功");
+			  l.add(n);
+		  }
+		  return l;
+	}
+	
+	
+	
+	
+	
+	public int getUserMaxPage(Connection conn,int pageSize) throws Exception
+	 {
+		 MyLog.log.debug("得到最大页数");
+		 String sql="select count(*) as max from user ";
+		 PreparedStatement ps=conn.prepareStatement(sql);
+		 ResultSet rs=null;
+		 int count=0;
+		 try {
+			 rs=ps.executeQuery();
+			 while(rs.next())
+			 {
+				 count=rs.getInt("max");
+				 MyLog.log.debug("count=="+count);
+			 }
+		 } catch (Exception e) {
+			 e.printStackTrace();
+		 }
+		 return count%pageSize==0?count/pageSize:count/pageSize+1;
+	 }
+ 
+ 
+ public int selectUserCount(Connection conn) throws Exception
+	{
+	    MyLog.log.debug("用户人数");
+		
+		String sql="select count(*) as number from user ";
+		 PreparedStatement ps=null;
+		  ps=conn.prepareStatement(sql);
+		  ResultSet rs=null;
+		  rs=ps.executeQuery();
+		   int count=0;
+			  if(rs.next()){
+				  count=rs.getInt("number");
+				  MyLog.log.debug("该用户已通过审核的新闻数为"+count);
+			  }
+			return count;
+	}	
+	
 	 
 }

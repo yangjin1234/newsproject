@@ -30,13 +30,13 @@
 	<script src="./wp-content/themes/twentyfifteen/js/html5.js"></script>
 <![endif]-->
 <script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
-<title>新媒体平台 &#8211; 新媒体创作者服务平台</title>
+<title>管理员平台 &#8211; 新媒体创作者服务平台</title>
 <meta name='robots' content='noindex,follow' />
 <link rel='dns-prefetch' href='//fonts.googleapis.com' />
 <link rel='dns-prefetch' href='//s.w.org' />
 <link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
-<link rel="alternate" type="application/rss+xml" title="新媒体平台 &raquo; Feed" href="./feed" />
-<link rel="alternate" type="application/rss+xml" title="新媒体平台 &raquo; 评论Feed" href="./comments/feed" />
+<link rel="alternate" type="application/rss+xml" title="管理员平台 &raquo; Feed" href="./feed" />
+<link rel="alternate" type="application/rss+xml" title="管理员平台 &raquo; 评论Feed" href="./comments/feed" />
 		<script type="text/javascript">
 			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/weilaiche.cc\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.53"}};
 			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
@@ -141,7 +141,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 		<div id="sidebar" class="sidebar">
 			<header id="masthead" class="site-header" role="banner">
 				<div class="site-branding">
-											<h1 class="site-title"><a href="./" rel="home"><font color="#006699">新媒体平台</font></a></h1>
+											<h1 class="site-title"><a href="./" rel="home"><font color="#006699">管理员平台</font></a></h1>
 											<p class="site-description"><font color="#006699">新媒体创作者服务平台</font></p>
 										<button class="secondary-toggle">菜单和挂件</button>
 				</div><!-- .site-branding -->
@@ -150,11 +150,13 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 				<div id="secondary" class="secondary">
 
 					<nav id="site-navigation" class="main-navigation" role="navigation">
-				<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="nav-menu"><li id="menu-item-192" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-192"><a href=MainShow.jsp>首页</a></li>
-<li id="menu-item-193" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-193"><a href="needs.jsp">投稿须知(必读)</a></li>
+				<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="nav-menu"><li id="menu-item-192" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-192"><a href=admin_MainShow.jsp>首页</a></li>
 <li id="menu-item-291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-291"><a href="admin_article.jsp">审核文章</a></li>
-<li id="menu-item-248644" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-248644"><a href="./nav">发放工资</a></li>
-<li id="menu-item-2486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2486"><a href="see.jsp">发放公告</a></li>
+<li id="menu-item-248644" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-248644"><a href="./admin_profile.jsp">发放工资</a></li>
+<li id="menu-item-2486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2486"><a href="admin_notify.jsp">发放公告</a></li>
+<li id="menu-item-2486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2486"><a href="admin_check.jsp">管理员申请</a></li>
+<li id="menu-item-2486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2486"><a href="admin_manageruser.jsp">用户管理</a></li>
+<li id="menu-item-2486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2486"><a href="admin_all.jsp">管理员管理</a></li>
 </ul></div>			</nav><!-- .main-navigation -->
 		
 		
@@ -394,15 +396,13 @@ var myCRED_Notice = {"ajaxurl":"https:\/\/weilaiche.cc\/wp-admin\/admin-ajax.php
 		<li id="wp-admin-bar-documentation"><a class="ab-item" href="https://codex.wordpress.org/">文档</a>		</li>
 		<li id="wp-admin-bar-support-forums"><a class="ab-item" href="http://zh-cn.forums.wordpress.org/">支持论坛</a>		</li>
 		<li id="wp-admin-bar-feedback"><a class="ab-item" href="http://zh-cn.forums.wordpress.org/forum/suggestions">反馈</a>		</li></ul></div>		</li>
-		<li id="wp-admin-bar-site-name" class="menupop"><a class="ab-item" aria-haspopup="true" href="./wp-admin/">新媒体平台</a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-site-name-default" class="ab-submenu">
-		<li id="wp-admin-bar-dashboard"><a class="ab-item" href="./wp-admin/">仪表盘</a>		</li></ul></div>		</li>
-		<li id="wp-admin-bar-comments"><a class="ab-item" href="./wp-admin/edit-comments.php"><span class="ab-icon"></span><span class="ab-label awaiting-mod pending-count count-0" aria-hidden="true">0</span><span class="screen-reader-text">0条评论待审</span></a>		</li>
-		<li id="wp-admin-bar-new-content" class="menupop"><a class="ab-item" aria-haspopup="true" href="./post-new.jsp"><span class="ab-icon"></span><span class="ab-label">新建</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
-		<li id="wp-admin-bar-new-post"><a class="ab-item" href="./post-new.jsp">文章</a>		</li></ul></div>		</li></ul><ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
+		<li id="wp-admin-bar-site-name" class="menupop"><a class="ab-item" aria-haspopup="true" href="./admin_MainShow.jsp">管理员平台</a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-site-name-default" class="ab-submenu">
+		<li id="wp-admin-bar-dashboard">	</li></ul></div>		</li>
+		<li id="wp-admin-bar-new-content" class="menupop"><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
+		<li id="wp-admin-bar-new-post">		</li></ul></div>		</li></ul><ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
 		<li id="wp-admin-bar-search" class="admin-bar-search"><div class="ab-item ab-empty-item" tabindex="-1"><form action="./" method="get" id="adminbarsearch"><input class="adminbar-input" name="s" id="adminbar-search" type="text" value="" maxlength="150" /><label for="adminbar-search" class="screen-reader-text">搜索</label><input type="submit" class="adminbar-button" value="搜索"/></form></div>		</li>
 		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="./wp-admin/profile.php">嗨，${sessionScope.account.lname }<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
 		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="./wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>${sessionScope.account.lname }</span></a>		</li>
-		<li id="wp-admin-bar-edit-profile"><a class="ab-item" href="http://localhost:8080/Newsproject/profile1.do?param=selectUser">编辑我的个人资料</a>		</li>
 		<li id="wp-admin-bar-logout"><a class="ab-item" href="./login.jsp?action=logout&#038;_wpnonce=ec87a18305">登出</a>		</li></ul><ul id="wp-admin-bar-my-account-default" class="ab-submenu">
 		<li id="wp-admin-bar-mycred-account" class="menupop ab-sub-secondary"><div class="ab-item ab-empty-item" aria-haspopup="true">余额</div><div class="ab-sub-wrapper"><ul id="wp-admin-bar-mycred-account-default" class="ab-submenu">
 		<li id="wp-admin-bar-mycred-account-balance-mycred-default"><div class="ab-item ab-empty-item">以获得: ￥ ${sessionScope.yesalary }</div>		</li>

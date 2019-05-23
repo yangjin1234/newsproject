@@ -140,7 +140,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 		<div id="sidebar" class="sidebar">
 			<header id="masthead" class="site-header" role="banner">
 				<div class="site-branding">
-											<h1 class="site-title"><a href="./" rel="home"><font color="#006699">新媒体平台</font></a></h1>
+											<h1 class="site-title"><a href="./MainShow.jsp" rel="home"><font color="#006699">新媒体平台</font></a></h1>
 											<p class="site-description"><font color="#006699">新媒体创作者服务平台</font></p>
 										<button class="secondary-toggle">菜单和挂件</button>
 				</div><!-- .site-branding -->
@@ -152,18 +152,13 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 				<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="nav-menu"><li id="menu-item-192" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-192"><a href=MainShow.jsp>首页</a></li>
 <li id="menu-item-193" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-193"><a href="needs.jsp">投稿须知(必读)</a></li>
 <li id="menu-item-291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-291"><a href="edit.jsp">全部文章</a></li>
-<li id="menu-item-248644" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-248644"><a href="./nav">功能大全</a></li>
 <li id="menu-item-2486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2486"><a href="notify.jsp">查看公告</a></li>
 </ul></div>			</nav><!-- .main-navigation -->
 		
 		
 					<div id="widget-area" class="widget-area" role="complementary">
 				<aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="./">
-				<label>
-					<span class="screen-reader-text">搜索：</span>
-					<input type="search" class="search-field" placeholder="搜索&hellip;" value="" name="s" />
-				</label>
-				<input type="submit" class="search-submit screen-reader-text" value="搜索" />
+				
 			</form></aside><aside id="mycred_widget_wallet-3" class="widget widget-my-wallet"><h2 class="widget-title">我的账户</h2><div class="myCRED-balance mycred-balance-mycred_money">已发放: ￥${sessionScope.yesalary } 元</div><div class="myCRED-balance mycred-balance-mycred_money">待发放: ￥${sessionScope.nosalary } 元</div></aside><aside id="calendar-2" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
 	<caption>2019年五月</caption>
 	<thead>
@@ -418,18 +413,12 @@ var myCRED_Notice = {"ajaxurl":"https:\/\/weilaiche.cc\/wp-admin\/admin-ajax.php
 							<a class="screen-reader-shortcut" href="#wp-toolbar" tabindex="1">跳至工具栏</a>
 						<div class="quicklinks" id="wp-toolbar" role="navigation" aria-label="工具栏" tabindex="0">
 				<ul id="wp-admin-bar-root-default" class="ab-top-menu">
-		<li id="wp-admin-bar-wp-logo" class="menupop"><a class="ab-item" aria-haspopup="true" href="./wp-admin/about.php"><span class="ab-icon"></span><span class="screen-reader-text">关于WordPress</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-wp-logo-default" class="ab-submenu">
-		<li id="wp-admin-bar-about"><a class="ab-item" href="./wp-admin/about.php">关于WordPress</a>		</li></ul><ul id="wp-admin-bar-wp-logo-external" class="ab-sub-secondary ab-submenu">
-		<li id="wp-admin-bar-wporg"><a class="ab-item" href="https://cn.wordpress.org/">WordPress.org</a>		</li>
-		<li id="wp-admin-bar-documentation"><a class="ab-item" href="https://codex.wordpress.org/">文档</a>		</li>
-		<li id="wp-admin-bar-support-forums"><a class="ab-item" href="http://zh-cn.forums.wordpress.org/">支持论坛</a>		</li>
-		<li id="wp-admin-bar-feedback"><a class="ab-item" href="http://zh-cn.forums.wordpress.org/forum/suggestions">反馈</a>		</li></ul></div>		</li>
-		<li id="wp-admin-bar-site-name" class="menupop"><a class="ab-item" aria-haspopup="true" href="./wp-admin/">新媒体平台</a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-site-name-default" class="ab-submenu">
-		<li id="wp-admin-bar-dashboard"><a class="ab-item" href="./wp-admin/">仪表盘</a>		</li></ul></div>		</li>
-		<li id="wp-admin-bar-comments"><a class="ab-item" href="./wp-admin/edit-comments.php"><span class="ab-icon"></span><span class="ab-label awaiting-mod pending-count count-0" aria-hidden="true">0</span><span class="screen-reader-text">0条评论待审</span></a>		</li>
+
+		<li id="wp-admin-bar-site-name" class="menupop"><a class="ab-item" aria-haspopup="true" href="./MainShow.jsp">新媒体平台</a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-site-name-default" class="ab-submenu">
+		<li id="wp-admin-bar-dashboard">		</li></ul></div>		</li>
 		<li id="wp-admin-bar-new-content" class="menupop"><a class="ab-item" aria-haspopup="true" href="./post-new.jsp"><span class="ab-icon"></span><span class="ab-label">新建</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
 		<li id="wp-admin-bar-new-post"><a class="ab-item" href="./post-new.jsp">文章</a>		</li></ul></div>		</li></ul><ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
-		<li id="wp-admin-bar-search" class="admin-bar-search"><div class="ab-item ab-empty-item" tabindex="-1"><form action="./" method="get" id="adminbarsearch"><input class="adminbar-input" name="s" id="adminbar-search" type="text" value="" maxlength="150" /><label for="adminbar-search" class="screen-reader-text">搜索</label><input type="submit" class="adminbar-button" value="搜索"/></form></div>		</li>
+		<li id="wp-admin-bar-search" class="admin-bar-search"><div class="ab-item ab-empty-item" tabindex="-1"><form action="./" method="get" id="adminbarsearch"><input class="adminbar-input" name="s" id="adminbar-search" type="text" value="" maxlength="150" /></form></div>		</li>
 		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="./wp-admin/profile.php">嗨，${sessionScope.account.lname }<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
 		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="./wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>${sessionScope.account.lname }</span></a>		</li>
 		<li id="wp-admin-bar-edit-profile"><a class="ab-item" href="http://localhost:8080/Newsproject/profile1.do?param=selectUser">编辑我的个人资料</a>		</li>

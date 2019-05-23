@@ -153,10 +153,6 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 
 					<nav id="site-navigation" class="main-navigation" role="navigation">
 				<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="nav-menu"><li id="menu-item-192" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-192"><a href=MainShow.jsp>首页</a></li>
-<li id="menu-item-193" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-193"><a href="needs.jsp">投稿须知(必读)</a></li>
-<li id="menu-item-291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-291"><a href="edit.jsp">全部文章</a></li>
-<li id="menu-item-248644" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-248644"><a href="./nav">功能大全</a></li>
-<li id="menu-item-2486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2486"><a href="see.jsp">查看公告</a></li>
 </ul></div>			</nav><!-- .main-navigation -->
 		
 		

@@ -1049,7 +1049,7 @@ public class NewsDaoImpl implements NewsDao{
 		  }
 		public int selectAllNewsMaxPageForAdmin(Connection conn, int pageSize)
 				throws Exception {
-			  String sql="select count(*) as max from news,type,`user` where  nid_tid_key=tid and nid_uid_key=uid and news_state=2 limit ?,?";
+			  String sql="select count(*) as max from news,type,`user` where  nid_tid_key=tid and nid_uid_key=uid and news_state=2 ";
 			  PreparedStatement ps=conn.prepareStatement(sql);
 			  ResultSet rs=null;
 			  int count=0;

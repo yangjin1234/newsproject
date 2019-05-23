@@ -151,7 +151,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 
 					<nav id="site-navigation" class="main-navigation" role="navigation">
 				<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="nav-menu"><li id="menu-item-192" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-192"><a href=admin_MainShow.jsp>首页</a></li>
-<li id="menu-item-291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-291"><a href="admin_article.jsp">审核文章</a></li>
+<li id="menu-item-291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-291"><a href="admin_edit.jsp">审核文章</a></li>
 <li id="menu-item-248644" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-248644"><a href="./admin_profile.jsp">发放工资</a></li>
 <li id="menu-item-2486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2486"><a href="admin_notify.jsp">发放公告</a></li>
 <li id="menu-item-2486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2486"><a href="admin_check.jsp">管理员申请</a></li>
@@ -336,21 +336,21 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 <a class="next page-numbers" href="Newsproject.jsp">下一页</a> -->
 
  当前是第${pageNo }页&nbsp;&nbsp;总共有${maxPage }页&nbsp;&nbsp;
-   <a href="MainShow.jsp?pageNo=${1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 首页</a>&nbsp;&nbsp;
+   <a href="admin_MainShow.jsp?pageNo=${1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 首页</a>&nbsp;&nbsp;
     <c:if test="${pageNo ge 2 }">
-   <a href="MainShow.jsp?pageNo=${pageNo-1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 上一页</a>
+   <a href="admin_MainShow.jsp?pageNo=${pageNo-1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 上一页</a>
    </c:if>
    
    <c:forEach begin="1" end="${maxPage }" var="i">
       <c:if test="${i ge pageNo-2 and i le pageNo+2 }">
-        <a class='page-numbers' href="MainShow.jsp?pageNo=${i }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"><span class="meta-nav screen-reader-text">页 </span>${i }</a>&nbsp;&nbsp;
+        <a class='page-numbers' href="admin_MainShow.jsp?pageNo=${i }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"><span class="meta-nav screen-reader-text">页 </span>${i }</a>&nbsp;&nbsp;
       </c:if>
    </c:forEach>
    
    <c:if test="${pageNo le maxPage-1 }">
-   <a href="MainShow.jsp?pageNo=${pageNo+1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 下一页</a>&nbsp;&nbsp;
+   <a href="admin_MainShow.jsp?pageNo=${pageNo+1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 下一页</a>&nbsp;&nbsp;
    </c:if>
-   <a href="MainShow.jsp?pageNo=${maxPage }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 尾页</a>&nbsp;&nbsp;
+   <a href="admin_MainShow.jsp?pageNo=${maxPage }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 尾页</a>&nbsp;&nbsp;
 
 
 </div>

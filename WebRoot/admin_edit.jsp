@@ -23,6 +23,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" class="ie8 wp-toolbar"  lang="zh-CN">
 <![endif]-->
 <!--[if !(IE 8) ]><!-->
+<%@page import="dao.impl.NewsDaoImpl"%>
+<%@page import="dao.NewsDao"%>
+<%@page import="pojo.impl.NewsImpl"%>
+<%@page import="pojo.impl.TypeImpl"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.impl.TypeDaoImpl"%>
+<%@page import="db.DBHelper"%>
+<%@page import="dao.TypeDao"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="util.MyLog"%>
 <html xmlns="http://www.w3.org/1999/xhtml" class="wp-toolbar"  lang="zh-CN">
 <!--<![endif]-->
@@ -468,7 +477,15 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	</c:forEach>
 		</select>
 <label class="screen-reader-text" for="cat">按分类过滤</label><select   id='cat' class='postform' >
+<%
+		Connection conn2=DBHelper.getConnection();
+		TypeDao td2=new TypeDaoImpl();
+		List<TypeImpl> type=td2.selectAllTypeInDB(conn2);
+		request.setAttribute("typec", type);
+		DBHelper.closeCon(conn);
+		 %>
 	<option value='0'>所有分类目录</option>
+	
 	<c:forEach items="${requestScope.type }" var="typec" varStatus="cb">
 	<option class="level-0" value="173">${typec.tname }</option>
 	</c:forEach>
@@ -560,21 +577,21 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 </table>
 	
 	当前是第${pageNo }页&nbsp;&nbsp;总共有${maxPage }页&nbsp;&nbsp;
-   <a href="edit.jsp?pageNo=${1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 首页</a>&nbsp;&nbsp;
+   <a href="admin_edit.jsp?pageNo=${1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 首页</a>&nbsp;&nbsp;
     <c:if test="${pageNo ge 2 }">
-   <a href="edit.jsp?pageNo=${pageNo-1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 上一页</a>
+   <a href="admin_edit.jsp?pageNo=${pageNo-1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 上一页</a>
    </c:if>
    
    <c:forEach begin="1" end="${maxPage }" var="i">
       <c:if test="${i ge pageNo-2 and i le pageNo+2 }">
-        <a class='page-numbers' href="edit.jsp?pageNo=${i }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"><span class="meta-nav screen-reader-text">页 </span>${i }</a>&nbsp;&nbsp;
+        <a class='page-numbers' href="admin_edit.jsp?pageNo=${i }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"><span class="meta-nav screen-reader-text">页 </span>${i }</a>&nbsp;&nbsp;
       </c:if>
    </c:forEach>
    
    <c:if test="${pageNo le maxPage-1 }">
-   <a href="edit.jsp?pageNo=${pageNo+1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 下一页</a>&nbsp;&nbsp;
+   <a href="admin_edit.jsp?pageNo=${pageNo+1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 下一页</a>&nbsp;&nbsp;
    </c:if>
-   <a href="edit.jsp?pageNo=${maxPage }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 尾页</a>&nbsp;&nbsp;
+   <a href="admin_edit.jsp?pageNo=${maxPage }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}"> 尾页</a>&nbsp;&nbsp;
 
 </form>
 

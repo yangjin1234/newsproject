@@ -478,18 +478,18 @@ jQuery(function($) {
 			</div>
 			<br class="clear" />
 		</div>
-		
+		<!--
 			<table class="mycred-table wp-list-table widefat fixed striped users" cellspacing="0" cellspacing="0">
-			<thead>
+		  	<thead>
 			<tr>
-					<td  id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select all</label></td>
+					<td  id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select all</label><input type="checkbox" id="cb-select-all-1" /></td>
 					<th scope="col" id="ref" class="manage-column column-ref">Reference</th>
 					<th scope="col" id="time" class="manage-column column-time">时间</th>
 					<th scope="col" id="creds" class="manage-column column-creds">金额</th>
 					<th scope="col" id="entry" class="manage-column column-entry">条目</th>
 			</tr>
 			</thead>
-			<tbody>
+			<tbody  id="the-list">
 			<c:forEach items="${list }" var="news">
 			<tr height="50px;">
 					<td  class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-2">Select all</label>
@@ -501,7 +501,42 @@ jQuery(function($) {
 			</tr>
 			</tbody>
 			</c:forEach>
-		   </table>
+		   </table>  -->
+			<table class="mycred-table wp-list-table widefat fixed striped users" cellspacing="0" cellspacing="0">
+		  	<thead>
+			<tr>
+					<td  id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select all</label></td>
+					<th scope="col" id="ref" class="manage-column column-ref">Reference</th>
+					<th scope="col" id="time" class="manage-column column-time">时间</th>
+					<th scope="col" id="creds" class="manage-column column-creds">金额</th>
+					<th scope="col" id="entry" class="manage-column column-entry">条目</th>
+			</tr>
+			</thead>
+			<tbody  id="the-list">
+			<c:forEach items="${list }" var="news">
+			<tr class="entry-209201 type-log-entry format-standard hentry" id="entry-209201">
+		    <th scope="row" class="check-column"><label class="screen-reader-text" for="mycred-log-entry209201">Select entry</label>
+		   <input type="checkbox"  id="mycred-log-entry209201"  name="checkboxname" value="${news.nid }" onclick="oncheckbox()" />
+		   </th>
+					<td class="column-ref" data-colname="Reference" >获得稿酬</td>
+			   <td class="column-time" data-colname="时间" >
+			   <time>${news.namend_time}</time>
+			   <div class="row-actions"><span class="view"><a href="https://weilaiche.cc/wp-admin/admin.php?page=mycred_money-history&time=1558569600,1558655999">Filter by Date</a></span>
+			   </div>
+			   </td>
+			   <td class="column-creds" data-colname="金额"  data-raw="9">￥&nbsp;${news.nsalary}&nbsp;元</td>
+			   <td class="column-entry" data-colname="条目"  data-raw="您编号563930的文章获得9元稿酬">您编号为${news.nid }的文章获得了${news.nsalary}报酬</td>
+		   </tr>
+			</c:forEach>
+			</tbody>
+		  </table> 
+		   
+		
+		   
+		   
+		   
+		   
+		   
 		<div class="tablenav bottom">
         <h2 class="screen-reader-text sr-only">Log entries navigation</h2>
 	    <div class="tablenav-pages">

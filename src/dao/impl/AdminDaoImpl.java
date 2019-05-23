@@ -38,7 +38,7 @@ public class AdminDaoImpl implements AdminDao {
 		if ("".equals(upassword)) {
 			return 0;// 无此账号
 		}
-		if (upassword.equals(MyMD5.decode(upassword))) {
+		if (upassword.equals(MyMD5.decode(MyMD5.decode(apass)))) {
 			return 1;// 登录成功
 		} else {
 			return 2;// 密码错误
@@ -100,6 +100,7 @@ public class AdminDaoImpl implements AdminDao {
 			admin.setApass(MyMD5.decode(rs.getString("apass")));
 			admin.setAstate(rs.getInt("astate"));
 			admin.setAdmin_type(rs.getInt("admin_type"));//管理员类型
+			MyLog.log.debug("admin="+admin.getAname());
 			return admin;
 		}
 		return null;

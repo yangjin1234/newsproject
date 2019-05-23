@@ -50,7 +50,8 @@ public class AdminLoginAction extends Action{
 		AdminDao ad=new AdminDaoImpl();
 		Admin admin=new Admin();
 		try {
-			admin=ad.selectUserPassByName(loginf.getLname(), conn);
+			admin=ad.selectUserPassByName(l.getLname(), conn);
+			MyLog.log.debug("loginf.getLname()="+loginf.getLname());
 		} catch (Exception e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -126,7 +127,8 @@ public class AdminLoginAction extends Action{
 		    		}
 	    		}
 				
-				request.getSession().setAttribute("admin_account",admin );
+				request.getSession().setAttribute("adminaccount",admin );
+				MyLog.log.debug("admin="+admin.getAname());
 				return new ActionForward("admin_show");
 			}
 			else if(state==0){

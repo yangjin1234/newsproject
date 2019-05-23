@@ -401,11 +401,6 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 
 
 <h2 class='screen-reader-text'>过滤文章列表</h2><ul class='subsubsub'>
-	<li class='all'><a href="./edit.jsp" class="current">全部 <span class="count">（${sessionScope.sumNews }）</span></a> |</li>
-	<li class='publish'><a href="./edit.jsp?pageNo=${1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}&state=已发布">已发布 <span class="count">（${sessionScope.publishNews }）</span></a> |</li>
-	<li class='draft'><a href="./edit.jsp?pageNo=${1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}&state=草稿">草稿 <span class="count">（${sessionScope.draftNews }）</span></a> |</li>
-	<li class='pending'><a href="./edit.jsp?pageNo=${1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}&state=待审核">待审核 <span class="count">（${sessionScope.checkingNews }）</span></a> |</li>
-	<li class='trash'><a href="./edit.jsp??pageNo=${1 }&pageSize=${maxSize }&typec=${typec }&timetypec=${timetypecName}&state=回收站">回收站 <span class="count">（${sessionScope.recycleNews }）</span></a></li>
 </ul>
 
 <%
@@ -437,10 +432,10 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	  pageContext.setAttribute("maxSize", maxSize);
 	//最大页数
 	//int maxPage=nd.getMaxPage(conn, maxSize);
-	int maxPage=nd.getMaxPageByUid(conn, maxSize, logf.getLid());
+	int maxPage=nd.selectAllNewsMaxPageForAdmin(conn, maxSize);
 	//总的文章数
 	int sumNews=nd.getAllNewsSum(conn,logf.getLid());
-	MyLog.log.debug("sumNews="+sumNews);
+	MyLog.log.debug("maxPage="+maxPage);
 	request.getSession().setAttribute("sumNews", sumNews);
 	
 	//当前页数
@@ -457,7 +452,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	  String typeName=request.getParameter("typec");
 	  
 	  if(typeName==null||typeName.equals("")){
-	   list=nd.selectAllNews(logf.getLid(), conn, pageNo, maxSize);
+	   list=nd.selectAllNewsForAdmin(conn, pageNo, maxSize);
 	   MyLog.log.debug("list="+list.size());
 	  }else {
 	 // if(!"".equals(typeName)){
@@ -547,10 +542,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	    			}
 	    		}
     		}
-    		//把用户名存到list中
-    for(NewsImpl li:list){
-	 li.setUname(uname);
-	 }
+    	
     
 	  request.setAttribute("list", list);
 	pageContext.setAttribute("maxPage", maxPage);
@@ -577,7 +569,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 <input type="hidden" name="nid" />
 <input type="button" id="doaction" class="button action" value="应用"  onclick="deletenews()"/>
 		</div>
-				<!-- <div class="alignleft actions">
+				 <div class="alignleft actions">
 					<label for="filter-by-date" class="screen-reader-text">按日期筛选</label>
 		<select  id="filter-by-date">
 			<option selected='selected' value="0">全部日期</option>
@@ -611,7 +603,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	<h2 class='screen-reader-text'>文章列表导航</h2><div class='tablenav-pages'><span class="displaying-num">${sessionScope.sumNews }篇文章</span>
 		<br class="clear" />
 		
-		 -->
+		
 		
 		
 		
@@ -679,11 +671,15 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	<div class="hh">10</div>
 	<div class="mn">37</div>
 	<div class="ss">44</div>
-	<div class="post_password"></div><div class="page_template">default</div><div class="post_category" id="category_486356">170</div><div class="tags_input" id="post_tag_486356"></div><div class="sticky"></div><div class="post_format"></div></div><div class="row-actions"><span class='edit'><a href="post.jsp?nid=${listc.nid }&ntitle=${listc.title}&ncontent=${listc.ncontent}" aria-label="编辑“${listc.title }”">编辑</a> | </span><span class='inline hide-if-no-js'><a href="#" class="editinline" aria-label="快速编辑“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">快速编辑</a> | </span>
+	<div class="post_password"></div><div class="page_template">default</div><div class="post_category" id="category_486356">170</div>
+	<div class="tags_input" id="post_tag_486356"></div><div class="sticky"></div>
+	<div class="post_format"></div></div><div class="row-actions"><span class='edit'>
+	<a href="post.jsp?nid=${listc.nid }&ntitle=${listc.title}&ncontent=${listc.ncontent}" aria-label="查看“${listc.title }”">查看</a> | <a href="post.jsp?nid=${listc.nid }&ntitle=${listc.title}&ncontent=${listc.ncontent}" aria-label="查看“${listc.title }”">通过审核</a> | <a href="post.jsp?nid=${listc.nid }&ntitle=${listc.title}&ncontent=${listc.ncontent}" aria-label="查看“${listc.title }”">审核不通过</a></span>
+	<span class='inline hide-if-no-js'>
+	 | </span>
 	
 	
 	
-	<span class='view'><a href="https://weilaiche.cc/?p=486356&#038;preview=true" rel="permalink" aria-label="预览“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">预览</a></span></div><button type="button" class="toggle-row"><span class="screen-reader-text">显示详情</span></button></td><td class='5cb168afcc30c column-5cb168afcc30c' data-colname="作者"><a href="edit.php?post_type=post&#038;author=811"  >${listc.uname }</a></td><td class='categories column-categories' data-colname="分类目录"><a href="edit.php?category_name=jstw">${listc.typename }</a></td><td class='tags column-tags' data-colname="标签"><span aria-hidden="true">&#8212;</span><span class="screen-reader-text">没有标签</span></td><td class='date column-date' data-colname="日期">最后修改<br /><abbr title="2019/04/24 10:37:44">${listc.namend_time }</abbr></td>		</tr>
 	  </c:if>
 	</c:forEach>	
 			</tbody>

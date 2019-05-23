@@ -79,6 +79,16 @@
   <filter-mapping>
   <filter-name>admin_session</filter-name>
   <url-pattern>/admin_notify.jsp</url-pattern>
+  <url-pattern>/admin_MainShow.jsp</url-pattern>
+  <url-pattern>/admin_edit.jsp</url-pattern>
+  <url-pattern>/admin_check.jsp</url-pattern>
+  <url-pattern>/admin_all.jsp</url-pattern>
+  <url-pattern>/admin_forgetpass.jsp</url-pattern>
+  <url-pattern>/admin_managerboard.jsp</url-pattern>
+  <url-pattern>/admin_manageruser.jsp</url-pattern>
+  <url-pattern>/admin_showarticle.jsp</url-pattern>
+  <url-pattern>/admin_profile.jsp</url-pattern>
+  <url-pattern>/admin_article.jsp</url-pattern>
   </filter-mapping>
   
   <welcome-file-list>

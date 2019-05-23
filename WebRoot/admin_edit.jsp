@@ -260,7 +260,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	<li class="wp-not-current-submenu wp-menu-separator" aria-hidden="true"><div class="separator"></div></li>
 	<li class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-icon-post open-if-no-js menu-top-first menu-top-last" id="menu-posts">
 	<a href='edit.php' class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-icon-post open-if-no-js menu-top-first menu-top-last" ><div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-post'><br /></div><div class='wp-menu-name'>文章</div></a>
-	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>文章</li><li class="wp-first-item current"><a href='edit.jsp' class="wp-first-item current">所有文章</a></li><li><a href='./post-new.jsp'>写文章</a></li></ul></li>
+	<ul class='wp-submenu wp-submenu-wrap'><li class='wp-submenu-head' aria-hidden='true'>文章</li><li class="wp-first-item current"><a href='edit.jsp' class="wp-first-item current">所有文章</a></li><li></li></ul></li>
 	<li class="wp-not-current-submenu wp-menu-separator" aria-hidden="true"><div class="separator"></div></li>
 	<li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-users menu-top-first" id="menu-users">
 	<a href='profile.php' class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-users menu-top-first" aria-haspopup="true"><div class="wp-menu-arrow"><div></div></div><div class='wp-menu-image dashicons-before dashicons-admin-users'><br /></div><div class='wp-menu-name'>个人资料</div></a>
@@ -286,7 +286,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 		<li id="wp-admin-bar-comments"><a class="ab-item" href="https://weilaiche.cc/wp-admin/edit-comments.php"><span class="ab-icon"></span><span class="ab-label awaiting-mod pending-count count-0" aria-hidden="true">0</span><span class="screen-reader-text">0条评论待审</span></a>		</li>
 		<li id="wp-admin-bar-new-content" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/post.new.jsp"><span class="ab-icon"></span><span class="ab-label">新建</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
 		<li id="wp-admin-bar-new-post"><a class="ab-item" href="post.new.jsp">文章</a>		</li></ul></div>		</li></ul><ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
-		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/wp-admin/profile.php">嗨，${sessionScope.account.lname }<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
+		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="https://weilaiche.cc/wp-admin/profile.php">欢迎来到超级管理员界面<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
 		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="https://weilaiche.cc/wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>${listc.typename }</span></a>		</li>
 		<li id="wp-admin-bar-edit-profile"><a class="ab-item" href="https://weilaiche.cc/wp-admin/profile.php">编辑我的个人资料</a>		</li>
 		<li id="wp-admin-bar-logout"><a class="ab-item" href="login.jsp?action=logout&#038;_wpnonce=5144bf0ac7">登出</a>		</li></ul><ul id="wp-admin-bar-my-account-default" class="ab-submenu">
@@ -407,26 +407,6 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	   NewsDao nd=new NewsDaoImpl();
 	 TypeDao td=new TypeDaoImpl();
 	   Connection conn=DBHelper.getConnection();
-	LoginDao ld=new LoginDaoImpl();
-	 List<TypeImpl> list2=td.selectAllType(conn);
-	 //得到登录用户
-	 LoginImpl log=new LoginImpl();
-	 log=(LoginImpl)request.getSession().getAttribute("account");
-	 //得到id
-	 Login logf=ld.selectUserPassByName(log.getLname(), conn);
-	 session.setAttribute("logf", logf);
-	 request.setAttribute("type", list2);
-	 List<TimeTypec> list3=nd.selectAllByTime(conn, logf.getLid());
-	 MyLog.log.debug(list3.toString());
-	 request.setAttribute("timetype", list3);
-	 String uname=logf.getLname(),upass=logf.getLpass();
-	//查出待发放的工资
-	double nosalary=nd.selectSumSalaryNo(logf.getLid(), conn,0);
-	//查出已发放的工资
-	double yesalary=nd.selectSumSalaryNo(logf.getLid(), conn,1);
-	request.getSession().setAttribute("nosalary", nosalary);
-	request.getSession().setAttribute("yesalary", yesalary);
-	MyLog.log.debug("nosalary="+nosalary);
 	//每页显示文章数量
 	int maxSize=5;
 	  pageContext.setAttribute("maxSize", maxSize);
@@ -434,7 +414,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	//int maxPage=nd.getMaxPage(conn, maxSize);
 	int maxPage=nd.selectAllNewsMaxPageForAdmin(conn, maxSize);
 	//总的文章数
-	int sumNews=nd.getAllNewsSum(conn,logf.getLid());
+	int sumNews=nd.getAllNewsSum(conn,1);
 	MyLog.log.debug("maxPage="+maxPage);
 	request.getSession().setAttribute("sumNews", sumNews);
 	
@@ -448,102 +428,12 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	pageContext.setAttribute("pageNo", pageNo);
 	   List<NewsImpl> list=null;
 	   
-	   //按类型分类
-	  String typeName=request.getParameter("typec");
-	  
-	  if(typeName==null||typeName.equals("")){
 	   list=nd.selectAllNewsForAdmin(conn, pageNo, maxSize);
-	   MyLog.log.debug("list="+list.size());
-	  }else {
-	 // if(!"".equals(typeName)){
-	  list=nd.selectNewsByTypeName(logf.getLid(), conn, typeName, pageNo, maxSize);
-	  maxPage=nd.selectNewsByTypeNameForMaxSize(logf.getLid(), conn, typeName,maxSize);
-	  MyLog.log.debug("typeName="+typeName);
-	  request.setAttribute("typec", typeName);
-	  MyLog.log.debug("maxPage232="+maxPage);
-	  }
-	//  }
-	//  按时间分类
-	  String timetypecName=request.getParameter("timetypec");
-	  if(timetypecName!=null){
-	  if(!"".equals(timetypecName)){
-	  maxPage=nd.selectNewsByTimeForMaxSize(logf.getLid(), conn, timetypecName,maxSize);
-	  list=nd.selectNewsByTime(logf.getLid(), conn, timetypecName, pageNo, maxSize);
-	  request.setAttribute("timetypecName", timetypecName);
-	  MyLog.log.debug("timetypecName="+timetypecName);
-	  MyLog.log.debug(list.size());
-	  }
-	  }
 	  
 	MyLog.log.debug("maxPage"+maxPage);
-	//已发布文章数
-		String state=request.getParameter("state");
-		if(state!=null){
-			if("已发布".equals(state)){
-				list=nd.selectAllNewsByState(logf.getLid(),conn,pageNo,maxSize,0);
-				maxPage=nd.selectAllNewsByStateFormaxPage(logf.getLid(), conn, maxSize, 0);
-			}if("草稿".equals(state)){
-				list=nd.selectAllNewsByState(logf.getLid(),conn,pageNo,maxSize,1);
-				maxPage=nd.selectAllNewsByStateFormaxPage(logf.getLid(), conn, maxSize, 1);
-			}if("待审核".equals(state)){
-				list=nd.selectAllNewsByState(logf.getLid(),conn,pageNo,maxSize,2);
-				maxPage=nd.selectAllNewsByStateFormaxPage(logf.getLid(), conn, maxSize, 2);
-			}if("回收站".equals(state)){
-				list=nd.selectAllNewsByState(logf.getLid(),conn,pageNo,maxSize,3);
-				maxPage=nd.selectAllNewsByStateFormaxPage(logf.getLid(), conn, maxSize, 3);
-			}
-			
-		}
-		int publishNews=nd.selectAllNewsByStateForSum(logf.getLid(),conn,0);
-		MyLog.log.debug("publishNews="+publishNews);
-		request.getSession().setAttribute("publishNews", publishNews);
-		//草稿文章数
-		int draftNews=nd.selectAllNewsByStateForSum(logf.getLid(),conn,1);
-		MyLog.log.debug("draftNews="+draftNews);
-		request.getSession().setAttribute("draftNews", draftNews);
-		//待审核文章数
-		int checkingNews=nd.selectAllNewsByStateForSum(logf.getLid(),conn,2);
-		MyLog.log.debug("checkingNews="+checkingNews);
-		request.getSession().setAttribute("checkingNews", checkingNews);
-		//回收站文章数
-		int recycleNews=nd.selectAllNewsByStateForSum(logf.getLid(),conn,3);
-		MyLog.log.debug("recycleNews="+recycleNews);
-		request.getSession().setAttribute("recycleNews", recycleNews);
 	
 	
-	 //存到cookie
-	 Cookie c1 = new Cookie("uname",URLEncoder.encode(uname, "UTF-8"));
-	    		c1.setDomain("localhost");
-	    		c1.setPath("/Newsproject");
-	    		c1.setMaxAge(60*60*24);
-	    		response.addCookie(c1);
-    			Cookie c2 = new Cookie("upass",upass);
-	    		c2.setDomain("localhost");
-	    		c2.setPath("/Newsproject");
-	    		c2.setMaxAge(60*60*24);
-	    		response.addCookie(c2);
-	    //从请求中拿到cookies
-	     Cookie[] cookies = request.getCookies();
-    		String valname = null;
-    		String valpass = null;
-    		//循环所有的cookie，得到我需要的数据
-    		if(cookies!=null){
-	    		for(Cookie c : cookies){
-	    			String key = c.getName();
-	    				MyLog.log.debug("key="+key);
-	    			if("uname".equals(key)){
-	    				valname = c.getValue();
-	    				MyLog.log.debug("valname="+valname);
-	    				//解码
-	    				valname = URLDecoder.decode(valname, "UTF-8");
-	    			}
-	    			if("upass".equals(key)){
-	    				valpass = c.getValue();
-	    			}
-	    		}
-    		}
-    	
-    
+	 
 	  request.setAttribute("list", list);
 	pageContext.setAttribute("maxPage", maxPage);
 	DBHelper.closeCon(conn);
@@ -631,32 +521,13 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 				<span class="screen-reader-text">“${listc.title }”已被锁定</span>
 			</div>
 		</th>
-		<c:if test="${listc.news_state eq 2 }">
 		<td class='5cb165b970a37 column-5cb165b970a37' data-colname="状态">待审核</td>
-		</c:if>
-		<c:if test="${listc.news_state eq 0 }">
-		<td class='5cb165b970a37 column-5cb165b970a37' data-colname="状态">已发布</td>
-		</c:if>
-		<c:if test="${listc.news_state eq 1 }">
-		<td class='5cb165b970a37 column-5cb165b970a37' data-colname="状态">草稿</td>
-		</c:if>
 		<td class="title column-title has-row-actions column-primary page-title" data-colname="标题"><div class="locked-info"><span class="locked-avatar"></span> <span class="locked-text"></span></div>
 <strong><a class="row-title" href="https://weilaiche.cc/wp-admin/post.php?post=486356&amp;action=edit" aria-label="“${listc.title }”（编辑）">${listc.title }</a> <span class="post-state"><span class="pending states">
-<c:if test="${listc.news_state eq 2 }">
 		<span class="dashicons dashicons-format-chat"></span>待审核
 </span></span>
 </strong>
-		</c:if>
-		<c:if test="${listc.news_state eq 0 }">
-		<span class="dashicons dashicons-format-chat"></span>已发布
-</span></span>
-</strong>
-		</c:if>
-		<c:if test="${listc.news_state eq 1 }">
-		<span class="dashicons dashicons-format-chat"></span>草稿
-</span></span>
-</strong>
-		</c:if>
+		
 
 
 <div class="hidden" id="inline_486356">
@@ -678,6 +549,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	<span class='inline hide-if-no-js'>
 	 | </span>
 	
+	<span class='view'><a href="https://weilaiche.cc/?p=486356&#038;preview=true" rel="permalink" aria-label="预览“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">预览</a></span></div><button type="button" class="toggle-row"><span class="screen-reader-text">显示详情</span></button></td><td class='5cb168afcc30c column-5cb168afcc30c' data-colname="作者"><a href="edit.php?post_type=post&#038;author=811"  >${listc.uname }</a></td><td class='categories column-categories' data-colname="分类目录"><a href="edit.php?category_name=jstw">${listc.typename }</a></td><td class='tags column-tags' data-colname="标签"><span aria-hidden="true">&#8212;</span><span class="screen-reader-text">没有标签</span></td><td class='date column-date' data-colname="日期">最后修改<br /><abbr title="2019/04/24 10:37:44">${listc.namend_time }</abbr></td>		</tr>
 	
 	
 	  </c:if>

@@ -83,7 +83,6 @@
   <url-pattern>/admin_edit.jsp</url-pattern>
   <url-pattern>/admin_check.jsp</url-pattern>
   <url-pattern>/admin_all.jsp</url-pattern>
-  <url-pattern>/admin_forgetpass.jsp</url-pattern>
   <url-pattern>/admin_managerboard.jsp</url-pattern>
   <url-pattern>/admin_manageruser.jsp</url-pattern>
   <url-pattern>/admin_showarticle.jsp</url-pattern>

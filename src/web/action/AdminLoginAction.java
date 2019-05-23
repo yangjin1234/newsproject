@@ -51,7 +51,7 @@ public class AdminLoginAction extends Action{
 		Admin admin=new Admin();
 		try {
 			admin=ad.selectUserPassByName(l.getLname(), conn);
-			MyLog.log.debug("loginf.getLname()="+loginf.getLname());
+			MyLog.log.debug("l.getLname()="+l.getLname());
 		} catch (Exception e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();

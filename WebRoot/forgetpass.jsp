@@ -7,7 +7,7 @@
 	<!--<![endif]-->
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>未来车平台 &lsaquo; 修改密码</title>
+	<title>新媒体平台 &lsaquo; 修改密码</title>
 			<script>if("sessionStorage" in window){try{for(var key in sessionStorage){if(key.indexOf("wp-autosave-")!=-1){sessionStorage.removeItem(key)}}}catch(e){}};</script>
 		<meta name="generator" content="Custom Login v3.2.8" />
 <link rel='dns-prefetch' href='//s.w.org' />
@@ -36,7 +36,6 @@
      {
 	     username=$("#username").val();
 	    // alert(typeof(username));
-	     alert("username"+username);
 	     //alert("user_pwd2"+user_pwd2);
 	     $.ajax({
 	     type:"POST",
@@ -44,7 +43,6 @@
 	     data:"data="+username,
 	     success:function(returnval)
 	     {
-	     alert(returnval);
 		     if("true"==returnval)
 		     {
 		     //alert("用户名已存在");
@@ -86,7 +84,6 @@
      {
 	      divpass1=document.getElementById("contentpass1");
 	      user_pwd1=$("#user_pwd1").val();
-	     alert("user_pwd1"+user_pwd1);
 	      if(""==user_pwd1)
 	      {
 	      divpass1.innerText="密码不能为空";
@@ -252,7 +249,7 @@ body.login {
 </form>
 
 <p id="nav">
-<a href="./register.jsp">注册</a> | 	<a href="./wp-login.php?action=lostpassword">忘记密码？</a>
+<a href="./register.jsp">注册</a> | 	
 </p>
 
 <script type="text/javascript">
@@ -269,7 +266,7 @@ wp_attempt_focus();
 if(typeof wpOnload=='function')wpOnload();
 </script>
 
-	<p id="backtoblog"><a href="./">&larr; 返回到未来车平台</a></p>
+	<p id="backtoblog"><a href="./login.jsp">&larr; 返回到新媒体平台</a></p>
 	
 	</div>
 

@@ -166,7 +166,7 @@ wp_attempt_focus();
 if(typeof wpOnload=='function')wpOnload();
 </script>
 
-	<p id="backtoblog"><a href="./">&larr; 返回到未来车平台</a></p>
+	<p id="backtoblog"><a href="./login.jsp">&larr; 返回到新媒体平台</a></p>
 	
 	</div>
 

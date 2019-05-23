@@ -32,13 +32,15 @@ public class AdminDaoImpl implements AdminDao {
 		MyLog.log.debug("aname=" + aname);
 		if (rs.next()) {
 			upassword = rs.getString("apass");// 数据库中
-			MyLog.log.debug("输入的密码=" + MyMD5.decode(upassword));
+			MyLog.log.debug("输入的密码1=" +MyMD5.encrypt(apass));
+			MyLog.log.debug("输入的密码2=" +MyMD5.encrypt((MyMD5.encrypt(apass))));
+			MyLog.log.debug("输入的密码3=" + MyMD5.encrypt(MyMD5.encrypt((MyMD5.encrypt(apass)))));
 			MyLog.log.debug("数据库中的密码=" + upassword);
 		}
 		if ("".equals(upassword)) {
 			return 0;// 无此账号
 		}
-		if (upassword.equals(MyMD5.decode(MyMD5.decode(apass)))) {
+		if (upassword.equals(MyMD5.encrypt(apass))) {
 			return 1;// 登录成功
 		} else {
 			return 2;// 密码错误
@@ -56,6 +58,8 @@ public class AdminDaoImpl implements AdminDao {
 		ps.setInt(1, admin.getAid());
 		ps.setString(2, admin.getAname());
 		ps.setString(3, MyMD5.encrypt(admin.getApass()));
+		MyLog.log.debug("admin.pass="+admin.getApass());
+		MyLog.log.debug("admin.pass加密="+MyMD5.encrypt(admin.getApass()));
 		ps.setString(4, admin.getAphone());
 		int result = ps.executeUpdate();
 		if (result > 0) {
@@ -229,7 +233,9 @@ public class AdminDaoImpl implements AdminDao {
 	    String aanswer=u.getUser_answer();
 	    
 	    String apass=u.getUser_pwd1();
+	    MyLog.log.debug("加密前==="+apass);
 	    apass= MyMD5.encrypt(apass);
+	    MyLog.log.debug("加密后==="+apass);
     	String sql="insert into admin(aid,aname,apass,aquestion,aanswer) value(?,?,?,?,?)";
     	PreparedStatement ps=conn.prepareStatement(sql);
     	ps.setInt(1,aid);

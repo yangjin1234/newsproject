@@ -1022,7 +1022,7 @@ public class NewsDaoImpl implements NewsDao{
 		public List<NewsImpl> selectAllNewsForAdmin(Connection conn,
 				int pageNo, int pageSize) throws Exception {
 			  List<NewsImpl> list=new ArrayList<NewsImpl>();
-			  String sql="select *from news,type,`user` where  nid_tid_key=tid and nid_uid_key=uid and news_state=1 limit ?,?";
+			  String sql="select *from news,type,`user` where  nid_tid_key=tid and nid_uid_key=uid and news_state=2 limit ?,?";
 			  PreparedStatement ps=conn.prepareStatement(sql);
 			  ResultSet rs=null;
 			  ps.setInt(1, (pageNo-1)*pageSize);
@@ -1049,7 +1049,7 @@ public class NewsDaoImpl implements NewsDao{
 		  }
 		public int selectAllNewsMaxPageForAdmin(Connection conn, int pageSize)
 				throws Exception {
-			  String sql="select count(*) as max from news,type,`user` where  nid_tid_key=tid and nid_uid_key=uid and news_state=1 limit ?,?";
+			  String sql="select count(*) as max from news,type,`user` where  nid_tid_key=tid and nid_uid_key=uid and news_state=2 limit ?,?";
 			  PreparedStatement ps=conn.prepareStatement(sql);
 			  ResultSet rs=null;
 			  int count=0;

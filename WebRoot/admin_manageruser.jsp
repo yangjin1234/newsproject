@@ -132,6 +132,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					        	});
 	  	 
 	  	 }
+	  	 
+	  	 
+	  	 
+	  	 
+	  	 function deleteuser1(ob)
+	  	 {
+	  	 var uid=ob;
+	  	 alert("uid==="+uid);
+	  	 
+	  	 }
   	 
 </script>
 
@@ -402,7 +412,7 @@ jQuery(function($) {
 	    	</c:if>
 					<th  scope="col" class="manage-column column-ref">${user.uname }</th>
 					<th scope="col" class="manage-column column-time">--</th>
-					<th scope="col" class="manage-column column-creds"><input type="button" value="删除" onclick="deleteuser('${user.uid}')"/>&nbsp;&nbsp;<a href="showarticle.jsp?news=${user.uid }">查看</a></th>	
+					<th scope="col" class="manage-column column-creds"><a href="javascript:deleteuser1('${user.uid }')">删除</a><input type="button" value="删除" onclick="deleteuser('${user.uid}')"/>&nbsp;&nbsp;<a href="admin_showarticle.jsp?news=${user.uid }">查看</a></th>	
 			</tr>
 			</tbody>
 			</c:forEach>

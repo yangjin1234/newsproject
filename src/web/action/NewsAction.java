@@ -173,4 +173,34 @@ public class NewsAction extends DispatcherAction{
 			}
 			return null;
 	}
+	
+	
+	public ActionForward updateNewsCheckPath(HttpServletRequest request,
+			HttpServletResponse response, ActionForm af){
+		NewsForm ge= (NewsForm)af;
+	    Connection conn=DBHelper.getConnection();
+	    NewsDao u=new NewsDaoImpl();
+				try {
+					u.updateNewsState(Integer.valueOf(ge.getNid()), 1, conn);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	  
+			return new ActionForward("admin_edit");
+	}
+	
+	public ActionForward updateNewsCheckNo(HttpServletRequest request,
+			HttpServletResponse response, ActionForm af){
+	NewsForm ge= (NewsForm)af;
+	    Connection conn=DBHelper.getConnection();
+	    NewsDao u=new NewsDaoImpl();
+				try {
+					u.updateNewsState(Integer.valueOf(ge.getNid()), 2, conn);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return new ActionForward("admin_edit");
+	}
 }

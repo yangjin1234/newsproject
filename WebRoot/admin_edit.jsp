@@ -562,7 +562,9 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	<div class="post_password"></div><div class="page_template">default</div><div class="post_category" id="category_486356">170</div>
 	<div class="tags_input" id="post_tag_486356"></div><div class="sticky"></div>
 	<div class="post_format"></div></div><div class="row-actions"><span class='edit'>
-	<a href="post.jsp?nid=${listc.nid }&ntitle=${listc.title}&ncontent=${listc.ncontent}" aria-label="查看“${listc.title }”">查看</a> | <a href="post.jsp?nid=${listc.nid }&ntitle=${listc.title}&ncontent=${listc.ncontent}" aria-label="查看“${listc.title }”">通过审核</a> | <a href="post.jsp?nid=${listc.nid }&ntitle=${listc.title}&ncontent=${listc.ncontent}" aria-label="查看“${listc.title }”">审核不通过</a></span>
+	<a href="post.jsp?nid=${listc.nid }&ntitle=${listc.title}&ncontent=${listc.ncontent}" aria-label="查看“${listc.title }”">查看
+	</a> | <a href="news.do?param=updateNewsCheckPath&nid=${listc.nid }" aria-label="查看“${listc.title }”">通过审核
+	</a> | <a href="news.do?param=updateNewsCheckNo&nid=${listc.nid }" aria-label="查看“${listc.title }”">审核不通过</a></span>
 	<span class='inline hide-if-no-js'>
 	 | </span>
 	

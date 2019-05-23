@@ -388,16 +388,8 @@ body.login {
          <img id="captcha_img" src="image?data="+2019-12-23 />
       </label>
    </p>
-   <p>
-      <label for="phone">手机号 &nbsp;<span id="sendSmsBtnErr" style="color:#ff5c57;font-size: 12px;"></span> <br/>
-         <input id="phone" class="input" type="text" size="15" value="" name="phone" autocomplete="off" />
-      </label>
-   </p>
-   <p>
-      <label for="code">短信验证码 &nbsp;<input id="sendSmsBtn" type="button" value="获取短信验证码" class="button button-secondary" />
-         <input id="code" class="input" type="text" size="4" value="" name="code" />
-      </label>
-   </p>
+   
+  
    <input type="hidden" name="token" value="35b77c803a">
    	<p id="reg_passmail"></p>
 	<br class="clear" />

@@ -287,11 +287,11 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 
 	<article id="post-486354" class="post-486354 post type-post status-publish format-standard hentry category-jstw">
 		<header class="entry-header"><span style="color:#ffffff; background-color:#006699;">文号：${listc.iid }</span>
-		<h2 class="entry-title" style="margin-bottom:15px;"><a href="./p/486354" rel="bookmark">${listc.ititle }</a></h2>
+		<h2 class="entry-title" style="margin-bottom:15px;"><a href="./MainShow.jsp" rel="bookmark">${listc.ititle }</a></h2>
 		<div style="font-size:85%;margin-bottom:10px;"><span class="posted-on"><span class="screen-reader-text">发布于 </span>
-		<a href="/p/date/2019/05/08" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">${listc.itime }</time></a>
+		<a href="/MainShow.jsp" rel="bookmark"><time class="entry-date published" datetime="2019-05-08T16:51:15+00:00">${listc.itime }</time></a>
 		</span><span class="byline"><span class="author vcard"></span></span>
-		<span class="comments-link"><a href="./p/486354#respond"></span></div>	</header><!-- .entry-header -->
+		<span class="comments-link"><a href="./MainShow.jsp"></span></div>	</header><!-- .entry-header -->
 	<div class="entry-content">
 		
 				<p>${listc.icontent } &hellip; <a href="./p/486354" class="more-link">

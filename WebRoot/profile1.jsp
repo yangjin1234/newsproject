@@ -64,7 +64,6 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 	function jump(){
 		var usex=document.getElementById("sex");
 		//var usex=${sessionScope.usex};
-		alert(usex.value);
 		if(usex=="女"){
 			var iuser_sex=document.getElementsByName("user_sex");
 				iuser_sex[0].checked=false;
@@ -84,7 +83,6 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 			//预览
 				var data = e.target.result;
 				document.getElementById("myimg").src=data;
-				alert(data);
 				document.getElementById("photo").value=data;
 			};
 		}

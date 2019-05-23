@@ -100,6 +100,7 @@ public class AdminDaoImpl implements AdminDao {
 			admin.setApass(MyMD5.decode(rs.getString("apass")));
 			admin.setAstate(rs.getInt("astate"));
 			admin.setAdmin_type(rs.getInt("admin_type"));//管理员类型
+			MyLog.log.debug("admin="+admin.getAname());
 			return admin;
 		}
 		return null;

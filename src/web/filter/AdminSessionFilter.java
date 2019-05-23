@@ -12,6 +12,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.MyLog;
+
 public class AdminSessionFilter implements Filter{
 
 	public void destroy() {
@@ -23,8 +25,9 @@ public class AdminSessionFilter implements Filter{
 			FilterChain arg2) throws IOException, ServletException {
 		HttpServletRequest request=(HttpServletRequest)arg0;
 		HttpServletResponse response=(HttpServletResponse)arg1;
-		Object ob=request.getSession().getAttribute("admin_account");
+		Object ob=request.getSession().getAttribute("adminaccount");
 		if(ob==null){
+			MyLog.log.debug("Î´µÇÂ¼");
 			request.getRequestDispatcher("./admin_login.jsp").forward(request, response);
 		}else{
 			arg2.doFilter(arg0, arg1);

@@ -1,6 +1,8 @@
 package web.action;
 
 import java.io.FileOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +35,11 @@ public class ProfileAction extends DispatcherAction{
 				 String uphoto=useri.getUphoto();
 				 request.getSession().setAttribute("usex", usex);
 				 MyLog.log.debug("user_sex="+usex);
+				 try {
+					usex = URLDecoder.decode(usex, "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
 				request.getSession().setAttribute("uname", uname);
 				request.getSession().setAttribute("uemail", uemail);
 				request.getSession().setAttribute("uphone", uphone);
@@ -41,19 +48,14 @@ public class ProfileAction extends DispatcherAction{
 	}
 	public ActionForward updateUser(HttpServletRequest request,
 			HttpServletResponse response, ActionForm af) {
-		//上传修改信息
-//		String uphoto = request.getParameter("photo");
-//		uphoto = uphoto.substring(uphoto.indexOf(",")+1);
-//		BASE64Decoder bd = new BASE64Decoder();
-//		byte[] b = bd.decodeBuffer(uphoto);
-//		String path = request.getSession().getServletContext().getRealPath("/")+"upload/"+new Date().getTime()+".jpg";
-//		FileOutputStream fos = new FileOutputStream(path);
-//		fos.write(b);
-//		fos.flush();
-//		fos.close();
 		String uname=request.getParameter("user_name");
 		MyLog.log.debug("user_name="+uname);
 		String usex=request.getParameter("user_sex");
+		try {
+			usex = URLDecoder.decode(usex, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		MyLog.log.debug("user_sex="+usex);
 		String uemail=request.getParameter("email");
 		String uphone=request.getParameter("mobile");

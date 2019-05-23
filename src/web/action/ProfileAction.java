@@ -2,10 +2,14 @@ package web.action;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.NewsDao;
+import dao.impl.NewsDaoImpl;
+import db.DBHelper;
 import pojo.impl.LoginImpl;
 import pojo.impl.Userinformation;
 import service.UserInformationService;
@@ -30,12 +34,17 @@ public class ProfileAction extends DispatcherAction{
 				 String uemail=useri.getUemail();
 				 String uphone=useri.getUphone();
 				 String uphoto=useri.getUphoto();
-				 MyLog.log.debug("user_sex="+usex);
+				 int uid=useri.getUid();
+				 NewsDao nd=new NewsDaoImpl();
+				 Connection conn=DBHelper.getConnection();
+				 double salary=0;
 				 try {
-					usex = URLDecoder.decode(usex, "UTF-8");
-				} catch (UnsupportedEncodingException e) {
+					salary=nd.selectSumSalaryNo(uid, conn, 1);
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				 MyLog.log.debug("user_sex="+usex);
+				 request.getSession().setAttribute("salary", String.valueOf(salary));
 				 request.getSession().setAttribute("usex", usex);
 				request.getSession().setAttribute("uname", uname);
 				request.getSession().setAttribute("uemail", uemail);
@@ -64,7 +73,8 @@ public class ProfileAction extends DispatcherAction{
 		user.setUsex(usex);
 		user.setUemail(uemail);
 		user.setUphone(uphone);
-		user.setUphoto(uphoto);
+		user.setUphoto("avatar/"+uphoto);
+		MyLog.log.debug("uphoto="+uphoto);
 		user.setUid(user1.getUid());
 		UserInformationService useris=new UserInformationServiceImpl();
 		boolean flag=useris.updateUser(user);

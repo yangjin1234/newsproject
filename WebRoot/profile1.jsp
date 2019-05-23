@@ -63,24 +63,20 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 <script type="text/javascript">
 	function jump(){
 		var usex=document.getElementById("sex");
-		usex=encodeURI(usex);
 		//var usex=${sessionScope.usex};
 		alert(usex.value);
 		if(usex=="女"){
 			var iuser_sex=document.getElementsByName("user_sex");
-				iuser_sex[1].checked=true;
-				alert("女");
 				iuser_sex[0].checked=false;
+				iuser_sex[1].checked=true;
 		}else{
 			var iuser_sex=document.getElementsByName("user_sex");
-				alert("男");
 				iuser_sex[0].checked=true;
 				iuser_sex[1].checked=false;
 		}
 	}
 	
 	function upload(obj){
-			alert("${sessionScope.uphoto}");
 			var fr = new FileReader();
 			var f = obj.files[0];
 			fr.readAsDataURL(f);
@@ -88,6 +84,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 			//预览
 				var data = e.target.result;
 				document.getElementById("myimg").src=data;
+				alert(data);
 				document.getElementById("photo").value=data;
 			};
 		}
@@ -272,7 +269,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 					<div class="mycred-wrapper balance-wrapper color-option selected">
 												<div>金钱</div>
 						<div class="balance-row" id="mycred-balance-mycred_money">
-							<div class="balance-view">￥ 0 元</div>
+							<div class="balance-view">￥ ${sessionScope.salary } 元</div>
 													</div>
 						<div class="balance-desc current-rank"><em>No ranks exists.</em></div>
 					</div>

@@ -63,7 +63,7 @@ var userSettings = {"url":"\/","uid":"1089","time":"1558171165","secure":"1"};va
 <script type="text/javascript">
 	function jump(){
 		var usex=document.getElementById("sex");
-		
+		usex=encodeURI(usex);
 		//var usex=${sessionScope.usex};
 		alert(usex.value);
 		if(usex=="女"){

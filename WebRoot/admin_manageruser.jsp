@@ -132,6 +132,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					        	});
 	  	 
 	  	 }
+	  	 
+	  	 
+	  	 
+	  	 //管理员删除用户方法
+	  	 function deleteuser(ob)
+	  	 {
+	  	   var uid=ob;
+	  	   //alert("uid==="+uid);
+	  	   $.ajax({
+		       type:"POST",
+		       url:"admindeleteusermessage.do",
+		       data:"data="+uid,
+			   success:function(returnval)
+				{
+				     if("true"==returnval)
+				     {							  	
+		             alert("删除成功");	
+		             div=document.getElementById(""+uid+"");
+		             div.innerText="已删除";
+		             div.style.color="red";
+				     //window.location.href="adminprofile.jsp";
+				     } 
+				    else
+			         {
+				     alert("删除失败");
+				     window.location.href="admin_manageruser.jsp";
+				     }
+			     }
+              });
+	  	 
+	  	 }
   	 
 </script>
 
@@ -388,21 +419,21 @@ jQuery(function($) {
 					<th scope="col" id="ref" class="manage-column column-ref">状态</th>
 					<th scope="col" id="creds" class="manage-column column-creds">所有作者</th>
 					<th scope="col" id="entry" class="manage-column column-entry"><label>标签</label></th>
-					<th scope="col" id="entry" class="manage-column column-entry">&nbsp;&nbsp;&nbsp;&nbsp;删除/查看</th>
+					<th scope="col" id="entry" class="manage-column column-entry">查看用户信息</th>
 			</tr>
 			</thead>
 			<tbody>
 			<c:forEach items="${list }" var="user">
 			<tr height="50px;">
 			<c:if test="${user.ustate eq 1 }">
-		    <td class='5cb165b970a37 column-5cb165b970a37' data-colname="状态">未删除</td>
+		    <td class='5cb165b970a37 column-5cb165b970a37' data-colname="状态"><div id="${user.uid }" >未删除</div></td>
 	    	</c:if>
 	    	<c:if test="${user.ustate eq 0 }">
-		    <td class='5cb165b970a37 column-5cb165b970a37' data-colname="状态">已删除</td>
+		    <td class='5cb165b970a37 column-5cb165b970a37' data-colname="状态"><div id="content" >已删除</div></td>
 	    	</c:if>
-					<th  scope="col" class="manage-column column-ref">${user.uname }</th>
-					<th scope="col" class="manage-column column-time">--</th>
-					<th scope="col" class="manage-column column-creds"><input type="button" value="删除" onclick="deleteuser('${user.uid}')"/>&nbsp;&nbsp;<a href="showarticle.jsp?news=${user.uid }">查看</a></th>	
+					<th  scope="col" class="manage-column column-ref">&nbsp;&nbsp;${user.uname }</th>
+					<th scope="col" class="manage-column column-time">---</th>
+					<th scope="col" class="manage-column column-creds"><a href="javascript:deleteuser('${user.uid }')">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="admin_showarticle.jsp?news=${user.uid }">查看</a></th>	
 			</tr>
 			</tbody>
 			</c:forEach>

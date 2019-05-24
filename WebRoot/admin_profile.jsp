@@ -133,9 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //}
 	  	 function updatestate(ob)
 	  	 {
-	  	 alert("ob=="+ob);
 	  	 var sid=ob;
-	  	 alert("类型为："+typeof(sid));
 	  	 $.ajax({
 					        type:"POST",
 					        url:"adminsalarystate.do",
@@ -145,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								     if("true"==returnval)
 								     {							  	
 								     alert("修改成功");	
-								     window.location.href="adminprofile.jsp";
+								     window.location.href="admin_profile.jsp";
 								     } 
 								     else
 								     {

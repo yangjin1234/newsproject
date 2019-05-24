@@ -141,6 +141,8 @@ public class NewsAction extends DispatcherAction{
 				u.updateNewsState(nid, 3, conn);
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally{
+				DBHelper.closeCon(conn);
 			}
 		}
 	    if(l==count)
@@ -200,6 +202,8 @@ public class NewsAction extends DispatcherAction{
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}finally{
+					DBHelper.closeCon(conn);
 				}
 				return new ActionForward("admin_edit");
 	}

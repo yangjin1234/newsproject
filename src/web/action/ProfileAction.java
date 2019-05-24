@@ -42,6 +42,8 @@ public class ProfileAction extends DispatcherAction{
 					salary=nd.selectSumSalaryNo(uid, conn, 1);
 				} catch (Exception e) {
 					e.printStackTrace();
+				}finally{
+					DBHelper.closeCon(conn);
 				}
 				 MyLog.log.debug("user_sex="+usex);
 				 request.getSession().setAttribute("salary", String.valueOf(salary));

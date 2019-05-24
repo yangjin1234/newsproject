@@ -71,6 +71,8 @@ public ActionForward execute(HttpServletRequest request,
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			DBHelper.closeCon(conn);
 		}
 			PrintWriter pw;
 			try {

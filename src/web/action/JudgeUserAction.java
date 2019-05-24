@@ -51,6 +51,8 @@ public class JudgeUserAction extends Action{
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			DBHelper.closeCon(conn);
 		}
 	    
 		return null;

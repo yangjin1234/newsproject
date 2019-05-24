@@ -55,6 +55,8 @@ public class AdminDeleteUserMessageAction extends Action{
 			pw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}finally{
+			DBHelper.closeCon(conn);
 		}
 		return null;
 	}

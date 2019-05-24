@@ -46,6 +46,8 @@ public ActionForward checkPath(HttpServletRequest request,
 		}
 	} catch (Exception e) {
 		e.printStackTrace();
+	}finally{
+		DBHelper.closeCon(conn);
 	}
 	
 	//返回一个字符串给ajax
@@ -98,6 +100,8 @@ public ActionForward checkNot(HttpServletRequest request,
 		pw.close();
 	} catch (IOException e) {
 		e.printStackTrace();
+	}finally{
+		DBHelper.closeCon(conn);
 	}
 	return null;
 	}

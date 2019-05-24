@@ -125,6 +125,8 @@ public class AdminNewsAction extends DispatcherAction{
 				u.updateNewsState(nid, 3, conn);
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally{
+				DBHelper.closeCon(conn);
 			}
 		}
 	    if(l==count)

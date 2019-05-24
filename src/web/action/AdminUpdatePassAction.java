@@ -72,6 +72,8 @@ public class AdminUpdatePassAction extends Action{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			DBHelper.closeCon(conn);
 		}
 			PrintWriter pw;
 			try {

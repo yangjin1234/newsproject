@@ -396,7 +396,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 		<div class="wrap">
 <h1 class="wp-heading-inline">文章</h1>
 
- <a href="./post.new.jsp" class="page-title-action">写文章</a>
+ <a href="./post-new.jsp" class="page-title-action">写文章</a>
 <hr class="wp-header-end">
 
 

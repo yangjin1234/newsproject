@@ -66,6 +66,8 @@ public class UpdatePassAction extends Action{
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
+				}finally{
+					DBHelper.closeCon(conn);
 				}
 		}
 		else

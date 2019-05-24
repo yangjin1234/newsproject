@@ -7,8 +7,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.LoginDao;
 import dao.UserSalaryDao;
 import dao.UserinformationDao;
+import pojo.Login;
 import pojo.SalaryTable;
 import pojo.impl.NewsImpl;
 import pojo.impl.SalaryTableImpl;
@@ -275,9 +277,11 @@ public class UserSalaryImpl implements UserSalaryDao{
 			  int sid_uid_key=rs.getInt("sid_uid_key");
 			  //查询用户名
 			  UserinformationDao user=new UserinformationDaoImpl();
+			  LoginDao ld=new LoginDaoImpl();
 			  String username=user.selectUserName(sid, conn);
 			  s.setSid(sid);
-			  s.setSid_uid_key(sid_uid_key);
+			  Login login=ld.selectLoginByUid(sid_uid_key, conn);
+			  s.setSid_uid_key(login.getLid());
 			  s.setUsername(username);
 			  MyLog.log.debug("查询分页的数据成功");
 			 list.add(s);

@@ -122,6 +122,19 @@ public class LoginDaoImpl implements LoginDao{
 			}
 			return flag;
 	    }
+
+	public pojo.Login selectLoginByUid(int uid, Connection conn)
+			throws Exception {
+		Login log=new Login();
+		String sql="select * from user where uid =?";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		ps.setInt(1,uid);
+		ResultSet rs=ps.executeQuery();
+		if(rs.next()){
+			log.setLid(rs.getInt("uid_lid_key"));
+		}
+		return log;
+	}
 	
 
 }

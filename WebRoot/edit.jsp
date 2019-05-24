@@ -649,7 +649,7 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 		<td class='5cb165b970a37 column-5cb165b970a37' data-colname="状态">草稿</td>
 		</c:if>
 		<td class="title column-title has-row-actions column-primary page-title" data-colname="标题"><div class="locked-info"><span class="locked-avatar"></span> <span class="locked-text"></span></div>
-<strong><a class="row-title" href="https://weilaiche.cc/wp-admin/post.php?post=486356&amp;action=edit" aria-label="“${listc.title }”（编辑）">${listc.title }</a> <span class="post-state"><span class="pending states">
+<strong><a class="row-title" href="./edit.jsp" aria-label="“${listc.title }”（编辑）">${listc.title }</a> <span class="post-state"><span class="pending states">
 <c:if test="${listc.news_state eq 2 }">
 		<span class="dashicons dashicons-format-chat"></span>待审核
 </span></span>
@@ -679,11 +679,11 @@ var ACP_Export = {"total_num_items":"${sessionScope.sumNews }","i18n":{"Export":
 	<div class="hh">10</div>
 	<div class="mn">37</div>
 	<div class="ss">44</div>
-	<div class="post_password"></div><div class="page_template">default</div><div class="post_category" id="category_486356">170</div><div class="tags_input" id="post_tag_486356"></div><div class="sticky"></div><div class="post_format"></div></div><div class="row-actions"><span class='edit'><a href="post.jsp?nid=${listc.nid }&ntitle=${listc.title}&ncontent=${listc.ncontent}" aria-label="编辑“${listc.title }”">编辑</a> | </span><span class='inline hide-if-no-js'><a href="#" class="editinline" aria-label="快速编辑“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">快速编辑</a> | </span>
+	<div class="post_password"></div><div class="page_template">default</div><div class="post_category" id="category_486356">170</div><div class="tags_input" id="post_tag_486356"></div><div class="sticky"></div><div class="post_format"></div></div><div class="row-actions"><span class='edit'><a href="post.jsp?nid=${listc.nid }&ntitle=${listc.title}" aria-label="编辑“${listc.title }”">编辑</a> | </span><span class='inline hide-if-no-js'><a href="#" class="editinline" aria-label="快速编辑“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">快速编辑</a> | </span>
 	
 	
 	
-	<span class='view'><a href="https://weilaiche.cc/?p=486356&#038;preview=true" rel="permalink" aria-label="预览“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">预览</a></span></div><button type="button" class="toggle-row"><span class="screen-reader-text">显示详情</span></button></td><td class='5cb168afcc30c column-5cb168afcc30c' data-colname="作者"><a href="edit.php?post_type=post&#038;author=811"  >${listc.uname }</a></td><td class='categories column-categories' data-colname="分类目录"><a href="edit.php?category_name=jstw">${listc.typename }</a></td><td class='tags column-tags' data-colname="标签"><span aria-hidden="true">&#8212;</span><span class="screen-reader-text">没有标签</span></td><td class='date column-date' data-colname="日期">最后修改<br /><abbr title="2019/04/24 10:37:44">${listc.namend_time }</abbr></td>		</tr>
+	<span class='view'><a href="edit.jsp" rel="permalink" aria-label="预览“wuhao078F35坠毁后，两关键部件不知所踪，美媒神甩锅：两国嫌疑最大yangxvbing”">预览</a></span></div><button type="button" class="toggle-row"><span class="screen-reader-text">显示详情</span></button></td><td class='5cb168afcc30c column-5cb168afcc30c' data-colname="作者"><a href="edit.php?post_type=post&#038;author=811"  >${listc.uname }</a></td><td class='categories column-categories' data-colname="分类目录"><a href="edit.php?category_name=jstw">${listc.typename }</a></td><td class='tags column-tags' data-colname="标签"><span aria-hidden="true">&#8212;</span><span class="screen-reader-text">没有标签</span></td><td class='date column-date' data-colname="日期">最后修改<br /><abbr title="2019/04/24 10:37:44">${listc.namend_time }</abbr></td>		</tr>
 	  </c:if>
 	</c:forEach>	
 			</tbody>

@@ -136,18 +136,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //}
 	  	 function checkpath(ob)
 	  	 {
-	  	 alert("ob=="+ob);
 	  	 var sid=ob;
-	  	 alert("类型为："+typeof(sid));
 	  	 $.ajax({
 					        type:"POST",
-					        url:"admincheck.do？param=checkPath",
+					        url:"admincheck.do?param=checkPath",
 					        data:"data="+sid,
 					        success:function(returnval)
 							     {
 								     if("true"==returnval)
 								     {							  	
-								     alert("修改成功");	
 								     window.location.href="admin_check.jsp";
 								     } 
 								     else
@@ -161,9 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	 
 	  	 function checknot(ob)
 	  	 {
-	  	 alert("ob=="+ob);
 	  	 var sid=ob;
-	  	 alert("类型为："+typeof(sid));
 	  	 $.ajax({
 					        type:"POST",
 					        url:"admincheck.do?param=checkNot",
@@ -172,7 +167,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							     {
 								     if("true"==returnval)
 								     {							  	
-								     alert("修改成功");	
 								     window.location.href="admin_check.jsp";
 								     } 
 								     else

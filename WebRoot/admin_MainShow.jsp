@@ -217,7 +217,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	  pageContext.setAttribute("maxSize", maxSize);
 	//最大页数
 	//int maxPage=nd.getMaxPage(conn, maxSize);
-	int maxPage=nd.getMaxPageByUid(conn, maxSize, 1);
+	int maxPage=nd.getMaxPage(conn, maxSize);
 	
 	//当前页数
 	int pageNo=0;
@@ -233,7 +233,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	  String typeName=request.getParameter("typec");
 	  
 	  if(typeName==null||typeName.equals("")){
-	   list=nd.selectAllNews(1, conn, pageNo, maxSize);
+	   list=nd.selectAllNewsForAdmin( conn, pageNo, maxSize);
 	   MyLog.log.debug("list="+list.size());
 	  }else {
 	 // if(!"".equals(typeName)){
@@ -318,8 +318,8 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 				<div class="ui tiny icon positive message">
 				<i class="trophy icon"></i>
 				<div class="content">
-				<p>获得稿酬<span style="font-size:32px;">${listc.nsalary }元</span>，请继续加油哦！(实际总稿酬${listc.nsalary }元)</p>
-				</div></div><p>${listc.ncontent } &hellip; <a href="./p/486354" class="more-link">继续阅读<span class="screen-reader-text">${listc.title }wangyuhan</span></a></p>
+				<p>${listc.ncontent } &hellip; 
+				<a href="./admin_MainShow.jsp" class="more-link"><span class="screen-reader-text">${listc.title }wangyuhan</span></a></p>
 	</div><!-- .entry-content -->
 	</article><!-- #post-## -->
 	  </c:if>
@@ -401,9 +401,11 @@ var myCRED_Notice = {"ajaxurl":"https:\/\/weilaiche.cc\/wp-admin\/admin-ajax.php
 		<li id="wp-admin-bar-new-content" class="menupop"><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
 		<li id="wp-admin-bar-new-post">		</li></ul></div>		</li></ul><ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
 		<li id="wp-admin-bar-search" class="admin-bar-search"><div class="ab-item ab-empty-item" tabindex="-1"><form action="./" method="get" id="adminbarsearch"><input class="adminbar-input" name="s" id="adminbar-search" type="text" value="" maxlength="150" /><label for="adminbar-search" class="screen-reader-text">搜索</label><input type="submit" class="adminbar-button" value="搜索"/></form></div>		</li>
-		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="./wp-admin/profile.php">嗨，${sessionScope.account.lname }<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
-		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="./wp-admin/profile.php"><img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>${sessionScope.account.lname }</span></a>		</li>
-		<li id="wp-admin-bar-logout"><a class="ab-item" href="./login.jsp?action=logout&#038;_wpnonce=ec87a18305">登出</a>		</li></ul><ul id="wp-admin-bar-my-account-default" class="ab-submenu">
+		<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a class="ab-item" aria-haspopup="true" href="./admin_MainShow.jsp">欢迎${sessionScope.adminaccount.aname }来到管理员界面<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=26&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=52&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' /></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
+		<li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="./wp-admin/profile.php">
+		<img alt='' src='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/989d4d63bcd4bd0c59f6d2edd762ed80?s=128&amp;d=wavatar&amp;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /><span class='display-name'>${sessionScope.adminaccount.aname }</span></a>		</li>
+		<li id="wp-admin-bar-logout"><a class="ab-item" href="./login.jsp?action=logout&#038;_wpnonce=ec87a18305">登出</a>		</li></ul>
+		<ul id="wp-admin-bar-my-account-default" class="ab-submenu">
 		<li id="wp-admin-bar-mycred-account" class="menupop ab-sub-secondary"><div class="ab-item ab-empty-item" aria-haspopup="true">余额</div><div class="ab-sub-wrapper"><ul id="wp-admin-bar-mycred-account-default" class="ab-submenu">
 		<li id="wp-admin-bar-mycred-account-balance-mycred-default"><div class="ab-item ab-empty-item">以获得: ￥ ${sessionScope.yesalary }</div>		</li>
 		<li id="wp-admin-bar-mycred-account-balance-mycred-money"><div class="ab-item ab-empty-item">待发放: ￥ ${sessionScope.nosalary } 元</div>		</li>

@@ -66,6 +66,6 @@ public interface LoginDao {
 	 */
 	public boolean updatePass(String lname, String newpass, Connection conn)throws Exception;
 	 public boolean updateNewpass(int uid_lid_key,String pass,Connection conn) throws Exception;
-
+Login selectLoginByUid(int uid,Connection conn)throws Exception;
 
 }

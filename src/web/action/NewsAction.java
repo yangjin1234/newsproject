@@ -55,11 +55,11 @@ public class NewsAction extends DispatcherAction{
 		}
 		ns.setNid_tid_key(ty.getTid());////
 		ns.setNcontent(content);
-		if(nf.getNpublish()==null){
-			ns.setNews_state(1);//´æÎª²İ¸å
+		if(nf.getSave()==null){
+			ns.setNews_state(2);//´ıÉóºË
 		}
 		else{
-			ns.setNews_state(2);//´ıÉóºË
+			ns.setNews_state(1);//´æÎª²İ¸å
 		}
 		MyLog.log.debug("newsform="+af.toString());
 		try {
@@ -100,11 +100,13 @@ public class NewsAction extends DispatcherAction{
 		}
 		ns.setNid_tid_key(ty.getTid());////
 		ns.setNcontent(content);
-		if(nf.getNpublish()==null){
-			ns.setNews_state(1);//´æÎª²İ¸å
+		if(nf.getSave()==null){
+			ns.setNews_state(2);//´ıÉóºË
+			MyLog.log.debug("´æÎª´ıÉóºË");
 		}
 		else{
-			ns.setNews_state(2);//´ıÉóºË
+			ns.setNews_state(1);//´æÎª²İ¸å
+			MyLog.log.debug("´æÎª²İ¸å");
 		}
 		MyLog.log.debug("newsform="+af.toString());
 		try {

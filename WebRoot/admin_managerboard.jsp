@@ -117,7 +117,7 @@ img.emoji {
 		}
 		</style>
 	<style type="text/css" id="custom-background-css">
-body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/11/bg-18-11.jpg"); background-position: center center; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; }
+body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/admin_11/admin_bg.jpg"); background-position: center center; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; }
 </style>
 <style type="text/css" media="print">#wpadminbar { display:none; }</style>
 <style type="text/css" media="screen">

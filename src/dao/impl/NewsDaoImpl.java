@@ -560,13 +560,14 @@ public class NewsDaoImpl implements NewsDao{
 		  return count%pageSize==0?count/pageSize:count/pageSize+1;
 	  }
 	public boolean updateNews(News n, Connection conn) throws Exception {
-		String sql="update news set ntitle=?,ncontent=?,nid_tid_key=?,news.namend_time=? WHERE nid=?";
+		String sql="update news set ntitle=?,ncontent=?,nid_tid_key=?,news.namend_time=?,news_state=? WHERE nid=?";
 		PreparedStatement ps=conn.prepareStatement(sql);
 		ps.setString(1, n.getTitle());
 		ps.setString(2, n.getNcontent());
 		ps.setInt(3, n.getNid_tid_key());
 		ps.setTimestamp(4, n.getNamend_time());
-		ps.setInt(5, n.getNid());
+		ps.setInt(5, n.getNews_state());
+		ps.setInt(6, n.getNid());
 		int m=ps.executeUpdate();
 		if(m>0){
 			MyLog.log.debug("updateNewsÐÞ¸Ä³É¹¦");
@@ -1064,6 +1065,32 @@ public class NewsDaoImpl implements NewsDao{
 				e.printStackTrace();
 			}
 			  return count%pageSize==0?count/pageSize:count/pageSize+1;
+		  }
+		public List<NewsImpl> selectNewsByLikeTitle(String ntitle,
+				Connection conn) throws Exception {
+			  List<NewsImpl> list=new ArrayList<NewsImpl>();
+			  String sql="select *from news,type where ntitle like ? and nid_tid_key=tid";
+			  PreparedStatement ps=conn.prepareStatement(sql);
+			  ps.setString(1, "%"+ntitle+"%");
+			  ResultSet rs=null;
+			  rs=ps.executeQuery();
+			  while(rs.next())
+			  {
+				  NewsImpl n=new NewsImpl();
+				  n.setNamend_time(rs.getTimestamp("namend_time"));
+				  n.setNcontent(rs.getString("ncontent"));
+				  n.setNews_state(rs.getInt("news_state"));
+				  n.setNid(rs.getInt("nid"));
+				  n.setNid_tid_key(rs.getInt("nid_tid_key"));
+				  n.setNid_uid_key(rs.getInt("nid_uid_key"));
+				  n.setNsalary(rs.getDouble("nsalary"));
+				  n.setNsalary_state(rs.getInt("nsalary_state"));
+				  n.setNupload_time(rs.getTimestamp("nupload_time"));
+				  n.setTitle(rs.getString("ntitle"));
+				  n.setTypename(rs.getString("tname"));
+				  list.add(n);
+			  }
+			  return list;
 		  }
 }
 	

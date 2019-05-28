@@ -130,5 +130,14 @@ public interface NewsDao {
 		 		  * 根据用户名主键及文章已通过审核，分页查询出每页数据，并根据时间进行升序排列
 		 		  */
 		 		 public List<News>  selectAllNewsOrder(int nid_uid_key,int news_state,Connection conn,int pageNo,int pageSize) throws Exception;
+		 		 
+		 		 /**
+		 		  * 按标题进行模糊查询
+		 		  * @param ntitle
+		 		  * @param conn
+		 		  * @return
+		 		  * @throws Exception
+		 		  */
+		 		 List<NewsImpl> selectNewsByLikeTitle(String ntitle,Connection conn)throws Exception;
 
 }

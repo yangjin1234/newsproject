@@ -269,7 +269,11 @@ String nid=request.getParameter("nid");
 <%
     String ntitle=request.getParameter("ntitle");
 	pageContext.setAttribute("ntitle", ntitle);
-				String ncontent=request.getParameter("ncontent");
+				String ncontent="";
+				NewsDao nd=new NewsDaoImpl();
+				Connection conn=DBHelper.getConnection();
+				List<NewsImpl> list2=nd.selectNewsByLikeTitle(ntitle, conn);
+				ncontent=list2.get(0).getNcontent();
 	pageContext.setAttribute("ncontent", ncontent);
 %>
 		<label class="screen-reader-text" id="title-prompt-text" for="title">在此输入标题</label>
@@ -398,7 +402,6 @@ String nid=request.getParameter("nid");
 			<ul id="categorychecklist-pop" class="categorychecklist form-no-clear" >
 				
 		<%
-		Connection conn=DBHelper.getConnection();
 		TypeDao td=new TypeDaoImpl();
 		List<TypeImpl> list=td.selectAllTypeInDB(conn);
 		request.setAttribute("typec", list);

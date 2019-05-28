@@ -156,7 +156,7 @@
  */
 
 html {
-	background-image: url('./2018/11/bg-18-11.jpg');
+	background-image: url('./2018/admin_11/admin_bg.jpg');
 	background-position: center top;
 	background-repeat: repeat-y;
 	

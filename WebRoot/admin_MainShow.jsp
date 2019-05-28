@@ -117,7 +117,7 @@ img.emoji {
 		}
 		</style>
 	<style type="text/css" id="custom-background-css">
-body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/11/bg-18-11.jpg"); background-position: center center; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; }
+body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/admin_11/admin_bg.jpg"); background-position: center center; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; }
 </style>
 <style type="text/css" media="print">#wpadminbar { display:none; }</style>
 <style type="text/css" media="screen">
@@ -217,7 +217,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	  pageContext.setAttribute("maxSize", maxSize);
 	//最大页数
 	//int maxPage=nd.getMaxPage(conn, maxSize);
-	int maxPage=nd.getMaxPage(conn, maxSize);
+	int maxPage=nd.selectAllNewsMaxPageForAdmin(conn, maxSize);
 	
 	//当前页数
 	int pageNo=0;
@@ -235,14 +235,15 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	  if(typeName==null||typeName.equals("")){
 	   list=nd.selectAllNewsForAdmin( conn, pageNo, maxSize);
 	   MyLog.log.debug("list="+list.size());
-	  }else {
-	 // if(!"".equals(typeName)){
-	  list=nd.selectNewsByTypeName(1, conn, typeName, pageNo, maxSize);
-	  maxPage=nd.selectNewsByTypeNameForMaxSize(1, conn, typeName,maxSize);
-	  MyLog.log.debug("typeName="+typeName);
-	  request.setAttribute("typec", typeName);
-	  MyLog.log.debug("maxPage232="+maxPage);
 	  }
+	  //else {
+	 // if(!"".equals(typeName)){
+	  //list=nd.selectNewsByTypeName(1, conn, typeName, pageNo, maxSize);
+	  //maxPage=nd.selectNewsByTypeNameForMaxSize(1, conn, typeName,maxSize);
+	  //MyLog.log.debug("typeName="+typeName);
+	  //request.setAttribute("typec", typeName);
+	  //MyLog.log.debug("maxPage232="+maxPage);
+	  //}
 	//  }
 	//  按时间分类
 	  String timetypecName=request.getParameter("timetypec");
@@ -286,7 +287,7 @@ body.custom-background { background-image: url("https://imgs.weilaiche.cc/2018/1
 	</tr>
 	</tbody>
 	</table></div></aside><aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">分类目录</h2>		<ul><c:forEach items="${requestScope.type }" var="typec" varStatus="cb">
-	<li class="cat-item cat-item-173"><a href="MainShow.jsp?typec=${typec.tname }" >${typec.tname }</a> (${typec.number })
+	<li class="cat-item cat-item-173"><a href="admin_MainShow.jsp?typec=${typec.tname }" >${typec.tname }</a> (${typec.number })
 </li>
 	</c:forEach>
 </ul>

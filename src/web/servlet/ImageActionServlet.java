@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.dsna.util.images.ValidateCode;
 import util.MyLog;
 import web.form.ImageForm;
 
@@ -65,56 +66,15 @@ public class ImageActionServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ServletOutputStream sos=null;
-		PrintWriter pw=null;
-		//产生随机的验证码
-				StringBuffer sb = new StringBuffer();
-				StringBuffer content = new StringBuffer();
-//				ImageForm im=(ImageForm)af;
-//				String data=im.getData();
-//				MyLog.log.debug("data=="+data);
-				for (int i = 0; i < 6; i++) {
-					String s = str[r.nextInt(str.length)];
-					sb.append(s+" ");
-					content.append(s);
-				}
+		ServletOutputStream sos=response.getOutputStream();
 				try {
-					sos = response.getOutputStream();
-					
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				//内存中的一张图片
-				BufferedImage bi = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-				//获得这张图片的画笔
-				Graphics g = bi.getGraphics();
-				//着色画外框
-				g.setColor(Color.BLACK);
-				g.drawRect(0, 0, WIDTH, HEIGHT);
-				//填充矩形
-				g.setColor(Color.YELLOW);
-				g.fillRect(0, 0, WIDTH, HEIGHT);
-				//写内容
-				g.setColor(Color.BLUE);
-				g.setFont(new Font("宋体",Font.BOLD,25));
-				g.drawString(sb.toString(), 10, 25);
-				
-				//画三根线
-				g.drawLine(10, 10, 170, 10);
-				g.drawLine(10, 15, 170, 20);
-				g.drawLine(10, 30, 170, 0);
-				
-				//画干扰点
-//				for (int i = 0; i < 600; i++) {
-//					int x = r.nextInt(WIDTH)+1;
-//					int y = r.nextInt(HEIGHT)+1;
-//					g.drawLine(x, y, x, y);
-//				}
-				g.dispose();
-				try {
-					ImageIO.write(bi, "jpg", sos);
+					ValidateCode vdc=new ValidateCode(120, 30, 4, 1);
+					MyLog.log.debug("生成vdc");
+					vdc.write(sos);
+					MyLog.log.debug("写入vdc");
+//					ImageIO.write(bi, "jpg", sos);
 					//将生成的验证码存入session中，为了后面客户提交时进行比对验证
-					request.getSession().setAttribute("code", content.toString());
+					request.getSession().setAttribute("code", vdc.getCode());
 //					request.getSession().setAttribute("code", content.toString());
 					String s=(String) request.getSession().getAttribute("code");
 					MyLog.log.debug("s="+s);
